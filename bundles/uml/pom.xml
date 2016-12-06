@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>tools.vitruv</groupId>
+		<artifactId>bundles</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+	<artifactId>uml</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>UML Domain Modules</name>
+
+	<modules>
+		<module>tools.vitruv.domains.uml</module>
+		<module>tools.vitruv.domains.sysml</module>
+	</modules>
+
+	<repositories>
+		<!-- If you adjust a repository here, please also adjust the repository in the b3 aggregator. -->
+		<repository>
+			<id>Papyrus</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon</url>
+		</repository>
+		<repository>
+			<id>Papyrus SysML</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/</url>
+		</repository>
+	</repositories>
+	
+</project>

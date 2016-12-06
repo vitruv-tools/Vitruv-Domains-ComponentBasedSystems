@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>tools.vitruv</groupId>
+		<artifactId>bundles</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+	<artifactId>java</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Java Domain Modules</name>
+
+	<modules>
+		<module>tools.vitruv.domains.java</module>
+		<module>tools.vitruv.domains.java.builder</module>
+		<module>tools.vitruv.domains.java.echange</module>
+		<module>tools.vitruv.domains.java.monitorededitor</module>
+		<module>tools.vitruv.domains.java.monitorededitor.astchangelistener</module>
+		<module>tools.vitruv.domains.java.monitorededitor.changeclassification</module>
+		<module>tools.vitruv.domains.java.monitorededitor.javamodel2ast</module>
+		<module>tools.vitruv.domains.java.monitorededitor.methodchange</module>
+		<module>tools.vitruv.domains.java.monitorededitor.refactoringlistener</module>
+		<module>tools.vitruv.domains.java.util</module>
+		<module>tools.vitruv.domains.java.util.jamoppparser</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.emftext</groupId>
+			<artifactId>org.emftext.language.java</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>EMFText</id>
+			<layout>p2</layout>
+			<url>http://update.emftext.org/release</url>
+		</repository>
+	</repositories>
+
+</project>
