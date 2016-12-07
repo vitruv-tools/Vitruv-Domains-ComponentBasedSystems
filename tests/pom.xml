@@ -27,9 +27,6 @@
 				<version>${tycho.version}</version>
 				<configuration>
 					<failIfNoTests>false</failIfNoTests>
-					<excludes>
-						<exclude>**/.java</exclude>
-					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
