@@ -32,12 +32,6 @@
       </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/p2/nightly/framework"/>
-    <validationRepositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14"/>
-    <validationRepositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon"/>
-    <validationRepositories location="http://download.eclipse.org/releases/neon/"/>
-    <validationRepositories location="http://update.emftext.org/release"/>
-    <validationRepositories location="http://update.jamopp.org/trunk/"/>
-    <validationRepositories location="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/aggregate/"/>
   </validationSets>
   <configurations architecture="x86_64"/>
   <configurations/>
