@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aggregator:Aggregation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:aggregator="http://www.eclipse.org/cbi/p2repo/2011/aggregator/1.1.0" label="Vitruv Domains" buildRoot="target">
+  <validationSets label="main">
+    <contributions label="local">
+      <repositories location="../tools.vitruv.domains.updatesite/target/repository"/>
+    </contributions>
+    <contributions label="externals">
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14" mirrorArtifacts="false">
+        <features name="org.eclipse.papyrus.sysml14.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon" mirrorArtifacts="false">
+        <features name="org.eclipse.papyrus.infra.discovery.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.eclipse.papyrus.sdk.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+      </repositories>
+      <repositories location="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/aggregate/" mirrorArtifacts="false">
+        <features name="de.uka.ipd.sdq.identifier.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+      </repositories>
+      <repositories location="http://update.emftext.org/release" mirrorArtifacts="false">
+        <features name="org.emftext.commons.antlr3_4_0.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.access.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.commons.jdt.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.commons.layout.feature.group" categories="//@customCategories[identifier='externals']"/>
+      </repositories>
+      <repositories location="http://update.jamopp.org/trunk/" mirrorArtifacts="false">
+        <features name="org.emftext.language.java.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.language.java.jdt.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.language.java.ui.feature.group" categories="//@customCategories[identifier='externals']"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/releases/neon/" mirrorArtifacts="false">
+        <features name="org.eclipse.emf.ecore.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.eclipse.jdt.feature.group" categories="//@customCategories[identifier='externals']"/>
+      </repositories>
+    </contributions>
+    <validationRepositories location="http://vitruv-tools.github.io/p2/nightly/framework"/>
+  </validationSets>
+  <configurations architecture="x86_64"/>
+  <configurations/>
+  <configurations operatingSystem="linux" windowSystem="gtk"/>
+  <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
+  <configurations operatingSystem="macosx" windowSystem="cocoa"/>
+  <configurations operatingSystem="macosx" windowSystem="cocoa" architecture="x86_64"/>
+  <customCategories identifier="externals" label="Externals" features="//@validationSets[label='main']/@contributions[label='externals']/@repositories.0/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.3 //@validationSets[label='main']/@contributions[label='externals']/@repositories.4/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.4/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.4/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.1/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.5/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.5/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.1/@features.1"/>
+</aggregator:Aggregation>
