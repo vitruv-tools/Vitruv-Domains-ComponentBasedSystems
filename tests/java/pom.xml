@@ -18,20 +18,4 @@
 		<module>tools.vitruv.domains.java.monitorededitor.tests</module>
 	</modules>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.emftext</groupId>
-			<artifactId>org.emftext.language.java</artifactId>
-			<version>1.4.1</version>
-		</dependency>
-	</dependencies>
-	
-	<repositories>
-		<repository>
-			<id>EMFText</id>
-			<layout>p2</layout>
-			<url>http://update.emftext.org/release</url>
-		</repository>
-	</repositories>
-	
 </project>
