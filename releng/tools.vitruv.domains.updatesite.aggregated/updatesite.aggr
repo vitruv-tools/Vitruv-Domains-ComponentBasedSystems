@@ -21,10 +21,10 @@
         <features name="org.emftext.commons.jdt.feature.group" categories="//@customCategories[identifier='externals']"/>
         <features name="org.emftext.commons.layout.feature.group" categories="//@customCategories[identifier='externals']"/>
       </repositories>
-      <repositories location="http://update.jamopp.org/trunk/" mirrorArtifacts="false">
-        <features name="org.emftext.language.java.feature.group" categories="//@customCategories[identifier='externals']"/>
-        <features name="org.emftext.language.java.jdt.feature.group" categories="//@customCategories[identifier='externals']"/>
-        <features name="org.emftext.language.java.ui.feature.group" categories="//@customCategories[identifier='externals']"/>
+      <repositories location="http://update.jamopp.org/trunk/">
+        <features name="org.emftext.language.java.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.language.java.jdt.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.language.java.ui.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
       </repositories>
       <repositories location="http://download.eclipse.org/releases/neon/" mirrorArtifacts="false">
         <features name="org.eclipse.emf.ecore.feature.group" categories="//@customCategories[identifier='externals']"/>
@@ -32,6 +32,12 @@
       </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/p2/nightly/framework"/>
+    <validationRepositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14"/>
+    <validationRepositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon"/>
+    <validationRepositories location="http://download.eclipse.org/releases/neon/"/>
+    <validationRepositories location="http://update.emftext.org/release"/>
+    <validationRepositories location="http://update.jamopp.org/trunk/"/>
+    <validationRepositories location="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/aggregate/"/>
   </validationSets>
   <configurations architecture="x86_64"/>
   <configurations/>

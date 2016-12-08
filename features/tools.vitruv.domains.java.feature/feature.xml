@@ -17,6 +17,11 @@
       TBA
    </license>
 
+   <url>
+      <discovery label="EMFText Update Site" url="http://update.emftext.org/release"/>
+      <discovery label="JaMoPP Update Site" url="http://update.jamopp.org/trunk/"/>
+   </url>
+
    <requires>
       <import feature="tools.vitruv.framework.feature" version="1.0.0.qualifier"/>
       <import feature="org.emftext.commons.antlr3_4_0" version="3.4.0" match="greaterOrEqual"/>
@@ -24,11 +29,6 @@
       <import feature="org.emftext.language.java.jdt" version="1.4.0" match="greaterOrEqual"/>
    </requires>
 
-   <url>
-      <discovery label="EMFText Update Site" url="http://update.emftext.org/release"/>
-      <discovery label="JaMoPP Update Site" url="http://update.jamopp.org/trunk/"/>
-   </url>
-   
    <plugin
          id="tools.vitruv.domains.java"
          download-size="0"
