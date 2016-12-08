@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="tools.vitruv.domains.sysml.feature"
+      label="%featureName"
+      version="1.0.0.qualifier"
+      provider-name="Vitruv Tools">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="">
+      TBA
+   </license>
+
+   <url>
+      <discovery label="Papyrus Update Site" url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon"/>
+      <discovery label="Papyrus SysML Update Site" url="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/"/>
+   </url>
+
+   <requires>
+      <import feature="tools.vitruv.framework.feature" version="1.0.0.qualifier"/>
+      <import feature="org.eclipse.papyrus.sysml14.feature" version="0.10.0"/>
+      <import feature="tools.vitruv.domains.emf.feature" version="1.0.0.qualifier"/>
+   </requires>
+
+   <plugin
+         id="tools.vitruv.domains.sysml"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

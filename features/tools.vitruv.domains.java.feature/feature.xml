@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="tools.vitruv.domains.java.feature"
+      label="%featureName"
+      version="1.0.0.qualifier"
+      provider-name="Vitruv Tools">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="">
+      TBA
+   </license>
+
+   <requires>
+      <import feature="tools.vitruv.framework.feature" version="1.0.0.qualifier"/>
+      <import feature="org.emftext.commons.antlr3_4_0" version="3.4.0" match="greaterOrEqual"/>
+      <import feature="org.emftext.language.java" version="1.4.0" match="greaterOrEqual"/>
+      <import feature="org.emftext.language.java.jdt" version="1.4.0" match="greaterOrEqual"/>
+   </requires>
+
+   <url>
+      <discovery label="EMFText Update Site" url="http://update.emftext.org/release"/>
+      <discovery label="JaMoPP Update Site" url="http://update.jamopp.org/trunk/"/>
+   </url>
+   
+   <plugin
+         id="tools.vitruv.domains.java"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.builder"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.echange"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.monitorededitor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.monitorededitor.astchangelistener"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.monitorededitor.changeclassification"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.monitorededitor.javamodel2ast"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.monitorededitor.methodchange"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.monitorededitor.refactoringlistener"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.monitorededitor.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.java.util.jamoppparser"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

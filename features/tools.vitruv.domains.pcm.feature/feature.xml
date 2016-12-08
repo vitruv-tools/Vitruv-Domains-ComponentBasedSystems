@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="tools.vitruv.domains.pcm.feature"
+      label="%featureName"
+      version="1.0.0.qualifier"
+      provider-name="Vitruv Tools">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="">
+      TBA
+   </license>
+
+   <url>
+      <discovery label="PCM Update Site" url="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/"/>
+   </url>
+
+   <requires>
+      <import feature="tools.vitruv.framework.feature" version="1.0.0.qualifier"/>
+      <!-- <import feature="org.palladiosimulator.pcm.feature" version="4.0.1" match="greaterOrEqual"/> -->
+      <import feature="tools.vitruv.domains.emf.feature" version="1.0.0.qualifier"/>
+   </requires>
+
+   <plugin
+         id="tools.vitruv.domains.pcm"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="tools.vitruv.domains.pcm.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.palladiosimulator.pcm"
+         download-size="0"
+         install-size="0"
+         version="6.0.0"
+         unpack="false"/>
+
+</feature>
