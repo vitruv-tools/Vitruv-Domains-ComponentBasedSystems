@@ -6,19 +6,19 @@
     </contributions>
     <contributions label="externals">
       <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14" mirrorArtifacts="false">
-        <features name="org.eclipse.papyrus.sysml14.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.eclipse.papyrus.sysml14.feature.feature.group" versionRange="0.10.0" categories="//@customCategories[identifier='externals']"/>
       </repositories>
       <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon" mirrorArtifacts="false">
-        <features name="org.eclipse.papyrus.infra.discovery.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
-        <features name="org.eclipse.papyrus.sdk.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.eclipse.papyrus.infra.discovery.feature.feature.group" versionRange="2.0.0" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.eclipse.papyrus.sdk.feature.feature.group" versionRange="2.0.1" categories="//@customCategories[identifier='externals']"/>
       </repositories>
       <repositories location="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/aggregate/" mirrorArtifacts="false">
-        <features name="de.uka.ipd.sdq.identifier.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="de.uka.ipd.sdq.identifier.feature.feature.group" versionRange="2.1.0" categories="//@customCategories[identifier='externals']"/>
       </repositories>
       <repositories location="http://update.emftext.org/release" mirrorArtifacts="false">
-        <features name="org.emftext.commons.antlr3_4_0.feature.group" categories="//@customCategories[identifier='externals']"/>
-        <features name="org.emftext.commons.jdt.feature.group" categories="//@customCategories[identifier='externals']"/>
-        <features name="org.emftext.commons.layout.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.commons.antlr3_4_0.feature.group" versionRange="3.4.0" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.commons.jdt.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.emftext.commons.layout.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
       </repositories>
       <repositories location="http://vitruv-tools.github.io/p2/nightly/jamopp-p2">
         <features name="org.emftext.language.java.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
