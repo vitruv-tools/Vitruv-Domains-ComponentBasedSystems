@@ -23,8 +23,13 @@
 
    <requires>
       <import feature="tools.vitruv.framework.feature" version="1.0.0.qualifier"/>
-      <!-- <import feature="org.palladiosimulator.pcm.feature" version="4.0.1" match="greaterOrEqual"/> -->
       <import feature="tools.vitruv.domains.emf.feature" version="1.0.0.qualifier"/>
+      <import plugin="org.palladiosimulator.pcm.resources"/>
+      <import plugin="de.uka.ipd.sdq.identifier"/>
+      <import plugin="de.uka.ipd.sdq.errorhandling"/>
+      <import plugin="de.uka.ipd.sdq.probfunction"/>
+      <import plugin="de.uka.ipd.sdq.stoex"/>
+      <import plugin="de.uka.ipd.sdq.units"/>
    </requires>
 
    <plugin
