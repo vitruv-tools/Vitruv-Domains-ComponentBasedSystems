@@ -21,7 +21,7 @@
         <features name="org.emftext.commons.jdt.feature.group" categories="//@customCategories[identifier='externals']"/>
         <features name="org.emftext.commons.layout.feature.group" categories="//@customCategories[identifier='externals']"/>
       </repositories>
-      <repositories location="http://update.jamopp.org/trunk/">
+      <repositories location="http://vitruv-tools.github.io/p2/nightly/jamopp-p2">
         <features name="org.emftext.language.java.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
         <features name="org.emftext.language.java.jdt.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
         <features name="org.emftext.language.java.ui.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>

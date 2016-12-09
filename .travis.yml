@@ -9,7 +9,6 @@ cache:
 before_install:
     - git clone --depth 1 https://github.com/vitruv-tools/BuildUtilities.git /tmp/BuildUtilities
     - . /tmp/BuildUtilities/travis-ci/installMaven.sh
-    - . /tmp/BuildUtilities/travis-ci/installJamopp.sh
 install: true
 
 script: mvn clean verify
