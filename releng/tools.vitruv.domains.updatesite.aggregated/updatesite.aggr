@@ -25,12 +25,9 @@
         <features name="org.emftext.language.java.jdt.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
         <features name="org.emftext.language.java.ui.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/releases/neon/" mirrorArtifacts="false">
-        <features name="org.eclipse.emf.ecore.feature.group" categories="//@customCategories[identifier='externals']"/>
-        <features name="org.eclipse.jdt.feature.group" categories="//@customCategories[identifier='externals']"/>
-      </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/p2/nightly/framework"/>
+    <validationRepositories location="http://download.eclipse.org/releases/neon/"/>
   </validationSets>
   <configurations architecture="x86_64"/>
   <configurations/>
@@ -38,5 +35,5 @@
   <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
   <configurations operatingSystem="macosx" windowSystem="cocoa"/>
   <configurations operatingSystem="macosx" windowSystem="cocoa" architecture="x86_64"/>
-  <customCategories identifier="externals" label="Externals" features="//@validationSets[label='main']/@contributions[label='externals']/@repositories.0/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.4/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.4/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.4/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.1/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.5/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.5/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.1/@features.1"/>
+  <customCategories identifier="externals" label="External Dependencies" features="//@validationSets[label='main']/@contributions[label='externals']/@repositories.0/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.4/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.4/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.4/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.1/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.1/@features.1"/>
 </aggregator:Aggregation>

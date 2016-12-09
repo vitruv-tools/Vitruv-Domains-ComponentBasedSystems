@@ -30,6 +30,7 @@
       <import plugin="de.uka.ipd.sdq.probfunction"/>
       <import plugin="de.uka.ipd.sdq.stoex"/>
       <import plugin="de.uka.ipd.sdq.units"/>
+      <import feature="org.eclipse.jdt" version="3.12.1" match="greaterOrEqual"/>
    </requires>
 
    <plugin
