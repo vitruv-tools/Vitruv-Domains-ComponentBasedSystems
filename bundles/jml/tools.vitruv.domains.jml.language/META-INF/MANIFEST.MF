@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vitruvius Domain JML Language
-Bundle-Version: 1.0.0
+Bundle-Version: 0.1.0.qualifier
 Bundle-SymbolicName: tools.vitruv.domains.jml.language;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -34,4 +34,5 @@ Export-Package: tools.vitruv.domains.jml.language,
  tools.vitruv.domains.jml.language.serializer,
  tools.vitruv.domains.jml.language.services,
  tools.vitruv.domains.jml.language.validation
+Bundle-Vendor: vitruv.tools
 

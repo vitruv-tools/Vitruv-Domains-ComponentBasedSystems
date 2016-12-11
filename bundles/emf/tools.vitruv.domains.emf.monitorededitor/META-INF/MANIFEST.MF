@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vitruvius Domain EMF Monitored Editor
 Bundle-SymbolicName: tools.vitruv.domains.emf.monitorededitor;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.1.0.qualifier
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf;bundle-version="2.6.0",
@@ -27,3 +27,4 @@ Export-Package: tools.vitruv.domains.emf.monitorededitor,
  tools.vitruv.domains.emf.monitorededitor.monitor,
  tools.vitruv.domains.emf.monitorededitor.tools
 Import-Package: tools.vitruv.framework.util.bridges
+Bundle-Vendor: vitruv.tools
