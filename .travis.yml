@@ -14,4 +14,4 @@ install: true
 script: mvn clean verify
 
 after_success:
-- . /tmp/BuildUtilities/travis-ci/deployNightly.sh domains releng/tools.vitruv.domains.updatesite.aggregated final
+- . /tmp/BuildUtilities/travis-ci/deploy.sh domains releng/tools.vitruv.domains.updatesite.aggregated final
