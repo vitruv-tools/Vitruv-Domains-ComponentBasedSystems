@@ -2,19 +2,21 @@
 <feature
       id="tools.vitruv.domains.pcm.feature"
       label="%featureName"
-      version="1.0.0.qualifier"
-      provider-name="Vitruv Tools">
+      version="0.1.0.qualifier"
+      provider-name="%providerName"	  
+      license-feature="tools.vitruv.license.feature"
+	  license-feature-version="1.0.0">
 
    <description>
       %description
    </description>
 
-   <copyright>
+   <copyright url="%copyrightURL">
       %copyright
    </copyright>
 
-   <license url="">
-      TBA
+   <license url="%licenseURL">
+      %license
    </license>
 
    <url>
@@ -22,8 +24,8 @@
    </url>
 
    <requires>
-      <import feature="tools.vitruv.framework.feature" version="1.0.0.qualifier"/>
-      <import feature="tools.vitruv.domains.emf.feature" version="1.0.0.qualifier"/>
+      <import feature="tools.vitruv.framework.feature" version="0.1.0" match="greaterOrEqual"/>
+      <import feature="tools.vitruv.domains.emf.feature" version="0.1.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.pcm.resources"/>
       <import plugin="de.uka.ipd.sdq.identifier"/>
       <import plugin="de.uka.ipd.sdq.errorhandling"/>

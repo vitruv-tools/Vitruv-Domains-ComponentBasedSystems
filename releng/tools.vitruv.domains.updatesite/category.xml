@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/tools.vitruv.domains.emf.feature_1.0.0.qualifier.jar" id="tools.vitruv.domains.emf.feature" version="1.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.emf.feature_0.1.0.qualifier.jar" id="tools.vitruv.domains.emf.feature" version="0.1.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.java.feature_1.0.0.qualifier.jar" id="tools.vitruv.domains.java.feature" version="1.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.java.feature_0.1.0.qualifier.jar" id="tools.vitruv.domains.java.feature" version="0.1.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.pcm.feature_1.0.0.qualifier.jar" id="tools.vitruv.domains.pcm.feature" version="1.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.pcm.feature_0.1.0.qualifier.jar" id="tools.vitruv.domains.pcm.feature" version="0.1.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.sysml.feature_1.0.0.qualifier.jar" id="tools.vitruv.domains.sysml.feature" version="1.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.sysml.feature_0.1.0.qualifier.jar" id="tools.vitruv.domains.sysml.feature" version="0.1.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.uml.feature_1.0.0.qualifier.jar" id="tools.vitruv.domains.uml.feature" version="1.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.uml.feature_0.1.0.qualifier.jar" id="tools.vitruv.domains.uml.feature" version="0.1.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
    <category-def name="Vitruv Domains" label="Vitruv Domains">
