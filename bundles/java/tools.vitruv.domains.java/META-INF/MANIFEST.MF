@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vitruvius Domains Java
-Bundle-SymbolicName: tools.vitruv.domains.java
+Bundle-SymbolicName: tools.vitruv.domains.java;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.google.guava,
@@ -16,7 +16,8 @@ Require-Bundle: com.google.guava,
  org.emftext.language.java;visibility:=reexport,
  tools.vitruv.framework.metamodel;visibility:=reexport,
  tools.vitruv.framework.util,
- tools.vitruv.framework.tuid
+ tools.vitruv.framework.tuid,
+ tools.vitruv.framework.vsum
 Export-Package: tools.vitruv.domains.java
 Bundle-Vendor: vitruv.tools
 

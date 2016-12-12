@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+   <extension
+         id="tools.vitruv.domains.java"
+         name="Java Domain"
+         point="tools.vitruv.framework.vsum.domain">
+      <domain
+            domainClass="tools.vitruv.domains.java.JavaDomain"></domain>
+   </extension>
+
+</plugin>
