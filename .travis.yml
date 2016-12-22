@@ -7,11 +7,11 @@ cache:
    - $HOME/.m2
 
 before_install:
-    - git clone --depth 1 https://github.com/vitruv-tools/BuildUtilities.git /tmp/BuildUtilities
+    - git clone --depth 1 https://github.com/kit-sdq/BuildUtilities.git /tmp/BuildUtilities
     - . /tmp/BuildUtilities/travis-ci/installMaven.sh
 install: true
 
 script: mvn clean verify
 
 after_success:
-- . /tmp/BuildUtilities/travis-ci/deploy.sh domains releng/tools.vitruv.domains.updatesite.aggregated final
+- . /tmp/BuildUtilities/travis-ci/deploy.sh domains releng/tools.vitruv.domains.updatesite.aggregated final vitruv-tools updatesite
