@@ -62,7 +62,7 @@
 		<repository>
 			<id>JaMoPP (P2 Wrapper)</id>
 			<layout>p2</layout>
-			<url>https://vitruv-tools.github.io/updatesite/nightly/jamopp-p2/</url>
+			<url>https://kit-sdq.github.io/updatesite/nightly/jamopp-p2/</url>
 		</repository>
 		<repository>
 			<id>Palladiosimulator</id>
