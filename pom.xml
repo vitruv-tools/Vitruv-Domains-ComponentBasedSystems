@@ -65,6 +65,11 @@
 			<url>https://kit-sdq.github.io/updatesite/nightly/jamopp-p2/</url>
 		</repository>
 		<repository>
+			<id>ASEM</id>
+			<layout>p2</layout>
+			<url>https://kit-sdq.github.io/updatesite/nightly/asem/</url>
+		</repository>
+		<repository>
 			<id>Palladiosimulator</id>
 			<layout>p2</layout>
 			<url>https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/</url>

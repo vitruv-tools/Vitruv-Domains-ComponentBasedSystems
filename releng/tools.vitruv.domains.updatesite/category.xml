@@ -15,6 +15,9 @@
    <feature url="features/tools.vitruv.domains.uml.feature_0.1.0.qualifier.jar" id="tools.vitruv.domains.uml.feature" version="0.1.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
+   <feature url="features/tools.vitruv.domains.asem.feature_0.1.0.qualifier.jar" id="tools.vitruv.domains.asem.feature" version="0.1.0.qualifier">
+      <category name="Vitruv Domains"/>
+   </feature>
    <category-def name="Vitruv Domains" label="Vitruv Domains">
       <description>
          Domains for Vitruv
@@ -25,4 +28,6 @@
    <repository-reference location="http://update.jamopp.org/trunk/" enabled="true" />
    <repository-reference location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon" enabled="true" />
    <repository-reference location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14" enabled="true" />
+   <repository-reference location="http://https://kit-sdq.github.io/updatesite/nightly/asem/" enabled="true" />
+   <repository-reference location="http://https://vitruv-tools.github.io/updatesite/nightly/framework/" enabled="true" />
 </site>

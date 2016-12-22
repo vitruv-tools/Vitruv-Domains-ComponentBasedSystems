@@ -18,6 +18,7 @@
 		<module>java</module>
 		<module>pcm</module>
 		<module>uml</module>
+		<module>asem</module>
 	</modules>
 
 </project>
