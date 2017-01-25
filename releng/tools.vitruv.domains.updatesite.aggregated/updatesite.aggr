@@ -20,16 +20,16 @@
         <features name="org.emftext.commons.jdt.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
         <features name="org.emftext.commons.layout.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
       </repositories>
-      <repositories location="http://kit-sdq.github.io/updatesite/nightly/jamopp-p2" mirrorArtifacts="false">
+      <repositories location="http://kit-sdq.github.io/updatesite/release/jamopp-p2" mirrorArtifacts="false">
         <features name="org.emftext.language.java.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
         <features name="org.emftext.language.java.jdt.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
         <features name="org.emftext.language.java.ui.feature.group" versionRange="1.4.1" categories="//@customCategories[identifier='externals']"/>
       </repositories>
-      <repositories location="http://kit-sdq.github.io/updatesite/nightly/asem" mirrorArtifacts="false">
+      <repositories location="http://kit-sdq.github.io/updatesite/release/asem" mirrorArtifacts="false">
         <features name="edu.kit.ipd.sdq.asem.feature.feature.group" versionRange="0.1.0" categories="//@customCategories[identifier='externals']"/>
       </repositories>
     </contributions>
-    <validationRepositories location="http://vitruv-tools.github.io/updatesite/nightly/framework"/>
+    <validationRepositories location="http://vitruv-tools.github.io/updatesite/release/framework"/>
     <validationRepositories location="http://download.eclipse.org/releases/neon/"/>
   </validationSets>
   <configurations architecture="x86_64"/>
