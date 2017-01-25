@@ -29,14 +29,6 @@
 		<bintray.deploy.repository>Vitruv</bintray.deploy.repository>
 	</properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.emftext</groupId>
-			<artifactId>org.emftext.language.java</artifactId>
-			<version>1.4.1</version>
-		</dependency>
-	</dependencies>
-	
 	<repositories>
 		<!-- If you adjust a repository here, please also adjust the repository in the b3 aggregator. -->
 		<repository>
