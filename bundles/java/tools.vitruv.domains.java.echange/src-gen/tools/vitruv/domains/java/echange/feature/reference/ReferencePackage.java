@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <!-- end-user-doc -->
  * @see tools.vitruv.domains.java.echange.feature.reference.ReferenceFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelName='Change' basePackage='tools.vitruv.domains.java.echange.feature'"
  * @generated
  */
 public interface ReferencePackage extends EPackage {
@@ -99,15 +100,6 @@ public interface ReferencePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_INSERT_EREFERENCE__NEW_VALUE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE__NEW_VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Create</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_INSERT_EREFERENCE__IS_CREATE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE__IS_CREATE;
 
 	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
@@ -201,15 +193,6 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_REMOVE_EREFERENCE__OLD_VALUE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE__OLD_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Is Delete</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REMOVE_EREFERENCE__IS_DELETE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE__IS_DELETE;
-
-	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -274,15 +257,6 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__NEW_VALUE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__NEW_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Is Create</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__IS_CREATE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__IS_CREATE;
-
-	/**
 	 * The feature id for the '<em><b>Affected Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -308,15 +282,6 @@ public interface ReferencePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__OLD_VALUE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__OLD_VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Delete</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__IS_DELETE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__IS_DELETE;
 
 	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.

@@ -2,21 +2,18 @@
  */
 package tools.vitruv.domains.java.echange.feature.impl;
 
-import tools.vitruv.domains.java.echange.feature.FeatureFactory;
-import tools.vitruv.domains.java.echange.feature.FeaturePackage;
-import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
-import tools.vitruv.domains.java.echange.feature.attribute.AttributePackage;
-import tools.vitruv.domains.java.echange.feature.attribute.impl.AttributePackageImpl;
-import tools.vitruv.domains.java.echange.feature.reference.ReferencePackage;
-import tools.vitruv.domains.java.echange.feature.reference.impl.ReferencePackageImpl;
-import tools.vitruv.framework.change.echange.EChangePackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import tools.vitruv.domains.java.echange.feature.FeatureFactory;
+import tools.vitruv.domains.java.echange.feature.FeaturePackage;
+import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,21 +76,13 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EChangePackage.eINSTANCE.eClass();
-
-		// Obtain or create and register interdependencies
-		AttributePackageImpl theAttributePackage = (AttributePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AttributePackage.eNS_URI) instanceof AttributePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AttributePackage.eNS_URI) : AttributePackage.eINSTANCE);
-		ReferencePackageImpl theReferencePackage = (ReferencePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ReferencePackage.eNS_URI) instanceof ReferencePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ReferencePackage.eNS_URI) : ReferencePackage.eINSTANCE);
+		tools.vitruv.framework.change.echange.feature.FeaturePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theFeaturePackage.createPackageContents();
-		theAttributePackage.createPackageContents();
-		theReferencePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theFeaturePackage.initializePackageContents();
-		theAttributePackage.initializePackageContents();
-		theReferencePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theFeaturePackage.freeze();
@@ -178,22 +167,17 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		AttributePackage theAttributePackage = (AttributePackage)EPackage.Registry.INSTANCE.getEPackage(AttributePackage.eNS_URI);
-		ReferencePackage theReferencePackage = (ReferencePackage)EPackage.Registry.INSTANCE.getEPackage(ReferencePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		tools.vitruv.framework.change.echange.feature.FeaturePackage theFeaturePackage_1 = (tools.vitruv.framework.change.echange.feature.FeaturePackage)EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.framework.change.echange.feature.FeaturePackage.eNS_URI);
-
-		// Add subpackages
-		getESubpackages().add(theAttributePackage);
-		getESubpackages().add(theReferencePackage);
 
 		// Create type parameters
 		ETypeParameter javaFeatureEChangeEClass_A = addETypeParameter(javaFeatureEChangeEClass, "A");
 		ETypeParameter javaFeatureEChangeEClass_F = addETypeParameter(javaFeatureEChangeEClass, "F");
 
 		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(ecorePackage.getEObject());
+		EGenericType g1 = createEGenericType(theEcorePackage.getEObject());
 		javaFeatureEChangeEClass_A.getEBounds().add(g1);
-		g1 = createEGenericType(ecorePackage.getEStructuralFeature());
+		g1 = createEGenericType(theEcorePackage.getEStructuralFeature());
 		javaFeatureEChangeEClass_F.getEBounds().add(g1);
 
 		// Add supertypes to classes
@@ -205,7 +189,7 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 		javaFeatureEChangeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(javaFeatureEChangeEClass, JavaFeatureEChange.class, "JavaFeatureEChange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(javaFeatureEChangeEClass, JavaFeatureEChange.class, "JavaFeatureEChange", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(javaFeatureEChangeEClass_A);
 		initEReference(getJavaFeatureEChange_OldAffectedEObject(), g1, null, "oldAffectedEObject", null, 1, 1, JavaFeatureEChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

@@ -196,7 +196,7 @@ public class JaMoPPChangeBuildHelper {
             final EObject containerBeforeAdd) {
         final JavaInsertEReference<EObject, T> createChange = ReferenceFactory.eINSTANCE
                 .createJavaInsertEReference();
-        createChange.setIsCreate(true);
+        //createChange.setIsCreate(true);
         createChange.setAffectedEObject(createdEObject.eContainer());
         createChange.setOldAffectedEObject(containerBeforeAdd);
         final EReference containingReference = (EReference) createdEObject.eContainingFeature();
@@ -213,7 +213,7 @@ public class JaMoPPChangeBuildHelper {
             final EObject containerAfterDelete) {
         final JavaRemoveEReference<EObject, T> deleteChange = ReferenceFactory.eINSTANCE
                 .createJavaRemoveEReference();
-        deleteChange.setIsDelete(true);
+        //deleteChange.setIsDelete(true);
         deleteChange.setOldAffectedEObject(deletedEObject.eContainer());
         deleteChange.setAffectedEObject(containerAfterDelete);
         final EReference containingReference = (EReference) deletedEObject.eContainingFeature();

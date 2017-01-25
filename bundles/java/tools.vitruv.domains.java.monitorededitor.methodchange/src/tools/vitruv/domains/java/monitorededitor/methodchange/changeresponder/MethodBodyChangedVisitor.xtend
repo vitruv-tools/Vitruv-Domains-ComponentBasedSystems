@@ -23,7 +23,7 @@ class MethodBodyChangedVisitor extends VisitorBase<MethodBodyChangedEvent> {
 
 		for (stmt : (originalMethod as ClassMethod).statements) {
 			val change = ReferenceFactory.eINSTANCE.createJavaRemoveEReference();
-			change.isDelete = true;
+			//change.isDelete = true;
 			change.oldAffectedEObject = originalMethod
 			change.affectedEObject = changedMethod
 			change.affectedFeature = StatementsPackage.eINSTANCE.statementListContainer_Statements
@@ -34,7 +34,7 @@ class MethodBodyChangedVisitor extends VisitorBase<MethodBodyChangedEvent> {
 		
 		for (stmt : (changedMethod as ClassMethod).statements) {
 			val change = ReferenceFactory.eINSTANCE.createJavaInsertEReference();
-			change.isCreate = true;
+			//change.isCreate = true;
 			change.oldAffectedEObject = originalMethod
 			change.affectedEObject = changedMethod
 			change.affectedFeature = StatementsPackage.eINSTANCE.statementListContainer_Statements

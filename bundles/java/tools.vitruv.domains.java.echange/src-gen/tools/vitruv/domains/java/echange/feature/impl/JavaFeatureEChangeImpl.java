@@ -2,17 +2,19 @@
  */
 package tools.vitruv.domains.java.echange.feature.impl;
 
-import tools.vitruv.domains.java.echange.feature.FeaturePackage;
-import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
-import tools.vitruv.framework.change.echange.feature.impl.FeatureEChangeImpl;
-
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import tools.vitruv.domains.java.echange.feature.FeaturePackage;
+import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
+
+import tools.vitruv.framework.change.echange.feature.impl.FeatureEChangeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class JavaFeatureEChangeImpl<A extends EObject, F extends EStructuralFeature> extends FeatureEChangeImpl<A, F> implements JavaFeatureEChange<A, F> {
+public abstract class JavaFeatureEChangeImpl<A extends EObject, F extends EStructuralFeature> extends FeatureEChangeImpl<A, F> implements JavaFeatureEChange<A, F> {
 	/**
 	 * The cached value of the '{@link #getOldAffectedEObject() <em>Old Affected EObject</em>}' reference.
 	 * <!-- begin-user-doc -->

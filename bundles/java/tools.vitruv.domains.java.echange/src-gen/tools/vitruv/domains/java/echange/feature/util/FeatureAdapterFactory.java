@@ -2,11 +2,6 @@
  */
 package tools.vitruv.domains.java.echange.feature.util;
 
-import tools.vitruv.domains.java.echange.feature.*;
-import tools.vitruv.framework.change.echange.AtomicEChange;
-import tools.vitruv.framework.change.echange.EChange;
-import tools.vitruv.framework.change.echange.feature.FeatureEChange;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -14,6 +9,13 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import tools.vitruv.domains.java.echange.feature.*;
+
+import tools.vitruv.framework.change.echange.AtomicEChange;
+import tools.vitruv.framework.change.echange.EChange;
+
+import tools.vitruv.framework.change.echange.feature.FeatureEChange;
 
 /**
  * <!-- begin-user-doc -->

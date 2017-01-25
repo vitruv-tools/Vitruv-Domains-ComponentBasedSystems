@@ -2,16 +2,18 @@
  */
 package tools.vitruv.domains.java.echange.feature.util;
 
-import tools.vitruv.domains.java.echange.feature.*;
-import tools.vitruv.framework.change.echange.AtomicEChange;
-import tools.vitruv.framework.change.echange.EChange;
-import tools.vitruv.framework.change.echange.feature.FeatureEChange;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.util.Switch;
+
+import tools.vitruv.domains.java.echange.feature.*;
+
+import tools.vitruv.framework.change.echange.AtomicEChange;
+import tools.vitruv.framework.change.echange.EChange;
+
+import tools.vitruv.framework.change.echange.feature.FeatureEChange;
 
 /**
  * <!-- begin-user-doc -->

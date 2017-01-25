@@ -2,20 +2,34 @@
  */
 package tools.vitruv.domains.java.echange.feature.reference.util;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
+
 import tools.vitruv.domains.java.echange.feature.reference.*;
+
 import tools.vitruv.framework.change.echange.AdditiveEChange;
 import tools.vitruv.framework.change.echange.AtomicEChange;
 import tools.vitruv.framework.change.echange.EChange;
-import tools.vitruv.framework.change.echange.EObjectAddedEChange;
-import tools.vitruv.framework.change.echange.EObjectSubtractedEChange;
 import tools.vitruv.framework.change.echange.SubtractiveEChange;
+
+import tools.vitruv.framework.change.echange.eobject.EObjectAddedEChange;
+import tools.vitruv.framework.change.echange.eobject.EObjectSubtractedEChange;
+
 import tools.vitruv.framework.change.echange.feature.FeatureEChange;
 import tools.vitruv.framework.change.echange.feature.UpdateMultiValuedFeatureEChange;
 import tools.vitruv.framework.change.echange.feature.UpdateSingleValuedFeatureEChange;
+
 import tools.vitruv.framework.change.echange.feature.list.InsertInListEChange;
 import tools.vitruv.framework.change.echange.feature.list.RemoveFromListEChange;
 import tools.vitruv.framework.change.echange.feature.list.UpdateSingleListEntryEChange;
+
 import tools.vitruv.framework.change.echange.feature.reference.AdditiveReferenceEChange;
 import tools.vitruv.framework.change.echange.feature.reference.InsertEReference;
 import tools.vitruv.framework.change.echange.feature.reference.RemoveEReference;
@@ -24,13 +38,6 @@ import tools.vitruv.framework.change.echange.feature.reference.SubtractiveRefere
 import tools.vitruv.framework.change.echange.feature.reference.UpdateReferenceEChange;
 
 import tools.vitruv.framework.change.echange.feature.single.ReplaceSingleValuedFeatureEChange;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notifier;
-
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -313,20 +320,6 @@ public class ReferenceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.feature.list.InsertInListEChange <em>Insert In List EChange</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see tools.vitruv.framework.change.echange.feature.list.InsertInListEChange
-	 * @generated
-	 */
-	public Adapter createInsertInListEChangeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.AdditiveEChange <em>Additive EChange</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -341,13 +334,27 @@ public class ReferenceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.EObjectAddedEChange <em>EObject Added EChange</em>}'.
+	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.feature.list.InsertInListEChange <em>Insert In List EChange</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see tools.vitruv.framework.change.echange.EObjectAddedEChange
+	 * @see tools.vitruv.framework.change.echange.feature.list.InsertInListEChange
+	 * @generated
+	 */
+	public Adapter createInsertInListEChangeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.eobject.EObjectAddedEChange <em>EObject Added EChange</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see tools.vitruv.framework.change.echange.eobject.EObjectAddedEChange
 	 * @generated
 	 */
 	public Adapter createEObjectAddedEChangeAdapter() {
@@ -411,20 +418,6 @@ public class ReferenceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.feature.list.RemoveFromListEChange <em>Remove From List EChange</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see tools.vitruv.framework.change.echange.feature.list.RemoveFromListEChange
-	 * @generated
-	 */
-	public Adapter createRemoveFromListEChangeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.SubtractiveEChange <em>Subtractive EChange</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -439,13 +432,27 @@ public class ReferenceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.EObjectSubtractedEChange <em>EObject Subtracted EChange</em>}'.
+	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.feature.list.RemoveFromListEChange <em>Remove From List EChange</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see tools.vitruv.framework.change.echange.EObjectSubtractedEChange
+	 * @see tools.vitruv.framework.change.echange.feature.list.RemoveFromListEChange
+	 * @generated
+	 */
+	public Adapter createRemoveFromListEChangeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.eobject.EObjectSubtractedEChange <em>EObject Subtracted EChange</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see tools.vitruv.framework.change.echange.eobject.EObjectSubtractedEChange
 	 * @generated
 	 */
 	public Adapter createEObjectSubtractedEChangeAdapter() {

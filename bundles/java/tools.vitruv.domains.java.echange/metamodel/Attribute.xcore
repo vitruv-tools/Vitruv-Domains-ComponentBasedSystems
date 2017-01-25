@@ -1,0 +1,19 @@
+@Ecore(nsURI="http://tools.vitruv/EChange/Java/Feature/Attribute/1.0")
+@GenModel(modelName="Change") //@GenModel(editDirectory="/tools.vitruv.framework.change.echange.edit/src", editorDirectory="/tools.vitruv.framework.change.echange.editor/src", modelName="Change", modelPluginClass="", editPluginClass="tools.vitruv.framework.change.provider.ChangeEditPlugin", editorPluginClass="tools.vitruv.framework.change.echange.presentation.ChangeEditorPlugin", testsDirectory="tools.vitruv.framework.change.echange.tests/src", testSuiteClass="tools.vitruv.framework.change.echange.tests.ChangeAllTests", importerID="org.eclipse.emf.importer.ecore", editorPluginID="tools.vitruv.framework.change.echange.editor", testsPluginID="tools.vitruv.framework.change.echange.tests")
+package tools.vitruv.domains.java.echange.feature.attribute
+
+import org.eclipse.emf.ecore.EObject
+import tools.vitruv.framework.change.echange.feature.attribute.InsertEAttributeValue
+import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange
+import org.eclipse.emf.ecore.EAttribute
+import tools.vitruv.framework.change.echange.feature.attribute.ReplaceSingleValuedEAttribute
+import tools.vitruv.framework.change.echange.feature.attribute.RemoveEAttributeValue
+
+class JavaInsertEAttributeValue<A extends EObject , T extends Object> extends InsertEAttributeValue<A, T>, JavaFeatureEChange<A, EAttribute> {
+}
+
+class JavaRemoveEAttributeValue<A extends EObject , T extends Object> extends RemoveEAttributeValue<A, T>, JavaFeatureEChange<A, EAttribute> {
+}
+
+class JavaReplaceSingleValuedEAttribute<A extends EObject , T extends Object> extends ReplaceSingleValuedEAttribute<A, T>, JavaFeatureEChange<A, EAttribute> {
+}

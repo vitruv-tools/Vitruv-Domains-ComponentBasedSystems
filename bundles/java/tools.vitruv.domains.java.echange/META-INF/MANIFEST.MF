@@ -18,6 +18,8 @@ Export-Package: tools.vitruv.domains.java.echange.feature,
  tools.vitruv.domains.java.echange.feature.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- tools.vitruv.framework.change.echange;visibility:=reexport
+ org.eclipse.xtext.xbase.lib,
+ tools.vitruv.framework.change.echange;visibility:=reexport,
+ org.eclipse.emf.ecore.xcore.lib,
+ tools.vitruv.domains.java.echange;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-

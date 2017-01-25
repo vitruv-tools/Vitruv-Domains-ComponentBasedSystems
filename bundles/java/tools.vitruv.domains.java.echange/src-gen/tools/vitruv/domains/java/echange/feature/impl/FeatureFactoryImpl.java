@@ -5,7 +5,6 @@ package tools.vitruv.domains.java.echange.feature.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
@@ -57,20 +56,9 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case FeaturePackage.JAVA_FEATURE_ECHANGE: return createJavaFeatureEChange();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public <A extends EObject, F extends EStructuralFeature> JavaFeatureEChange<A, F> createJavaFeatureEChange() {
-		JavaFeatureEChangeImpl<A, F> javaFeatureEChange = new JavaFeatureEChangeImpl<A, F>();
-		return javaFeatureEChange;
 	}
 
 	/**

@@ -2,11 +2,12 @@
  */
 package tools.vitruv.domains.java.echange.feature.reference;
 
-import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
-import tools.vitruv.framework.change.echange.feature.reference.InsertEReference;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+
+import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
+
+import tools.vitruv.framework.change.echange.feature.reference.InsertEReference;
 
 /**
  * <!-- begin-user-doc -->

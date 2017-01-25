@@ -2,11 +2,12 @@
  */
 package tools.vitruv.domains.java.echange.feature.attribute;
 
-import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
-import tools.vitruv.framework.change.echange.feature.attribute.ReplaceSingleValuedEAttribute;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+
+import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
+
+import tools.vitruv.framework.change.echange.feature.attribute.ReplaceSingleValuedEAttribute;
 
 /**
  * <!-- begin-user-doc -->

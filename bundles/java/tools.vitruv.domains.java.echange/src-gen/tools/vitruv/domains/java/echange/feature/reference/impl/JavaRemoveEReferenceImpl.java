@@ -2,17 +2,21 @@
  */
 package tools.vitruv.domains.java.echange.feature.reference.impl;
 
-import tools.vitruv.domains.java.echange.feature.FeaturePackage;
-import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
-import tools.vitruv.domains.java.echange.feature.reference.JavaRemoveEReference;
-import tools.vitruv.domains.java.echange.feature.reference.ReferencePackage;
-import tools.vitruv.framework.change.echange.feature.reference.impl.RemoveEReferenceImpl;
-
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import tools.vitruv.domains.java.echange.feature.FeaturePackage;
+import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
+
+import tools.vitruv.domains.java.echange.feature.reference.JavaRemoveEReference;
+import tools.vitruv.domains.java.echange.feature.reference.ReferencePackage;
+
+import tools.vitruv.framework.change.echange.feature.reference.impl.RemoveEReferenceImpl;
 
 /**
  * <!-- begin-user-doc -->

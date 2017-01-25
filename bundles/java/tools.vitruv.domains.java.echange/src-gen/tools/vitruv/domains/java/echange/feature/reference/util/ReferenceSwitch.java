@@ -2,20 +2,32 @@
  */
 package tools.vitruv.domains.java.echange.feature.reference.util;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.ecore.util.Switch;
+
 import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
+
 import tools.vitruv.domains.java.echange.feature.reference.*;
+
 import tools.vitruv.framework.change.echange.AdditiveEChange;
 import tools.vitruv.framework.change.echange.AtomicEChange;
 import tools.vitruv.framework.change.echange.EChange;
-import tools.vitruv.framework.change.echange.EObjectAddedEChange;
-import tools.vitruv.framework.change.echange.EObjectSubtractedEChange;
 import tools.vitruv.framework.change.echange.SubtractiveEChange;
+
+import tools.vitruv.framework.change.echange.eobject.EObjectAddedEChange;
+import tools.vitruv.framework.change.echange.eobject.EObjectSubtractedEChange;
+
 import tools.vitruv.framework.change.echange.feature.FeatureEChange;
 import tools.vitruv.framework.change.echange.feature.UpdateMultiValuedFeatureEChange;
 import tools.vitruv.framework.change.echange.feature.UpdateSingleValuedFeatureEChange;
+
 import tools.vitruv.framework.change.echange.feature.list.InsertInListEChange;
 import tools.vitruv.framework.change.echange.feature.list.RemoveFromListEChange;
 import tools.vitruv.framework.change.echange.feature.list.UpdateSingleListEntryEChange;
+
 import tools.vitruv.framework.change.echange.feature.reference.AdditiveReferenceEChange;
 import tools.vitruv.framework.change.echange.feature.reference.InsertEReference;
 import tools.vitruv.framework.change.echange.feature.reference.RemoveEReference;
@@ -24,11 +36,6 @@ import tools.vitruv.framework.change.echange.feature.reference.SubtractiveRefere
 import tools.vitruv.framework.change.echange.feature.reference.UpdateReferenceEChange;
 
 import tools.vitruv.framework.change.echange.feature.single.ReplaceSingleValuedFeatureEChange;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc -->
@@ -268,21 +275,6 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Insert In List EChange</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Insert In List EChange</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <A extends EObject, F extends EStructuralFeature, T extends Object> T1 caseInsertInListEChange(InsertInListEChange<A, F, T> object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Additive EChange</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -294,6 +286,21 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public <T extends Object> T1 caseAdditiveEChange(AdditiveEChange<T> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Insert In List EChange</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Insert In List EChange</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <A extends EObject, F extends EStructuralFeature, T extends Object> T1 caseInsertInListEChange(InsertInListEChange<A, F, T> object) {
 		return null;
 	}
 
@@ -373,21 +380,6 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Remove From List EChange</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Remove From List EChange</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <A extends EObject, F extends EStructuralFeature, T extends Object> T1 caseRemoveFromListEChange(RemoveFromListEChange<A, F, T> object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Subtractive EChange</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -399,6 +391,21 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public <T extends Object> T1 caseSubtractiveEChange(SubtractiveEChange<T> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Remove From List EChange</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Remove From List EChange</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <A extends EObject, F extends EStructuralFeature, T extends Object> T1 caseRemoveFromListEChange(RemoveFromListEChange<A, F, T> object) {
 		return null;
 	}
 

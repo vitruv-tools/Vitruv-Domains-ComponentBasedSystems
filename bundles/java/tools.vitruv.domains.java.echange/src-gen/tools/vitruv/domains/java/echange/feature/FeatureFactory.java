@@ -3,8 +3,6 @@
 package tools.vitruv.domains.java.echange.feature;
 
 import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,15 +20,6 @@ public interface FeatureFactory extends EFactory {
 	 * @generated
 	 */
 	FeatureFactory eINSTANCE = tools.vitruv.domains.java.echange.feature.impl.FeatureFactoryImpl.init();
-
-	/**
-	 * Returns a new object of class '<em>Java Feature EChange</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Java Feature EChange</em>'.
-	 * @generated
-	 */
-	<A extends EObject, F extends EStructuralFeature> JavaFeatureEChange<A, F> createJavaFeatureEChange();
 
 	/**
 	 * Returns the package supported by this factory.

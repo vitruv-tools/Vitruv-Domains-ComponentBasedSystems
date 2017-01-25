@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <!-- end-user-doc -->
  * @see tools.vitruv.domains.java.echange.feature.attribute.AttributeFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel modelName='Change' basePackage='tools.vitruv.domains.java.echange.feature'"
  * @generated
  */
 public interface AttributePackage extends EPackage {

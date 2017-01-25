@@ -20,7 +20,7 @@ import tools.vitruv.framework.change.echange.feature.FeatureEChange;
  * </ul>
  *
  * @see tools.vitruv.domains.java.echange.feature.FeaturePackage#getJavaFeatureEChange()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface JavaFeatureEChange<A extends EObject, F extends EStructuralFeature> extends FeatureEChange<A, F> {
@@ -28,7 +28,7 @@ public interface JavaFeatureEChange<A extends EObject, F extends EStructuralFeat
 	 * Returns the value of the '<em><b>Old Affected EObject</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Old Affected EObject</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Old Affected EObject</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
