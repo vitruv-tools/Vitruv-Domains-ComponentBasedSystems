@@ -16,7 +16,7 @@ class JavaMetamodelTests {
 		val component = ClassifiersFactory.eINSTANCE.createClass();
 		val javaMetamodel = new JavaMetamodel();
 		Assert.assertTrue(javaMetamodel.hasMetaclassInstances(#[component]));
-		Assert.assertTrue(javaMetamodel.hasTUID(component));
+		Assert.assertTrue(javaMetamodel.calculateTuid(component) != null);
 	}
 	
 	@Test

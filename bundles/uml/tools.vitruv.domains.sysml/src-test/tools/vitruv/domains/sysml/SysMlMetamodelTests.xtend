@@ -46,8 +46,8 @@ class SysMlMetamodelTests {
 		val block = createBlock();
 		Assert.assertTrue(sysMlMetamodel.hasMetaclassInstances(#[block]));
 		Assert.assertTrue(sysMlMetamodel.hasMetaclassInstances(#[block.base_Class]));
-		Assert.assertTrue(sysMlMetamodel.hasTUID(block));
-		Assert.assertTrue(sysMlMetamodel.hasTUID(block.base_Class));
+		Assert.assertTrue(sysMlMetamodel.calculateTuid(block) != null);
+		Assert.assertTrue(sysMlMetamodel.calculateTuid(block.base_Class) != null);
 	}
 	
 	@Test

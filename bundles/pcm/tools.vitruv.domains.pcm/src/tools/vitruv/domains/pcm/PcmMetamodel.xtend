@@ -6,6 +6,7 @@ import tools.vitruv.framework.tuid.AttributeTUIDCalculatorAndResolver
 import org.palladiosimulator.pcm.core.entity.EntityPackage
 import de.uka.ipd.sdq.identifier.IdentifierPackage
 import static extension tools.vitruv.domains.pcm.PcmNamespace.*;
+import org.palladiosimulator.pcm.repository.RepositoryPackage
 
 class PcmMetamodel extends Metamodel {
 	package new() {
@@ -16,7 +17,7 @@ class PcmMetamodel extends Metamodel {
 	
 	def protected static generateTuidCalculator() {
 		return new AttributeTUIDCalculatorAndResolver(METAMODEL_NAMESPACE, 
-			#[IdentifierPackage.Literals.IDENTIFIER__ID.name, EntityPackage.Literals.NAMED_ELEMENT__ENTITY_NAME.name]);
+			#[IdentifierPackage.Literals.IDENTIFIER__ID.name, EntityPackage.Literals.NAMED_ELEMENT__ENTITY_NAME.name, RepositoryPackage.Literals.PRIMITIVE_DATA_TYPE__TYPE.name]);
 	}
 	
 }

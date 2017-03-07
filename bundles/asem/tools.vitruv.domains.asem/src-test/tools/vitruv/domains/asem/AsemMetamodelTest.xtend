@@ -27,7 +27,7 @@ class AsemMetamodelTest {
 	public def void testResponsibilityChecks() {
 		val clazz = ClassifiersFactory.eINSTANCE.createClass();
 		Assert.assertTrue(asemMetamodel.hasMetaclassInstances(#[clazz]));
-		Assert.assertTrue(asemMetamodel.hasTUID(clazz));
+		Assert.assertTrue(asemMetamodel.calculateTuid(clazz) != null);
 	}
 	
 	@Test

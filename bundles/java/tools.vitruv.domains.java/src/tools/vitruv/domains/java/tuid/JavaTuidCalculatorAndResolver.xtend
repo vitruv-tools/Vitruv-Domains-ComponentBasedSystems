@@ -258,8 +258,4 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTUIDCalculatorAndResolve
 		return "";
 	}
 
-	override hasTUID(EObject eObject) {
-		return true;
-	}
-
 }

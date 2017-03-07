@@ -32,11 +32,4 @@ class SysMlTuidCalculatorAndResolver extends AttributeTUIDCalculatorAndResolver 
 		}
 	}
 	
-	override hasTUID(EObject eObject) {
-		if (eObject.stereotypedObject != null) {
-			return super.hasTUID(eObject.stereotypedObject);
-		}
-		return false;
-	}
-	
 }
