@@ -6,12 +6,12 @@
          point="org.eclipse.core.resources.builders">
       <builder>
          <run
-               class="tools.vitruv.domains.java.builder.JavaBuilder">
+               class="tools.vitruv.domains.java.builder.VitruviusJavaBuilder">
          </run>
        </builder>
    </extension>
 
-   <extension 
+<!--   <extension 
    	        point="org.eclipse.ui.menus">
 	    <menuContribution
 	    	   allPopups="false"
@@ -82,7 +82,7 @@
 	    	  id="tools.vitruv.domains.java.builder.removebuilder.commandId" 
 	    	  name="Remove PCM Java Builder">
 	    </command>
-	</extension>
+	</extension> -->
 	
 	<extension
          point="org.eclipse.core.expressions.propertyTesters">

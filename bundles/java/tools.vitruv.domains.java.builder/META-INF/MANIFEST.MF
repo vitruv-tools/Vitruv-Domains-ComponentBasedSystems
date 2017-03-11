@@ -19,7 +19,12 @@ Require-Bundle: org.eclipse.core.runtime,
  tools.vitruv.framework.monitorededitor,
  tools.vitruv.domains.emf,
  tools.vitruv.domains.emf.monitorededitor,
- tools.vitruv.domains.java.monitorededitor
+ tools.vitruv.domains.java.monitorededitor,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro
 Bundle-ActivationPolicy: lazy
 Export-Package: tools.vitruv.domains.java.builder
 Bundle-Vendor: vitruv.tools
+
