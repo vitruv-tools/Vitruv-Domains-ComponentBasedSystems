@@ -47,8 +47,6 @@ public class VitruviusEmfBuilder extends VitruviusProjectBuilder {
 
     public VitruviusEmfBuilder(final IResourceDeltaProviding resourceDeltaProviding,
             final IProjectProviding projectProviding, final EMFEditorMonitorFactory monitorFactory) {
-        LOGGER.setLevel(Level.ALL); // TODO
-        Logger.getRootLogger().setLevel(Level.ALL);
         LOGGER.trace("Created a VitruviusEmfBuilder.");
         this.vitruviusEMFDeltaVisitor = new VitruviusEMFDeltaVisitor();
 
