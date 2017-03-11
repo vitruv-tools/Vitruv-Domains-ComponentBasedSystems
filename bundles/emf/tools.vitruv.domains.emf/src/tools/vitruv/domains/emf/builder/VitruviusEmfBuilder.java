@@ -1,7 +1,6 @@
 package tools.vitruv.domains.emf.builder;
 
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -28,11 +27,10 @@ import tools.vitruv.framework.util.bridges.EMFBridge;
 import tools.vitruv.framework.util.datatypes.ModelInstance;
 import tools.vitruv.framework.util.datatypes.VURI;
 
-public abstract class VitruviusEmfBuilder extends VitruviusProjectBuilder {
-
+public class VitruviusEmfBuilder extends VitruviusProjectBuilder {
+	public static final String BUILDER_ID = "tools.vitruv.domains.emf.builder.VitruviusEmfBuilder.id";
     private static final Logger LOGGER = Logger.getLogger(VitruviusEmfBuilder.class.getSimpleName());
 
-    private Set<String> monitoredFileTypes;
     private final VitruviusEMFDeltaVisitor vitruviusEMFDeltaVisitor;
 
     private final IResourceDeltaProviding resourceDeltaProviding;
@@ -43,11 +41,11 @@ public abstract class VitruviusEmfBuilder extends VitruviusProjectBuilder {
     
     private final boolean isInTestingMode = true;
 
-    protected VitruviusEmfBuilder() {
+    public VitruviusEmfBuilder() {
         this(null, null, null);
     }
 
-    protected VitruviusEmfBuilder(final IResourceDeltaProviding resourceDeltaProviding,
+    public VitruviusEmfBuilder(final IResourceDeltaProviding resourceDeltaProviding,
             final IProjectProviding projectProviding, final EMFEditorMonitorFactory monitorFactory) {
         LOGGER.setLevel(Level.ALL); // TODO
         Logger.getRootLogger().setLevel(Level.ALL);
@@ -92,7 +90,7 @@ public abstract class VitruviusEmfBuilder extends VitruviusProjectBuilder {
 
     protected void createAndStartEMFMonitor() {
         final IVitruviusAccessor vitruviusAcc = this.createVitruviusAccessor();
-        final IEditorPartAdapterFactory epaFactory = new DefaultEditorPartAdapterFactoryImpl(this.monitoredFileTypes);
+        final IEditorPartAdapterFactory epaFactory = new DefaultEditorPartAdapterFactoryImpl(getMonitoredFileTypes());
         this.emfMonitor = this.monitorFactory.createVitruviusModelEditorSyncMgr(epaFactory, this.getVirtualModel(), vitruviusAcc);
     }
 
@@ -100,7 +98,7 @@ public abstract class VitruviusEmfBuilder extends VitruviusProjectBuilder {
         return new IVitruviusAccessor() {
             @Override
             public boolean isModelMonitored(final VURI modelUri) {
-                boolean doMonitor = VitruviusEmfBuilder.this.monitoredFileTypes.contains(modelUri.getFileExtension());
+                boolean doMonitor = VitruviusEmfBuilder.this.getMonitoredFileTypes().contains(modelUri.getFileExtension());
                 doMonitor &= VitruviusEmfBuilder.this.isFileBelongingToThisProject(modelUri);
                 LOGGER.trace("Monitor " + modelUri + "? " + doMonitor);
                 return doMonitor;
@@ -133,7 +131,7 @@ public abstract class VitruviusEmfBuilder extends VitruviusProjectBuilder {
         public boolean visit(final IResourceDelta delta) throws CoreException {
             final IResource iResource = delta.getResource();
             final String fileExtension = iResource.getFileExtension();
-            final boolean isMonitoredResource = VitruviusEmfBuilder.this.monitoredFileTypes.contains(fileExtension);
+            final boolean isMonitoredResource = VitruviusEmfBuilder.this.getMonitoredFileTypes().contains(fileExtension);
             if (isMonitoredResource) {
                 switch (delta.getKind()) {
                 case IResourceDelta.ADDED:
@@ -229,7 +227,7 @@ public abstract class VitruviusEmfBuilder extends VitruviusProjectBuilder {
 
     private void triggerFileChangeSynchronisation(final IResource iResource, final FileChangeKind fileChangeKind) {
         final String fileExtension = iResource.getFileExtension();
-        if (this.monitoredFileTypes.contains(fileExtension)) {
+        if (this.getMonitoredFileTypes().contains(fileExtension)) {
             final VURI vuri = VURI.getInstance(iResource);
             ModelInstance modelInstance = this.getVirtualModel().getModelInstance(vuri);
             if (modelInstance != null) {
@@ -242,7 +240,7 @@ public abstract class VitruviusEmfBuilder extends VitruviusProjectBuilder {
 
     private void triggerSynchronisation(final IResource iResource) {
         LOGGER.trace("Triggering synchronization for " + iResource);
-        if (this.monitoredFileTypes.contains(iResource.getFileExtension())) {
+        if (this.getMonitoredFileTypes().contains(iResource.getFileExtension())) {
             final VURI vuri = VURI.getInstance(iResource);
             this.emfMonitor.triggerSynchronisation(vuri);
         }

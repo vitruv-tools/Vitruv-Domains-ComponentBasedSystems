@@ -19,8 +19,11 @@ Require-Bundle: org.eclipse.core.resources,
  tools.vitruv.domains.emf.monitorededitor,
  tools.vitruv.framework.util,
  tools.vitruv.framework.change.processing,
- tools.vitruv.framework.change
-Export-Package: tools.vitruv.domains.emf.builder,
- tools.vitruv.domains.emf.util
+ tools.vitruv.framework.change,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro
+Export-Package: tools.vitruv.domains.emf.builder
 Bundle-Vendor: vitruv.tools
 
