@@ -2,7 +2,6 @@ package tools.vitruv.domains.emf.builder;
 
 import java.util.Map;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
