@@ -8,14 +8,14 @@ import CAEX.CAEXPackage
 
 class CAEXMetamodel extends Metamodel {
 	public static val NAMESPACE_URIS = CAEXPackage.eINSTANCE.nsURIsRecursive
-	public static final String FILE_EXTENSION = "aml";
+	public static final String FILE_EXTENSION = "caex";
 
 	package new() {
 		super(VURI.getInstance(CAEXPackage.eNS_URI), NAMESPACE_URIS, generateTuidCalculator(), FILE_EXTENSION);
 	}
 
 	def protected static TUIDCalculatorAndResolver generateTuidCalculator() {
-		return new AttributeTUIDCalculatorAndResolver(CAEXPackage.eNS_URI, #[CAEXPackage.Literals.CAEX_OBJECT.getName()]);
+		return new AttributeTUIDCalculatorAndResolver(CAEXPackage.eNS_URI, #["xMLNSPrefixMap", "fileName", CAEXPackage.Literals.CAEX_OBJECT.getName()]);
 	}
 
 }
