@@ -54,9 +54,9 @@
 			<url>https://kit-sdq.github.io/updatesite/nightly/jamopp-p2/</url>
 		</repository>
 		<repository>
-			<id>ASEM</id>
+			<id>SDQ Metamodels</id>
 			<layout>p2</layout>
-			<url>https://kit-sdq.github.io/updatesite/nightly/asem/</url>
+			<url>https://kit-sdq.github.io/updatesite/nightly/metamodels/</url>
 		</repository>
 		<repository>
 			<id>Palladiosimulator</id>
