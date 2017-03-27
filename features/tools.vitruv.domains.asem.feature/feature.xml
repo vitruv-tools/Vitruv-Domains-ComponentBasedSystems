@@ -22,7 +22,7 @@
    <requires>
       <import feature="tools.vitruv.framework.feature" version="0.2.0" match="greaterOrEqual"/>
       <import feature="tools.vitruv.domains.emf.feature" version="0.2.0" match="greaterOrEqual"/>
-	  <import feature="edu.kit.ipd.sdq.asem.feature" version="0.2.0" match="greaterOrEqual"/>
+	  <import feature="edu.kit.ipd.sdq.metamodels.asem.feature" version="0.2.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
