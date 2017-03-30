@@ -6,6 +6,11 @@ cache:
   directories:
    - $HOME/.m2
 
+notifications:
+  email:
+    recipients:
+      - vitruv-build@ira.uni-karlsruhe.de
+      
 before_install:
     - git clone --depth 1 https://github.com/kit-sdq/BuildUtilities.git /tmp/BuildUtilities
     - . /tmp/BuildUtilities/travis-ci/installMaven.sh
