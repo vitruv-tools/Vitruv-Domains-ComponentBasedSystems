@@ -3,9 +3,9 @@ package tools.vitruv.domains.uml
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.uml2.uml.resource.UMLResource
 import tools.vitruv.framework.metamodel.Metamodel
-import tools.vitruv.framework.tuid.AttributeTUIDCalculatorAndResolver
 import tools.vitruv.framework.tuid.TUIDCalculatorAndResolver
 import tools.vitruv.framework.util.datatypes.VURI
+import tools.vitruv.domains.uml.tuid.UmlTuidCalculatorAndResolver
 
 class UmlMetamodel extends Metamodel {
 	public static val NAMESPACE_URIS = UMLPackage.eINSTANCE.nsURIsRecursive;
@@ -16,7 +16,7 @@ class UmlMetamodel extends Metamodel {
 	}
 
 	def protected static TUIDCalculatorAndResolver generateTuidCalculator() {
-		return new AttributeTUIDCalculatorAndResolver(UMLPackage.eNS_URI, #[UMLPackage.Literals.NAMED_ELEMENT__NAME.getName()]);
+		return new UmlTuidCalculatorAndResolver(UMLPackage.eNS_URI);
 	}
 
 }
