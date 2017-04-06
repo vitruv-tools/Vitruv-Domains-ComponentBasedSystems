@@ -2,10 +2,7 @@ package tools.vitruv.domains.java.monitorededitor;
 
 import java.io.IOException;
 
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -166,11 +163,8 @@ public class MonitoredEditor extends AbstractMonitoredEditor
     }
 
     private void configureLogger() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-        Logger.getRootLogger().removeAllAppenders();
-        Logger.getRootLogger()
-                .addAppender(new ConsoleAppender(new PatternLayout("[%-5p] %d{HH:mm:ss,SSS} %-30C{1} - %m%n")));
         try {
+        	// TODO Remove this!? Or make is configurable, as it is only needed for performance measurements
             final TimeFileLogAppender appender = TimeFileLogAppender.createInstanceFor(MY_MONITORED_PROJECT,
                     // "C:/Users/messinger/DominikMessinger/EvaluationData/hadoop-hdfs_monitor-overhead-measurements/time_measurements");
                     "EvaluationData/hadoop-hdfs_monitor-overhead-measurements/time_measurements");
