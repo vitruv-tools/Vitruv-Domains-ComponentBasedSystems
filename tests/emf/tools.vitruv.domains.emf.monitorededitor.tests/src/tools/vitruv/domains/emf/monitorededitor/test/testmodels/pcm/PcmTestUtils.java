@@ -20,7 +20,7 @@ import org.palladiosimulator.pcm.repository.DataType;
 import org.palladiosimulator.pcm.repository.PrimitiveDataType;
 import org.palladiosimulator.pcm.repository.PrimitiveTypeEnum;
 
-public final class PCMTestUtils {
+public final class PcmTestUtils {
     public static final String BOOL_TYPE_URI = "pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2";
 
     public static DataType getBoolType(Resource pcmResource) {
@@ -34,7 +34,7 @@ public final class PCMTestUtils {
         return boolType;
     }
 
-    private PCMTestUtils() {
+    private PcmTestUtils() {
 
     }
 }

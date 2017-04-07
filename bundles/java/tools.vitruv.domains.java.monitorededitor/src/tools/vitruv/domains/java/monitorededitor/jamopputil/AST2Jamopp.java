@@ -14,13 +14,13 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.emftext.language.java.containers.CompilationUnit;
 
-import tools.vitruv.domains.java.util.jamoppparser.JaMoPPParser;
+import tools.vitruv.domains.java.util.jamoppparser.JamoppParser;
 
-public final class AST2JaMoPP {
+public final class AST2Jamopp {
 
-    private static JaMoPPParser jamopp = new JaMoPPParser();
+    private static JamoppParser jamopp = new JamoppParser();
 
-    private AST2JaMoPP() {
+    private AST2Jamopp() {
     }
 
     public static CompilationUnit getCompilationUnitForSerializedCompilationUnit(

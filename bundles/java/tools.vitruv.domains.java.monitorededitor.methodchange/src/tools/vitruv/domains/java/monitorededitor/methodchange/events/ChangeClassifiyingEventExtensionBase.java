@@ -6,7 +6,7 @@ import tools.vitruv.domains.java.monitorededitor.changeclassification.events.Cha
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEventExtension;
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeEventVisitor;
 import tools.vitruv.domains.java.monitorededitor.jamopputil.CompilationUnitAdapter;
-import tools.vitruv.domains.java.monitorededitor.methodchange.utils.JaMoPPUtilities;
+import tools.vitruv.domains.java.monitorededitor.methodchange.utils.JamoppUtilities;
 
 /**
  * Base class for all change classifying event extensions, which need an old and
@@ -32,9 +32,9 @@ public abstract class ChangeClassifiyingEventExtensionBase <T extends ASTNode> e
 	 */
 	protected ChangeClassifiyingEventExtensionBase(T originalASTNode,
 			T changedASTNode) {
-		originalCU = JaMoPPUtilities
+		originalCU = JamoppUtilities
 				.getUnsavedCompilationUnitAdapter(originalASTNode);
-		changedCU = JaMoPPUtilities
+		changedCU = JamoppUtilities
 				.getUnsavedCompilationUnitAdapter(changedASTNode);
 		originalElement = originalASTNode;
 		changedElement = changedASTNode;

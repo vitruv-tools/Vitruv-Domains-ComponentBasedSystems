@@ -66,13 +66,13 @@ public class CompilationUnitAdapter {
         final org.eclipse.jdt.core.dom.CompilationUnit astCompilationUnit = (org.eclipse.jdt.core.dom.CompilationUnit) root;
         if (isSaved) {
             try {
-                this.compilationUnit = AST2JaMoPP.getCompilationUnitForSerializedCompilationUnit(astCompilationUnit);
+                this.compilationUnit = AST2Jamopp.getCompilationUnitForSerializedCompilationUnit(astCompilationUnit);
             } catch (final IOException e) {
                 e.printStackTrace();
             }
         } else {
             try {
-                this.compilationUnit = AST2JaMoPP.getCompilationUnitForInMemoryCompilationUnit(astCompilationUnit, uri);
+                this.compilationUnit = AST2Jamopp.getCompilationUnitForInMemoryCompilationUnit(astCompilationUnit, uri);
             } catch (final IOException e) {
                 e.printStackTrace();
             }
@@ -80,7 +80,7 @@ public class CompilationUnitAdapter {
     }
 
     public CompilationUnitAdapter(final IPath compilationUnitPath) throws IOException {
-        this.compilationUnit = AST2JaMoPP.getCompilationUnitFromAbsolutePath(compilationUnitPath);
+        this.compilationUnit = AST2Jamopp.getCompilationUnitFromAbsolutePath(compilationUnitPath);
     }
 
     public Parametrizable getMethodOrConstructorForMethodDeclaration(final MethodDeclaration methodDeclaration) {
@@ -95,7 +95,7 @@ public class CompilationUnitAdapter {
             for (final AnonymousClass anonymousClass : anonymousClasses) {
                 for (final Member member : anonymousClass.getMethods()) {
                     if (member instanceof Parametrizable
-                            && AST2JaMoPPCorrespondence.corresponds(methodDeclaration, member, false)) {
+                            && AST2JamoppCorrespondence.corresponds(methodDeclaration, member, false)) {
                         return (Parametrizable) member;
                     }
                 }
@@ -106,7 +106,7 @@ public class CompilationUnitAdapter {
         final ConcreteClassifier classifier = this.getConcreteClassifierForTypeDeclaration((TypeDeclaration) parent);
         for (final Member member : classifier.getMembers()) {
             if (member instanceof Parametrizable
-                    && AST2JaMoPPCorrespondence.corresponds(methodDeclaration, member, false)) {
+                    && AST2JamoppCorrespondence.corresponds(methodDeclaration, member, false)) {
                 return (Parametrizable) member;
             }
         }
@@ -128,7 +128,7 @@ public class CompilationUnitAdapter {
 
         final ConcreteClassifier classifier = this.getConcreteClassifierForTypeDeclaration((TypeDeclaration) parent);
         for (final Field field : classifier.getFields()) {
-            if (AST2JaMoPPCorrespondence.corresponds(fieldDeclaration, field, false)) {
+            if (AST2JamoppCorrespondence.corresponds(fieldDeclaration, field, false)) {
                 fields.add(field);
             }
         }
@@ -139,7 +139,7 @@ public class CompilationUnitAdapter {
         final List<Field> fields = this.getFieldsForFieldDeclaration((FieldDeclaration) fieldFragment.getParent());
 
         for (final Field field : fields) {
-            if (AST2JaMoPPCorrespondence.correspondsByName(fieldFragment, field)) {
+            if (AST2JamoppCorrespondence.correspondsByName(fieldFragment, field)) {
                 return field;
             }
         }
@@ -158,7 +158,7 @@ public class CompilationUnitAdapter {
                 .getChildrenByType(NewConstructorCallImpl.class);
         final List<AnonymousClass> anonymousClasses = new LinkedList<AnonymousClass>();
         for (final NewConstructorCallImpl newConstructorCall : newConstructorCalls) {
-            if (AST2JaMoPPCorrespondence.corresponds(classInstanceCreation, newConstructorCall)) {
+            if (AST2JamoppCorrespondence.corresponds(classInstanceCreation, newConstructorCall)) {
                 anonymousClasses.add(newConstructorCall.getAnonymousClass());
             }
         }
@@ -196,7 +196,7 @@ public class CompilationUnitAdapter {
     private ConcreteClassifier getConcreteClassifierForTypeDeclaration(final TypeDeclaration typeDeclaration,
             final EList<ConcreteClassifier> classifiers) {
         for (final ConcreteClassifier classifier : classifiers) {
-            if (AST2JaMoPPCorrespondence.corresponds(typeDeclaration, classifier)) {
+            if (AST2JamoppCorrespondence.corresponds(typeDeclaration, classifier)) {
                 return classifier;
             } else {
                 final ConcreteClassifier innerClassifier = this.getConcreteClassifierForTypeDeclaration(typeDeclaration,
@@ -227,7 +227,7 @@ public class CompilationUnitAdapter {
 
     public Import getImportForImportDeclaration(final ImportDeclaration importDeclaration) {
         for (final Import imp : this.compilationUnit.getImports()) {
-            if (AST2JaMoPPCorrespondence.corresponds(importDeclaration, imp)) {
+            if (AST2JamoppCorrespondence.corresponds(importDeclaration, imp)) {
                 return imp;
             }
         }

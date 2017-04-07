@@ -1,7 +1,7 @@
 package tools.vitruv.domains.sysml
 
 import tools.vitruv.framework.metamodel.Metamodel
-import tools.vitruv.framework.tuid.TUIDCalculatorAndResolver
+import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import tools.vitruv.framework.util.datatypes.VURI
 import tools.vitruv.domains.uml.UmlMetamodel
 import java.util.List
@@ -21,7 +21,7 @@ class SysMlMetamodel extends Metamodel {
 		sysMlToUmlResolver = SysMlToUmlResolver.instance;
 	}
 
-	def protected static TUIDCalculatorAndResolver generateTuidCalculator() {
+	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
 		return new SysMlTuidCalculatorAndResolver(METAMODEL_NAMESPACE);
 	}
 	

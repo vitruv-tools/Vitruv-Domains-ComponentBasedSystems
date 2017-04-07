@@ -21,7 +21,7 @@ import org.emftext.language.java.types.PrimitiveType
  * Use the {@link JaMoPPConcreteSyntax} class for strict
  * concrete syntax conversions.
  */
-class StringOperationsJaMoPP {
+class JamoppStringOperations {
 
 	static def dispatch getStringRepresentation(ClassifierImport imprt) {
 		return imprt.namespaces.getNamespaceAsString + "." + imprt.classifier.name

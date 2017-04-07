@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.papyrus.sysml14.blocks.BlocksFactory
 import org.eclipse.papyrus.sysml14.blocks.Block
-import tools.vitruv.framework.tuid.TUID
+import tools.vitruv.framework.tuid.Tuid
 import tools.vitruv.framework.tuid.TuidManager
 import tools.vitruv.framework.tuid.TuidUpdateListener
 import java.util.ArrayList
@@ -54,11 +54,11 @@ class SysMlMetamodelTests {
 	public def void testTuidUpdate() {
 		val List<String> tuids = new ArrayList<String>();
 		val dummyTuidUpdateListener = new TuidUpdateListener() {
-			override performPreAction(TUID oldTUID) {
-				tuids.add(oldTUID.toString);
+			override performPreAction(Tuid oldTuid) {
+				tuids.add(oldTuid.toString);
 			}
 			
-			override performPostAction(TUID newTuid) {
+			override performPostAction(Tuid newTuid) {
 				tuids.add(newTuid.toString);
 			}
 		}

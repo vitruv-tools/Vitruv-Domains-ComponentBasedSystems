@@ -20,7 +20,7 @@ class PcmMetamodelTests {
 		Assert.assertTrue("Metamodel support only " + pcmMetamodel.nsURIs + ", but not " + component.eClass.EPackage.nsURI + " of component",
 			pcmMetamodel.hasMetaclassInstances(#[component])
 		);
-		Assert.assertTrue("Metamodel has TUID only for elements of " + pcmMetamodel.nsURIs + ", but not of component's " + component.eClass.EPackage.nsURI,
+		Assert.assertTrue("Metamodel has Tuid only for elements of " + pcmMetamodel.nsURIs + ", but not of component's " + component.eClass.EPackage.nsURI,
 			pcmMetamodel.calculateTuid(component) != null
 		);
 	}

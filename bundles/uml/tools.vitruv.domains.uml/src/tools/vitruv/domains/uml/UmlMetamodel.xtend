@@ -3,7 +3,7 @@ package tools.vitruv.domains.uml
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.uml2.uml.resource.UMLResource
 import tools.vitruv.framework.metamodel.Metamodel
-import tools.vitruv.framework.tuid.TUIDCalculatorAndResolver
+import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import tools.vitruv.framework.util.datatypes.VURI
 import tools.vitruv.domains.uml.tuid.UmlTuidCalculatorAndResolver
 
@@ -15,7 +15,7 @@ class UmlMetamodel extends Metamodel {
 		super(VURI.getInstance(UMLPackage.eNS_URI), NAMESPACE_URIS, generateTuidCalculator(), FILE_EXTENSION);
 	}
 
-	def protected static TUIDCalculatorAndResolver generateTuidCalculator() {
+	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
 		return new UmlTuidCalculatorAndResolver(UMLPackage.eNS_URI);
 	}
 

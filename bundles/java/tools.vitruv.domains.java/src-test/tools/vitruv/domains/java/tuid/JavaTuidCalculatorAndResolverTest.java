@@ -31,19 +31,19 @@ import org.junit.Test;
 import tools.vitruv.framework.util.datatypes.VURI;
 import static tools.vitruv.domains.java.JavaNamespace.*;
 
-public class JaMoPPTUIDCalculatorAndResolverTest {
+public class JavaTuidCalculatorAndResolverTest {
 
-    private static final Logger logger = Logger.getLogger(JaMoPPTUIDCalculatorAndResolverTest.class.getSimpleName());
+    private static final Logger logger = Logger.getLogger(JavaTuidCalculatorAndResolverTest.class.getSimpleName());
 
     private EObject jaMoPPCompilationUnit;
     private EObject jaMoPPPackage;
-    private JavaTuidCalculatorAndResolver jamoppTUIDCR;
+    private JavaTuidCalculatorAndResolver jamoppTuidCR;
     private VURI compUnitUri;
     private VURI packageUri;
 
     @Before
     public void setUp() throws Exception {
-        this.jamoppTUIDCR = new JavaTuidCalculatorAndResolver();
+        this.jamoppTuidCR = new JavaTuidCalculatorAndResolver();
         Logger.getRootLogger().addAppender(new ConsoleAppender());
         registerMetamodels();
 
@@ -51,7 +51,7 @@ public class JaMoPPTUIDCalculatorAndResolverTest {
         final ResourceSet resSet = new ResourceSetImpl();
 
         this.compUnitUri = VURI
-                .getInstance("MockupProject/src-test/TestCodeForJaMoPPTUIDCalculatorAndResolverTest.java");
+                .getInstance("MockupProject/src-test/TestCodeForJaMoPPTuidCalculatorAndResolverTest.java");
         this.jaMoPPCompilationUnit = this.getRootJaMoPPObjectFromURIStr(resSet, this.compUnitUri);
         this.packageUri = VURI.getInstance("MockupProject/src-test/package-info.java");
         this.jaMoPPPackage = this.getRootJaMoPPObjectFromURIStr(resSet, this.packageUri);
@@ -79,55 +79,55 @@ public class JaMoPPTUIDCalculatorAndResolverTest {
     }
 
     @Test
-    public void testGetTUID() {
+    public void testGetTuid() {
         final CompilationUnit cu = (CompilationUnit) this.jaMoPPCompilationUnit;
-        logger.info("TUID for comilationUnit '" + cu.getName() + "': " + this.jamoppTUIDCR.calculateTUIDFromEObject(cu));
+        logger.info("Tuid for comilationUnit '" + cu.getName() + "': " + this.jamoppTuidCR.calculateTuidFromEObject(cu));
         for (final Classifier classifier : cu.getClassifiers()) {
-            logger.info("TUID for classifier '" + classifier.getName() + "': "
-                    + this.jamoppTUIDCR.calculateTUIDFromEObject(classifier));
+            logger.info("Tuid for classifier '" + classifier.getName() + "': "
+                    + this.jamoppTuidCR.calculateTuidFromEObject(classifier));
             for (final Member member : classifier.getAllMembers(null)) {
-                logger.info("TUID for member '" + member.toString() + "': "
-                        + this.jamoppTUIDCR.calculateTUIDFromEObject(member));
+                logger.info("Tuid for member '" + member.toString() + "': "
+                        + this.jamoppTuidCR.calculateTuidFromEObject(member));
             }
         }
     }
 
     @Test
-    public void testGetTUIDFromPackage() {
+    public void testGetTuidFromPackage() {
         final org.emftext.language.java.containers.Package pack = (org.emftext.language.java.containers.Package) this.jaMoPPPackage;
-        logger.info("TUID for package  '" + pack.getName() + "' : " + this.jamoppTUIDCR.calculateTUIDFromEObject(pack));
+        logger.info("Tuid for package  '" + pack.getName() + "' : " + this.jamoppTuidCR.calculateTuidFromEObject(pack));
     }
 
     @Test
     public void testGetIdentifiedPackage() {
-        // create TUIDs from JaMoPP root
+        // create Tuids from JaMoPP root
         final org.emftext.language.java.containers.Package pack = (Package) this.jaMoPPPackage;
-        final String tuidPackage = this.jamoppTUIDCR.calculateTUIDFromEObject(pack);
+        final String tuidPackage = this.jamoppTuidCR.calculateTuidFromEObject(pack);
 
         // reparse java file
         final ResourceSet newResourceSet = new ResourceSetImpl();
 
-        // find TUIDs in new java file
-        final VURI vuri = VURI.getInstance(this.jamoppTUIDCR.getModelVURIContainingIdentifiedEObject(tuidPackage));
+        // find Tuids in new java file
+        final VURI vuri = VURI.getInstance(this.jamoppTuidCR.getModelVURIContainingIdentifiedEObject(tuidPackage));
         logger.info(vuri);
         final Resource newJaMoPPResource = newResourceSet.getResource(vuri.getEMFUri(), true);
         final EObject newRootEObject = newJaMoPPResource.getContents().get(0);
-        final EObject newPack = this.jamoppTUIDCR.resolveEObjectFromRootAndFullTUID(newRootEObject, tuidPackage);
+        final EObject newPack = this.jamoppTuidCR.resolveEObjectFromRootAndFullTuid(newRootEObject, tuidPackage);
         logger.info("New Package: " + newPack);
     }
 
     @Test
     public void testGetIdentifiedEObject() {
-        // create TUIDs from JaMoPP root
+        // create Tuids from JaMoPP root
         final CompilationUnit cu = (CompilationUnit) this.jaMoPPCompilationUnit;
-        final String tuidCu = this.jamoppTUIDCR.calculateTUIDFromEObject(cu);
+        final String tuidCu = this.jamoppTuidCR.calculateTuidFromEObject(cu);
         final List<String> classifierTuids = new ArrayList<String>();
         final List<String> methodTuids = new ArrayList<String>(16);
         for (final Classifier classifier : cu.getClassifiers()) {
-            classifierTuids.add(this.jamoppTUIDCR.calculateTUIDFromEObject(classifier));
+            classifierTuids.add(this.jamoppTuidCR.calculateTuidFromEObject(classifier));
             for (final Member member : classifier.getAllMembers(cu)) {
                 if (member instanceof Method) {
-                    methodTuids.add(this.jamoppTUIDCR.calculateTUIDFromEObject(member));
+                    methodTuids.add(this.jamoppTuidCR.calculateTuidFromEObject(member));
                 }
             }
         }
@@ -137,18 +137,18 @@ public class JaMoPPTUIDCalculatorAndResolverTest {
         final Resource newJaMoPPResource = newResourceSet.getResource(this.compUnitUri.getEMFUri(), true);
         final EObject newRootEObject = newJaMoPPResource.getContents().get(0);
 
-        // find TUIDs in new java file
-        final VURI vuri = VURI.getInstance(this.jamoppTUIDCR.getModelVURIContainingIdentifiedEObject(tuidCu));
+        // find Tuids in new java file
+        final VURI vuri = VURI.getInstance(this.jamoppTuidCR.getModelVURIContainingIdentifiedEObject(tuidCu));
         System.out.println(vuri);
-        final EObject newCompilationUnit = this.jamoppTUIDCR.resolveEObjectFromRootAndFullTUID(newRootEObject, tuidCu);
+        final EObject newCompilationUnit = this.jamoppTuidCR.resolveEObjectFromRootAndFullTuid(newRootEObject, tuidCu);
         System.out.println("New Compilation unit: " + newCompilationUnit);
         for (final String classifierTuid : classifierTuids) {
             System.out.println("Classifier for classifier with tuid " + classifierTuid + ": "
-                    + this.jamoppTUIDCR.resolveEObjectFromRootAndFullTUID(newRootEObject, classifierTuid));
+                    + this.jamoppTuidCR.resolveEObjectFromRootAndFullTuid(newRootEObject, classifierTuid));
         }
         for (final String methodTuid : methodTuids) {
             System.out.println("Method for method with tuid " + methodTuid + ": "
-                    + this.jamoppTUIDCR.resolveEObjectFromRootAndFullTUID(newRootEObject, methodTuid));
+                    + this.jamoppTuidCR.resolveEObjectFromRootAndFullTuid(newRootEObject, methodTuid));
         }
     }
 
@@ -156,21 +156,21 @@ public class JaMoPPTUIDCalculatorAndResolverTest {
     public void testExpressionStatement() {
         final List<ExpressionStatement> expressionStatements = this.findUsageOfClass(ExpressionStatement.class);
         assertTrue("No expression statement found", 0 < expressionStatements.size());
-        final List<String> expressionStatementsTUIDs = new ArrayList<String>();
+        final List<String> expressionStatementsTuids = new ArrayList<String>();
         for (final ExpressionStatement expressionStatement : expressionStatements) {
-            final String currentTUID = this.jamoppTUIDCR.calculateTUIDFromEObject(expressionStatement);
-            expressionStatementsTUIDs.add(currentTUID);
+            final String currentTuid = this.jamoppTuidCR.calculateTuidFromEObject(expressionStatement);
+            expressionStatementsTuids.add(currentTuid);
         }
 
         final List<ExpressionStatement> foundExpressionStatements = new ArrayList<ExpressionStatement>();
-        for (final String expressoinStatementTUID : expressionStatementsTUIDs) {
-            final VURI containingFile = VURI.getInstance(this.jamoppTUIDCR
-                    .getModelVURIContainingIdentifiedEObject(expressoinStatementTUID));
+        for (final String expressoinStatementTuid : expressionStatementsTuids) {
+            final VURI containingFile = VURI.getInstance(this.jamoppTuidCR
+                    .getModelVURIContainingIdentifiedEObject(expressoinStatementTuid));
             final ResourceSet resourceSet = new ResourceSetImpl();
             final Resource jaMoPPResource = resourceSet.getResource(containingFile.getEMFUri(), true);
             final EObject rootEObject = jaMoPPResource.getContents().get(0);
-            final EObject eObject = this.jamoppTUIDCR.resolveEObjectFromRootAndFullTUID(rootEObject,
-                    expressoinStatementTUID);
+            final EObject eObject = this.jamoppTuidCR.resolveEObjectFromRootAndFullTuid(rootEObject,
+                    expressoinStatementTuid);
             assertTrue("eObject is not an instanceof expression statement", eObject instanceof ExpressionStatement);
             foundExpressionStatements.add((ExpressionStatement) eObject);
         }

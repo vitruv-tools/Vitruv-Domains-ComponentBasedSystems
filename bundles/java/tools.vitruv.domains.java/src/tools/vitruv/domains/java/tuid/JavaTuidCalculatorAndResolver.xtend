@@ -24,13 +24,13 @@ import org.emftext.language.java.statements.ExpressionStatement
 import org.emftext.language.java.types.ClassifierReference
 import org.emftext.language.java.types.NamespaceClassifierReference
 import org.emftext.language.java.types.PrimitiveType
-import tools.vitruv.framework.tuid.HierarchicalTUIDCalculatorAndResolver
+import tools.vitruv.framework.tuid.HierarchicalTuidCalculatorAndResolver
 import static tools.vitruv.domains.java.JavaNamespace.*
 
 /**
- * TUID calculator and resolver for the JaMoPP meta-model. 
+ * Tuid calculator and resolver for the JaMoPP meta-model. 
  */
-class JavaTuidCalculatorAndResolver extends HierarchicalTUIDCalculatorAndResolver<JavaRoot> {
+class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolver<JavaRoot> {
 
 	private val static Logger logger = Logger.getLogger(JavaTuidCalculatorAndResolver);
 
@@ -59,21 +59,21 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTUIDCalculatorAndResolve
 	}
 
 	override protected hasId(EObject obj, String indidivualId) throws IllegalArgumentException {
-		return obj.calculateIndividualTUID == indidivualId
+		return obj.calculateIndividualTuid == indidivualId
 	}
 
-	override protected String calculateIndividualTUIDDelegator(EObject obj) {
-		return obj.calculateIndividualTUID
+	override protected String calculateIndividualTuidDelegator(EObject obj) {
+		return obj.calculateIndividualTuid
 	}
 
 	// ============================================================================
-	// TUID generation
+	// Tuid generation
 	// ============================================================================
-	private def dispatch String calculateIndividualTUID(Package jaMoPPPackage) {
+	private def dispatch String calculateIndividualTuid(Package jaMoPPPackage) {
 		return ""
 	}
 
-	private def dispatch String calculateIndividualTUID(CompilationUnit compilationUnit) {
+	private def dispatch String calculateIndividualTuid(CompilationUnit compilationUnit) {
 		return ""
 
 	//		var String className = null;
@@ -97,11 +97,11 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTUIDCalculatorAndResolve
 	//		return getNamespaceAsString(compilationUnit) + "." + className;
 	}
 
-	private def dispatch String calculateIndividualTUID(Classifier classifier) {
+	private def dispatch String calculateIndividualTuid(Classifier classifier) {
 		return CLASSIFIER_SELECTOR + SUBDIVIDER + classifier.getName()
 	}
 
-	private def dispatch String calculateIndividualTUID(Method method) {
+	private def dispatch String calculateIndividualTuid(Method method) {
 		val tuid = new StringBuilder()
 		tuid.append(METHOD_SELECTOR)
 		tuid.append(SUBDIVIDER + getNameFrom(method.typeReference) + SUBDIVIDER + method.name)
@@ -109,30 +109,30 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTUIDCalculatorAndResolve
 		return tuid.toString
 	}
 
-	private def dispatch String calculateIndividualTUID(Field field) {
+	private def dispatch String calculateIndividualTuid(Field field) {
 		return FIELD_SELECTOR + SUBDIVIDER + field.name
 	}
 
-	private def dispatch String calculateIndividualTUID(Import importStatement) {
+	private def dispatch String calculateIndividualTuid(Import importStatement) {
 		var tuid = IMPORT_SELECTOR
 		if (importStatement instanceof StaticImport) {
 			tuid += "static" + SUBDIVIDER
 		}
-		return tuid + StringOperationsJaMoPP.getStringRepresentation(importStatement)
+		return tuid + JamoppStringOperations.getStringRepresentation(importStatement)
 	}
 
-	private def dispatch String calculateIndividualTUID(Modifier modifier) {
+	private def dispatch String calculateIndividualTuid(Modifier modifier) {
 		return modifier.class.interfaces.get(0).simpleName;
 	}
 
-	private def dispatch String calculateIndividualTUID(Parameter param) {
+	private def dispatch String calculateIndividualTuid(Parameter param) {
 		return param.name
 	}
 
-	private def dispatch String calculateIndividualTUID(NamespaceClassifierReference ref) {
+	private def dispatch String calculateIndividualTuid(NamespaceClassifierReference ref) {
 		val tuid = new StringBuilder()
 		// If the reference was removed from the model, the containing feature is null.
-		// Omit it in the TUID then
+		// Omit it in the Tuid then
 		if (ref.eContainingFeature != null) {
 			tuid.append(ref.eContainingFeature.name)
 		}
@@ -140,52 +140,52 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTUIDCalculatorAndResolve
 		return tuid.toString
 	}
 
-	private def dispatch String calculateIndividualTUID(PrimitiveType pt) {
+	private def dispatch String calculateIndividualTuid(PrimitiveType pt) {
 		return pt.class.interfaces.get(0).simpleName
 	}
 
-	private def dispatch String calculateIndividualTUID(Constructor constuctor) {
+	private def dispatch String calculateIndividualTuid(Constructor constuctor) {
 		val tuid = new StringBuilder
 		tuid.append(CONSTRUCTOR_SELECTOR).append(SUBDIVIDER).append(constuctor.name)
 		constuctor.parameters.forEach[tuid.append(SUBDIVIDER + getNameFrom(typeReference))]
 		return tuid.toString
 	}
 
-	private def dispatch String calculateIndividualTUID(ExpressionStatement expressionStatement) {
+	private def dispatch String calculateIndividualTuid(ExpressionStatement expressionStatement) {
 		val tuid = new StringBuilder
 		tuid.append(EXPRESSION_STATEMENT_SELECTOR).append(SUBDIVIDER);
-		tuid.append(expressionStatement.expression.calculateIndividualTUID);
+		tuid.append(expressionStatement.expression.calculateIndividualTuid);
 		return tuid.toString
 	}
 
-	private def dispatch String calculateIndividualTUID(AssignmentExpression assignmentExpression) {
+	private def dispatch String calculateIndividualTuid(AssignmentExpression assignmentExpression) {
 		val tuid = new StringBuilder
 		tuid.append(ASSIGNMENT_EXPRESSION_SELECTOR).append(SUBDIVIDER)
 		if (null != assignmentExpression.child) {
-			tuid.append(assignmentExpression.child.calculateIndividualTUID).append(SUBDIVIDER)
+			tuid.append(assignmentExpression.child.calculateIndividualTuid).append(SUBDIVIDER)
 		}
 		if (null != assignmentExpression.assignmentOperator) {
-			tuid.append(assignmentExpression.assignmentOperator.calculateIndividualTUID).append(SUBDIVIDER)
+			tuid.append(assignmentExpression.assignmentOperator.calculateIndividualTuid).append(SUBDIVIDER)
 		}
 		if (null != assignmentExpression.value) {
-			tuid.append(assignmentExpression.value.calculateIndividualTUID)
+			tuid.append(assignmentExpression.value.calculateIndividualTuid)
 		}
 		return tuid.toString
 	}
 
-	private def dispatch String calculateIndividualTUID(SelfReference selfReference) {
+	private def dispatch String calculateIndividualTuid(SelfReference selfReference) {
 		val tuid = new StringBuilder
 		tuid.append(SELF_REFERENCE_SELECTOR)
-		tuid.append(selfReference.self.calculateIndividualTUID).append(SUBDIVIDER)
-		tuid.append(selfReference.next.calculateIndividualTUID)
+		tuid.append(selfReference.self.calculateIndividualTuid).append(SUBDIVIDER)
+		tuid.append(selfReference.next.calculateIndividualTuid)
 		return tuid.toString
 	}
 
-	private def dispatch String calculateIndividualTUID(This thisRef) {
+	private def dispatch String calculateIndividualTuid(This thisRef) {
 		return "this"
 	}
 
-	private def dispatch String calculateIndividualTUID(IdentifierReference identifierReference) {
+	private def dispatch String calculateIndividualTuid(IdentifierReference identifierReference) {
 		val tuid = new StringBuilder
 		tuid.append(IDENTIFIER_REFERENCE_SELECTOR)
 		if(null != identifierReference && null != identifierReference.target){
@@ -194,11 +194,11 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTUIDCalculatorAndResolve
 		return tuid.toString
 	}
 
-	private def dispatch String calculateIndividualTUID(Assignment assignment) {
+	private def dispatch String calculateIndividualTuid(Assignment assignment) {
 		return "="
 	}
 
-	private def dispatch String calculateIndividualTUID(NewConstructorCall newConstructorCall) {
+	private def dispatch String calculateIndividualTuid(NewConstructorCall newConstructorCall) {
 		val tuid = new StringBuilder
 		tuid.append(NEW_CONSTRUCTOR_CALL_SELECTOR).append(SUBDIVIDER)
 		tuid.append(getNameFrom(newConstructorCall.typeReference)).append(SUBDIVIDER)
@@ -207,25 +207,25 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTUIDCalculatorAndResolve
 
 	// actually we should not need this method. However, JaMoPP sometimes creates a ConditionalExpression instead 
 	// of an AssignementExpression. Traverse the childs until the type reference is not null
-	private def dispatch String calculateIndividualTUID(ConditionalExpression conditionalExpression) {
+	private def dispatch String calculateIndividualTuid(ConditionalExpression conditionalExpression) {
 		val tuid = new StringBuilder
 		tuid.append(CONDITIONAL_EXPRESSION_SELECTOR)
 		if (null == conditionalExpression.type) {
 			tuid.append(SUBDIVIDER).append("null")
 		} else {
-			tuid.append(SUBDIVIDER).append(conditionalExpression.type.calculateIndividualTUID)
+			tuid.append(SUBDIVIDER).append(conditionalExpression.type.calculateIndividualTuid)
 		}
 		return tuid.toString
 	}
 
-	private def dispatch String calculateIndividualTUID(ClassifierReference classifierReference) {
+	private def dispatch String calculateIndividualTuid(ClassifierReference classifierReference) {
 		val tuid = new StringBuilder()
 		tuid.append(classifierReference.eContainingFeature.name)
 		tuid.append(classifierReference.target.name)
 		return tuid.toString
 	}
 
-	private def dispatch String calculateIndividualTUID(EObject obj) {
+	private def dispatch String calculateIndividualTuid(EObject obj) {
 		throw new IllegalArgumentException("Invalid type given " + obj.class.simpleName);
 	}
 

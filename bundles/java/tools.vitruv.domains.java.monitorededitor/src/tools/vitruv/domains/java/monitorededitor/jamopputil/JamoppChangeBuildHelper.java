@@ -34,7 +34,7 @@ import tools.vitruv.framework.change.echange.root.RemoveRootEObject;
 import tools.vitruv.framework.change.echange.root.RootFactory;
 
 // TODO are those EChanges correct?
-public class JaMoPPChangeBuildHelper {
+public class JamoppChangeBuildHelper {
 
     private static final String NAME_ATTRIBUTE = "name";
 
@@ -253,9 +253,9 @@ public class JaMoPPChangeBuildHelper {
     public static EChange[] createMoveMethodChange(final Method removedMethod,
             final ConcreteClassifier movedFromAfterRemove, final Method addedMethod,
             final ConcreteClassifier movedToBeforeAdd) {
-        final EChange removeMethodChange = JaMoPPChangeBuildHelper.createRemoveMethodChange(removedMethod,
+        final EChange removeMethodChange = JamoppChangeBuildHelper.createRemoveMethodChange(removedMethod,
                 movedFromAfterRemove);
-        final EChange addMethodChange = JaMoPPChangeBuildHelper.createAddMethodChange(addedMethod, movedToBeforeAdd);
+        final EChange addMethodChange = JamoppChangeBuildHelper.createAddMethodChange(addedMethod, movedToBeforeAdd);
         return new EChange[] { removeMethodChange, addMethodChange };
     }
 }

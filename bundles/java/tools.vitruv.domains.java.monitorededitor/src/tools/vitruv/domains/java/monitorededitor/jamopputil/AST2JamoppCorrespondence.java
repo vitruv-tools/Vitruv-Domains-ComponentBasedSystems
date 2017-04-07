@@ -38,7 +38,7 @@ import org.emftext.language.java.types.impl.LongImpl;
 import org.emftext.language.java.types.impl.ShortImpl;
 import org.emftext.language.java.types.impl.VoidImpl;
 
-public final class AST2JaMoPPCorrespondence {
+public final class AST2JamoppCorrespondence {
 
     private static HashMap<Class<?>, String> primitiveTypeStrings = new HashMap<Class<?>, String>() {
 		private static final long serialVersionUID = 8465597480374410579L;
@@ -56,7 +56,7 @@ public final class AST2JaMoPPCorrespondence {
         }
     };
 
-    private AST2JaMoPPCorrespondence() {
+    private AST2JamoppCorrespondence() {
     }
 
     static boolean corresponds(final MethodDeclaration methodDeclaration, final Member member,

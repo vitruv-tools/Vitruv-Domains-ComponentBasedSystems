@@ -26,9 +26,9 @@ public class RepositoryModelLoader {
      *            path to model
      * @return the EObjects contained in the PCM resource
      */
-    public static EList<EObject> loadPCMModel(String path) {
+    public static EList<EObject> loadPcmModel(String path) {
 
-        return loadPCMResource(path).getContents();
+        return loadPcmResource(path).getContents();
 
     }
 
@@ -39,8 +39,8 @@ public class RepositoryModelLoader {
      *            relative path to the corresponding resource file
      * @return the loaded resource , or null if there was none found
      */
-    public static Resource loadPCMResource(String path) {
-        return loadPCMResource(URI.createFileURI(new File(path).getAbsolutePath()));
+    public static Resource loadPcmResource(String path) {
+        return loadPcmResource(URI.createFileURI(new File(path).getAbsolutePath()));
     }
 
     /**
@@ -50,7 +50,7 @@ public class RepositoryModelLoader {
      *            the file uri
      * @return the resource, or null if there was none found
      */
-    public static Resource loadPCMResource(URI fileURI) {
+    public static Resource loadPcmResource(URI fileURI) {
         // Load the required meta class packages => PCM Repository
         RepositoryPackage.eINSTANCE.eClass();
 

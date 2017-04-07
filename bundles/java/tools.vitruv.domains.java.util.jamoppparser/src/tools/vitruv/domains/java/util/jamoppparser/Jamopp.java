@@ -33,11 +33,11 @@ import org.emftext.language.java.resource.java.IJavaOptions;
  * Registers the {@link JavaSourceOrClassFileResourceFactoryImpl} to load JaMoPP resources from
  * .java files or java content-type InputStreams.
  */
-public class JaMoPP {
+public class Jamopp {
 
     private final ResourceSet rs;
 
-    protected JaMoPP() {
+    protected Jamopp() {
         this.rs = new ResourceSetImpl();
         this.setUp();
     }
