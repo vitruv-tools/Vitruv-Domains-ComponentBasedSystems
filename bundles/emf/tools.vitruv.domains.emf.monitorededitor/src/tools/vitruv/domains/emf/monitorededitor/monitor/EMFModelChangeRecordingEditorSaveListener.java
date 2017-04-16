@@ -25,7 +25,7 @@ import tools.vitruv.domains.emf.monitorededitor.tools.ISaveEventListener;
 import tools.vitruv.domains.emf.monitorededitor.tools.ResourceReloadListener;
 import tools.vitruv.domains.emf.monitorededitor.tools.SaveEventListenerMgr;
 import tools.vitruv.framework.change.description.TransactionalChange;
-import tools.vitruv.framework.change.recording.AtomicEMFChangeRecorder;
+import tools.vitruv.framework.change.recording.AtomicEmfChangeRecorder;
 import tools.vitruv.framework.util.datatypes.VURI;
 
 /**
@@ -57,7 +57,7 @@ public abstract class EMFModelChangeRecordingEditorSaveListener {
     /**
      * The {@link ChangeRecorder} used to record changes to the edited model.
      */
-    private AtomicEMFChangeRecorder changeRecorder;
+    private AtomicEmfChangeRecorder changeRecorder;
 
     /** The monitored EMF model resource. */
     private final Resource targetResource;
@@ -144,7 +144,7 @@ public abstract class EMFModelChangeRecordingEditorSaveListener {
      */
     protected void resetChangeRecorder() {
         deactivateChangeRecorder();
-        changeRecorder = new AtomicEMFChangeRecorder();
+        changeRecorder = new AtomicEmfChangeRecorder();
         changeRecorder.beginRecording(VURI.getInstance(targetResource), Collections.singletonList(targetResource));
     }
 
