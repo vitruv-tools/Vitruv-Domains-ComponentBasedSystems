@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vitruvius Domain PCM
-Bundle-SymbolicName: tools.vitruv.domains.pcm
+Bundle-SymbolicName: tools.vitruv.domains.pcm;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: tools.vitruv.framework.metamodel;visibility:=reexport,
@@ -12,6 +12,7 @@ Require-Bundle: tools.vitruv.framework.metamodel;visibility:=reexport,
  org.eclipse.xtend.lib.macro,
  tools.vitruv.framework.util,
  tools.vitruv.framework.tuid,
- org.junit
+ org.junit,
+ org.eclipse.core.runtime
 Export-Package: tools.vitruv.domains.pcm
 Bundle-Vendor: vitruv.tools

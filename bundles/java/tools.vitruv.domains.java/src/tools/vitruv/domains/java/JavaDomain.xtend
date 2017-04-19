@@ -1,15 +1,18 @@
 package tools.vitruv.domains.java
 
-import tools.vitruv.framework.vsum.domains.VitruvDomain
+import tools.vitruv.domains.java.tuid.JavaTuidCalculatorAndResolver
+import static tools.vitruv.domains.java.JavaNamespace.*
+import tools.vitruv.framework.domains.AbstractVitruvDomain
 
-class JavaDomain implements VitruvDomain<JavaMetamodel> {
-	private val JavaMetamodel javaMetamodel;
+final class JavaDomain extends AbstractVitruvDomain {
+	private static final String METAMODEL_NAME = "Java";
 	
-	public new() {
-		javaMetamodel = new JavaMetamodel();
+	package new() {
+		super(METAMODEL_NAME, ROOT_PACKAGE, generateTuidCalculator(), #[FILE_EXTENSION]);
 	}
 	
-	override public JavaMetamodel getMetamodel() {
-		return javaMetamodel;
+	def protected static generateTuidCalculator() {
+		return new JavaTuidCalculatorAndResolver();
 	}
+	
 }

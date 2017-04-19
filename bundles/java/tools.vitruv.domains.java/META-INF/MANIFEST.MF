@@ -17,7 +17,8 @@ Require-Bundle: com.google.guava,
  tools.vitruv.framework.metamodel;visibility:=reexport,
  tools.vitruv.framework.util,
  tools.vitruv.framework.tuid,
- tools.vitruv.framework.vsum
+ tools.vitruv.framework.vsum,
+ org.eclipse.core.runtime
 Export-Package: tools.vitruv.domains.java
 Bundle-Vendor: vitruv.tools
 

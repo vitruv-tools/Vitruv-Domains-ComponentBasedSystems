@@ -1,14 +1,22 @@
 package tools.vitruv.domains.uml
 
-class UmlDomain {
-	private val UmlMetamodel umlMetamodel;
-	
-	public new() {
-		umlMetamodel = new UmlMetamodel();
+import org.eclipse.uml2.uml.UMLPackage
+import org.eclipse.uml2.uml.resource.UMLResource
+import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
+import tools.vitruv.domains.uml.tuid.UmlTuidCalculatorAndResolver
+import tools.vitruv.framework.domains.AbstractVitruvDomain
+
+class UmlDomain extends AbstractVitruvDomain {
+	private static final String METAMODEL_NAME = "UML";
+	public static val NAMESPACE_URIS = UMLPackage.eINSTANCE.nsURIsRecursive;
+	public static final String FILE_EXTENSION = UMLResource::FILE_EXTENSION;
+
+	package new() {
+		super(METAMODEL_NAME, UMLPackage.eINSTANCE, generateTuidCalculator(), FILE_EXTENSION);
 	}
-	
-	// TODO HK Replace with generic type parameter when introducing parametrized super class
-	def public UmlMetamodel getMetamodel() {
-		return umlMetamodel;
+
+	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
+		return new UmlTuidCalculatorAndResolver(UMLPackage.eNS_URI);
 	}
+
 }

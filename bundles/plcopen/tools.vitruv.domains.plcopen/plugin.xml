@@ -6,11 +6,11 @@
 
 <plugin>
    <extension
-         id="javaDomainProvider"
-         name="Java Domain Provider"
+         id="plcOpenDomainProvider"
+         name="PLCOpen Domain Provider"
          point="tools.vitruv.framework.metamodel.domain">
       <domainProvider
-            class="tools.vitruv.domains.java.JavaDomainProvider"></domainProvider>
+            class="tools.vitruv.domains.plcopen.PLCOpenDomainProvider"></domainProvider>
    </extension>
 
 </plugin>

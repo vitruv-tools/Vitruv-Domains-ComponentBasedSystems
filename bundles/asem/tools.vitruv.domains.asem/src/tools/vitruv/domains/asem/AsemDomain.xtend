@@ -1,16 +1,21 @@
 package tools.vitruv.domains.asem
 
-import tools.vitruv.domains.asem.AsemMetamodel
+import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
+import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
+import edu.kit.ipd.sdq.ASEM.base.BasePackage
+import static tools.vitruv.domains.asem.AsemNamespace.*;
+import tools.vitruv.framework.domains.AbstractVitruvDomain
 
-class AsemDomain {
-	private val AsemMetamodel asemMetamodel;
+class AsemDomain extends AbstractVitruvDomain {
+	public static final String METAMODEL_NAME = "ASEM"
 	
-	public new() {
-		asemMetamodel = new AsemMetamodel();
+	package new() {
+		super(METAMODEL_NAME, ROOT_PACKAGE, generateTuidCalculator(), FILE_EXTENSION);
 	}
-	
-	// TODO HK Replace with generic type parameter when introducing parametrized super class
-	def public AsemMetamodel getMetamodel() {
-		return asemMetamodel;
+
+	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
+		return new AttributeTuidCalculatorAndResolver(METAMODEL_NAMESPACE, 
+			#[BasePackage.Literals.IDENTIFIABLE__ID.name, BasePackage.Literals.NAMED__NAME.name]
+		);
 	}
 }
