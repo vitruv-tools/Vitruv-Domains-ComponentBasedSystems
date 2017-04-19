@@ -65,4 +65,34 @@ class UmlDomainTests {
 		Assert.assertNotNull(tuidFragments.get(1));
 	}
 	
+	@Test
+	public def void testEmptyPackageImportTuidCalculation() {
+		val import = UMLFactory.eINSTANCE.createPackageImport();
+		// No classifiers the generalization belongs to
+		val tuidFragments = new UmlDomainProvider().domain.calculateTuid(import).toString.split("#");
+		Assert.assertEquals(3, tuidFragments.length);
+		Assert.assertEquals(UMLPackage.eNS_URI, tuidFragments.get(0));
+		Assert.assertEquals("<root>-_-" + import.eClass.name + "-_-" + "package", 
+			tuidFragments.get(2)
+		);
+		Assert.assertNotNull(tuidFragments.get(1));
+	}
+	
+	@Test
+	public def void testPackageImportTuidCalculation() {
+		val import = UMLFactory.eINSTANCE.createPackageImport();
+		val pckg = UMLFactory.eINSTANCE.createPackage();
+		pckg.name = "TestPackage";
+		import.importedPackage = pckg;
+		val tuidFragments = new UmlDomainProvider().domain.calculateTuid(import).toString.split("#");
+		Assert.assertEquals(3, tuidFragments.length);
+		Assert.assertEquals(UMLPackage.eNS_URI, tuidFragments.get(0));
+		Assert.assertEquals("<root>" + "-_-" + import.eClass.name + "-_-" + 
+			"package" + "=" + pckg.name, 
+			tuidFragments.get(2)
+		);
+		Assert.assertNotNull(tuidFragments.get(1));
+	}
+	
+	
 }
