@@ -5,7 +5,7 @@
       <repositories location="../tools.vitruv.domains.updatesite/target/repository"/>
     </contributions>
     <contributions label="externals">
-      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14" mirrorArtifacts="false">
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/neon" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.sysml14.feature.feature.group" versionRange="0.10.0" categories="//@customCategories[identifier='externals']"/>
       </repositories>
       <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon" mirrorArtifacts="false">
