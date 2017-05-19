@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="attribute" nsURI="http://tools.vitruv/EChange/Java/Feature/Attribute/1.0"
+    nsPrefix="attribute">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="modelName" value="Change"/>
+    <details key="basePackage" value="tools.vitruv.domains.java.echange.feature"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="JavaInsertEAttributeValue">
+    <eTypeParameters name="A">
+      <eBounds eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eTypeParameters>
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../tools.vitruv.framework.change.echange/metamodel/attribute.ecore#//InsertEAttributeValue">
+      <eTypeArguments eTypeParameter="#//JavaInsertEAttributeValue/A"/>
+      <eTypeArguments eTypeParameter="#//JavaInsertEAttributeValue/T"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass feature.ecore#//JavaFeatureEChange">
+      <eTypeArguments eTypeParameter="#//JavaInsertEAttributeValue/A"/>
+      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JavaRemoveEAttributeValue">
+    <eTypeParameters name="A">
+      <eBounds eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eTypeParameters>
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../tools.vitruv.framework.change.echange/metamodel/attribute.ecore#//RemoveEAttributeValue">
+      <eTypeArguments eTypeParameter="#//JavaRemoveEAttributeValue/A"/>
+      <eTypeArguments eTypeParameter="#//JavaRemoveEAttributeValue/T"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass feature.ecore#//JavaFeatureEChange">
+      <eTypeArguments eTypeParameter="#//JavaRemoveEAttributeValue/A"/>
+      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JavaReplaceSingleValuedEAttribute">
+    <eTypeParameters name="A">
+      <eBounds eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eTypeParameters>
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../tools.vitruv.framework.change.echange/metamodel/attribute.ecore#//ReplaceSingleValuedEAttribute">
+      <eTypeArguments eTypeParameter="#//JavaReplaceSingleValuedEAttribute/A"/>
+      <eTypeArguments eTypeParameter="#//JavaReplaceSingleValuedEAttribute/T"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass feature.ecore#//JavaFeatureEChange">
+      <eTypeArguments eTypeParameter="#//JavaReplaceSingleValuedEAttribute/A"/>
+      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+</ecore:EPackage>

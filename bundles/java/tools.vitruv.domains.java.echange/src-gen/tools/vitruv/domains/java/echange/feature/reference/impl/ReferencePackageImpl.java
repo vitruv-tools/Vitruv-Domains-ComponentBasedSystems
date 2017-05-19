@@ -10,13 +10,27 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import tools.vitruv.domains.java.echange.feature.FeaturePackage;
+import tools.vitruv.domains.java.echange.feature.attribute.impl.AttributePackageImpl;
+
+import tools.vitruv.domains.java.echange.feature.impl.FeaturePackageImpl;
 
 import tools.vitruv.domains.java.echange.feature.reference.JavaInsertEReference;
 import tools.vitruv.domains.java.echange.feature.reference.JavaRemoveEReference;
 import tools.vitruv.domains.java.echange.feature.reference.JavaReplaceSingleValuedEReference;
 import tools.vitruv.domains.java.echange.feature.reference.ReferenceFactory;
 import tools.vitruv.domains.java.echange.feature.reference.ReferencePackage;
+
+import tools.vitruv.framework.change.echange.EChangePackage;
+
+import tools.vitruv.framework.change.echange.eobject.EobjectPackage;
+
+import tools.vitruv.framework.change.echange.feature.FeaturePackage;
+
+import tools.vitruv.framework.change.echange.feature.attribute.AttributePackage;
+
+import tools.vitruv.framework.change.echange.feature.list.ListPackage;
+
+import tools.vitruv.framework.change.echange.feature.single.SinglePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -93,14 +107,29 @@ public class ReferencePackageImpl extends EPackageImpl implements ReferencePacka
 		isInited = true;
 
 		// Initialize simple dependencies
-		tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.eINSTANCE.eClass();
+		AttributePackage.eINSTANCE.eClass();
 		FeaturePackage.eINSTANCE.eClass();
+		EChangePackage.eINSTANCE.eClass();
+		ListPackage.eINSTANCE.eClass();
+		SinglePackage.eINSTANCE.eClass();
+		tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.eINSTANCE.eClass();
+		EobjectPackage.eINSTANCE.eClass();
+		EChangePackage.eINSTANCE.eClass();
+		FeaturePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		AttributePackageImpl theAttributePackage_1 = (AttributePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.attribute.AttributePackage.eNS_URI) instanceof AttributePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.attribute.AttributePackage.eNS_URI) : tools.vitruv.domains.java.echange.feature.attribute.AttributePackage.eINSTANCE);
+		FeaturePackageImpl theFeaturePackage_1 = (FeaturePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.FeaturePackage.eNS_URI) instanceof FeaturePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.FeaturePackage.eNS_URI) : tools.vitruv.domains.java.echange.feature.FeaturePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theReferencePackage.createPackageContents();
+		theAttributePackage_1.createPackageContents();
+		theFeaturePackage_1.createPackageContents();
 
 		// Initialize created meta-data
 		theReferencePackage.initializePackageContents();
+		theAttributePackage_1.initializePackageContents();
+		theFeaturePackage_1.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theReferencePackage.freeze();
@@ -199,7 +228,7 @@ public class ReferencePackageImpl extends EPackageImpl implements ReferencePacka
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		tools.vitruv.framework.change.echange.feature.reference.ReferencePackage theReferencePackage_1 = (tools.vitruv.framework.change.echange.feature.reference.ReferencePackage)EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.eNS_URI);
-		FeaturePackage theFeaturePackage = (FeaturePackage)EPackage.Registry.INSTANCE.getEPackage(FeaturePackage.eNS_URI);
+		tools.vitruv.domains.java.echange.feature.FeaturePackage theFeaturePackage_1 = (tools.vitruv.domains.java.echange.feature.FeaturePackage)EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.FeaturePackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter javaInsertEReferenceEClass_A = addETypeParameter(javaInsertEReferenceEClass, "A");
@@ -230,7 +259,7 @@ public class ReferencePackageImpl extends EPackageImpl implements ReferencePacka
 		g2 = createEGenericType(javaInsertEReferenceEClass_T);
 		g1.getETypeArguments().add(g2);
 		javaInsertEReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theFeaturePackage.getJavaFeatureEChange());
+		g1 = createEGenericType(theFeaturePackage_1.getJavaFeatureEChange());
 		g2 = createEGenericType(javaInsertEReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theEcorePackage.getEReference());
@@ -242,7 +271,7 @@ public class ReferencePackageImpl extends EPackageImpl implements ReferencePacka
 		g2 = createEGenericType(javaRemoveEReferenceEClass_T);
 		g1.getETypeArguments().add(g2);
 		javaRemoveEReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theFeaturePackage.getJavaFeatureEChange());
+		g1 = createEGenericType(theFeaturePackage_1.getJavaFeatureEChange());
 		g2 = createEGenericType(javaRemoveEReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theEcorePackage.getEReference());
@@ -254,7 +283,7 @@ public class ReferencePackageImpl extends EPackageImpl implements ReferencePacka
 		g2 = createEGenericType(javaReplaceSingleValuedEReferenceEClass_T);
 		g1.getETypeArguments().add(g2);
 		javaReplaceSingleValuedEReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theFeaturePackage.getJavaFeatureEChange());
+		g1 = createEGenericType(theFeaturePackage_1.getJavaFeatureEChange());
 		g2 = createEGenericType(javaReplaceSingleValuedEReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theEcorePackage.getEReference());

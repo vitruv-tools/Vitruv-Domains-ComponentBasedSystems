@@ -15,6 +15,22 @@ import tools.vitruv.domains.java.echange.feature.FeatureFactory;
 import tools.vitruv.domains.java.echange.feature.FeaturePackage;
 import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
 
+import tools.vitruv.domains.java.echange.feature.attribute.impl.AttributePackageImpl;
+
+import tools.vitruv.domains.java.echange.feature.reference.impl.ReferencePackageImpl;
+
+import tools.vitruv.framework.change.echange.EChangePackage;
+
+import tools.vitruv.framework.change.echange.eobject.EobjectPackage;
+
+import tools.vitruv.framework.change.echange.feature.attribute.AttributePackage;
+
+import tools.vitruv.framework.change.echange.feature.list.ListPackage;
+
+import tools.vitruv.framework.change.echange.feature.reference.ReferencePackage;
+
+import tools.vitruv.framework.change.echange.feature.single.SinglePackage;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
@@ -76,13 +92,29 @@ public class FeaturePackageImpl extends EPackageImpl implements FeaturePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		AttributePackage.eINSTANCE.eClass();
 		tools.vitruv.framework.change.echange.feature.FeaturePackage.eINSTANCE.eClass();
+		EChangePackage.eINSTANCE.eClass();
+		ListPackage.eINSTANCE.eClass();
+		SinglePackage.eINSTANCE.eClass();
+		ReferencePackage.eINSTANCE.eClass();
+		EobjectPackage.eINSTANCE.eClass();
+		EChangePackage.eINSTANCE.eClass();
+		tools.vitruv.framework.change.echange.feature.FeaturePackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		AttributePackageImpl theAttributePackage_1 = (AttributePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.attribute.AttributePackage.eNS_URI) instanceof AttributePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.attribute.AttributePackage.eNS_URI) : tools.vitruv.domains.java.echange.feature.attribute.AttributePackage.eINSTANCE);
+		ReferencePackageImpl theReferencePackage_1 = (ReferencePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.reference.ReferencePackage.eNS_URI) instanceof ReferencePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.reference.ReferencePackage.eNS_URI) : tools.vitruv.domains.java.echange.feature.reference.ReferencePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFeaturePackage.createPackageContents();
+		theAttributePackage_1.createPackageContents();
+		theReferencePackage_1.createPackageContents();
 
 		// Initialize created meta-data
 		theFeaturePackage.initializePackageContents();
+		theAttributePackage_1.initializePackageContents();
+		theReferencePackage_1.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theFeaturePackage.freeze();

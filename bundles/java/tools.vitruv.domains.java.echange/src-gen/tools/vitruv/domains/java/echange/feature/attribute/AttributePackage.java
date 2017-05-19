@@ -120,6 +120,69 @@ public interface AttributePackage extends EPackage {
 	int JAVA_INSERT_EATTRIBUTE_VALUE_FEATURE_COUNT = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Resolve Before</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EATTRIBUTE_VALUE___RESOLVE_BEFORE__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE___RESOLVE_BEFORE__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve After</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EATTRIBUTE_VALUE___RESOLVE_AFTER__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE___RESOLVE_AFTER__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve Before And Apply Forward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EATTRIBUTE_VALUE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve After And Apply Backward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EATTRIBUTE_VALUE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Apply Forward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EATTRIBUTE_VALUE___APPLY_FORWARD = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE___APPLY_FORWARD;
+
+	/**
+	 * The operation id for the '<em>Apply Backward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EATTRIBUTE_VALUE___APPLY_BACKWARD = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE___APPLY_BACKWARD;
+
+	/**
+	 * The operation id for the '<em>Is Resolved</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EATTRIBUTE_VALUE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE___IS_RESOLVED;
+
+	/**
 	 * The operation id for the '<em>Get New Value</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -202,6 +265,69 @@ public interface AttributePackage extends EPackage {
 	int JAVA_REMOVE_EATTRIBUTE_VALUE_FEATURE_COUNT = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Resolve Before</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EATTRIBUTE_VALUE___RESOLVE_BEFORE__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE___RESOLVE_BEFORE__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve After</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EATTRIBUTE_VALUE___RESOLVE_AFTER__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE___RESOLVE_AFTER__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve Before And Apply Forward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EATTRIBUTE_VALUE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve After And Apply Backward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EATTRIBUTE_VALUE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Apply Forward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EATTRIBUTE_VALUE___APPLY_FORWARD = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE___APPLY_FORWARD;
+
+	/**
+	 * The operation id for the '<em>Apply Backward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EATTRIBUTE_VALUE___APPLY_BACKWARD = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE___APPLY_BACKWARD;
+
+	/**
+	 * The operation id for the '<em>Is Resolved</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EATTRIBUTE_VALUE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE___IS_RESOLVED;
+
+	/**
 	 * The operation id for the '<em>Get Old Value</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -282,6 +408,69 @@ public interface AttributePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE_FEATURE_COUNT = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Resolve Before</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE___RESOLVE_BEFORE__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE___RESOLVE_BEFORE__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve After</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE___RESOLVE_AFTER__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE___RESOLVE_AFTER__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve Before And Apply Forward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve After And Apply Backward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Apply Forward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE___APPLY_FORWARD = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE___APPLY_FORWARD;
+
+	/**
+	 * The operation id for the '<em>Apply Backward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE___APPLY_BACKWARD = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE___APPLY_BACKWARD;
+
+	/**
+	 * The operation id for the '<em>Is Resolved</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE___IS_RESOLVED;
 
 	/**
 	 * The operation id for the '<em>Get New Value</em>' operation.

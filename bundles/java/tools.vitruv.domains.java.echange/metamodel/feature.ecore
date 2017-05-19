@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="feature" nsURI="http://tools.vitruv/EChange/Java/Feature/1.0"
+    nsPrefix="feature">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="modelName" value="Change"/>
+    <details key="basePackage" value="tools.vitruv.domains.java.echange"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="JavaFeatureEChange" abstract="true">
+    <eTypeParameters name="A">
+      <eBounds eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eTypeParameters>
+    <eTypeParameters name="F">
+      <eBounds eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="oldAffectedEObject" lowerBound="1">
+      <eGenericType eTypeParameter="#//JavaFeatureEChange/A"/>
+    </eStructuralFeatures>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../tools.vitruv.framework.change.echange/metamodel/feature.ecore#//FeatureEChange">
+      <eTypeArguments eTypeParameter="#//JavaFeatureEChange/A"/>
+      <eTypeArguments eTypeParameter="#//JavaFeatureEChange/F"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+</ecore:EPackage>

@@ -130,13 +130,13 @@ public class AttributeSwitch<T1> extends Switch<T1> {
 				T1 result = caseJavaReplaceSingleValuedEAttribute(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseReplaceSingleValuedEAttribute(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseJavaFeatureEChange(javaReplaceSingleValuedEAttribute);
+				if (result == null) result = caseReplaceSingleValuedFeatureEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseAdditiveAttributeEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseSubtractiveAttributeEChange(javaReplaceSingleValuedEAttribute);
-				if (result == null) result = caseReplaceSingleValuedFeatureEChange(javaReplaceSingleValuedEAttribute);
-				if (result == null) result = caseAdditiveEChange(javaReplaceSingleValuedEAttribute);
-				if (result == null) result = caseUpdateAttributeEChange(javaReplaceSingleValuedEAttribute);
-				if (result == null) result = caseSubtractiveEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseUpdateSingleValuedFeatureEChange(javaReplaceSingleValuedEAttribute);
+				if (result == null) result = caseAdditiveEChange(javaReplaceSingleValuedEAttribute);
+				if (result == null) result = caseSubtractiveEChange(javaReplaceSingleValuedEAttribute);
+				if (result == null) result = caseUpdateAttributeEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseFeatureEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseAtomicEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseEChange(javaReplaceSingleValuedEAttribute);

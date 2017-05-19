@@ -102,8 +102,8 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseInsertInListEChange(javaInsertEReference);
 				if (result == null) result = caseAdditiveReferenceEChange(javaInsertEReference);
 				if (result == null) result = caseUpdateSingleListEntryEChange(javaInsertEReference);
-				if (result == null) result = caseEObjectAddedEChange(javaInsertEReference);
 				if (result == null) result = caseUpdateReferenceEChange(javaInsertEReference);
+				if (result == null) result = caseEObjectAddedEChange(javaInsertEReference);
 				if (result == null) result = caseUpdateMultiValuedFeatureEChange(javaInsertEReference);
 				if (result == null) result = caseAdditiveEChange(javaInsertEReference);
 				if (result == null) result = caseFeatureEChange(javaInsertEReference);
@@ -120,8 +120,8 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseRemoveFromListEChange(javaRemoveEReference);
 				if (result == null) result = caseSubtractiveReferenceEChange(javaRemoveEReference);
 				if (result == null) result = caseUpdateSingleListEntryEChange(javaRemoveEReference);
-				if (result == null) result = caseEObjectSubtractedEChange(javaRemoveEReference);
 				if (result == null) result = caseUpdateReferenceEChange(javaRemoveEReference);
+				if (result == null) result = caseEObjectSubtractedEChange(javaRemoveEReference);
 				if (result == null) result = caseUpdateMultiValuedFeatureEChange(javaRemoveEReference);
 				if (result == null) result = caseSubtractiveEChange(javaRemoveEReference);
 				if (result == null) result = caseFeatureEChange(javaRemoveEReference);
@@ -135,15 +135,15 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 				T1 result = caseJavaReplaceSingleValuedEReference(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseReplaceSingleValuedEReference(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseJavaFeatureEChange(javaReplaceSingleValuedEReference);
+				if (result == null) result = caseReplaceSingleValuedFeatureEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseAdditiveReferenceEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseSubtractiveReferenceEChange(javaReplaceSingleValuedEReference);
-				if (result == null) result = caseReplaceSingleValuedFeatureEChange(javaReplaceSingleValuedEReference);
-				if (result == null) result = caseEObjectAddedEChange(javaReplaceSingleValuedEReference);
-				if (result == null) result = caseUpdateReferenceEChange(javaReplaceSingleValuedEReference);
-				if (result == null) result = caseEObjectSubtractedEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseUpdateSingleValuedFeatureEChange(javaReplaceSingleValuedEReference);
-				if (result == null) result = caseAdditiveEChange(javaReplaceSingleValuedEReference);
+				if (result == null) result = caseUpdateReferenceEChange(javaReplaceSingleValuedEReference);
+				if (result == null) result = caseEObjectAddedEChange(javaReplaceSingleValuedEReference);
+				if (result == null) result = caseEObjectSubtractedEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseFeatureEChange(javaReplaceSingleValuedEReference);
+				if (result == null) result = caseAdditiveEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseSubtractiveEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseAtomicEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseEChange(javaReplaceSingleValuedEReference);
@@ -305,21 +305,6 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject Added EChange</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject Added EChange</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T extends EObject> T1 caseEObjectAddedEChange(EObjectAddedEChange<T> object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Update Reference EChange</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -331,6 +316,21 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public <A extends EObject> T1 caseUpdateReferenceEChange(UpdateReferenceEChange<A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject Added EChange</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject Added EChange</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends EObject> T1 caseEObjectAddedEChange(EObjectAddedEChange<T> object) {
 		return null;
 	}
 

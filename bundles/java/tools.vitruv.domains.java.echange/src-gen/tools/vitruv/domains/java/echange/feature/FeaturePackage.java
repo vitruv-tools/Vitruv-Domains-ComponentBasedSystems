@@ -103,6 +103,69 @@ public interface FeaturePackage extends EPackage {
 	int JAVA_FEATURE_ECHANGE_FEATURE_COUNT = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Resolve Before</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_FEATURE_ECHANGE___RESOLVE_BEFORE__RESOURCESET = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE___RESOLVE_BEFORE__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve After</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_FEATURE_ECHANGE___RESOLVE_AFTER__RESOURCESET = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE___RESOLVE_AFTER__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve Before And Apply Forward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_FEATURE_ECHANGE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Resolve After And Apply Backward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_FEATURE_ECHANGE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET;
+
+	/**
+	 * The operation id for the '<em>Apply Forward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_FEATURE_ECHANGE___APPLY_FORWARD = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE___APPLY_FORWARD;
+
+	/**
+	 * The operation id for the '<em>Apply Backward</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_FEATURE_ECHANGE___APPLY_BACKWARD = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE___APPLY_BACKWARD;
+
+	/**
+	 * The operation id for the '<em>Is Resolved</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_FEATURE_ECHANGE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE___IS_RESOLVED;
+
+	/**
 	 * The number of operations of the '<em>Java Feature EChange</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

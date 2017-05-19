@@ -12,7 +12,7 @@
       <package
             uri="http://tools.vitruv/EChange/Java/Feature/1.0"
             class="tools.vitruv.domains.java.echange.feature.FeaturePackage"
-            genModel="metamodel/JavaFeature.xcore"/>
+            genModel="metamodel/JavaChange.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
@@ -20,7 +20,7 @@
       <package
             uri="http://tools.vitruv/EChange/Java/Feature/Attribute/1.0"
             class="tools.vitruv.domains.java.echange.feature.attribute.AttributePackage"
-            genModel="metamodel/Attribute.xcore"/>
+            genModel="metamodel/JavaChange.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
@@ -28,7 +28,7 @@
       <package
             uri="http://tools.vitruv/EChange/Java/Feature/Reference/1.0"
             class="tools.vitruv.domains.java.echange.feature.reference.ReferencePackage"
-            genModel="metamodel/Reference.xcore"/>
+            genModel="metamodel/JavaChange.genmodel"/>
    </extension>
 
 </plugin>

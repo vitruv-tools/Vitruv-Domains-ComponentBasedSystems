@@ -136,12 +136,12 @@ public class ReferenceAdapterFactory extends AdapterFactoryImpl {
 				return createInsertInListEChangeAdapter();
 			}
 			@Override
-			public <T extends EObject> Adapter caseEObjectAddedEChange(EObjectAddedEChange<T> object) {
-				return createEObjectAddedEChangeAdapter();
-			}
-			@Override
 			public <A extends EObject> Adapter caseUpdateReferenceEChange(UpdateReferenceEChange<A> object) {
 				return createUpdateReferenceEChangeAdapter();
+			}
+			@Override
+			public <T extends EObject> Adapter caseEObjectAddedEChange(EObjectAddedEChange<T> object) {
+				return createEObjectAddedEChangeAdapter();
 			}
 			@Override
 			public <A extends EObject, T extends EObject> Adapter caseAdditiveReferenceEChange(AdditiveReferenceEChange<A, T> object) {
@@ -348,20 +348,6 @@ public class ReferenceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.eobject.EObjectAddedEChange <em>EObject Added EChange</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see tools.vitruv.framework.change.echange.eobject.EObjectAddedEChange
-	 * @generated
-	 */
-	public Adapter createEObjectAddedEChangeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.feature.reference.UpdateReferenceEChange <em>Update Reference EChange</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -372,6 +358,20 @@ public class ReferenceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUpdateReferenceEChangeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.eobject.EObjectAddedEChange <em>EObject Added EChange</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see tools.vitruv.framework.change.echange.eobject.EObjectAddedEChange
+	 * @generated
+	 */
+	public Adapter createEObjectAddedEChangeAdapter() {
 		return null;
 	}
 

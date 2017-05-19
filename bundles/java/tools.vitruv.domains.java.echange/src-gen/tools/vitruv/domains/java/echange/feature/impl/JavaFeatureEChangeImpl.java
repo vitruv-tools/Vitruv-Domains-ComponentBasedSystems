@@ -62,6 +62,17 @@ public abstract class JavaFeatureEChangeImpl<A extends EObject, F extends EStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setAffectedFeature(F newAffectedFeature) {
+		super.setAffectedFeature(newAffectedFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
