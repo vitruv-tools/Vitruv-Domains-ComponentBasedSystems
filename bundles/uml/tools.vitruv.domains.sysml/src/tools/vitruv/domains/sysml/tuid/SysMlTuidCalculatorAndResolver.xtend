@@ -1,26 +1,19 @@
 package tools.vitruv.domains.sysml.tuid
 
-import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.uml2.uml.UMLPackage
 import tools.vitruv.domains.sysml.SysMlDomain
+import tools.vitruv.domains.uml.tuid.UmlTuidCalculatorAndResolver
 
-class SysMlTuidCalculatorAndResolver extends AttributeTuidCalculatorAndResolver {
+class SysMlTuidCalculatorAndResolver extends UmlTuidCalculatorAndResolver {
 	private val extension SysMlToUmlResolver sysMlToUmlResolver;
-	//private val UmlMetamodel umlMetamodel;
 	
 	new(String nsPrefix) {
-		super(nsPrefix, UMLPackage.Literals.NAMED_ELEMENT__NAME.name)
+		super(nsPrefix)
 		sysMlToUmlResolver = SysMlToUmlResolver.instance;
-		//umlMetamodel = UmlMetamodel.instance;
 	}
 	
 	override calculateTuidFromEObject(EObject eObject) {
-		//if (SysMlMetamodel.NAMESPACE_URIS.contains(eObject.eClass.EPackage.nsURI)) {
-			super.calculateTuidFromEObject(eObject.stereotypedObject);	
-//		} else {
-//			return umlMetamodel.calculateTuidFromEObject(eObject);
-//		}
+		super.calculateTuidFromEObject(eObject.stereotypedObject);	
 	}
 	
 	override calculateTuidFromEObject(EObject eObject, EObject virtualRootObject, String prefix) {
@@ -28,7 +21,6 @@ class SysMlTuidCalculatorAndResolver extends AttributeTuidCalculatorAndResolver 
 			super.calculateTuidFromEObject(eObject.stereotypedObject, virtualRootObject, prefix);
 		} else {
 			super.calculateTuidFromEObject(eObject, virtualRootObject, prefix);
-//			return umlMetamodel.calculateTuidFromEObject(eObject);
 		}
 	}
 	
