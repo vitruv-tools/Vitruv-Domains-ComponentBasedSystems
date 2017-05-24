@@ -1,5 +1,6 @@
 package tools.vitruv.domains.java.monitorededitor;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
@@ -115,7 +116,7 @@ public class MonitoredEditor extends AbstractMonitoredEditor
 				return null;
 			}
 			@Override
-			public String getName() {
+			public File getFolder() {
 				return null;
 			}
         }, MY_MONITORED_PROJECT);
