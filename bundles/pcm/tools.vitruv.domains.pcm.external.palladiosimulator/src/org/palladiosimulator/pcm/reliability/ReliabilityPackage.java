@@ -47,7 +47,7 @@ public interface ReliabilityPackage extends EPackage {
      * 
      * @generated
      */
-    String eNS_URI = "http://palladiosimulator.org/PalladioComponentModel/Reliability/5.1";
+    String eNS_URI = "http://palladiosimulator.org/PalladioComponentModel/Reliability/5.2";
 
     /**
      * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
