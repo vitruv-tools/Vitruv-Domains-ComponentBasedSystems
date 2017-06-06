@@ -1,6 +1,5 @@
 package tools.vitruv.domains.java.tuid
 
-import org.apache.commons.lang.StringUtils
 import org.emftext.language.java.classifiers.Classifier
 import org.emftext.language.java.imports.ClassifierImport
 import org.emftext.language.java.imports.PackageImport
@@ -12,6 +11,7 @@ import org.emftext.language.java.parameters.VariableLengthParameter
 import org.emftext.language.java.references.ReferenceableElement
 import org.emftext.language.java.types.NamespaceClassifierReference
 import org.emftext.language.java.types.PrimitiveType
+import edu.kit.ipd.sdq.commons.util.java.lang.StringUtil
 
 /**
  * Converts a JaMoPP model element to a string representation.
@@ -56,18 +56,18 @@ class JamoppStringOperations {
 	}
 
 	static def dispatch String getStringRepresentation(PrimitiveType pt, long arrayDimensions) {
-		return pt.class.interfaces.get(0).simpleName.toLowerCase + StringUtils.repeat("[]", arrayDimensions as int)
+		return pt.class.interfaces.get(0).simpleName.toLowerCase + StringUtil.repeat("[]", arrayDimensions as int)
 	}
 
 	static def dispatch String getStringRepresentation(NamespaceClassifierReference ncr, long arrayDimensions) {
 		val strBuilder = new StringBuilder()
 		ncr.classifierReferences.forEach[
-			strBuilder.append(target.name) + StringUtils.repeat("[]", arrayDimensions as int)]
+			strBuilder.append(target.name) + StringUtil.repeat("[]", arrayDimensions as int)]
 		return strBuilder.toString
 	}
 
 	static def dispatch String getStringRepresentation(Classifier pt, long arrayDimensions) {
-		return pt.name + StringUtils.repeat("[]", arrayDimensions as int)
+		return pt.name + StringUtil.repeat("[]", arrayDimensions as int)
 	}
 
 	static def dispatch String getStringRepresentation(OrdinaryParameter param) {
@@ -79,7 +79,7 @@ class JamoppStringOperations {
 	}
 	
 	static def String getNamespaceAsString(Iterable<String> namespaces) {
-		return StringUtils.join(namespaces, '.');
+		return StringUtil.join(namespaces, '.');
 	}
 
 }

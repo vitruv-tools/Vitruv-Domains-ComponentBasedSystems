@@ -11,14 +11,14 @@ Require-Bundle: com.google.guava,
  org.emftext.language.java.resource.java,
  org.eclipse.emf.ecore.xmi,
  org.apache.log4j,
- org.apache.commons.lang,
  org.junit,
  org.emftext.language.java;visibility:=reexport,
  tools.vitruv.framework.metamodel;visibility:=reexport,
  tools.vitruv.framework.util,
  tools.vitruv.framework.tuid,
  tools.vitruv.framework.vsum,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ edu.kit.ipd.sdq.commons.util.java
 Export-Package: tools.vitruv.domains.java
 Bundle-Vendor: vitruv.tools
 
