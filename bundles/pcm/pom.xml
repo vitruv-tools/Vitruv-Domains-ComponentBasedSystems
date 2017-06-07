@@ -15,7 +15,6 @@
 
 	<modules>
 		<module>tools.vitruv.domains.pcm</module>
-		<module>tools.vitruv.domains.pcm.external.palladiosimulator</module>
 		<module>tools.vitruv.domains.pcm.util</module>
 	</modules>
 

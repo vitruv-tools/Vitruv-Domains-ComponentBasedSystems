@@ -26,6 +26,7 @@
    <requires>
       <import feature="tools.vitruv.framework.feature" version="0.2.0" match="greaterOrEqual"/>
       <import feature="tools.vitruv.domains.emf.feature" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.pcm"/>
       <import plugin="org.palladiosimulator.pcm.resources"/>
       <import plugin="de.uka.ipd.sdq.identifier"/>
       <import plugin="de.uka.ipd.sdq.errorhandling"/>
@@ -48,12 +49,5 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
-   <plugin
-         id="org.palladiosimulator.pcm"
-         download-size="0"
-         install-size="0"
-         version="7.0.0.qualifier"
-         unpack="false"/>
-
+         
 </feature>
