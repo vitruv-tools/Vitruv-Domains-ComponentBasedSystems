@@ -5,6 +5,9 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.uml2.uml.Generalization
 import org.eclipse.uml2.uml.PackageImport
+import org.eclipse.uml2.uml.ProfileApplication
+import org.eclipse.uml2.uml.ConnectorEnd
+import org.eclipse.uml2.uml.Connector
 
 class UmlTuidCalculatorAndResolver extends AttributeTuidCalculatorAndResolver {
 	
@@ -33,5 +36,21 @@ class UmlTuidCalculatorAndResolver extends AttributeTuidCalculatorAndResolver {
 		val pckg = "package" + if (packageImport.importedPackage != null) "=" + packageImport.importedPackage.name else "";
 		return (if (packageImport.eContainingFeature == null) "<root>" else packageImport.eContainingFeature.name) + 
 			SUBDIVIDER + packageImport.eClass.name + SUBDIVIDER + pckg;
+	}
+	
+	def dispatch dispatchedCalculateIndividualTuidDelegator(ProfileApplication profileApplication) {
+		return profileApplication.applyingPackage.name + SUBDIVIDER + profileApplication.appliedProfile.name;
+	}
+	
+	def dispatch dispatchedCalculateIndividualTuidDelegator(ConnectorEnd connectorEnd) {
+		if(connectorEnd.eContainingFeature == null) {
+			return "<root>";
+		}
+		if(connectorEnd.role != null) {
+			val container = connectorEnd.eContainer as Connector;
+			return container.name + SUBDIVIDER + connectorEnd.role.class.simpleName + SUBDIVIDER + connectorEnd.role.name;
+		}else{
+			return "undefined";
+		}
 	}
 }

@@ -3,6 +3,7 @@ package tools.vitruv.domains.sysml.tuid
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.papyrus.sysml14.blocks.Block
 import org.eclipse.papyrus.sysml14.blocks.ValueType
+import org.eclipse.papyrus.sysml14.portsandflows.FlowProperty
 
 final class SysMlToUmlResolver {
 	private static SysMlToUmlResolver instance;
@@ -26,5 +27,9 @@ final class SysMlToUmlResolver {
 	
 	def dispatch EObject getStereotypedObject(ValueType valueType) throws IllegalArgumentException {
 		return valueType.base_DataType;
+	}
+	
+	def dispatch EObject getStereotypedObject(FlowProperty flowProperty) throws IllegalArgumentException {
+		return flowProperty.base_Property;
 	}
 }
