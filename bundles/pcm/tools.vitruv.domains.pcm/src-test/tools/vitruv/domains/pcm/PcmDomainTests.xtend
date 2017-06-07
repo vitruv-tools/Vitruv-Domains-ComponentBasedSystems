@@ -1,14 +1,13 @@
 package tools.vitruv.domains.pcm
 
 import org.palladiosimulator.pcm.repository.RepositoryFactory
-import org.palladiosimulator.pcm.core.entity.NamedElement
 import de.uka.ipd.sdq.identifier.Identifier
 import org.palladiosimulator.pcm.PcmPackage
 import de.uka.ipd.sdq.identifier.IdentifierPackage
 import org.eclipse.emf.ecore.EObject
 import org.junit.Assert
-import org.palladiosimulator.pcm.core.entity.EntityPackage
 import org.junit.Test
+import org.palladiosimulator.pcm.repository.RepositoryPackage
 
 class PcmDomainTests {
 	private static val TEST_NAME = "Test";
@@ -31,27 +30,29 @@ class PcmDomainTests {
 	
 	@Test
 	def public void testIdentifierTuidInRepositoryPackage() {
-		testIdentifierTuid(RepositoryFactory.eINSTANCE.createBasicComponent());
-		testIdentifierTuid(RepositoryFactory.eINSTANCE.createCompositeComponent());
-		testIdentifierTuid(RepositoryFactory.eINSTANCE.createCollectionDataType());
-		testIdentifierTuid(RepositoryFactory.eINSTANCE.createOperationInterface());
-		testIdentifierTuid(RepositoryFactory.eINSTANCE.createOperationProvidedRole());
+		testIdentifierTuid(RepositoryFactory.eINSTANCE.createBasicComponent(), "BasicComponent");
+		testIdentifierTuid(RepositoryFactory.eINSTANCE.createCompositeComponent(), "CompositeComponent");
+		testIdentifierTuid(RepositoryFactory.eINSTANCE.createCollectionDataType(), "CollectionDataType");
+		testIdentifierTuid(RepositoryFactory.eINSTANCE.createOperationInterface(), "OperationInterface");
+		testIdentifierTuid(RepositoryFactory.eINSTANCE.createOperationProvidedRole(), "OperationProvidedRole");
 	}
 	
 	@Test
 	def public void testNameTuidInRepositoryPackage() {
-		testNamedTuid(RepositoryFactory.eINSTANCE.createParameter());
+		val parameter = RepositoryFactory.eINSTANCE.createParameter();
+		parameter.parameterName = TEST_NAME;
+		assertTuid(parameter, PcmPackage.eNS_URI, "<root>-_-Parameter-_-" + RepositoryPackage.Literals.PARAMETER__PARAMETER_NAME.name + "=" + parameter.parameterName);
 	}
 	
-	private def testIdentifierTuid(Identifier identifier) {
+	private def testIdentifierTuid(Identifier identifier, String typeName) {
 		identifier.id = TEST_NAME;
-		assertTuid(identifier, PcmPackage.eNS_URI, IdentifierPackage.Literals.IDENTIFIER__ID.name + "=" + identifier.id);
+		assertTuid(identifier, PcmPackage.eNS_URI, "<root>-_-" + typeName + "-_-" + IdentifierPackage.Literals.IDENTIFIER__ID.name + "=" + identifier.id);
 	}
 	
-	private def testNamedTuid(NamedElement named) {
-		named.entityName = TEST_NAME;
-		assertTuid(named, PcmPackage.eNS_URI, EntityPackage.Literals.NAMED_ELEMENT__ENTITY_NAME.name + "=" + named.entityName);
-	}
+//	private def testNamedTuid(NamedElement named) {
+//		named.entityName = TEST_NAME;
+//		assertTuid(named, PcmPackage.eNS_URI, EntityPackage.Literals.NAMED_ELEMENT__ENTITY_NAME.name + "=" + named.entityName);
+//	}
 	
 	private def void assertTuid(EObject object, String expectedNamespaceUri, String expectedIdentifier) {
 		val tuidFragments = getPcmDomain().calculateTuid(object).toString.split("#");
