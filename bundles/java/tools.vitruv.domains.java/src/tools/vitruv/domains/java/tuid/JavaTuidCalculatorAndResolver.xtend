@@ -26,6 +26,25 @@ import org.emftext.language.java.types.NamespaceClassifierReference
 import org.emftext.language.java.types.PrimitiveType
 import tools.vitruv.framework.tuid.HierarchicalTuidCalculatorAndResolver
 import static tools.vitruv.domains.java.JavaNamespace.*
+import org.emftext.language.java.references.StringReference
+import org.emftext.language.java.classifiers.Annotation
+import org.emftext.language.java.members.EnumConstant
+import org.emftext.language.java.annotations.AnnotationInstance
+import org.emftext.language.java.statements.Return
+import org.emftext.language.java.literals.Literal
+import org.emftext.language.java.expressions.Expression
+import org.emftext.language.java.operators.Operator
+import org.emftext.language.java.classifiers.AnonymousClass
+import org.emftext.language.java.members.EmptyMember
+import org.emftext.language.java.statements.Statement
+import org.emftext.language.java.variables.Variable
+import org.emftext.language.java.generics.TypeArgument
+import org.emftext.language.java.statements.StatementListContainer
+import org.emftext.language.java.arrays.ArrayDimension
+import org.emftext.language.java.arrays.ArrayInitializer
+import org.emftext.language.java.arrays.ArraySelector
+import org.emftext.language.java.annotations.SingleAnnotationParameter
+import org.emftext.language.java.references.ReferenceableElement
 
 /**
  * Tuid calculator and resolver for the JaMoPP meta-model. 
@@ -42,6 +61,7 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 	private val String ASSIGNMENT_EXPRESSION_SELECTOR = "assignmentExpression"
 	private val String EXPRESSION_STATEMENT_SELECTOR = "expressionStatement"
 	private val String SELF_REFERENCE_SELECTOR = "selfReference"
+	private val String STRING_REFERENCE_SELECTOR = "StringReference"
 	private val String IDENTIFIER_REFERENCE_SELECTOR = "identifierReference"
 	private val String NEW_CONSTRUCTOR_CALL_SELECTOR = "newConstructorCall"
 	private val String CONDITIONAL_EXPRESSION_SELECTOR = "conditionalExpression"
@@ -180,6 +200,88 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 		tuid.append(selfReference.next.calculateIndividualTuid)
 		return tuid.toString
 	}
+	
+	private def dispatch String calculateIndividualTuid(StringReference stringReference) {
+        val tuid = new StringBuilder
+        tuid.append(STRING_REFERENCE_SELECTOR)
+        tuid.append(stringReference.value)
+        return tuid.toString
+    }
+    private def dispatch String calculateIndividualTuid(Annotation annotation) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(EnumConstant constant) {
+        val tuid = new StringBuilder()
+        tuid.append(constant.name)
+        
+        return tuid.toString
+    }
+    
+    private def dispatch String calculateIndividualTuid(AnnotationInstance obj) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(Literal literal) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(ArrayDimension arrayDim) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(ArrayInitializer array) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(SingleAnnotationParameter param) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(ReferenceableElement elem) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(ArraySelector array) {
+        return ""
+    }
+    private def dispatch String calculateIndividualTuid(Void nullRef) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(EmptyMember emptyMember) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(Return returnStatement) {
+        return ""
+    }
+    private def dispatch String calculateIndividualTuid(StatementListContainer statementListContainer) {
+        return ""
+    }
+    private def dispatch String calculateIndividualTuid(TypeArgument typeArgument) {
+        return ""
+    }
+    private def dispatch String calculateIndividualTuid(Variable variable) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(Statement statement) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(Expression expression) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(AnonymousClass anonClass) {
+        return ""
+    }
+    
+    private def dispatch String calculateIndividualTuid(Operator operator) {
+        return ""
+    }
+	
 
 	private def dispatch String calculateIndividualTuid(This thisRef) {
 		return "this"
