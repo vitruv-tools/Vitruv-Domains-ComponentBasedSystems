@@ -12,11 +12,11 @@ class JavaPersistenceHelper {
 	} 
 	
 	public static def String buildJavaFilePath(String fileName, String... namespaces) {
-		return '''src/«FOR namespace : namespaces SEPARATOR "/" AFTER "/"»«namespace»«ENDFOR»«fileName».java''';
+		return '''src/«FOR namespace : namespaces SEPARATOR "/" AFTER "/"»«namespace»«ENDFOR»«fileName»''';
 	}
 	
 	public static def String buildJavaFilePath(CompilationUnit compilationUnit) {
-		return '''src/«FOR namespace : compilationUnit.namespaces SEPARATOR "/" AFTER "/"»«namespace»«ENDFOR»«compilationUnit.name».java''';
+		return '''src/«FOR namespace : compilationUnit.namespaces SEPARATOR "/" AFTER "/"»«namespace»«ENDFOR»«compilationUnit.name»''';
 	}
 	
 	public static def String buildJavaFilePath(org.emftext.language.java.containers.Package javaPackage) {
