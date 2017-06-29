@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.IEditorPart;
 
+import edu.kit.ipd.sdq.commons.util.org.eclipse.emf.common.util.URIUtil;
 import tools.vitruv.domains.emf.monitorededitor.EditorNotMonitorableException;
 import tools.vitruv.domains.emf.monitorededitor.IEditorPartAdapterFactory;
 import tools.vitruv.domains.emf.monitorededitor.IEditorPartAdapterFactory.IEditorPartAdapter;
@@ -36,7 +37,6 @@ import tools.vitruv.framework.change.description.CompositeContainerChange;
 import tools.vitruv.framework.change.description.VitruviusChange;
 import tools.vitruv.framework.change.description.VitruviusChangeFactory;
 import tools.vitruv.framework.modelsynchronization.ChangePropagator;
-import tools.vitruv.framework.util.bridges.EMFBridge;
 import tools.vitruv.framework.util.datatypes.VURI;
 import tools.vitruv.framework.vsum.VirtualModel;
 
@@ -141,7 +141,7 @@ public class VitruviusEMFEditorMonitorImpl implements IVitruviusEMFEditorMonitor
 
         synchronized (lastSynchronizationRequestTimestamps) {
             if (lastSynchronizationRequestTimestamps.containsKey(resourceURI)) {
-                IFile resourceFile = EMFBridge.getIFileForEMFUri(resourceURI.getEMFUri());
+                IFile resourceFile = URIUtil.getIFileForEMFUri(resourceURI.getEMFUri());
                 long currentSynchroTimestamp = resourceFile.getModificationStamp();
                 return currentSynchroTimestamp <= lastSynchronizationRequestTimestamps.get(resourceURI);
             } else {
@@ -241,7 +241,7 @@ public class VitruviusEMFEditorMonitorImpl implements IVitruviusEMFEditorMonitor
         long currentSynchroTimestamp;
         IFile resourceFile;
         synchronized (lastSynchronizationRequestTimestamps) {
-            resourceFile = EMFBridge.getIFileForEMFUri(resourceURI.getEMFUri());
+            resourceFile = URIUtil.getIFileForEMFUri(resourceURI.getEMFUri());
             currentSynchroTimestamp = resourceFile.getModificationStamp();
             lastSynchronizationRequestTimestamps.put(resourceURI, currentSynchroTimestamp);
 

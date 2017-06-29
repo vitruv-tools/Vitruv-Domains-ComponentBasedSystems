@@ -13,7 +13,7 @@ import tools.vitruv.domains.java.monitorededitor.astchangelistener.PreviousASTSt
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.classification.ConcreteChangeClassifier;
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEvent;
 import tools.vitruv.domains.java.monitorededitor.methodchange.events.MethodBodyChangedEvent;
-import tools.vitruv.framework.util.datatypes.Pair;
+import edu.kit.ipd.sdq.commons.util.java.Pair;
 
 /**
  * Extension classifier for the method body change event.

@@ -13,6 +13,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import edu.kit.ipd.sdq.commons.util.org.eclipse.emf.common.util.URIUtil;
 import tools.vitruv.domains.emf.monitorededitor.IEditorPartAdapterFactory;
 import tools.vitruv.domains.emf.monitorededitor.IVitruviusEMFEditorMonitor;
 import tools.vitruv.domains.emf.monitorededitor.IVitruviusEMFEditorMonitor.IVitruviusAccessor;
@@ -22,7 +23,6 @@ import tools.vitruv.framework.change.description.ConcreteChange;
 import tools.vitruv.framework.change.description.VitruviusChangeFactory;
 import tools.vitruv.framework.change.description.VitruviusChangeFactory.FileChangeKind;
 import tools.vitruv.framework.monitorededitor.VitruviusProjectBuilder;
-import tools.vitruv.framework.util.bridges.EMFBridge;
 import tools.vitruv.framework.util.datatypes.ModelInstance;
 import tools.vitruv.framework.util.datatypes.VURI;
 
@@ -110,7 +110,7 @@ public class VitruviusEmfBuilder extends VitruviusProjectBuilder {
                         + " should be monitored with this builder: No build configuration.");
                 return true;
             }
-            final IFile referencedFile = EMFBridge.getIFileForEMFUri(fileVURI.getEMFUri());
+            final IFile referencedFile = URIUtil.getIFileForEMFUri(fileVURI.getEMFUri());
             return referencedFile.getProject() == this.projectProviding.getProject();
         } else {
             return true;
