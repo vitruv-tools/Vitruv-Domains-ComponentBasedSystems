@@ -3,19 +3,37 @@
    <feature url="features/tools.vitruv.domains.emf.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.emf.feature" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
+   <feature id="tools.vitruv.domains.emf.feature.source" version="0.2.0.qualifier">
+      <category name="Vitruv Domains"/>
+   </feature>  
    <feature url="features/tools.vitruv.domains.java.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.java.feature" version="0.2.0.qualifier">
+      <category name="Vitruv Domains"/>
+   </feature>
+   <feature id="tools.vitruv.domains.java.feature.source" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
    <feature url="features/tools.vitruv.domains.pcm.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.pcm.feature" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
+   <feature id="tools.vitruv.domains.pcm.feature.source" version="0.2.0.qualifier">
+      <category name="Vitruv Domains"/>
+   </feature>
    <feature url="features/tools.vitruv.domains.sysml.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.sysml.feature" version="0.2.0.qualifier">
+      <category name="Vitruv Domains"/>
+   </feature>
+   <feature id="tools.vitruv.domains.sysml.feature.source" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
    <feature url="features/tools.vitruv.domains.uml.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.uml.feature" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
+    <feature id="tools.vitruv.domains.uml.feature.source" version="0.2.0.qualifier">
+      <category name="Vitruv Domains"/>
+   </feature>
    <feature url="features/tools.vitruv.domains.asem.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.asem.feature" version="0.2.0.qualifier">
+      <category name="Vitruv Domains"/>
+   </feature>
+   <feature id="tools.vitruv.domains.asem.feature.source" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
    <category-def name="Vitruv Domains" label="Vitruv Domains">
