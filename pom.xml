@@ -49,6 +49,11 @@
 			<url>http://update.emftext.org/release</url>
 		</repository>
 		<repository>
+			<id>SDQ Commons</id>
+			<layout>p2</layout>
+			<url>https://kit-sdq.github.io/updatesite/nightly/commons/</url>
+		</repository>
+		<repository>
 			<id>JaMoPP (P2 Wrapper)</id>
 			<layout>p2</layout>
 			<url>https://kit-sdq.github.io/updatesite/nightly/jamopp-p2/</url>
