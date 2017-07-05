@@ -13,7 +13,9 @@ Require-Bundle: org.junit,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
- org.eclipse.xtend.lib.macro
+ org.eclipse.xtend.lib.macro,
+ org.eclipse.uml2.uml.resources
+Comment: The above one is necessary because otherwise pathmap resources cannot be loaded
 Export-Package: tools.vitruv.domains.uml,
  tools.vitruv.domains.uml.tuid
 Bundle-Vendor: vitruv.tools
