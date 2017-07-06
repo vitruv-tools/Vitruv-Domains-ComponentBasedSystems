@@ -18,8 +18,8 @@ final class PcmDomain extends AbstractVitruvDomain {
 	
 	def protected static generateTuidCalculator() {
 		return new AttributeTuidCalculatorAndResolver(METAMODEL_NAMESPACE, 
-			#[IdentifierPackage.Literals.IDENTIFIER__ID.name, EntityPackage.Literals.NAMED_ELEMENT__ENTITY_NAME.name, 
-				RepositoryPackage.Literals.PARAMETER__PARAMETER_NAME.name, RepositoryPackage.Literals.PRIMITIVE_DATA_TYPE__TYPE.name
+			#[IdentifierPackage.Literals.IDENTIFIER__ID.name, RepositoryPackage.Literals.PARAMETER__PARAMETER_NAME.name,
+				EntityPackage.Literals.NAMED_ELEMENT__ENTITY_NAME.name, RepositoryPackage.Literals.PRIMITIVE_DATA_TYPE__TYPE.name
 			]);
 	}
 	
