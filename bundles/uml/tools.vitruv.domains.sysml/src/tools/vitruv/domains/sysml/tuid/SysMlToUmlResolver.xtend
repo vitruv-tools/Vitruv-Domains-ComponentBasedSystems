@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.papyrus.sysml14.blocks.Block
 import org.eclipse.papyrus.sysml14.blocks.ValueType
 import org.eclipse.papyrus.sysml14.portsandflows.FlowProperty
+import org.eclipse.papyrus.sysml14.blocks.BindingConnector
 
 final class SysMlToUmlResolver {
 	private static SysMlToUmlResolver instance;
@@ -31,5 +32,9 @@ final class SysMlToUmlResolver {
 	
 	def dispatch EObject getStereotypedObject(FlowProperty flowProperty) throws IllegalArgumentException {
 		return flowProperty.base_Property;
+	}
+	
+	def dispatch EObject getStereotypedObject(BindingConnector bindingConnector) throws IllegalArgumentException {
+		return bindingConnector.base_Connector;
 	}
 }
