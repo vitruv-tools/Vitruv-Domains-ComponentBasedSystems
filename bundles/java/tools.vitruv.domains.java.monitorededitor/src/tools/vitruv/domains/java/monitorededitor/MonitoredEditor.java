@@ -2,6 +2,7 @@ package tools.vitruv.domains.java.monitorededitor;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -17,16 +18,17 @@ import tools.vitruv.domains.java.monitorededitor.changeclassification.events.Cha
 import tools.vitruv.domains.java.monitorededitor.refactoringlistener.RefactoringChangeListener;
 import tools.vitruv.domains.java.monitorededitor.refactoringlistener.RefactoringStatusListener;
 import tools.vitruv.framework.change.description.CompositeContainerChange;
+import tools.vitruv.framework.change.description.PropagatedChange;
 import tools.vitruv.framework.change.description.VitruviusChangeFactory;
 import tools.vitruv.framework.change.description.VitruviusChange;
 import tools.vitruv.framework.monitorededitor.AbstractMonitoredEditor;
-import tools.vitruv.framework.modelsynchronization.ChangePropagator;
 import tools.vitruv.framework.userinteraction.UserInteracting;
 import tools.vitruv.framework.userinteraction.UserInteractionType;
 import tools.vitruv.framework.userinteraction.impl.UserInteractor;
 import tools.vitruv.framework.util.datatypes.ModelInstance;
 import tools.vitruv.framework.util.datatypes.VURI;
 import tools.vitruv.framework.vsum.VirtualModel;
+import tools.vitruv.framework.vsum.modelsynchronization.ChangePropagator;
 
 /**
  * @author messinger
@@ -109,8 +111,9 @@ public class MonitoredEditor extends AbstractMonitoredEditor
     public MonitoredEditor() {
         this(new VirtualModel() {
 			@Override
-			public void propagateChange(VitruviusChange change) {
-			}
+			public List<PropagatedChange> propagateChange(VitruviusChange change) {
+	            return null;
+	        }
 			@Override
 			public ModelInstance getModelInstance(VURI modelVuri) {
 				return null;
@@ -118,6 +121,9 @@ public class MonitoredEditor extends AbstractMonitoredEditor
 			@Override
 			public File getFolder() {
 				return null;
+			}
+			@Override
+			public void reverseChanges(List<PropagatedChange> changes) {
 			}
         }, MY_MONITORED_PROJECT);
         this.reportChanges = true;

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import tools.vitruv.domains.emf.monitorededitor.ISynchronizingMonitoredEmfEditor.ResourceChangeSynchronizing;
 import tools.vitruv.domains.emf.monitorededitor.IVitruviusEMFEditorMonitor.IVitruviusAccessor;
+import tools.vitruv.framework.change.description.PropagatedChange;
 import tools.vitruv.framework.change.description.VitruviusChange;
 import tools.vitruv.framework.util.datatypes.ModelInstance;
 import tools.vitruv.framework.util.datatypes.VURI;
@@ -36,7 +37,8 @@ public class DefaultImplementations {
 
     public static final VirtualModel EFFECTLESS_VIRTUAL_MODEL = new VirtualModel() {
         @Override
-        public void propagateChange(VitruviusChange change) {
+        public List<PropagatedChange> propagateChange(VitruviusChange change) {
+            return null;
         }
 
         @Override
@@ -47,6 +49,10 @@ public class DefaultImplementations {
         @Override
         public File getFolder() {
             return null;
+        }
+
+        @Override
+        public void reverseChanges(List<PropagatedChange> changes) {
         }
     };
 
@@ -102,8 +108,9 @@ public class DefaultImplementations {
         }
 
         @Override
-        public void propagateChange(VitruviusChange change) {
+        public List<PropagatedChange> propagateChange(VitruviusChange change) {
             synchronizeChanges(Collections.singletonList(change), null, null);
+            return null;
         }
 
         @Override
@@ -114,6 +121,10 @@ public class DefaultImplementations {
         @Override
         public File getFolder() {
             return null;
+        }
+
+        @Override
+        public void reverseChanges(List<PropagatedChange> changes) {
         }
 
     }
