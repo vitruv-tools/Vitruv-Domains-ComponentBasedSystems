@@ -144,7 +144,7 @@ public abstract class EMFModelChangeRecordingEditorSaveListener {
      */
     protected void resetChangeRecorder() {
         deactivateChangeRecorder();
-        changeRecorder = new AtomicEmfChangeRecorder();
+        changeRecorder = new AtomicEmfChangeRecorder(true);
         changeRecorder.beginRecording(VURI.getInstance(targetResource), Collections.singletonList(targetResource));
     }
 
@@ -152,7 +152,8 @@ public abstract class EMFModelChangeRecordingEditorSaveListener {
      * @return The changes recorded since last resetting the change recorder.
      */
     protected List<TransactionalChange> readOutChangesAndEndRecording() {
-        return changeRecorder.endRecording();
+        changeRecorder.endRecording();
+        return changeRecorder.getUnresolvedChanges();
     }
 
     /**
