@@ -14,7 +14,6 @@
 	<name>Feature Modules</name>
 
 	<modules>
-		<module>tools.vitruv.domains.emf.feature</module>
 		<module>tools.vitruv.domains.java.feature</module>
 		<module>tools.vitruv.domains.pcm.feature</module>
 		<module>tools.vitruv.domains.sysml.feature</module>

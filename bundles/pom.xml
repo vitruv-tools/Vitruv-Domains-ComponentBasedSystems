@@ -14,7 +14,6 @@
 	<name>Bundle Modules</name>
 
 	<modules>
-		<module>emf</module>
 		<module>java</module>
 		<module>pcm</module>
 		<module>uml</module>

@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/tools.vitruv.domains.emf.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.emf.feature" version="0.2.0.qualifier">
-      <category name="Vitruv Domains"/>
-   </feature>
-   <feature id="tools.vitruv.domains.emf.feature.source" version="0.2.0.qualifier">
-      <category name="Vitruv Domains"/>
-   </feature>  
    <feature url="features/tools.vitruv.domains.java.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.java.feature" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>

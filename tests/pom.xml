@@ -14,7 +14,6 @@
 	<name>Tests Modules</name>
 
 	<modules>
-		<module>emf</module>
 		<module>java</module>
 	</modules>
 
