@@ -3,9 +3,9 @@
       id="tools.vitruv.domains.asem.feature"
       label="%featureName"
       version="0.2.0.qualifier"
-      provider-name="%providerName"	  
+      provider-name="%providerName"
       license-feature="tools.vitruv.license.feature"
-	  license-feature-version="1.0.0">
+      license-feature-version="1.0.0">
 
    <description>
       %description
@@ -21,8 +21,7 @@
 
    <requires>
       <import feature="tools.vitruv.framework.feature" version="0.2.0" match="greaterOrEqual"/>
-      <import feature="tools.vitruv.domains.emf.feature" version="0.2.0" match="greaterOrEqual"/>
-	  <import feature="edu.kit.ipd.sdq.metamodels.asem.feature" version="0.2.0" match="greaterOrEqual"/>
+      <import feature="edu.kit.ipd.sdq.metamodels.asem.feature" version="0.2.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

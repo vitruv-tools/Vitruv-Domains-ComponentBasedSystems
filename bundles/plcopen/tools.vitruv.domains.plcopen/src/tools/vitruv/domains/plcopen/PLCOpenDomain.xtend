@@ -4,6 +4,7 @@ import org.plcopen.xml.tc60201.Tc60201Package
 import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import tools.vitruv.framework.domains.AbstractVitruvDomain
+import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 
 class PLCOpenDomain extends AbstractVitruvDomain {
 	public static final String METAMODEL_NAME = "PLCOpen"
@@ -18,4 +19,8 @@ class PLCOpenDomain extends AbstractVitruvDomain {
 		return new AttributeTuidCalculatorAndResolver(Tc60201Package.eNS_URI, #["mixed", "documentation"]); // FIXME MK set PLCOpen name attributes!
 	}
 
+	override getBuilderApplicator() {
+		return new VitruviusEmfBuilderApplicator();
+	}
+	
 }

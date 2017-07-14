@@ -6,6 +6,7 @@ import de.uka.ipd.sdq.identifier.IdentifierPackage
 import static extension tools.vitruv.domains.pcm.PcmNamespace.*;
 import org.palladiosimulator.pcm.repository.RepositoryPackage
 import tools.vitruv.framework.domains.AbstractVitruvDomain
+import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 
 final class PcmDomain extends AbstractVitruvDomain {
 	private static final String METAMODEL_NAME = "PCM";
@@ -21,6 +22,10 @@ final class PcmDomain extends AbstractVitruvDomain {
 			#[IdentifierPackage.Literals.IDENTIFIER__ID.name, RepositoryPackage.Literals.PARAMETER__PARAMETER_NAME.name,
 				EntityPackage.Literals.NAMED_ELEMENT__ENTITY_NAME.name, RepositoryPackage.Literals.PRIMITIVE_DATA_TYPE__TYPE.name
 			]);
+	}
+	
+	override getBuilderApplicator() {
+		return new VitruviusEmfBuilderApplicator();
 	}
 	
 }

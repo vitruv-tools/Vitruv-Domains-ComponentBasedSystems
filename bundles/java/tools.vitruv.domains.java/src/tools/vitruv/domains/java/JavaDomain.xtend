@@ -3,6 +3,7 @@ package tools.vitruv.domains.java
 import tools.vitruv.domains.java.tuid.JavaTuidCalculatorAndResolver
 import static tools.vitruv.domains.java.JavaNamespace.*
 import tools.vitruv.framework.domains.AbstractVitruvDomain
+import tools.vitruv.domains.java.builder.VitruviusJavaBuilderApplicator
 
 final class JavaDomain extends AbstractVitruvDomain {
 	private static final String METAMODEL_NAME = "Java";
@@ -13,6 +14,10 @@ final class JavaDomain extends AbstractVitruvDomain {
 	
 	def protected static generateTuidCalculator() {
 		return new JavaTuidCalculatorAndResolver();
+	}
+	
+	override getBuilderApplicator() {
+		return new VitruviusJavaBuilderApplicator();
 	}
 	
 }

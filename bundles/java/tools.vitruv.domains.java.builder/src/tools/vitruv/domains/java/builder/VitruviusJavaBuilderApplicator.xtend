@@ -1,6 +1,6 @@
 package tools.vitruv.domains.java.builder
 
-import tools.vitruv.framework.monitorededitor.VitruviusProjectBuilderApplicator
+import tools.vitruv.framework.domains.VitruviusProjectBuilderApplicator
 
 class VitruviusJavaBuilderApplicator extends VitruviusProjectBuilderApplicator {
 	

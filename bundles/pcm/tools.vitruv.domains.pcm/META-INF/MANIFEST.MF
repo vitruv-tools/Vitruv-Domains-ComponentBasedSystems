@@ -13,6 +13,7 @@ Require-Bundle: tools.vitruv.framework.metamodel;visibility:=reexport,
  tools.vitruv.framework.util,
  tools.vitruv.framework.tuid,
  org.junit,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ tools.vitruv.extensions.emf
 Export-Package: tools.vitruv.domains.pcm
 Bundle-Vendor: vitruv.tools

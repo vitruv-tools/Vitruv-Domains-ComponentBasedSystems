@@ -7,6 +7,7 @@ import tools.vitruv.domains.sysml.tuid.SysMlTuidCalculatorAndResolver
 import static tools.vitruv.domains.sysml.SysMlNamspace.*;
 import org.eclipse.uml2.uml.UMLPackage
 import tools.vitruv.framework.domains.AbstractVitruvDomain
+import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 
 class SysMlDomain extends AbstractVitruvDomain {
 	public static final String METAMODEL_NAME = "SysML";
@@ -31,4 +32,8 @@ class SysMlDomain extends AbstractVitruvDomain {
 		super.isInstanceOfDomainMetamodel(eObject.stereotypedObject)
 	}
 
+	override getBuilderApplicator() {
+		return new VitruviusEmfBuilderApplicator();
+	}
+	
 }

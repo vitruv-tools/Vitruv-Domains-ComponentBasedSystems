@@ -4,6 +4,7 @@ import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import CAEX.CAEXPackage
 import tools.vitruv.framework.domains.AbstractVitruvDomain
+import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 
 class CAEXDomain extends AbstractVitruvDomain {
 	public static final String METAMODEL_NAME = "CAEX"
@@ -18,4 +19,8 @@ class CAEXDomain extends AbstractVitruvDomain {
 		return new AttributeTuidCalculatorAndResolver(CAEXPackage.eNS_URI, #["name","iD", "fileName", "xMLNSPrefixMap", CAEXPackage.Literals.CAEX_OBJECT.getName()]);
 	}
 
+	override getBuilderApplicator() {
+		return new VitruviusEmfBuilderApplicator();
+	}
+	
 }
