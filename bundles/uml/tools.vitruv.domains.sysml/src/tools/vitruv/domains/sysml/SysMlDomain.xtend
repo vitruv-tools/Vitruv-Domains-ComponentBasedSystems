@@ -1,7 +1,6 @@
 package tools.vitruv.domains.sysml
 
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
-import org.eclipse.emf.ecore.EObject
 import tools.vitruv.domains.sysml.tuid.SysMlToUmlResolver
 import tools.vitruv.domains.sysml.tuid.SysMlTuidCalculatorAndResolver
 import static tools.vitruv.domains.sysml.SysMlNamspace.*;
@@ -25,13 +24,6 @@ class SysMlDomain extends AbstractVitruvDomain {
 		return new SysMlTuidCalculatorAndResolver(METAMODEL_NAMESPACE);
 	}
 	
-	override isInstanceOfDomainMetamodel(EObject eObject) {
-		if (eObject === null) {
-			return false;
-		}
-		super.isInstanceOfDomainMetamodel(eObject.stereotypedObject)
-	}
-
 	override getBuilderApplicator() {
 		return new VitruviusEmfBuilderApplicator();
 	}
