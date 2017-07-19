@@ -5,10 +5,10 @@
       <repositories location="../tools.vitruv.domains.updatesite/target/repository"/>
     </contributions>
     <contributions label="externals">
-      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/neon" mirrorArtifacts="false">
+      <repositories location="https://hudson.eclipse.org/papyrus/view/Sysml/job/papyrus-sysml-oxygen/lastStableBuild/artifact/releng/org.eclipse.papyrus.sysml14.p2/target/repository/" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.sysml14.feature.feature.group" versionRange="0.10.0"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon" mirrorArtifacts="false">
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.infra.discovery.feature.feature.group" versionRange="2.0.0"/>
         <features name="org.eclipse.papyrus.sdk.feature.feature.group" versionRange="2.0.1"/>
       </repositories>

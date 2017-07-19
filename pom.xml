@@ -71,12 +71,12 @@
 		<repository>
 			<id>Papyrus</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon</url>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen</url>
 		</repository>
 		<repository>
 			<id>Papyrus SysML</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/neon</url>
+			<url>https://hudson.eclipse.org/papyrus/view/Sysml/job/papyrus-sysml-oxygen/lastStableBuild/artifact/releng/org.eclipse.papyrus.sysml14.p2/target/repository/</url>
 		</repository>
 	</repositories>
 
