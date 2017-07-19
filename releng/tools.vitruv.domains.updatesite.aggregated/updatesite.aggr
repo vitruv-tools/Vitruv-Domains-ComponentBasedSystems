@@ -12,7 +12,7 @@
         <features name="org.eclipse.papyrus.infra.discovery.feature.feature.group" versionRange="2.0.0"/>
         <features name="org.eclipse.papyrus.sdk.feature.feature.group" versionRange="2.0.1"/>
       </repositories>
-      <repositories location="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/aggregate/" mirrorArtifacts="false">
+      <repositories location="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/aggregate/">
         <features name="de.uka.ipd.sdq.identifier.feature.feature.group" versionRange="2.1.0"/>
         <features name="org.palladiosimulator.pcm.feature.feature.group" versionRange="4.0.1"/>
       </repositories>
@@ -39,10 +39,9 @@
         <features name="org.eclipse.emf.ecore.feature.group" versionRange="2.12.0"/>
         <features name="org.eclipse.emf.common.feature.group" versionRange="2.12.0"/>
         <features name="org.eclipse.emf.transaction.feature.group" versionRange="1.10.0"/>
-        <features name="org.eclipse.xtend.sdk.feature.group" versionRange="2.10.0"/>
-        <features name="org.eclipse.xtext.sdk.feature.group" versionRange="2.10.0"/>
-        <features name="org.eclipse.xtext.ui.feature.group" versionRange="2.10.0"/>
-        <features name="org.eclipse.xtext.xbase.feature.group" versionRange="2.10.0"/>
+        <features name="org.eclipse.xtend.sdk.feature.group" versionRange="2.12.0"/>
+        <features name="org.eclipse.xtext.ui.feature.group" versionRange="2.12.0"/>
+        <features name="org.eclipse.xtext.xbase.feature.group" versionRange="2.12.0"/>
       </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/updatesite/nightly/framework"/>
