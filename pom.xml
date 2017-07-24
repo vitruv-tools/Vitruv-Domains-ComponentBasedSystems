@@ -78,6 +78,11 @@
 			<layout>p2</layout>
 			<url>https://hudson.eclipse.org/papyrus/view/Sysml/job/papyrus-sysml-oxygen/lastStableBuild/artifact/releng/org.eclipse.papyrus.sysml14.p2/target/repository/</url>
 		</repository>
+		<repository>
+		  <id>Confidentiality4CBSE</id>
+		  <layout>p2</layout>
+		  <url>http://kastel-scbs.github.io/updatesite/nightly/confidentiality</url>
+		</repository>
 	</repositories>
 
 	<build>

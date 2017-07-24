@@ -43,6 +43,9 @@
         <features name="org.eclipse.xtext.ui.feature.group" versionRange="2.12.0"/>
         <features name="org.eclipse.xtext.xbase.feature.group" versionRange="2.12.0"/>
       </repositories>
+      <repositories location="http://kastel-scbs.github.io/updatesite/nightly/confidentiality" mirrorArtifacts="false">
+	<features name="edu.kit.kastel.scbs.confidentiality.feature.source.feature.group" versionRange="[1.0.0,2.0.0)"/>
+      </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/updatesite/nightly/framework"/>
   </validationSets>
