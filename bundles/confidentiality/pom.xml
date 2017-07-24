@@ -5,20 +5,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>tools.vitruv</groupId>
-		<artifactId>parent</artifactId>
+		<artifactId>bundles</artifactId>
 		<version>0.2.0-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
-	<artifactId>bundles</artifactId>
+	<artifactId>confidentiality</artifactId>
 	<packaging>pom</packaging>
-	<name>Bundle Modules</name>
+	<name>Confidentiality4CBSE Domain Modules</name>
 
 	<modules>
-		<module>java</module>
-		<module>pcm</module>
-		<module>uml</module>
-		<module>asem</module>
-		<module>confidentiality</module>
+		<module>tools.vitruv.domains.confidentiality</module>
 	</modules>
 
 </project>
