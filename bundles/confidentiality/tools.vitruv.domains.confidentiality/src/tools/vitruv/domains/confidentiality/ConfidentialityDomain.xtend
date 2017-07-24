@@ -16,7 +16,7 @@ class ConfidentialityDomain extends AbstractVitruvDomain {
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
 		return new AttributeTuidCalculatorAndResolver(METAMODEL_NAMESPACE, 
-			#[ConfidentialityPackage.Literals.IDENTIFIEDELEMENT__ID.name, ConfidentialityPackage.Literals.NAMED__NAME.name]
+			#[ConfidentialityPackage.Literals.IDENTIFIED_ELEMENT__ID.name, ConfidentialityPackage.Literals.NAMED_ELEMENT__NAME.name]
 		);
 	}
 	
