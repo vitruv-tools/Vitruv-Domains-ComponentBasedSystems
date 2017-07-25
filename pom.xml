@@ -31,22 +31,38 @@
 		<repository>
 			<id>Eclipse Oxygen</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/oxygen</url>
+			<!--<url>http://download.eclipse.org/releases/oxygen</url>-->
+			<url>https://sdqbuild.ipd.kit.edu/nexus/content/groups/eclipse-oxygen-complete/</url>
 		</repository>
-		<repository>
+		<!--<repository>
 			<id>Eclipse Oxygen Updates</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/eclipse/updates/4.7</url>
+		</repository>-->
+		<!--<repository>
+			<id>EMFText</id>
+			<layout>p2</layout>
+			<url>http://update.emftext.org/release</url>
+		</repository>
+		<repository>
+			<id>Papyrus</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen</url>
+		</repository>
+		<repository>
+			<id>Papyrus SysML</id>
+			<layout>p2</layout>
+			<url>https://hudson.eclipse.org/papyrus/view/Sysml/job/papyrus-sysml-oxygen/lastStableBuild/artifact/releng/org.eclipse.papyrus.sysml14.p2/target/repository/</url>
+		</repository>-->
+		<repository>
+			<id>Papyrus SysML EMFText</id>
+			<layout>p2</layout>
+			<url>https://sdqbuild.ipd.kit.edu/nexus/content/groups/papyprus-sysml-emftext/</url>
 		</repository>
 		<repository>
 			<id>Vitruv Framework</id>
 			<layout>p2</layout>
 			<url>https://vitruv-tools.github.io/updatesite/nightly/framework/</url>
-		</repository>
-		<repository>
-			<id>EMFText</id>
-			<layout>p2</layout>
-			<url>http://update.emftext.org/release</url>
 		</repository>
 		<repository>
 			<id>SDQ Commons</id>
@@ -66,17 +82,8 @@
 		<repository>
 			<id>Palladiosimulator</id>
 			<layout>p2</layout>
-			<url>https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/</url>
-		</repository>
-		<repository>
-			<id>Papyrus</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen</url>
-		</repository>
-		<repository>
-			<id>Papyrus SysML</id>
-			<layout>p2</layout>
-			<url>https://hudson.eclipse.org/papyrus/view/Sysml/job/papyrus-sysml-oxygen/lastStableBuild/artifact/releng/org.eclipse.papyrus.sysml14.p2/target/repository/</url>
+			<url>https://sdqbuild.ipd.kit.edu/nexus/content/repositories/palladiosimulator-nightly/</url>
+			<!--<url>https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/</url>-->
 		</repository>
 		<repository>
 		  <id>Confidentiality4CBSE</id>
