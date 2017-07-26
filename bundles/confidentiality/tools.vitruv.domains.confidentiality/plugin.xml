@@ -6,11 +6,11 @@
 
 <plugin>
    <extension
-         id="asemDomainProvider"
-         name="ASEM Domain Provider"
+         id="confidentialityDomainProvider"
+         name="Confidentiality Domain Provider"
          point="tools.vitruv.framework.metamodel.domain">
       <domainProvider
-            class="tools.vitruv.domains.asem.AsemDomainProvider"></domainProvider>
+            class="tools.vitruv.domains.confidentiality.ConfidentialityDomainProvider"></domainProvider>
    </extension>
 
 </plugin>
