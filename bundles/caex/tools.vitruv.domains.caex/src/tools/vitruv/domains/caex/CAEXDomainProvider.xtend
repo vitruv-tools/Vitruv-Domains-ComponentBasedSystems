@@ -6,7 +6,7 @@ class CAEXDomainProvider implements VitruvDomainProvider<CAEXDomain> {
 	private static var CAEXDomain instance;
 	
 	override public CAEXDomain getDomain() {
-		if (instance == null) {
+		if (instance === null) {
 			instance = new CAEXDomain();
 		}
 		return instance;

@@ -153,7 +153,7 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 		val tuid = new StringBuilder()
 		// If the reference was removed from the model, the containing feature is null.
 		// Omit it in the Tuid then
-		if (ref.eContainingFeature != null) {
+		if (ref.eContainingFeature !== null) {
 			tuid.append(ref.eContainingFeature.name)
 		}
 		ref.classifierReferences.forEach[tuid.append(target.name)]
@@ -181,13 +181,13 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 	private def dispatch String calculateIndividualTuid(AssignmentExpression assignmentExpression) {
 		val tuid = new StringBuilder
 		tuid.append(ASSIGNMENT_EXPRESSION_SELECTOR).append(SUBDIVIDER)
-		if (null != assignmentExpression.child) {
+		if (null !== assignmentExpression.child) {
 			tuid.append(assignmentExpression.child.calculateIndividualTuid).append(SUBDIVIDER)
 		}
-		if (null != assignmentExpression.assignmentOperator) {
+		if (null !== assignmentExpression.assignmentOperator) {
 			tuid.append(assignmentExpression.assignmentOperator.calculateIndividualTuid).append(SUBDIVIDER)
 		}
-		if (null != assignmentExpression.value) {
+		if (null !== assignmentExpression.value) {
 			tuid.append(assignmentExpression.value.calculateIndividualTuid)
 		}
 		return tuid.toString
@@ -290,7 +290,7 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 	private def dispatch String calculateIndividualTuid(IdentifierReference identifierReference) {
 		val tuid = new StringBuilder
 		tuid.append(IDENTIFIER_REFERENCE_SELECTOR)
-		if(null != identifierReference && null != identifierReference.target){
+		if(null !== identifierReference && null !== identifierReference.target){
 			tuid.append(identifierReference.target.name)	
 		}
 		return tuid.toString
@@ -312,7 +312,7 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 	private def dispatch String calculateIndividualTuid(ConditionalExpression conditionalExpression) {
 		val tuid = new StringBuilder
 		tuid.append(CONDITIONAL_EXPRESSION_SELECTOR)
-		if (null == conditionalExpression.type) {
+		if (null === conditionalExpression.type) {
 			tuid.append(SUBDIVIDER).append("null")
 		} else {
 			tuid.append(SUBDIVIDER).append(conditionalExpression.type.calculateIndividualTuid)

@@ -24,7 +24,7 @@ class PcmDomainTests {
 			pcmMetamodel.isInstanceOfDomainMetamodel(component)
 		);
 		Assert.assertTrue("Metamodel has Tuid only for elements of " + pcmMetamodel.nsUris + ", but not of component's " + component.eClass.EPackage.nsURI,
-			pcmMetamodel.calculateTuid(component) != null
+			pcmMetamodel.calculateTuid(component) !== null
 		);
 	}
 	

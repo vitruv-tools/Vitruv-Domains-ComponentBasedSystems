@@ -26,15 +26,15 @@ class UmlTuidCalculatorAndResolver extends AttributeTuidCalculatorAndResolver {
 	def dispatch String dispatchedCalculateIndividualTuidDelegator(Generalization generalization) {
 		// generalization is contained in specific classifier, so with general classifier it should be unique
 		//val specific = "specific" + if (generalization.specific != null) "=" + generalization.specific.name else "";
-		val general = "general" + if (generalization.general != null) "=" + generalization.general.name else "";
-		return (if (generalization.eContainingFeature() == null) "<root>"
+		val general = "general" + if (generalization.general !== null) "=" + generalization.general.name else "";
+		return (if (generalization.eContainingFeature() === null) "<root>"
 					else generalization.eContainingFeature().getName()) + SUBDIVIDER + generalization.eClass().getName() 
 						+ SUBDIVIDER + general; 
 	}
 	
 	def dispatch String dispatchedCalculateIndividualTuidDelegator(PackageImport packageImport) {
-		val pckg = "package" + if (packageImport.importedPackage != null) "=" + packageImport.importedPackage.name else "";
-		return (if (packageImport.eContainingFeature == null) "<root>" else packageImport.eContainingFeature.name) + 
+		val pckg = "package" + if (packageImport.importedPackage !== null) "=" + packageImport.importedPackage.name else "";
+		return (if (packageImport.eContainingFeature === null) "<root>" else packageImport.eContainingFeature.name) + 
 			SUBDIVIDER + packageImport.eClass.name + SUBDIVIDER + pckg;
 	}
 	
@@ -43,10 +43,10 @@ class UmlTuidCalculatorAndResolver extends AttributeTuidCalculatorAndResolver {
 	}
 	
 	def dispatch dispatchedCalculateIndividualTuidDelegator(ConnectorEnd connectorEnd) {
-		if(connectorEnd.eContainingFeature == null) {
+		if(connectorEnd.eContainingFeature === null) {
 			return "<root>";
 		}
-		if(connectorEnd.role != null) {
+		if(connectorEnd.role !== null) {
 			val container = connectorEnd.eContainer as Connector;
 			return container.name + SUBDIVIDER + connectorEnd.role.class.simpleName + SUBDIVIDER + connectorEnd.role.name;
 		}else{

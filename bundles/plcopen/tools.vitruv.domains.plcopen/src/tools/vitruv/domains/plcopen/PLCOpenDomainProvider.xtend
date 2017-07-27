@@ -6,7 +6,7 @@ class PLCOpenDomainProvider implements VitruvDomainProvider<PLCOpenDomain> {
 	private static var PLCOpenDomain instance;
 	
 	override public PLCOpenDomain getDomain() {
-		if (instance == null) {
+		if (instance === null) {
 			instance = new PLCOpenDomain();
 		}
 		return instance;

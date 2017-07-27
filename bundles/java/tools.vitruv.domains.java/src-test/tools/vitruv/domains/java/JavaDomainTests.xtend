@@ -20,7 +20,7 @@ class JavaDomainTests {
 		val component = ClassifiersFactory.eINSTANCE.createClass();
 		val javaDomain = getJavaDomain();
 		Assert.assertTrue(javaDomain.isInstanceOfDomainMetamodel(component));
-		Assert.assertTrue(javaDomain.calculateTuid(component) != null);
+		Assert.assertTrue(javaDomain.calculateTuid(component) !== null);
 	}
 	
 	@Test

@@ -6,7 +6,7 @@ class SysMlDomainProvider implements VitruvDomainProvider<SysMlDomain> {
 	private static var SysMlDomain instance;
 	
 	override public SysMlDomain getDomain() {
-		if (instance == null) {
+		if (instance === null) {
 			instance = new SysMlDomain();
 		}
 		return instance;

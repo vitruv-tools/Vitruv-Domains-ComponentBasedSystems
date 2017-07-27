@@ -27,7 +27,7 @@ class AsemDomainTest {
 	public def void testResponsibilityChecks() {
 		val clazz = ClassifiersFactory.eINSTANCE.createClass();
 		Assert.assertTrue(asemDomain.isInstanceOfDomainMetamodel(clazz));
-		Assert.assertTrue(asemDomain.calculateTuid(clazz) != null);
+		Assert.assertTrue(asemDomain.calculateTuid(clazz) !== null);
 	}
 	
 	@Test

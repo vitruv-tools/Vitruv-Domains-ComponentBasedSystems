@@ -46,8 +46,8 @@ class SysMlDomainTests {
 		val block = createBlock();
 		Assert.assertTrue(sysMlDomain.isInstanceOfDomainMetamodel(block));
 		Assert.assertTrue(sysMlDomain.isInstanceOfDomainMetamodel(block.base_Class));
-		Assert.assertTrue(sysMlDomain.calculateTuid(block) != null);
-		Assert.assertTrue(sysMlDomain.calculateTuid(block.base_Class) != null);
+		Assert.assertTrue(sysMlDomain.calculateTuid(block) !== null);
+		Assert.assertTrue(sysMlDomain.calculateTuid(block.base_Class) !== null);
 	}
 	
 	@Test

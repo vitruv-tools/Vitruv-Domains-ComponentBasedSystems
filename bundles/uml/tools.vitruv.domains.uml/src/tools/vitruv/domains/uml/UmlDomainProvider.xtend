@@ -6,7 +6,7 @@ class UmlDomainProvider implements VitruvDomainProvider<UmlDomain> {
 	private static var UmlDomain instance;
 	
 	override getDomain() {
-		if (instance == null) {
+		if (instance === null) {
 			instance = new UmlDomain();
 		}
 		return instance;
