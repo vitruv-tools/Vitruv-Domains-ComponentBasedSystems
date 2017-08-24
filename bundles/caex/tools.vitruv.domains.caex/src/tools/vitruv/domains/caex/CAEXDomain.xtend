@@ -1,6 +1,6 @@
 package tools.vitruv.domains.caex
 
-import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
+import tools.vitruv.domains.caex.tuid.AttributeTuidCalculatorAndResolverSpecificRoot
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import CAEX.CAEXPackage
 import tools.vitruv.framework.domains.AbstractVitruvDomain
@@ -16,11 +16,10 @@ class CAEXDomain extends AbstractVitruvDomain {
 	}
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
-		return new AttributeTuidCalculatorAndResolver(CAEXPackage.eNS_URI, #["name","iD", "fileName", "xMLNSPrefixMap", CAEXPackage.Literals.CAEX_OBJECT.getName()]);
+		return new AttributeTuidCalculatorAndResolverSpecificRoot(CAEXPackage.eNS_URI, #["name","iD", "fileName", CAEXPackage.Literals.CAEX_OBJECT.getName()], #["xMLNSPrefixMap"]);
 	}
 
 	override getBuilderApplicator() {
 		return new VitruviusEmfBuilderApplicator();
-	}
-	
+	}	
 }
