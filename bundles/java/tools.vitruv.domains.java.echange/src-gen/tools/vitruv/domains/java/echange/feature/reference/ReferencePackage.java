@@ -84,6 +84,15 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_INSERT_EREFERENCE__AFFECTED_EOBJECT = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE__AFFECTED_EOBJECT;
 
 	/**
+	 * The feature id for the '<em><b>Affected EObject ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EREFERENCE__AFFECTED_EOBJECT_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE__AFFECTED_EOBJECT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Index</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,6 +109,15 @@ public interface ReferencePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_INSERT_EREFERENCE__NEW_VALUE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE__NEW_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>New Value ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EREFERENCE__NEW_VALUE_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE__NEW_VALUE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
@@ -120,58 +138,13 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_INSERT_EREFERENCE_FEATURE_COUNT = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Resolve Before</em>' operation.
+	 * The operation id for the '<em>Is Resolved</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_INSERT_EREFERENCE___RESOLVE_BEFORE__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE___RESOLVE_BEFORE__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Resolve After</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_INSERT_EREFERENCE___RESOLVE_AFTER__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE___RESOLVE_AFTER__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Resolve Before And Apply Forward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_INSERT_EREFERENCE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Resolve After And Apply Backward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_INSERT_EREFERENCE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Apply Forward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_INSERT_EREFERENCE___APPLY_FORWARD = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE___APPLY_FORWARD;
-
-	/**
-	 * The operation id for the '<em>Apply Backward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_INSERT_EREFERENCE___APPLY_BACKWARD = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE___APPLY_BACKWARD;
+	int JAVA_INSERT_EREFERENCE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE___IS_RESOLVED;
 
 	/**
 	 * The operation id for the '<em>Get New Value</em>' operation.
@@ -190,15 +163,6 @@ public interface ReferencePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_INSERT_EREFERENCE___IS_CONTAINMENT = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE___IS_CONTAINMENT;
-
-	/**
-	 * The operation id for the '<em>Is Resolved</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_INSERT_EREFERENCE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.INSERT_EREFERENCE___IS_RESOLVED;
 
 	/**
 	 * The number of operations of the '<em>Java Insert EReference</em>' class.
@@ -238,6 +202,15 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_REMOVE_EREFERENCE__AFFECTED_EOBJECT = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE__AFFECTED_EOBJECT;
 
 	/**
+	 * The feature id for the '<em><b>Affected EObject ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EREFERENCE__AFFECTED_EOBJECT_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE__AFFECTED_EOBJECT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Index</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,6 +227,15 @@ public interface ReferencePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REMOVE_EREFERENCE__OLD_VALUE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE__OLD_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Old Value ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EREFERENCE__OLD_VALUE_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE__OLD_VALUE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
@@ -274,58 +256,13 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_REMOVE_EREFERENCE_FEATURE_COUNT = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Resolve Before</em>' operation.
+	 * The operation id for the '<em>Is Resolved</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_REMOVE_EREFERENCE___RESOLVE_BEFORE__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE___RESOLVE_BEFORE__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Resolve After</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REMOVE_EREFERENCE___RESOLVE_AFTER__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE___RESOLVE_AFTER__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Resolve Before And Apply Forward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REMOVE_EREFERENCE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Resolve After And Apply Backward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REMOVE_EREFERENCE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Apply Forward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REMOVE_EREFERENCE___APPLY_FORWARD = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE___APPLY_FORWARD;
-
-	/**
-	 * The operation id for the '<em>Apply Backward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REMOVE_EREFERENCE___APPLY_BACKWARD = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE___APPLY_BACKWARD;
+	int JAVA_REMOVE_EREFERENCE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE___IS_RESOLVED;
 
 	/**
 	 * The operation id for the '<em>Get Old Value</em>' operation.
@@ -344,15 +281,6 @@ public interface ReferencePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REMOVE_EREFERENCE___IS_CONTAINMENT = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE___IS_CONTAINMENT;
-
-	/**
-	 * The operation id for the '<em>Is Resolved</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REMOVE_EREFERENCE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE___IS_RESOLVED;
 
 	/**
 	 * The number of operations of the '<em>Java Remove EReference</em>' class.
@@ -392,6 +320,15 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__AFFECTED_EOBJECT = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__AFFECTED_EOBJECT;
 
 	/**
+	 * The feature id for the '<em><b>Affected EObject ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__AFFECTED_EOBJECT_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__AFFECTED_EOBJECT_ID;
+
+	/**
 	 * The feature id for the '<em><b>New Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -401,6 +338,15 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__NEW_VALUE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__NEW_VALUE;
 
 	/**
+	 * The feature id for the '<em><b>New Value ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__NEW_VALUE_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__NEW_VALUE_ID;
+
+	/**
 	 * The feature id for the '<em><b>Old Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -408,6 +354,15 @@ public interface ReferencePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__OLD_VALUE = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__OLD_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Old Value ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__OLD_VALUE_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__OLD_VALUE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
@@ -428,58 +383,13 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE_FEATURE_COUNT = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Resolve Before</em>' operation.
+	 * The operation id for the '<em>Is Resolved</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE___RESOLVE_BEFORE__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE___RESOLVE_BEFORE__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Resolve After</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE___RESOLVE_AFTER__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE___RESOLVE_AFTER__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Resolve Before And Apply Forward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE___RESOLVE_BEFORE_AND_APPLY_FORWARD__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Resolve After And Apply Backward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE___RESOLVE_AFTER_AND_APPLY_BACKWARD__RESOURCESET;
-
-	/**
-	 * The operation id for the '<em>Apply Forward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE___APPLY_FORWARD = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE___APPLY_FORWARD;
-
-	/**
-	 * The operation id for the '<em>Apply Backward</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE___APPLY_BACKWARD = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE___APPLY_BACKWARD;
+	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE___IS_RESOLVED;
 
 	/**
 	 * The operation id for the '<em>Get New Value</em>' operation.
@@ -525,15 +435,6 @@ public interface ReferencePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE___IS_CONTAINMENT = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE___IS_CONTAINMENT;
-
-	/**
-	 * The operation id for the '<em>Is Resolved</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE___IS_RESOLVED;
 
 	/**
 	 * The number of operations of the '<em>Java Replace Single Valued EReference</em>' class.
