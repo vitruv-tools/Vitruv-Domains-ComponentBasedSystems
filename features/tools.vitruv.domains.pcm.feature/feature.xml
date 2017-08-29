@@ -20,7 +20,7 @@
    </license>
 
    <url>
-      <discovery label="PCM Update Site" url="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/"/>
+      <discovery label="PCM Update Site" url="https://sdqbuild.ipd.kit.edu/nexus/content/repositories/palladiosimulator-release/"/>
    </url>
 
    <requires>

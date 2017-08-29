@@ -42,7 +42,7 @@
       </description>
    </category-def>
    <repository-reference location="http://update.emftext.org/release" enabled="true" />
-   <repository-reference location="http://https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/nightly/aggregate/" enabled="true" />
+   <repository-reference location="https://sdqbuild.ipd.kit.edu/nexus/content/repositories/palladiosimulator-release" enabled="true" />
    <repository-reference location="http://update.jamopp.org/trunk/" enabled="true" />
    <repository-reference location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon" enabled="true" />
    <repository-reference location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14" enabled="true" />
