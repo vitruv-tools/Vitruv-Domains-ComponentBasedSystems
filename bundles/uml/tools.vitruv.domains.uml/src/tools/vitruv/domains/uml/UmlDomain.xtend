@@ -16,7 +16,7 @@ class UmlDomain extends AbstractVitruvDomain {
 
 	package new() {
 		super(METAMODEL_NAME, UMLPackage.eINSTANCE, generateTuidCalculator(), FILE_EXTENSION);
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml", new UMLResourceWithoutUUIDsFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, new UMLResourceWithoutUUIDsFactoryImpl());
 	}
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
