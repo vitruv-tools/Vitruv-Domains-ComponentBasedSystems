@@ -31,6 +31,7 @@ import tools.vitruv.framework.change.echange.feature.list.ListPackage;
 import tools.vitruv.framework.change.echange.feature.reference.ReferencePackage;
 
 import tools.vitruv.framework.change.echange.feature.single.SinglePackage;
+import tools.vitruv.framework.change.uuid.UuidPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -114,8 +115,8 @@ public class AttributePackageImpl extends EPackageImpl implements AttributePacka
 		SinglePackage.eINSTANCE.eClass();
 		ReferencePackage.eINSTANCE.eClass();
 		EobjectPackage.eINSTANCE.eClass();
-		EChangePackage.eINSTANCE.eClass();
-		FeaturePackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
+		UuidPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		FeaturePackageImpl theFeaturePackage_1 = (FeaturePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.FeaturePackage.eNS_URI) instanceof FeaturePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(tools.vitruv.domains.java.echange.feature.FeaturePackage.eNS_URI) : tools.vitruv.domains.java.echange.feature.FeaturePackage.eINSTANCE);

@@ -20,5 +20,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  tools.vitruv.framework.change.echange;visibility:=reexport,
+ tools.vitruv.framework.change.uuid;visibility:=reexport,
  tools.vitruv.domains.java.echange;visibility:=reexport
 Bundle-ActivationPolicy: lazy

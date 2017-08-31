@@ -20,6 +20,7 @@ import tools.vitruv.domains.java.monitorededitor.refactoringlistener.Refactoring
 import tools.vitruv.framework.change.description.CompositeContainerChange;
 import tools.vitruv.framework.change.description.PropagatedChange;
 import tools.vitruv.framework.change.description.VitruviusChangeFactory;
+import tools.vitruv.framework.change.uuid.UuidGeneratorAndResolver;
 import tools.vitruv.framework.change.description.VitruviusChange;
 import tools.vitruv.framework.monitorededitor.AbstractMonitoredEditor;
 import tools.vitruv.framework.userinteraction.UserInteracting;
@@ -124,6 +125,10 @@ public class MonitoredEditor extends AbstractMonitoredEditor
 			}
 			@Override
 			public void reverseChanges(List<PropagatedChange> changes) {
+			}
+			@Override
+			public UuidGeneratorAndResolver getUuidGeneratorAndResolver() {
+				return null;
 			}
         }, MY_MONITORED_PROJECT);
         this.reportChanges = true;
