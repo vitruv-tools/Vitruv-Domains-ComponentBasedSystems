@@ -13,7 +13,6 @@ import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
 import tools.vitruv.domains.java.echange.feature.reference.*;
 
 import tools.vitruv.framework.change.echange.AdditiveEChange;
-import tools.vitruv.framework.change.echange.AtomicEChange;
 import tools.vitruv.framework.change.echange.EChange;
 import tools.vitruv.framework.change.echange.SubtractiveEChange;
 
@@ -107,7 +106,6 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseUpdateMultiValuedFeatureEChange(javaInsertEReference);
 				if (result == null) result = caseAdditiveEChange(javaInsertEReference);
 				if (result == null) result = caseFeatureEChange(javaInsertEReference);
-				if (result == null) result = caseAtomicEChange(javaInsertEReference);
 				if (result == null) result = caseEChange(javaInsertEReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -125,7 +123,6 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseUpdateMultiValuedFeatureEChange(javaRemoveEReference);
 				if (result == null) result = caseSubtractiveEChange(javaRemoveEReference);
 				if (result == null) result = caseFeatureEChange(javaRemoveEReference);
-				if (result == null) result = caseAtomicEChange(javaRemoveEReference);
 				if (result == null) result = caseEChange(javaRemoveEReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -145,7 +142,6 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseFeatureEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseAdditiveEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseSubtractiveEChange(javaReplaceSingleValuedEReference);
-				if (result == null) result = caseAtomicEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = caseEChange(javaReplaceSingleValuedEReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -211,21 +207,6 @@ public class ReferenceSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseEChange(EChange object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Atomic EChange</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Atomic EChange</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseAtomicEChange(AtomicEChange object) {
 		return null;
 	}
 

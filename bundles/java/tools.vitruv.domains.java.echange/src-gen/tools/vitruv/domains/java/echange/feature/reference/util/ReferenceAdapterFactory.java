@@ -15,7 +15,6 @@ import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
 import tools.vitruv.domains.java.echange.feature.reference.*;
 
 import tools.vitruv.framework.change.echange.AdditiveEChange;
-import tools.vitruv.framework.change.echange.AtomicEChange;
 import tools.vitruv.framework.change.echange.EChange;
 import tools.vitruv.framework.change.echange.SubtractiveEChange;
 
@@ -110,10 +109,6 @@ public class ReferenceAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseEChange(EChange object) {
 				return createEChangeAdapter();
-			}
-			@Override
-			public Adapter caseAtomicEChange(AtomicEChange object) {
-				return createAtomicEChangeAdapter();
 			}
 			@Override
 			public <A extends EObject, F extends EStructuralFeature> Adapter caseFeatureEChange(FeatureEChange<A, F> object) {
@@ -260,20 +255,6 @@ public class ReferenceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEChangeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link tools.vitruv.framework.change.echange.AtomicEChange <em>Atomic EChange</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see tools.vitruv.framework.change.echange.AtomicEChange
-	 * @generated
-	 */
-	public Adapter createAtomicEChangeAdapter() {
 		return null;
 	}
 

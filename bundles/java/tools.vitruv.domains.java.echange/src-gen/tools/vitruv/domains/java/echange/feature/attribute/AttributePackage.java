@@ -111,6 +111,15 @@ public interface AttributePackage extends EPackage {
 	int JAVA_INSERT_EATTRIBUTE_VALUE__NEW_VALUE = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE__NEW_VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Was Unset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EATTRIBUTE_VALUE__WAS_UNSET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE__WAS_UNSET;
+
+	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,6 +145,15 @@ public interface AttributePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_INSERT_EATTRIBUTE_VALUE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE___IS_RESOLVED;
+
+	/**
+	 * The operation id for the '<em>Get Involved EObjects</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INSERT_EATTRIBUTE_VALUE___GET_INVOLVED_EOBJECTS = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.INSERT_EATTRIBUTE_VALUE___GET_INVOLVED_EOBJECTS;
 
 	/**
 	 * The operation id for the '<em>Get New Value</em>' operation.
@@ -211,6 +229,15 @@ public interface AttributePackage extends EPackage {
 	int JAVA_REMOVE_EATTRIBUTE_VALUE__OLD_VALUE = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE__OLD_VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Is Unset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EATTRIBUTE_VALUE__IS_UNSET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE__IS_UNSET;
+
+	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -236,6 +263,15 @@ public interface AttributePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REMOVE_EATTRIBUTE_VALUE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE___IS_RESOLVED;
+
+	/**
+	 * The operation id for the '<em>Get Involved EObjects</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REMOVE_EATTRIBUTE_VALUE___GET_INVOLVED_EOBJECTS = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE___GET_INVOLVED_EOBJECTS;
 
 	/**
 	 * The operation id for the '<em>Get Old Value</em>' operation.
@@ -302,6 +338,15 @@ public interface AttributePackage extends EPackage {
 	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE__NEW_VALUE = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE__NEW_VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Was Unset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE__WAS_UNSET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE__WAS_UNSET;
+
+	/**
 	 * The feature id for the '<em><b>Old Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -309,6 +354,15 @@ public interface AttributePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE__OLD_VALUE = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE__OLD_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Unset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE__IS_UNSET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE__IS_UNSET;
 
 	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
@@ -336,6 +390,15 @@ public interface AttributePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE___IS_RESOLVED;
+
+	/**
+	 * The operation id for the '<em>Get Involved EObjects</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE___GET_INVOLVED_EOBJECTS = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE___GET_INVOLVED_EOBJECTS;
 
 	/**
 	 * The operation id for the '<em>Get New Value</em>' operation.

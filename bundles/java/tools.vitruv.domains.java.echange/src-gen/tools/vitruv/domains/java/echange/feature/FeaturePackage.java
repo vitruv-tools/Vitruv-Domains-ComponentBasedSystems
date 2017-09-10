@@ -121,6 +121,15 @@ public interface FeaturePackage extends EPackage {
 	int JAVA_FEATURE_ECHANGE___IS_RESOLVED = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE___IS_RESOLVED;
 
 	/**
+	 * The operation id for the '<em>Get Involved EObjects</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_FEATURE_ECHANGE___GET_INVOLVED_EOBJECTS = tools.vitruv.framework.change.echange.feature.FeaturePackage.FEATURE_ECHANGE___GET_INVOLVED_EOBJECTS;
+
+	/**
 	 * The number of operations of the '<em>Java Feature EChange</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

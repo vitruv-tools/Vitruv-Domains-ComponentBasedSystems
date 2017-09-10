@@ -13,7 +13,6 @@ import tools.vitruv.domains.java.echange.feature.JavaFeatureEChange;
 import tools.vitruv.domains.java.echange.feature.attribute.*;
 
 import tools.vitruv.framework.change.echange.AdditiveEChange;
-import tools.vitruv.framework.change.echange.AtomicEChange;
 import tools.vitruv.framework.change.echange.EChange;
 import tools.vitruv.framework.change.echange.SubtractiveEChange;
 
@@ -103,7 +102,6 @@ public class AttributeSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseUpdateAttributeEChange(javaInsertEAttributeValue);
 				if (result == null) result = caseUpdateMultiValuedFeatureEChange(javaInsertEAttributeValue);
 				if (result == null) result = caseFeatureEChange(javaInsertEAttributeValue);
-				if (result == null) result = caseAtomicEChange(javaInsertEAttributeValue);
 				if (result == null) result = caseEChange(javaInsertEAttributeValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -120,7 +118,6 @@ public class AttributeSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseUpdateAttributeEChange(javaRemoveEAttributeValue);
 				if (result == null) result = caseUpdateMultiValuedFeatureEChange(javaRemoveEAttributeValue);
 				if (result == null) result = caseFeatureEChange(javaRemoveEAttributeValue);
-				if (result == null) result = caseAtomicEChange(javaRemoveEAttributeValue);
 				if (result == null) result = caseEChange(javaRemoveEAttributeValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -138,7 +135,6 @@ public class AttributeSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseSubtractiveEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseUpdateAttributeEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseFeatureEChange(javaReplaceSingleValuedEAttribute);
-				if (result == null) result = caseAtomicEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = caseEChange(javaReplaceSingleValuedEAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -204,21 +200,6 @@ public class AttributeSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseEChange(EChange object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Atomic EChange</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Atomic EChange</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseAtomicEChange(AtomicEChange object) {
 		return null;
 	}
 

@@ -9,8 +9,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.Switch;
 
 import tools.vitruv.domains.java.echange.feature.*;
-
-import tools.vitruv.framework.change.echange.AtomicEChange;
 import tools.vitruv.framework.change.echange.EChange;
 
 import tools.vitruv.framework.change.echange.feature.FeatureEChange;
@@ -76,7 +74,6 @@ public class FeatureSwitch<T> extends Switch<T> {
 				JavaFeatureEChange<?, ?> javaFeatureEChange = (JavaFeatureEChange<?, ?>)theEObject;
 				T result = caseJavaFeatureEChange(javaFeatureEChange);
 				if (result == null) result = caseFeatureEChange(javaFeatureEChange);
-				if (result == null) result = caseAtomicEChange(javaFeatureEChange);
 				if (result == null) result = caseEChange(javaFeatureEChange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -112,21 +109,6 @@ public class FeatureSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEChange(EChange object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Atomic EChange</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Atomic EChange</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAtomicEChange(AtomicEChange object) {
 		return null;
 	}
 
