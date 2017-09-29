@@ -256,15 +256,6 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_REMOVE_EREFERENCE__OLD_VALUE_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE__OLD_VALUE_ID;
 
 	/**
-	 * The feature id for the '<em><b>Is Unset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REMOVE_EREFERENCE__IS_UNSET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REMOVE_EREFERENCE__IS_UNSET;
-
-	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -365,6 +356,15 @@ public interface ReferencePackage extends EPackage {
 	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__AFFECTED_EOBJECT_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__AFFECTED_EOBJECT_ID;
 
 	/**
+	 * The feature id for the '<em><b>Is Unset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__IS_UNSET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__IS_UNSET;
+
+	/**
 	 * The feature id for the '<em><b>New Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -408,15 +408,6 @@ public interface ReferencePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__OLD_VALUE_ID = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__OLD_VALUE_ID;
-
-	/**
-	 * The feature id for the '<em><b>Is Unset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EREFERENCE__IS_UNSET = tools.vitruv.framework.change.echange.feature.reference.ReferencePackage.REPLACE_SINGLE_VALUED_EREFERENCE__IS_UNSET;
 
 	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.

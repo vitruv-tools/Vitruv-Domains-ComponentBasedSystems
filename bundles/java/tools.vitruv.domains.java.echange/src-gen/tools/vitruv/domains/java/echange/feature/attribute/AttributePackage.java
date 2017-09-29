@@ -229,15 +229,6 @@ public interface AttributePackage extends EPackage {
 	int JAVA_REMOVE_EATTRIBUTE_VALUE__OLD_VALUE = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE__OLD_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Is Unset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REMOVE_EATTRIBUTE_VALUE__IS_UNSET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REMOVE_EATTRIBUTE_VALUE__IS_UNSET;
-
-	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -329,6 +320,15 @@ public interface AttributePackage extends EPackage {
 	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE__AFFECTED_EOBJECT_ID = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE__AFFECTED_EOBJECT_ID;
 
 	/**
+	 * The feature id for the '<em><b>Is Unset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE__IS_UNSET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE__IS_UNSET;
+
+	/**
 	 * The feature id for the '<em><b>New Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -354,15 +354,6 @@ public interface AttributePackage extends EPackage {
 	 * @ordered
 	 */
 	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE__OLD_VALUE = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE__OLD_VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Unset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_REPLACE_SINGLE_VALUED_EATTRIBUTE__IS_UNSET = tools.vitruv.framework.change.echange.feature.attribute.AttributePackage.REPLACE_SINGLE_VALUED_EATTRIBUTE__IS_UNSET;
 
 	/**
 	 * The feature id for the '<em><b>Old Affected EObject</b></em>' reference.
