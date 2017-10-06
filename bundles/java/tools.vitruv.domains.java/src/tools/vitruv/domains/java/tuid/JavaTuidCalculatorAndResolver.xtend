@@ -53,6 +53,7 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 
 	private val static Logger logger = Logger.getLogger(JavaTuidCalculatorAndResolver);
 
+	private val String PARAMETER_SELECTOR = "parameter"
 	private val String CLASSIFIER_SELECTOR = "classifier"
 	private val String IMPORT_SELECTOR = "import"
 	private val String METHOD_SELECTOR = "method"
@@ -146,7 +147,7 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 	}
 
 	private def dispatch String calculateIndividualTuid(Parameter param) {
-		return param.name
+		return PARAMETER_SELECTOR + SUBDIVIDER + param.name
 	}
 
 	private def dispatch String calculateIndividualTuid(NamespaceClassifierReference ref) {
@@ -156,7 +157,7 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 		if (ref.eContainingFeature !== null) {
 			tuid.append(ref.eContainingFeature.name)
 		}
-		ref.classifierReferences.forEach[tuid.append(target.name)]
+		ref.classifierReferences.forEach[tuid.append(target?.name)]
 		return tuid.toString
 	}
 
@@ -322,8 +323,8 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 
 	private def dispatch String calculateIndividualTuid(ClassifierReference classifierReference) {
 		val tuid = new StringBuilder()
-		tuid.append(classifierReference.eContainingFeature.name)
-		tuid.append(classifierReference.target.name)
+		tuid.append(classifierReference.eContainingFeature?.name)
+		tuid.append(classifierReference.target?.name)
 		return tuid.toString
 	}
 
@@ -352,7 +353,7 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 	}
 
 	private def dispatch String getNameFrom(ClassifierReference classifierReference) {
-		return classifierReference.target.name
+		return classifierReference.target?.name
 	}
 	
 	private def dispatch String getNameFrom(Void nullType){
