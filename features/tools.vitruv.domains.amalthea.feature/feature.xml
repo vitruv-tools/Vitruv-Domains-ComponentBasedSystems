@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="tools.vitruv.domains.amalthea.feature"
+      label="%featureName"
+      version="0.2.0.qualifier"
+      provider-name="%providerName"
+      license-feature="tools.vitruv.license.feature"
+      license-feature-version="1.0.0">
+
+   <description>
+      %description
+   </description>
+
+   <copyright url="%copyrightURL">
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import plugin="org.junit"/>
+      <import plugin="com.google.guava"/>
+      <import plugin="org.eclipse.xtext.xbase.lib"/>
+      <import plugin="org.eclipse.xtend.lib" version="2.12.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtend.lib.macro"/>
+      <import feature="tools.vitruv.framework.feature" version="0.2.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.app4mc.amalthea.models" version="0.8.2.201710301147"/>
+   </requires>
+
+   <plugin
+         id="tools.vitruv.domains.amalthea"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
