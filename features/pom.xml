@@ -19,6 +19,7 @@
 		<module>tools.vitruv.domains.sysml.feature</module>
 		<module>tools.vitruv.domains.uml.feature</module>
 		<module>tools.vitruv.domains.asem.feature</module>
+		<module>tools.vitruv.domains.amalthea.feature</module>
 		<module>tools.vitruv.domains.confidentiality.feature</module>
 	</modules>
 	

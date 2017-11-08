@@ -90,6 +90,11 @@
 		  <layout>p2</layout>
 		  <url>http://kastel-scbs.github.io/updatesite/nightly/confidentiality</url>
 		</repository>
+		<repository>
+		  <id>App4MC (Amalthea)</id>
+		  <layout>p2</layout>
+		  <url>http://download.eclipse.org/app4mc/updatesites/releases/0.8.2/</url>
+		</repository>
 	</repositories>
 
 	<build>
