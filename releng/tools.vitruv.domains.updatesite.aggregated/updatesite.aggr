@@ -40,7 +40,10 @@
         <features name="org.eclipse.xtext.xbase.feature.group" versionRange="2.12.0"/>
       </repositories>
       <repositories location="http://kastel-scbs.github.io/updatesite/nightly/confidentiality" mirrorArtifacts="false">
-	<features name="edu.kit.kastel.scbs.confidentiality.feature.source.feature.group" versionRange="[1.0.0,2.0.0)"/>
+        <features name="edu.kit.kastel.scbs.confidentiality.feature.source.feature.group" versionRange="[1.0.0,2.0.0)"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/app4mc/updatesites/releases/0.8.2/">
+        <features name="org.eclipse.app4mc.amalthea.models.feature.group"/>
       </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/updatesite/nightly/framework"/>
