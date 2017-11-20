@@ -5,11 +5,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.change.impl.ChangeDescriptionImpl;
-
 import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver;
 import tools.vitruv.framework.tuid.HierarchicalTuidCalculatorAndResolver;
-import tools.vitruv.framework.util.bridges.EcoreBridge;
 
 /**
  * A {@link HierarchicalTuidCalculatorAndResolver} with the same workflow as the {@link AttributeTuidCalculatorAndResolver}.
@@ -35,29 +32,20 @@ public class AttributeTuidCalculatorAndResolverSpecificRoot extends AttributeTui
 
 	@Override
 	protected String calculateIndividualTuidDelegator(final EObject obj) throws IllegalArgumentException {
-		for (String attributeName : this.attributeNames) {
-			final String attributeValue = EcoreBridge.getStringValueOfAttribute(obj, attributeName);
-			if (null != attributeValue) {
-				String subTuid = (obj.eContainingFeature() == null || obj.eContainer() instanceof ChangeDescriptionImpl ? "<root>"
-						: obj.eContainingFeature().getName()) + SUBDIVIDER + obj.eClass().getName() + SUBDIVIDER
-								+ attributeName + "=" + attributeValue;
-				return subTuid;
-			} else {
+		try {
+			String tuid = super.calculateIndividualTuidDelegator(obj);
+			return tuid;
+		} catch (RuntimeException e) {
+			// check if obj has root features
+			for (String attributeName : this.rootFeatures) {
 				EStructuralFeature idFeature = obj.eClass().getEStructuralFeature(attributeName);
-				if (idFeature != null && !obj.eIsSet(idFeature)) {
-					return attributeName;
+				if(idFeature!=null) {
+					return "<root>";
 				}
 			}
+			//if not re-throw
+			throw e;
 		}
-		for (String attributeName : this.rootFeatures) {
-			EStructuralFeature idFeature = obj.eClass().getEStructuralFeature(attributeName);
-			if(idFeature!=null) {
-				return "<root>";
-			}
-		}
-
-		throw new IllegalArgumentException(
-				"None of '" + String.join("', '", this.attributeNames) + "' found for eObject '" + obj + "'");
 	}
 
 }

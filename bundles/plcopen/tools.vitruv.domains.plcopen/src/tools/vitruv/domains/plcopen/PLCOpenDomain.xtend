@@ -16,7 +16,7 @@ class PLCOpenDomain extends AbstractVitruvDomain {
 	}
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
-		return new AttributeTuidCalculatorAndResolver(Tc60201Package.eNS_URI, #["mixed", "documentation"]); // FIXME MK set PLCOpen name attributes!
+		return new AttributeTuidCalculatorAndResolver(Tc60201Package.eNS_URI, #["mixed", "documentation", "productVersion", "name"]); // FIXME MK set PLCOpen name attributes!
 	}
 
 	override getBuilderApplicator() {
