@@ -6,7 +6,7 @@ class ConfidentialityDomainProvider implements VitruvDomainProvider<Confidential
 	private static var ConfidentialityDomain instance;
 	
 	override public ConfidentialityDomain getDomain() {
-		if (instance == null) {
+		if (instance === null) {
 			instance = new ConfidentialityDomain();
 		}
 		return instance;
