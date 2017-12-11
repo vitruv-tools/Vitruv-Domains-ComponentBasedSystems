@@ -5,7 +5,6 @@ import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import tools.vitruv.framework.domains.AbstractVitruvDomain
 import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
-import tools.vitruv.domains.plcopen.tuid.AttributeTuidCalculatorAndResolverSpecificRoot
 
 class PLCOpenDomain extends AbstractVitruvDomain {
 	public static final String METAMODEL_NAME = "PLCOpen"
@@ -17,9 +16,7 @@ class PLCOpenDomain extends AbstractVitruvDomain {
 	}
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
-		return new AttributeTuidCalculatorAndResolverSpecificRoot(Tc60201Package.eNS_URI, #["mixed", "documentation", "productVersion", "name"] , #["xMLNSPrefixMap"]); // FIXME MK set PLCOpen name attributes!
-				
-	//	return new AttributeTuidCalculatorAndResolverSpecificRoot(CAEXPackage.eNS_URI, #["name","iD", "value", "fileName", CAEXPackage.Literals.CAEX_OBJECT.getName()], #["xMLNSPrefixMap"]);
+		return new AttributeTuidCalculatorAndResolver(Tc60201Package.eNS_URI, #["mixed", "documentation", "productVersion", "name"]); // FIXME MK set PLCOpen name attributes!
 	}
 
 	override getBuilderApplicator() {
