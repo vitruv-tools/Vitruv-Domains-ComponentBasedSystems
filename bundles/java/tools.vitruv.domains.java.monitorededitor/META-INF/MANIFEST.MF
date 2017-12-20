@@ -6,7 +6,7 @@ Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: tools.vitruv.domains.java.monitorededitor.activator.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- tools.vitruv.framework.monitorededitor,
+ tools.vitruv.framework.ui.monitorededitor,
  org.eclipse.emf.ecore;bundle-version="2.9.2",
  tools.vitruv.domains.java.util.jamoppparser,
  org.eclipse.jdt.core,

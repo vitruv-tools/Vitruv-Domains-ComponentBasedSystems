@@ -8,7 +8,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 import tools.vitruv.domains.java.monitorededitor.MonitoredEditor;
-import tools.vitruv.framework.monitorededitor.VitruviusProjectBuilder;
+import tools.vitruv.framework.ui.monitorededitor.VitruviusProjectBuilder;
 
 public class VitruviusJavaBuilder extends VitruviusProjectBuilder {
     // ID of JavaBuilder

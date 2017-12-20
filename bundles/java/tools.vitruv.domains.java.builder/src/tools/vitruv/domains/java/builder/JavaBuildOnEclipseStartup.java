@@ -2,7 +2,7 @@ package tools.vitruv.domains.java.builder;
 
 import org.eclipse.ui.IStartup;
 
-import tools.vitruv.framework.monitorededitor.ProjectBuildUtils;
+import tools.vitruv.framework.ui.monitorededitor.ProjectBuildUtils;
 
 /**
  * {@link JavaBuildOnEclipseStartup} issues an incremental build of all open projects just after Eclipse
