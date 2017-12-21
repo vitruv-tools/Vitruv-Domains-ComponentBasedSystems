@@ -30,10 +30,10 @@
    <feature id="tools.vitruv.domains.asem.feature.source" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.confidentiality.feature__0.2.0.qualifier.jar" id="tools.vitruv.domains.confidentiality.feature" version="_0.2.0.qualifier">
+   <feature url="features/tools.vitruv.domains.confidentiality.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.confidentiality.feature" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
-   <feature id="tools.vitruv.domains.confidentiality.feature.source" version="_0.2.0.qualifier">
+   <feature id="tools.vitruv.domains.confidentiality.feature.source" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
    <feature url="features/tools.vitruv.domains.amalthea.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.amalthea.feature" version="0.2.0.qualifier">
