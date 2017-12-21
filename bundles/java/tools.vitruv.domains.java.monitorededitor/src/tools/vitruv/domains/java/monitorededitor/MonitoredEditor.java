@@ -20,9 +20,9 @@ import tools.vitruv.domains.java.monitorededitor.refactoringlistener.Refactoring
 import tools.vitruv.framework.change.description.CompositeContainerChange;
 import tools.vitruv.framework.change.description.PropagatedChange;
 import tools.vitruv.framework.change.description.VitruviusChangeFactory;
-import tools.vitruv.framework.change.uuid.UuidGeneratorAndResolver;
+import tools.vitruv.framework.uuid.UuidGeneratorAndResolver;
+import tools.vitruv.framework.ui.monitorededitor.AbstractMonitoredEditor;
 import tools.vitruv.framework.change.description.VitruviusChange;
-import tools.vitruv.framework.monitorededitor.AbstractMonitoredEditor;
 import tools.vitruv.framework.userinteraction.UserInteracting;
 import tools.vitruv.framework.userinteraction.UserInteractionType;
 import tools.vitruv.framework.userinteraction.impl.UserInteractor;
