@@ -20,6 +20,7 @@
 		<module>asem</module>
 		<module>amalthea</module>
 		<module>confidentiality</module>
+		<module>emfprofiles</module>
 	</modules>
 
 </project>
