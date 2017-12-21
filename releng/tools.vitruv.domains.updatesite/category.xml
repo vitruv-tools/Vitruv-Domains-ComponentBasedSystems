@@ -42,6 +42,12 @@
    <feature id="tools.vitruv.domains.amalthea.feature.source" version="0.2.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
+    <feature url="features/tools.vitruv.domains.emfprofiles.feature_0.2.0.qualifier.jar" id="tools.vitruv.domains.emfprofiles.feature" version="0.2.0.qualifier">
+      <category name="Vitruv Domains"/>
+   </feature>
+   <feature id="tools.vitruv.domains.emfprofiles.feature.source" version="0.2.0.qualifier">
+      <category name="Vitruv Domains"/>
+   </feature>
    <category-def name="Vitruv Domains" label="Vitruv Domains">
       <description>
          Domains for Vitruv
