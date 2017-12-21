@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="tools.vitruv.domains.confidentiality.feature"
+      id="tools.vitruv.domains.emfprofiles.feature"
       label="%featureName"
       version="0.2.0.qualifier"
       provider-name="%providerName"
@@ -21,12 +21,18 @@
 
    <requires>
       <import feature="tools.vitruv.framework.feature" version="0.2.0" match="greaterOrEqual"/>
-      <import feature="edu.kit.kastel.scbs.confidentiality.feature.source" version="1.0.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.xtend.source"/>
+      <import plugin="org.junit"/>
+      <import plugin="org.apache.log4j"/>
+      <import plugin="com.google.guava"/>
+      <import plugin="org.eclipse.xtend.lib"/>
+      <import plugin="org.eclipse.xtend.lib.macro"/>
+      <import feature="org.eclipse.xtend.source" version="2.2.0.v201605260315"/>
+      <import feature="org.eclipse.xtext.xbase.lib" version="2.12.0.v20170518-0758"/>
+      <import feature="org.modelversioning.emfprofile.feature" version="1.0.0.201708070840"/>
    </requires>
 
    <plugin
-         id="tools.vitruv.domains.confidentiality"
+         id="tools.vitruv.domains.emfprofiles"
          download-size="0"
          install-size="0"
          version="0.0.0"
