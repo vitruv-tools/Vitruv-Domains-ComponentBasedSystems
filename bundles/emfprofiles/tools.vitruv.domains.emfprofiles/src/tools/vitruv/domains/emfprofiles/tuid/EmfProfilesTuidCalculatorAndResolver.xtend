@@ -1,8 +1,9 @@
-package tools.vitruv.domains.emfprofiles.tuid
+ package tools.vitruv.domains.emfprofiles.tuid
 
 import org.eclipse.emf.ecore.EObject
 import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import org.modelversioning.emfprofileapplication.StereotypeApplication
+import org.modelversioning.emfprofileapplication.ProfileApplication
 
 class EmfProfilesTuidCalculatorAndResolver extends AttributeTuidCalculatorAndResolver {
 
@@ -16,6 +17,13 @@ class EmfProfilesTuidCalculatorAndResolver extends AttributeTuidCalculatorAndRes
 	
 	def dispatch String dispatchedCalculateIndividualTuidDelegator(EObject eObject) {
 		super.calculateIndividualTuidDelegator(eObject);	
+	}
+	
+	def dispatch String dispatchedCalculateIndividualTuidDelegator(ProfileApplication application) {
+		val type = "type" + if (!application.importedProfiles.empty) "=" + 
+			application.importedProfiles.tail.fold(application.importedProfiles.head.profile.name, 
+				[concat, current | concat + "+" + current.profile.name]) else "";
+		return "<root>" + SUBDIVIDER + "profileApplication" + SUBDIVIDER + type;
 	}
 	
 	def dispatch String dispatchedCalculateIndividualTuidDelegator(StereotypeApplication application) {
