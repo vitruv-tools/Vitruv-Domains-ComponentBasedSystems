@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EObject
 import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import org.modelversioning.emfprofileapplication.StereotypeApplication
 import org.modelversioning.emfprofileapplication.ProfileApplication
+import org.modelversioning.emfprofileapplication.ProfileImport
 
 class EmfProfilesTuidCalculatorAndResolver extends AttributeTuidCalculatorAndResolver {
 
@@ -17,6 +18,10 @@ class EmfProfilesTuidCalculatorAndResolver extends AttributeTuidCalculatorAndRes
 	
 	def dispatch String dispatchedCalculateIndividualTuidDelegator(EObject eObject) {
 		super.calculateIndividualTuidDelegator(eObject);	
+	}
+	
+	def dispatch String dispatchedCalculateIndividualTuidDelegator(ProfileImport profileImport) {
+		return "type" + if (profileImport.profile !== null) "=" + profileImport.profile.name;
 	}
 	
 	def dispatch String dispatchedCalculateIndividualTuidDelegator(ProfileApplication application) {
