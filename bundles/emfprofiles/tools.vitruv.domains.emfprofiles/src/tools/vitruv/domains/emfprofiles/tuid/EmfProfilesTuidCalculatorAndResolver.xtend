@@ -26,19 +26,23 @@ class EmfProfilesTuidCalculatorAndResolver extends AttributeTuidCalculatorAndRes
 	
 	def dispatch String dispatchedCalculateIndividualTuidDelegator(ProfileApplication application) {
 		val type = "type" + if (!application.importedProfiles.empty) "=" + 
-			application.importedProfiles.tail.fold(application.importedProfiles.head.profile.name, 
-				[concat, current | concat + "+" + current.profile.name]) else "";
+			application.importedProfiles.tail.fold(application.importedProfiles.head.nameOrEmpty, 
+				[concat, current | concat + "+" + current.nameOrEmpty]) else "";
 		return "<root>" + SUBDIVIDER + "profileApplication" + SUBDIVIDER + type;
+	}
+	
+	private def getNameOrEmpty(ProfileImport profileImport) {
+		return if (!profileImport.profile?.name.nullOrEmpty) profileImport.profile.name else "" 
 	}
 	
 	def dispatch String dispatchedCalculateIndividualTuidDelegator(StereotypeApplication application) {
 		val type = "type" + if (application.stereotype !== null) "=" + application.stereotype.name else "";
-		val potentialObjectIdentifier = application.appliedTo.eClass.EAllAttributes.filter[#{"id", "name", "entityName"}.contains(it.name)];
-		val objectIdentifier = if (!potentialObjectIdentifier.empty) potentialObjectIdentifier.get(0);
+		val potentialObjectIdentifier = application.appliedTo?.eClass?.EAllAttributes?.filter[#{"id", "name", "entityName"}.contains(it.name)];
+		val objectIdentifier = if (!potentialObjectIdentifier.nullOrEmpty) potentialObjectIdentifier.get(0);
 		val objectIdentifierName = if (objectIdentifier !== null) objectIdentifier.name else "none";
 		val objectIdentifierValue = if (objectIdentifier !== null) application.appliedTo.eGet(objectIdentifier) else "empty";
 		val appliedTo = "appliedTo" + if (application.appliedTo !== null) "=" + objectIdentifierName + "=" + objectIdentifierValue;
-		return "<root>" + SUBDIVIDER + "stereotypeApplication" + SUBDIVIDER + type + SUBDIVIDER + appliedTo;
+		return "stereotypeApplication" + SUBDIVIDER + type + SUBDIVIDER + appliedTo;
 	}
 
 }
