@@ -10,7 +10,7 @@ class EmfProfilesDomain extends AbstractVitruvDomain {
 	public static final String METAMODEL_NAME = "EmfProfiles"
 	
 	package new() {
-		super(METAMODEL_NAME, ROOT_PACKAGE, generateTuidCalculator());
+		super(METAMODEL_NAME, ROOT_PACKAGE, #{PROFILE_PACKAGE}, generateTuidCalculator());
 	}
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
