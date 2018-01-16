@@ -10,6 +10,7 @@ import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 
 final class PcmDomain extends AbstractVitruvDomain {
 	private static final String METAMODEL_NAME = "PCM";
+	private boolean shouldTransitivelyPropagateChanges = false;
 	
 	package new() {
 		super(METAMODEL_NAME, ROOT_PACKAGE, 
@@ -26,6 +27,18 @@ final class PcmDomain extends AbstractVitruvDomain {
 	
 	override getBuilderApplicator() {
 		return new VitruviusEmfBuilderApplicator();
+	}
+	
+	override shouldTransitivelyPropagateChanges() {
+		return shouldTransitivelyPropagateChanges;
+	}
+	
+	/**
+	 * Calling this methods enable the per default disabled transitive change propagation.
+	 * Should only be called for test purposes!
+	 */
+	public def enableTransitiveChangePropagation() {
+		shouldTransitivelyPropagateChanges = true
 	}
 	
 }
