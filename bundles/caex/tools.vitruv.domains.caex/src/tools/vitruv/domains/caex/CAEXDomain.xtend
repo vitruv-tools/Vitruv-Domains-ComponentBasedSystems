@@ -16,7 +16,7 @@ class CAEXDomain extends AbstractVitruvDomain {
 	}
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
-		return new AttributeTuidCalculatorAndResolverSpecificRoot(CaexPackage.eNS_URI, #["name","iD", "value", "fileName", CaexPackage.Literals.CAEX_OBJECT.getName()], #["xMLNSPrefixMap"]);
+		return new AttributeTuidCalculatorAndResolverSpecificRoot(CaexPackage.eNS_URI, #["name","iD", "value", "fileName", "originID", "alias", CaexPackage.Literals.CAEX_OBJECT.getName()], #["xMLNSPrefixMap"]);
 	}
 
 	override getBuilderApplicator() {
