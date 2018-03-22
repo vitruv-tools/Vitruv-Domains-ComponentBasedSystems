@@ -15,7 +15,7 @@ Require-Bundle: org.junit,
  tools.vitruv.extensions.emf,
  org.eclipse.emf.ecore.change,
  org.apache.log4j;bundle-version="1.2.15",
- org.automationml.caex;bundle-version="0.1.0"
+ caex.caex30;bundle-version="0.1.0"
 Export-Package: tools.vitruv.domains.caex
 Bundle-Vendor: vitruv.tools
 
