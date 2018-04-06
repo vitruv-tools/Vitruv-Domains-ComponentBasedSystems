@@ -22,6 +22,7 @@
 		<module>tools.vitruv.domains.amalthea.feature</module>
 		<module>tools.vitruv.domains.confidentiality.feature</module>
 		<module>tools.vitruv.domains.emfprofiles.feature</module>
+		<module>tools.vitruv.domains.caex.feature</module>
 	</modules>
 	
 </project>
