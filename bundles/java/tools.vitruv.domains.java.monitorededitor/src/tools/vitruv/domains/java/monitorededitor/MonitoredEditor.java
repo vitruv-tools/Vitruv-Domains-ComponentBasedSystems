@@ -23,6 +23,11 @@ import tools.vitruv.framework.change.description.VitruviusChangeFactory;
 import tools.vitruv.framework.uuid.UuidGeneratorAndResolver;
 import tools.vitruv.framework.ui.monitorededitor.AbstractMonitoredEditor;
 import tools.vitruv.framework.change.description.VitruviusChange;
+import tools.vitruv.framework.userinteraction.ConfirmationDialogBuilder;
+import tools.vitruv.framework.userinteraction.MultipleChoiceMultiSelectionDialogBuilder;
+import tools.vitruv.framework.userinteraction.MultipleChoiceSingleSelectionDialogBuilder;
+import tools.vitruv.framework.userinteraction.NotificationDialogBuilder;
+import tools.vitruv.framework.userinteraction.TextInputDialogBuilder;
 import tools.vitruv.framework.userinteraction.UserInteracting;
 import tools.vitruv.framework.userinteraction.UserInteractionType;
 import tools.vitruv.framework.userinteraction.impl.UserInteractor;
@@ -232,22 +237,6 @@ public class MonitoredEditor extends AbstractMonitoredEditor
         System.err.println("MonitoredEditor plugin - earlyStartup");
     }
 
-    @Override
-    public void showMessage(final UserInteractionType type, final String message) {
-        this.userInteractor.showMessage(type, message);
-    }
-
-    @Override
-    public int selectFromMessage(final UserInteractionType type, final String message,
-            final String... selectionDescriptions) {
-        return this.userInteractor.selectFromMessage(type, message, selectionDescriptions);
-    }
-
-    @Override
-    public String getTextInput(final String msg) {
-        return this.userInteractor.getTextInput(msg);
-    }
-
     public void startASTListening() {
         this.astListener.startListening();
     }
@@ -286,5 +275,30 @@ public class MonitoredEditor extends AbstractMonitoredEditor
     public URI selectURI(final String message) {
         return this.userInteractor.selectURI(message);
     }
+
+	@Override
+	public NotificationDialogBuilder getNotificationDialogBuilder() {
+		return userInteractor.getNotificationDialogBuilder();
+	}
+
+	@Override
+	public ConfirmationDialogBuilder getConfirmationDialogBuilder() {
+		return userInteractor.getConfirmationDialogBuilder();
+	}
+
+	@Override
+	public TextInputDialogBuilder getTextInputDialogBuilder() {
+		return userInteractor.getTextInputDialogBuilder();
+	}
+
+	@Override
+	public MultipleChoiceSingleSelectionDialogBuilder getSingleSelectionDialogBuilder() {
+		return userInteractor.getSingleSelectionDialogBuilder();
+	}
+
+	@Override
+	public MultipleChoiceMultiSelectionDialogBuilder getMultiSelectionDialogBuilder() {
+		return userInteractor.getMultiSelectionDialogBuilder();
+	}
 
 }
