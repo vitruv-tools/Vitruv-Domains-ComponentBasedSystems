@@ -28,9 +28,8 @@ import tools.vitruv.framework.userinteraction.MultipleChoiceMultiSelectionDialog
 import tools.vitruv.framework.userinteraction.MultipleChoiceSingleSelectionDialogBuilder;
 import tools.vitruv.framework.userinteraction.NotificationDialogBuilder;
 import tools.vitruv.framework.userinteraction.TextInputDialogBuilder;
-import tools.vitruv.framework.userinteraction.UserInteracting;
-import tools.vitruv.framework.userinteraction.UserInteractionType;
-import tools.vitruv.framework.userinteraction.impl.UserInteractor;
+import tools.vitruv.framework.userinteraction.UserInteractor;
+import tools.vitruv.framework.userinteraction.impl.UserInteractorImpl;
 import tools.vitruv.framework.util.datatypes.ModelInstance;
 import tools.vitruv.framework.util.datatypes.VURI;
 import tools.vitruv.framework.vsum.VirtualModel;
@@ -39,8 +38,8 @@ import tools.vitruv.framework.vsum.modelsynchronization.ChangePropagator;
 /**
  * @author messinger
  *         <p>
- *         Extends {@link AbstractMonitoredEditor} and implements {@link UserInteracting} by
- *         delegation to a {@link UserInteractor}. The {@link MonitoredEditor} uses the
+ *         Extends {@link AbstractMonitoredEditor} and implements {@link UserInteractor} by
+ *         delegation to a {@link UserInteractorImpl}. The {@link MonitoredEditor} uses the
  *         {@link ASTChangeListener} and the {@link RefactoringChangeListener} to monitor changes in
  *         Java source code. Both listeners generate {@link ChangeClassifyingEvent}s which are
  *         transferred to the {@link ChangeResponder} who builds and returns {@link EMFModelChange}
@@ -49,7 +48,7 @@ import tools.vitruv.framework.vsum.modelsynchronization.ChangePropagator;
  *
  */
 public class MonitoredEditor extends AbstractMonitoredEditor
-        implements UserInteracting, ChangeOperationListener, ChangeSubmitter, IStartup {
+        implements UserInteractor, ChangeOperationListener, ChangeSubmitter, IStartup {
 
     private final Logger log = Logger.getLogger(MonitoredEditor.class);
 
@@ -105,7 +104,7 @@ public class MonitoredEditor extends AbstractMonitoredEditor
     };
 
     private final String[] monitoredProjectNames;
-    private final UserInteracting userInteractor;
+    private final UserInteractor userInteractor;
     private long lastRefactoringTime;
     protected boolean refactoringInProgress = false;
     private CompositeContainerChange changeStash = null;
@@ -166,7 +165,7 @@ public class MonitoredEditor extends AbstractMonitoredEditor
         // dummy CorrespondenceModel
         // this.buildCorrespondenceModel();
         this.changeResponder = new ChangeResponder(this);
-        this.userInteractor = new UserInteractor();
+        this.userInteractor = new UserInteractorImpl();
         this.reportChanges = true;
         // this.addDummyCorrespondencesForAllInterfaceMethods();
     }
