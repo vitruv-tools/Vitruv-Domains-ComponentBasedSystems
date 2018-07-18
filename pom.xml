@@ -52,7 +52,7 @@
 		<repository>
 			<id>Papyrus SysML</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/</url>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/oxygen/</url>
 		</repository>
 		<repository>
 			<id>Vitruv Framework</id>
