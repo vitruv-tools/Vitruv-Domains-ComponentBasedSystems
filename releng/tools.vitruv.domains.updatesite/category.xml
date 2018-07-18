@@ -59,12 +59,4 @@
          Domains for Vitruv
       </description>
    </category-def>
-   <repository-reference location="http://update.emftext.org/release" enabled="true" />
-   <repository-reference location="https://sdqbuild.ipd.kit.edu/nexus/content/repositories/palladiosimulator-release" enabled="true" />
-   <repository-reference location="http://update.jamopp.org/trunk/" enabled="true" />
-   <repository-reference location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon" enabled="true" />
-   <repository-reference location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14" enabled="true" />
-   <repository-reference location="http://https://vitruv-tools.github.io/updatesite/nightly/framework/" enabled="true" />
-   <repository-reference location="http://https://kit-sdq.github.io/updatesite/nightly/metamodels/" enabled="true" />
-   <repository-reference location="http://kastel-scbs.github.io/updatesite/nightly/confidentiality" enabled="true" />
 </site>
