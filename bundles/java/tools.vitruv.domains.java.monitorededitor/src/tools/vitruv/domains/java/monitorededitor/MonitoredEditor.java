@@ -270,11 +270,6 @@ public class MonitoredEditor extends AbstractMonitoredEditor
         this.reportChanges = reportChanges;
     }
 
-    @Override
-    public URI selectURI(final String message) {
-        return this.userInteractor.selectURI(message);
-    }
-
 	@Override
 	public NotificationDialogBuilder getNotificationDialogBuilder() {
 		return userInteractor.getNotificationDialogBuilder();
