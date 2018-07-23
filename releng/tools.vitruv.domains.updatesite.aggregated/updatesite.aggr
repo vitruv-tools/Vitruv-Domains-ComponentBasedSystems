@@ -5,14 +5,11 @@
       <repositories location="../tools.vitruv.domains.updatesite/target/repository"/>
     </contributions>
     <contributions label="externals">
-      <repositories location="https://sdqbuild.ipd.kit.edu/nexus/content/repositories/palladiosimulator-release/">
+      <repositories location="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/releases/latest/">
         <features name="de.uka.ipd.sdq.identifier.feature.feature.group" versionRange="2.1.0"/>
         <features name="org.palladiosimulator.pcm.feature.feature.group" versionRange="4.0.1"/>
       </repositories>
-      <repositories location="https://sdqbuild.ipd.kit.edu/nexus/content/groups/papyprus-sysml-emftext/" mirrorArtifacts="false">
-        <features name="org.eclipse.papyrus.infra.discovery.feature.feature.group" versionRange="3.0.0"/>
-        <features name="org.eclipse.papyrus.sdk.feature.feature.group" versionRange="2.0.1"/>
-        <features name="org.eclipse.papyrus.sysml14.feature.feature.group" versionRange="0.10.0"/>
+      <repositories location="http://update.emftext.org/release" mirrorArtifacts="false">
         <features name="org.emftext.commons.antlr3_4_0.feature.group" versionRange="3.4.0"/>
         <features name="org.emftext.commons.jdt.feature.group" versionRange="1.4.1"/>
         <features name="org.emftext.commons.layout.feature.group" versionRange="1.4.1"/>
@@ -30,7 +27,20 @@
       <repositories location="http://kit-sdq.github.io/updatesite/nightly/commons">
         <features name="edu.kit.ipd.sdq.commons.util.pcm.feature.feature.group" versionRange="1.1.0"/>
       </repositories>
-      <repositories location="https://sdqbuild.ipd.kit.edu/nexus/content/groups/eclipse-oxygen-complete/" mirrorArtifacts="false">
+      <repositories location="http://kastel-scbs.github.io/updatesite/nightly/confidentiality" mirrorArtifacts="false">
+        <features name="edu.kit.kastel.scbs.confidentiality.feature.source.feature.group" versionRange="[1.0.0,2.0.0)"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/app4mc/updatesites/releases/0.8.2/" mirrorArtifacts="false">
+        <features name="org.eclipse.app4mc.amalthea.models.feature.group"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen" mirrorArtifacts="false">
+        <features name="org.eclipse.papyrus.infra.discovery.feature.feature.group" versionRange="3.0.0"/>
+        <features name="org.eclipse.papyrus.sdk.feature.feature.group" versionRange="2.0.1"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/oxygen/" mirrorArtifacts="false">
+        <features name="org.eclipse.papyrus.sysml14.feature.feature.group" versionRange="0.10.0"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/releases/oxygen/" mirrorArtifacts="false">
         <features name="org.eclipse.emf.ecore.edit.feature.group" versionRange="2.9.0"/>
         <features name="org.eclipse.emf.ecore.feature.group" versionRange="2.12.0"/>
         <features name="org.eclipse.emf.common.feature.group" versionRange="2.12.0"/>
@@ -38,12 +48,6 @@
         <features name="org.eclipse.xtend.sdk.feature.group" versionRange="2.12.0"/>
         <features name="org.eclipse.xtext.ui.feature.group" versionRange="2.12.0"/>
         <features name="org.eclipse.xtext.xbase.feature.group" versionRange="2.12.0"/>
-      </repositories>
-      <repositories location="http://kastel-scbs.github.io/updatesite/nightly/confidentiality" mirrorArtifacts="false">
-        <features name="edu.kit.kastel.scbs.confidentiality.feature.source.feature.group" versionRange="[1.0.0,2.0.0)"/>
-      </repositories>
-      <repositories location="http://download.eclipse.org/app4mc/updatesites/releases/0.8.2/">
-        <features name="org.eclipse.app4mc.amalthea.models.feature.group"/>
       </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/updatesite/nightly/framework"/>
