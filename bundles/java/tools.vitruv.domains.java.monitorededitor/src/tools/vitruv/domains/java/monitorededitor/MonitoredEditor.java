@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.ui.IStartup;
 
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.ASTChangeListener;
@@ -23,13 +22,13 @@ import tools.vitruv.framework.change.description.VitruviusChangeFactory;
 import tools.vitruv.framework.uuid.UuidGeneratorAndResolver;
 import tools.vitruv.framework.ui.monitorededitor.AbstractMonitoredEditor;
 import tools.vitruv.framework.change.description.VitruviusChange;
-import tools.vitruv.framework.userinteraction.ConfirmationDialogBuilder;
-import tools.vitruv.framework.userinteraction.MultipleChoiceMultiSelectionDialogBuilder;
-import tools.vitruv.framework.userinteraction.MultipleChoiceSingleSelectionDialogBuilder;
-import tools.vitruv.framework.userinteraction.NotificationDialogBuilder;
-import tools.vitruv.framework.userinteraction.TextInputDialogBuilder;
+import tools.vitruv.framework.userinteraction.UserInteractionFactory;
 import tools.vitruv.framework.userinteraction.UserInteractor;
-import tools.vitruv.framework.userinteraction.impl.UserInteractorImpl;
+import tools.vitruv.framework.userinteraction.builder.ConfirmationInteractionBuilder;
+import tools.vitruv.framework.userinteraction.builder.MultipleChoiceMultiSelectionInteractionBuilder;
+import tools.vitruv.framework.userinteraction.builder.MultipleChoiceSingleSelectionInteractionBuilder;
+import tools.vitruv.framework.userinteraction.builder.NotificationInteractionBuilder;
+import tools.vitruv.framework.userinteraction.builder.TextInputInteractionBuilder;
 import tools.vitruv.framework.util.datatypes.ModelInstance;
 import tools.vitruv.framework.util.datatypes.VURI;
 import tools.vitruv.framework.vsum.VirtualModel;
@@ -165,7 +164,7 @@ public class MonitoredEditor extends AbstractMonitoredEditor
         // dummy CorrespondenceModel
         // this.buildCorrespondenceModel();
         this.changeResponder = new ChangeResponder(this);
-        this.userInteractor = new UserInteractorImpl();
+        this.userInteractor = UserInteractionFactory.instance.createDialogUserInteractor();
         this.reportChanges = true;
         // this.addDummyCorrespondencesForAllInterfaceMethods();
     }
@@ -271,27 +270,27 @@ public class MonitoredEditor extends AbstractMonitoredEditor
     }
 
 	@Override
-	public NotificationDialogBuilder getNotificationDialogBuilder() {
+	public NotificationInteractionBuilder getNotificationDialogBuilder() {
 		return userInteractor.getNotificationDialogBuilder();
 	}
 
 	@Override
-	public ConfirmationDialogBuilder getConfirmationDialogBuilder() {
+	public ConfirmationInteractionBuilder getConfirmationDialogBuilder() {
 		return userInteractor.getConfirmationDialogBuilder();
 	}
 
 	@Override
-	public TextInputDialogBuilder getTextInputDialogBuilder() {
+	public TextInputInteractionBuilder getTextInputDialogBuilder() {
 		return userInteractor.getTextInputDialogBuilder();
 	}
 
 	@Override
-	public MultipleChoiceSingleSelectionDialogBuilder getSingleSelectionDialogBuilder() {
+	public MultipleChoiceSingleSelectionInteractionBuilder getSingleSelectionDialogBuilder() {
 		return userInteractor.getSingleSelectionDialogBuilder();
 	}
 
 	@Override
-	public MultipleChoiceMultiSelectionDialogBuilder getMultiSelectionDialogBuilder() {
+	public MultipleChoiceMultiSelectionInteractionBuilder getMultiSelectionDialogBuilder() {
 		return userInteractor.getMultiSelectionDialogBuilder();
 	}
 
