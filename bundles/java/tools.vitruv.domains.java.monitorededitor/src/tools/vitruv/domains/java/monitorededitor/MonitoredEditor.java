@@ -38,7 +38,7 @@ import tools.vitruv.framework.vsum.modelsynchronization.ChangePropagator;
  * @author messinger
  *         <p>
  *         Extends {@link AbstractMonitoredEditor} and implements {@link UserInteractor} by
- *         delegation to a {@link UserInteractorImpl}. The {@link MonitoredEditor} uses the
+ *         delegation to a dialog {@link UserInteractor}. The {@link MonitoredEditor} uses the
  *         {@link ASTChangeListener} and the {@link RefactoringChangeListener} to monitor changes in
  *         Java source code. Both listeners generate {@link ChangeClassifyingEvent}s which are
  *         transferred to the {@link ChangeResponder} who builds and returns {@link EMFModelChange}
