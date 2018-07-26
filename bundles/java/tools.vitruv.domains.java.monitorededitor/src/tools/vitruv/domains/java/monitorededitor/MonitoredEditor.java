@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.ui.IStartup;
 
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.ASTChangeListener;
@@ -23,9 +22,13 @@ import tools.vitruv.framework.change.description.VitruviusChangeFactory;
 import tools.vitruv.framework.uuid.UuidGeneratorAndResolver;
 import tools.vitruv.framework.ui.monitorededitor.AbstractMonitoredEditor;
 import tools.vitruv.framework.change.description.VitruviusChange;
-import tools.vitruv.framework.userinteraction.UserInteracting;
-import tools.vitruv.framework.userinteraction.UserInteractionType;
-import tools.vitruv.framework.userinteraction.impl.UserInteractor;
+import tools.vitruv.framework.userinteraction.UserInteractionFactory;
+import tools.vitruv.framework.userinteraction.UserInteractor;
+import tools.vitruv.framework.userinteraction.builder.ConfirmationInteractionBuilder;
+import tools.vitruv.framework.userinteraction.builder.MultipleChoiceMultiSelectionInteractionBuilder;
+import tools.vitruv.framework.userinteraction.builder.MultipleChoiceSingleSelectionInteractionBuilder;
+import tools.vitruv.framework.userinteraction.builder.NotificationInteractionBuilder;
+import tools.vitruv.framework.userinteraction.builder.TextInputInteractionBuilder;
 import tools.vitruv.framework.util.datatypes.ModelInstance;
 import tools.vitruv.framework.util.datatypes.VURI;
 import tools.vitruv.framework.vsum.VirtualModel;
@@ -34,8 +37,8 @@ import tools.vitruv.framework.vsum.modelsynchronization.ChangePropagator;
 /**
  * @author messinger
  *         <p>
- *         Extends {@link AbstractMonitoredEditor} and implements {@link UserInteracting} by
- *         delegation to a {@link UserInteractor}. The {@link MonitoredEditor} uses the
+ *         Extends {@link AbstractMonitoredEditor} and implements {@link UserInteractor} by
+ *         delegation to a dialog {@link UserInteractor}. The {@link MonitoredEditor} uses the
  *         {@link ASTChangeListener} and the {@link RefactoringChangeListener} to monitor changes in
  *         Java source code. Both listeners generate {@link ChangeClassifyingEvent}s which are
  *         transferred to the {@link ChangeResponder} who builds and returns {@link EMFModelChange}
@@ -44,7 +47,7 @@ import tools.vitruv.framework.vsum.modelsynchronization.ChangePropagator;
  *
  */
 public class MonitoredEditor extends AbstractMonitoredEditor
-        implements UserInteracting, ChangeOperationListener, ChangeSubmitter, IStartup {
+        implements UserInteractor, ChangeOperationListener, ChangeSubmitter, IStartup {
 
     private final Logger log = Logger.getLogger(MonitoredEditor.class);
 
@@ -100,7 +103,7 @@ public class MonitoredEditor extends AbstractMonitoredEditor
     };
 
     private final String[] monitoredProjectNames;
-    private final UserInteracting userInteractor;
+    private final UserInteractor userInteractor;
     private long lastRefactoringTime;
     protected boolean refactoringInProgress = false;
     private CompositeContainerChange changeStash = null;
@@ -161,7 +164,7 @@ public class MonitoredEditor extends AbstractMonitoredEditor
         // dummy CorrespondenceModel
         // this.buildCorrespondenceModel();
         this.changeResponder = new ChangeResponder(this);
-        this.userInteractor = new UserInteractor();
+        this.userInteractor = UserInteractionFactory.instance.createDialogUserInteractor();
         this.reportChanges = true;
         // this.addDummyCorrespondencesForAllInterfaceMethods();
     }
@@ -232,22 +235,6 @@ public class MonitoredEditor extends AbstractMonitoredEditor
         System.err.println("MonitoredEditor plugin - earlyStartup");
     }
 
-    @Override
-    public void showMessage(final UserInteractionType type, final String message) {
-        this.userInteractor.showMessage(type, message);
-    }
-
-    @Override
-    public int selectFromMessage(final UserInteractionType type, final String message,
-            final String... selectionDescriptions) {
-        return this.userInteractor.selectFromMessage(type, message, selectionDescriptions);
-    }
-
-    @Override
-    public String getTextInput(final String msg) {
-        return this.userInteractor.getTextInput(msg);
-    }
-
     public void startASTListening() {
         this.astListener.startListening();
     }
@@ -282,9 +269,29 @@ public class MonitoredEditor extends AbstractMonitoredEditor
         this.reportChanges = reportChanges;
     }
 
-    @Override
-    public URI selectURI(final String message) {
-        return this.userInteractor.selectURI(message);
-    }
+	@Override
+	public NotificationInteractionBuilder getNotificationDialogBuilder() {
+		return userInteractor.getNotificationDialogBuilder();
+	}
+
+	@Override
+	public ConfirmationInteractionBuilder getConfirmationDialogBuilder() {
+		return userInteractor.getConfirmationDialogBuilder();
+	}
+
+	@Override
+	public TextInputInteractionBuilder getTextInputDialogBuilder() {
+		return userInteractor.getTextInputDialogBuilder();
+	}
+
+	@Override
+	public MultipleChoiceSingleSelectionInteractionBuilder getSingleSelectionDialogBuilder() {
+		return userInteractor.getSingleSelectionDialogBuilder();
+	}
+
+	@Override
+	public MultipleChoiceMultiSelectionInteractionBuilder getMultiSelectionDialogBuilder() {
+		return userInteractor.getMultiSelectionDialogBuilder();
+	}
 
 }
