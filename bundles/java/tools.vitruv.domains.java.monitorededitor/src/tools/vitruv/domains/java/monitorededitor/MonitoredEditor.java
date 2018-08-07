@@ -252,6 +252,14 @@ public class MonitoredEditor extends AbstractMonitoredEditor
 
             @Override
             protected IStatus run(final IProgressMonitor monitor) {
+            	// Wait some time to ensure that all file system accesses (package/file creation etc)
+            	// have been finalized, as they are executed concurrently
+            	// TODO This is rather ugly. Can be wait for some kind of generic event here? Probably not...
+            	try {
+            		Thread.sleep(200);
+            	} catch (InterruptedException e) {
+            		// Do nothing
+            	}
                 if (null != change) {
                     MonitoredEditor.this.virtualModel.propagateChange(change);
                 } else {
