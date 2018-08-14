@@ -4,10 +4,10 @@ import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import edu.kit.kastel.scbs.confidentiality.ConfidentialityPackage
 import static tools.vitruv.domains.confidentiality.ConfidentialityNamespace.*;
-import tools.vitruv.framework.domains.AbstractVitruvDomain
+import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 
-class ConfidentialityDomain extends AbstractVitruvDomain {
+class ConfidentialityDomain extends AbstractTuidAwareVitruvDomain {
 	public static final String METAMODEL_NAME = "Confidentiality"
 	
 	package new() {
