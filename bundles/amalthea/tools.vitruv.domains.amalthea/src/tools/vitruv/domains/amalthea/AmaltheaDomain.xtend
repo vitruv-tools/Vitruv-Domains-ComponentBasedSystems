@@ -2,12 +2,12 @@ package tools.vitruv.domains.amalthea
 
 import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
-import tools.vitruv.framework.domains.AbstractVitruvDomain
 import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 import static tools.vitruv.domains.amalthea.AmaltheaNamespace.*
 import org.eclipse.app4mc.amalthea.model.AmaltheaPackage
+import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
-class AmaltheaDomain extends AbstractVitruvDomain {
+class AmaltheaDomain extends AbstractTuidAwareVitruvDomain {
 	public static final String METAMODEL_NAME = "Amalthea"
 	
 	package new() {

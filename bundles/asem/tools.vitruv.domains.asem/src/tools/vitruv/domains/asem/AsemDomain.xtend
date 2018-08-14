@@ -4,10 +4,10 @@ import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import edu.kit.ipd.sdq.ASEM.base.BasePackage
 import static tools.vitruv.domains.asem.AsemNamespace.*;
-import tools.vitruv.framework.domains.AbstractVitruvDomain
 import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
+import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
-class AsemDomain extends AbstractVitruvDomain {
+class AsemDomain extends AbstractTuidAwareVitruvDomain {
 	public static final String METAMODEL_NAME = "ASEM"
 	
 	package new() {

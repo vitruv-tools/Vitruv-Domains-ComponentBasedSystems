@@ -5,10 +5,10 @@ import tools.vitruv.domains.sysml.tuid.SysMlToUmlResolver
 import tools.vitruv.domains.sysml.tuid.SysMlTuidCalculatorAndResolver
 import static tools.vitruv.domains.sysml.SysMlNamspace.*;
 import org.eclipse.uml2.uml.UMLPackage
-import tools.vitruv.framework.domains.AbstractVitruvDomain
 import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
+import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
-class SysMlDomain extends AbstractVitruvDomain {
+class SysMlDomain extends AbstractTuidAwareVitruvDomain {
 	public static final String METAMODEL_NAME = "SysML";
 	public static val NAMESPACE_URIS = ROOT_PACKAGE.nsURIsRecursive;
 	private val extension SysMlToUmlResolver sysMlToUmlResolver;

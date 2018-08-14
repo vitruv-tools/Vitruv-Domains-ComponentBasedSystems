@@ -2,11 +2,11 @@ package tools.vitruv.domains.java
 
 import tools.vitruv.domains.java.tuid.JavaTuidCalculatorAndResolver
 import static tools.vitruv.domains.java.JavaNamespace.*
-import tools.vitruv.framework.domains.AbstractVitruvDomain
 import tools.vitruv.domains.java.builder.VitruviusJavaBuilderApplicator
 import org.emftext.language.java.JavaClasspath
+import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
-final class JavaDomain extends AbstractVitruvDomain {
+final class JavaDomain extends AbstractTuidAwareVitruvDomain {
 	private static final String METAMODEL_NAME = "Java";
 	private boolean shouldTransitivelyPropagateChanges = false;
 		
