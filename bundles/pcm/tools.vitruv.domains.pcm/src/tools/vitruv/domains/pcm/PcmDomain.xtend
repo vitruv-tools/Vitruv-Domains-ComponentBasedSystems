@@ -5,10 +5,10 @@ import org.palladiosimulator.pcm.core.entity.EntityPackage
 import de.uka.ipd.sdq.identifier.IdentifierPackage
 import static extension tools.vitruv.domains.pcm.PcmNamespace.*;
 import org.palladiosimulator.pcm.repository.RepositoryPackage
-import tools.vitruv.framework.domains.AbstractVitruvDomain
 import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
+import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
-final class PcmDomain extends AbstractVitruvDomain {
+final class PcmDomain extends AbstractTuidAwareVitruvDomain {
 	private static final String METAMODEL_NAME = "PCM";
 	private boolean shouldTransitivelyPropagateChanges = false;
 	
