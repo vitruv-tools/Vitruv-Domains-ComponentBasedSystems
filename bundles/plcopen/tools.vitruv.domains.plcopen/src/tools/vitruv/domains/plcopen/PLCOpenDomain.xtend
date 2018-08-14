@@ -3,10 +3,10 @@ package tools.vitruv.domains.plcopen
 import org.plcopen.xml.tc60201.Tc60201Package
 import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
-import tools.vitruv.framework.domains.AbstractVitruvDomain
+import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 
-class PLCOpenDomain extends AbstractVitruvDomain {
+class PLCOpenDomain extends AbstractTuidAwareVitruvDomain {
 	public static final String METAMODEL_NAME = "PLCOpen"
 	public static val NAMESPACE_URIS = Tc60201Package.eINSTANCE.nsURIsRecursive
 	public static final String FILE_EXTENSION = "tc60201";
