@@ -5,8 +5,6 @@ import org.eclipse.uml2.uml.resource.UMLResource
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import tools.vitruv.domains.uml.tuid.UmlTuidCalculatorAndResolver
 import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.uml2.uml.internal.resource.UMLResourceWithoutUUIDsFactoryImpl
 import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
 class UmlDomain extends AbstractTuidAwareVitruvDomain {
@@ -17,7 +15,6 @@ class UmlDomain extends AbstractTuidAwareVitruvDomain {
 
 	package new() {
 		super(METAMODEL_NAME, UMLPackage.eINSTANCE, generateTuidCalculator(), FILE_EXTENSION);
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, new UMLResourceWithoutUUIDsFactoryImpl());
 	}
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
