@@ -37,4 +37,8 @@ final class JavaDomain extends AbstractTuidAwareVitruvDomain {
 		shouldTransitivelyPropagateChanges = true
 	}
 	
+	override supportsUuids() {
+		return false;
+	}
+
 }
