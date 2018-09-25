@@ -2,8 +2,8 @@ package tools.vitruv.domains.aml
 
 import org.junit.Test
 import org.junit.Assert
-import aml.AmlFactory
-import aml.AmlPackage
+import edu.kit.sdq.aml_aggregator.Aml_aggregatorFactory
+import edu.kit.sdq.aml_aggregator.Aml_aggregatorPackage
 
 class AMLDomainTests {
 	//TODO

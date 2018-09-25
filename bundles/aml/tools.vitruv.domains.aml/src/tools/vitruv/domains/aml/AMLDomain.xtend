@@ -3,21 +3,21 @@ package tools.vitruv.domains.aml
 import tools.vitruv.domains.aml.tuid.AttributeTuidCalculatorAndResolverSpecificRoot
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
-import aml.AmlPackage
+import edu.kit.sdq.aml_aggregator.Aml_aggregatorPackage
 import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
 class AMLDomain extends AbstractTuidAwareVitruvDomain {
 	public static final String METAMODEL_NAME = "AML"
-	public static val NAMESPACE_URIS = AmlPackage.eINSTANCE.nsURIsRecursive
+	public static val NAMESPACE_URIS = Aml_aggregatorPackage.eINSTANCE.nsURIsRecursive
 	public static final String FILE_EXTENSION = "aml";
 
 	package new() {
-		super(METAMODEL_NAME, AmlPackage.eINSTANCE, generateTuidCalculator(), FILE_EXTENSION);
+		super(METAMODEL_NAME, Aml_aggregatorPackage.eINSTANCE, generateTuidCalculator(), FILE_EXTENSION);
 	}
 
 	//TODO
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
-		return new AttributeTuidCalculatorAndResolverSpecificRoot(AmlPackage.eNS_URI, #["name","iD", "value", "fileName", "originID", "alias", AmlPackage.Literals.AML_ROOT.name], #["xMLNSPrefixMap"]);
+		return new AttributeTuidCalculatorAndResolverSpecificRoot(Aml_aggregatorPackage.eNS_URI, #["name","iD", "value", "fileName", "originID", "alias", Aml_aggregatorPackage.Literals.AML_PROJECT.name], #["xMLNSPrefixMap"]);
 	}
 
 	override getBuilderApplicator() {
