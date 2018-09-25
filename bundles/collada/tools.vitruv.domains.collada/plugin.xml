@@ -10,7 +10,7 @@
          name="Collada Domain Provider"
          point="tools.vitruv.framework.metamodel.domain">
       <domainProvider
-            class="tools.vitruv.domains.aml.AMLDomainProvider"></domainProvider>
+            class="tools.vitruv.domains.collada.ColladaDomainProvider"></domainProvider>
    </extension>
 
 </plugin>
