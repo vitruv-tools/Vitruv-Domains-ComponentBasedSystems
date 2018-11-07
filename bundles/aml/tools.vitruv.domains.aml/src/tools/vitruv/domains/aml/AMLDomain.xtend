@@ -9,7 +9,7 @@ import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 class AMLDomain extends AbstractTuidAwareVitruvDomain {
 	public static final String METAMODEL_NAME = "AML"
 	public static val NAMESPACE_URIS = Aml_aggregatorPackage.eINSTANCE.nsURIsRecursive
-	public static final String FILE_EXTENSION = "aml";
+	public static final String FILE_EXTENSION = "aml_aggregator";
 
 	package new() {
 		super(METAMODEL_NAME, Aml_aggregatorPackage.eINSTANCE, generateTuidCalculator(), FILE_EXTENSION);
