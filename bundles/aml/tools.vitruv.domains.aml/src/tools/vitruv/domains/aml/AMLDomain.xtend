@@ -15,9 +15,8 @@ class AMLDomain extends AbstractTuidAwareVitruvDomain {
 		super(METAMODEL_NAME, Aml_aggregatorPackage.eINSTANCE, generateTuidCalculator(), FILE_EXTENSION);
 	}
 
-	//TODO
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
-		return new AttributeTuidCalculatorAndResolverSpecificRoot(Aml_aggregatorPackage.eNS_URI, #["name","iD", "value", "fileName", "originID", "alias", Aml_aggregatorPackage.Literals.AML_PROJECT.name], #["xMLNSPrefixMap"]);
+		return new AttributeTuidCalculatorAndResolverSpecificRoot(Aml_aggregatorPackage.eNS_URI, #["name", "path", Aml_aggregatorPackage.Literals.AML_PROJECT.name], #["xMLNSPrefixMap"]);
 	}
 
 	override getBuilderApplicator() {
