@@ -16,7 +16,7 @@ class ColladaDomain extends AbstractTuidAwareVitruvDomain {
 	}
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
-		return new AttributeTuidCalculatorAndResolverSpecificRoot(ColladaPackage.eNS_URI, #["name", "id", "value", "projectName", ColladaPackage.eINSTANCE.getCOLLADAType.name], #["xMLNSPrefixMap"]);
+		return new AttributeTuidCalculatorAndResolverSpecificRoot(ColladaPackage.eNS_URI, #["name", "id", "value", "projectName"], #["xMLNSPrefixMap"]);
 	}
 
 	override getBuilderApplicator() {
