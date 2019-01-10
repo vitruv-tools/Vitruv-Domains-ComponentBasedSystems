@@ -23,7 +23,7 @@
       <import plugin="org.junit"/>
       <import plugin="com.google.guava"/>
       <import plugin="org.eclipse.xtext.xbase.lib"/>
-      <import plugin="org.eclipse.xtend.lib" version="2.12.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtend.lib" version="2.16.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtend.lib.macro"/>
       <import feature="tools.vitruv.framework.feature" version="0.2.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.app4mc.amalthea.models" version="0.8.2.201710301147"/>

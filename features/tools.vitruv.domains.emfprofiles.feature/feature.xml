@@ -26,9 +26,9 @@
       <import plugin="com.google.guava"/>
       <import plugin="org.eclipse.xtend.lib"/>
       <import plugin="org.eclipse.xtend.lib.macro"/>
-      <import feature="org.eclipse.xtend.source" version="2.2.0.v201605260315"/>
-      <import feature="org.eclipse.xtext.xbase.lib" version="2.12.0.v20170518-0758"/>
-      <import feature="org.modelversioning.emfprofile.feature" version="1.0.0.201708070840"/>
+      <import feature="org.eclipse.xtend.source" version="2.2.0"/>
+      <import feature="org.eclipse.xtext.xbase.lib" version="2.16.0"/>
+      <import feature="org.modelversioning.emfprofile.feature" version="1.0.0"/>
    </requires>
 
    <plugin
