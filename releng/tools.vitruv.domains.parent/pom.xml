@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>tools.vitruv</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.1.0</version>
+	</parent>
+	<artifactId>domains-parent</artifactId>
+	<version>0.3.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<repositories>
+		<!-- If you adjust a repository here, please also adjust the repository in the b3 aggregator. -->
+		<repository>
+			<id>Vitruv Framework</id>
+			<layout>p2</layout>
+			<url>https://vitruv-tools.github.io/updatesite/nightly/framework/</url>
+		</repository>
+		<repository>
+			<id>SDQ Commons</id>
+			<layout>p2</layout>
+			<url>https://kit-sdq.github.io/updatesite/release/commons/</url>
+		</repository>
+		<repository>
+			<id>SDQ Metamodels</id>
+			<layout>p2</layout>
+			<url>https://kit-sdq.github.io/updatesite/release/metamodels/</url>
+		</repository>
+		<!--EMFText repository currently not available
+		<repository>
+			<id>EMFText</id>
+			<layout>p2</layout>
+			<url>http://update.emftext.org/release</url>
+		</repository>-->
+		<repository>
+			<id>EMFText and JaMoPP (P2 Wrapper)</id>
+			<layout>p2</layout>
+			<url>https://kit-sdq.github.io/updatesite/release/p2-wrapper/</url>
+		</repository>
+		<repository>
+			<id>Palladiosimulator</id>
+			<layout>p2</layout>
+			<url>https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/releases/latest/</url>
+		</repository>
+		<repository>
+			<id>Papyrus</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2018-09/</url>
+		</repository>
+		<repository>
+			<id>Papyrus SysML</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/2018-09/</url>
+		</repository>
+		<repository>
+		  <id>Confidentiality4CBSE</id>
+		  <layout>p2</layout>
+		  <url>http://kastel-scbs.github.io/updatesite/nightly/confidentiality</url>
+		</repository>
+		<repository>
+		  <id>App4MC (Amalthea)</id>
+		  <layout>p2</layout>
+		  <url>http://download.eclipse.org/app4mc/updatesites/releases/0.8.2/</url>
+		</repository>
+		<repository>
+			<id>Sphinx</id> <!-- Necessary for Amalthea -->
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/sphinx/releases/0.11.x</url>
+		</repository>
+	</repositories>
+
+</project>
