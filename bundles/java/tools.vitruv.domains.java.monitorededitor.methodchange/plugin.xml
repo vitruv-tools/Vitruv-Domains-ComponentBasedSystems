@@ -1,6 +1,6 @@
 <plugin>
    <extension
-         point="tools.vitruv.domains.java.monitorededitor.astchangelistener.postreconcile">
+         point="tools.vitruv.domains.java.monitorededitor.astchangelistener.classification.postreconcile">
       <provides
             provider="tools.vitruv.domains.java.monitorededitor.methodchange.changeclassifiers.MethodParameterNameChangedClassifier">
       </provides>
@@ -9,7 +9,7 @@
       </provides>
    </extension>
    <extension
-         point="tools.vitruv.domains.java.monitorededitor">
+         point="tools.vitruv.domains.java.monitorededitor.changeeventextendedvisitors">
       <provides
             provider="tools.vitruv.domains.java.monitorededitor.methodchange.changeresponder.MethodParameterNameChangedVisitor">
       </provides>
