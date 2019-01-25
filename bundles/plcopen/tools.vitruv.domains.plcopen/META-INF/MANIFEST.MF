@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vitruvius Domain PLCOpen Metamodel
 Bundle-SymbolicName: tools.vitruv.domains.plcopen;singleton:=true
+Automatic-Module-Name: tools.vitruv.domains.plcopen
 Bundle-Version: 0.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit,
@@ -17,4 +18,3 @@ Require-Bundle: org.junit,
  org.apache.log4j;bundle-version="1.2.15"
 Export-Package: tools.vitruv.domains.plcopen
 Bundle-Vendor: vitruv.tools
-

@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vitruvius Domains PCM Utilities
 Bundle-SymbolicName: tools.vitruv.domains.pcm.util
+Automatic-Module-Name: tools.vitruv.domains.pcm.util
 Bundle-Version: 0.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.google.guava,
@@ -12,4 +13,3 @@ Require-Bundle: com.google.guava,
  edu.kit.ipd.sdq.commons.util.pcm;visibility:=reexport
 Export-Package: tools.vitruv.domains.pcm.util
 Bundle-Vendor: vitruv.tools
-

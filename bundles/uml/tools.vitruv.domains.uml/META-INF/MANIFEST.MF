@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vitruvius Domain UML Metamodel
 Bundle-SymbolicName: tools.vitruv.domains.uml;singleton:=true
+Automatic-Module-Name: tools.vitruv.domains.uml
 Bundle-Version: 0.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
@@ -23,4 +24,3 @@ Comment: The above one is necessary because otherwise pathmap resources cannot b
 Export-Package: tools.vitruv.domains.uml,
  tools.vitruv.domains.uml.tuid
 Bundle-Vendor: vitruv.tools
-

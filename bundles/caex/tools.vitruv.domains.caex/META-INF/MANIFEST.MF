@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vitruvius Domain CAEX Metamodel
 Bundle-SymbolicName: tools.vitruv.domains.caex;singleton:=true
+Automatic-Module-Name: tools.vitruv.domains.caex
 Bundle-Version: 0.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit,
@@ -18,4 +19,3 @@ Require-Bundle: org.junit,
  tools.vitruv.extensions.emf;bundle-version="0.2.0"
 Export-Package: tools.vitruv.domains.caex
 Bundle-Vendor: vitruv.tools
-
