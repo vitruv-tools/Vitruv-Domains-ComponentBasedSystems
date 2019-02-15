@@ -20,7 +20,6 @@
 		<module>amalthea</module>
 		<module>confidentiality</module>
 		<module>emfprofiles</module>
-		<module>caex</module>
 	</modules>
 
 </project>
