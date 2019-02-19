@@ -30,9 +30,6 @@
       <repositories location="http://kastel-scbs.github.io/updatesite/nightly/confidentiality" mirrorArtifacts="false">
         <features name="edu.kit.kastel.scbs.confidentiality.feature.source.feature.group" versionRange="[1.0.0,2.0.0)"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/app4mc/updatesites/releases/0.8.2/" mirrorArtifacts="false">
-        <features name="org.eclipse.app4mc.amalthea.models.feature.group"/>
-      </repositories>
       <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2018-09" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.infra.core.feature.feature.group" versionRange="3.0.0"/>
         <features name="org.eclipse.papyrus.sdk.feature.feature.group" versionRange="2.0.1"/>
@@ -48,9 +45,6 @@
         <features name="org.eclipse.xtend.sdk.feature.group" versionRange="2.12.0"/>
         <features name="org.eclipse.xtext.ui.feature.group" versionRange="2.12.0"/>
         <features name="org.eclipse.xtext.xbase.feature.group" versionRange="2.12.0"/>
-      </repositories>
-      <repositories location="http://download.eclipse.org/sphinx/releases/0.11.x" mirrorArtifacts="false">
-        <features name="org.eclipse.sphinx.feature.group"/>
       </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/updatesite/nightly/framework"/>
