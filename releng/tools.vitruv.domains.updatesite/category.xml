@@ -24,12 +24,6 @@
    <feature id="tools.vitruv.domains.uml.feature.source" version="0.3.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.asem.feature_0.3.0.qualifier.jar" id="tools.vitruv.domains.asem.feature" version="0.3.0.qualifier">
-      <category name="Vitruv Domains"/>
-   </feature>
-   <feature id="tools.vitruv.domains.asem.feature.source" version="0.3.0.qualifier">
-      <category name="Vitruv Domains"/>
-   </feature>
    <feature url="features/tools.vitruv.domains.confidentiality.feature_0.3.0.qualifier.jar" id="tools.vitruv.domains.confidentiality.feature" version="0.3.0.qualifier">
       <category name="Vitruv Domains"/>
    </feature>

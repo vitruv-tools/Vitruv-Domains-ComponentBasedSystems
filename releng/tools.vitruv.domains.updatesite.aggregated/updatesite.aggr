@@ -18,7 +18,6 @@
         <features name="org.emftext.commons.layout.feature.group" versionRange="1.4.1"/>
       </repositories>
       <repositories location="http://kit-sdq.github.io/updatesite/release/metamodels" mirrorArtifacts="false">
-        <features name="edu.kit.ipd.sdq.metamodels.asem.feature.feature.group" versionRange="0.2.0" categories="//@customCategories[identifier='metamodels']"/>
         <features name="edu.kit.ipd.sdq.metamodels.families.feature.feature.group" versionRange="1.0.0" categories="//@customCategories[identifier='metamodels']"/>
         <features name="edu.kit.ipd.sdq.metamodels.persons.feature.feature.group" versionRange="1.0.0" categories="//@customCategories[identifier='metamodels']"/>
         <features name="edu.kit.ipd.sdq.metamodels.addresses.feature.feature.group" versionRange="1.0.0" categories="//@customCategories[identifier='metamodels']"/>
@@ -52,5 +51,5 @@
   <configurations architecture="x86_64"/>
   <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
   <configurations operatingSystem="macosx" windowSystem="cocoa" architecture="x86_64"/>
-  <customCategories identifier="metamodels" label="SDQ Metamodels" features="//@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.3 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.4"/>
+  <customCategories identifier="metamodels" label="SDQ Metamodels" features="//@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.3"/>
 </aggregator:Aggregation>

@@ -16,7 +16,6 @@
 		<module>java</module>
 		<module>pcm</module>
 		<module>uml</module>
-		<module>asem</module>
 		<module>confidentiality</module>
 		<module>emfprofiles</module>
 	</modules>
