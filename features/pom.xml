@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>tools.vitruv</groupId>
-		<artifactId>tools.vitruv.domains</artifactId>
+		<artifactId>tools.vitruv.domains.cbs</artifactId>
 		<version>0.3.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>features</artifactId>
@@ -17,11 +17,8 @@
 		<module>tools.vitruv.domains.pcm.feature</module>
 		<module>tools.vitruv.domains.sysml.feature</module>
 		<module>tools.vitruv.domains.uml.feature</module>
-		<module>tools.vitruv.domains.asem.feature</module>
-		<module>tools.vitruv.domains.amalthea.feature</module>
 		<module>tools.vitruv.domains.confidentiality.feature</module>
 		<module>tools.vitruv.domains.emfprofiles.feature</module>
-		<module>tools.vitruv.domains.caex.feature</module>
 	</modules>
 	
 </project>
