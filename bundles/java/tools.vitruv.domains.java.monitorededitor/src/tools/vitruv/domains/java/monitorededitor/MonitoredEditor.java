@@ -9,6 +9,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.IStartup;
 
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.ASTChangeListener;
@@ -118,6 +120,14 @@ public class MonitoredEditor extends AbstractMonitoredEditor
 			public List<PropagatedChange> propagateChange(VitruviusChange change) {
 	            return null;
 	        }
+			@Override
+			public List<PropagatedChange> propagateChangedState(Resource newState) {
+				return null;
+			}
+			@Override
+			public List<PropagatedChange> propagateChangedState(Resource newState, URI oldLocation) {
+				return null;
+			}
 			@Override
 			public ModelInstance getModelInstance(VURI modelVuri) {
 				return null;
