@@ -19,6 +19,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.workbench
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: tools.vitruv.domains.java.monitorededitor.refactoringlistener
+Export-Package: tools.vitruv.domains.java.monitorededitor.refactoringlistener,
+ tools.vitruv.domains.java.monitorededitor.refactoringlistener.activator;x-internal:=true,
+ tools.vitruv.domains.java.monitorededitor.refactoringlistener.refactoringParticipants;x-internal:=true
 Import-Package: org.apache.log4j
 Bundle-Vendor: vitruv.tools
