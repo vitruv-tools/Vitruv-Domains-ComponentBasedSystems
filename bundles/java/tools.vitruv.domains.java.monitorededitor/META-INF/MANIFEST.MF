@@ -30,5 +30,6 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: tools.vitruv.domains.java.monitorededitor,
+ tools.vitruv.domains.java.monitorededitor.activator;x-internal:=true,
  tools.vitruv.domains.java.monitorededitor.jamopputil
 Bundle-Vendor: vitruv.tools

@@ -17,5 +17,6 @@ Require-Bundle: tools.vitruv.domains.uml;visibility:=reexport,
  org.eclipse.papyrus.sysml14;visibility:=reexport,
  org.apache.log4j,
  tools.vitruv.extensions.emf
-Export-Package: tools.vitruv.domains.sysml
+Export-Package: tools.vitruv.domains.sysml,
+ tools.vitruv.domains.sysml.tuid;x-internal:=true
 Bundle-Vendor: vitruv.tools

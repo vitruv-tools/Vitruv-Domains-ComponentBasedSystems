@@ -11,5 +11,6 @@ Require-Bundle: org.eclipse.ui,
  org.apache.log4j;bundle-version="1.2.15"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: tools.vitruv.domains.java.monitorededitor.javamodel2ast
+Export-Package: tools.vitruv.domains.java.monitorededitor.javamodel2ast,
+ tools.vitruv.domains.java.monitorededitor.javamodel2ast.activator;x-internal:=true
 Bundle-Vendor: vitruv.tools

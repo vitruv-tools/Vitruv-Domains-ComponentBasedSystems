@@ -27,3 +27,7 @@ Require-Bundle: com.google.guava,
  org.emftext.language.java,
  tools.vitruv.framework.change
 Bundle-Vendor: vitruv.tools
+Export-Package: tools.vitruv.domains.java.monitorededitor.methodchange.changeclassifiers;x-internal:=true,
+ tools.vitruv.domains.java.monitorededitor.methodchange.changeresponder;x-internal:=true,
+ tools.vitruv.domains.java.monitorededitor.methodchange.events;x-internal:=true,
+ tools.vitruv.domains.java.monitorededitor.methodchange.utils;x-internal:=true
