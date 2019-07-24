@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="MonitoredEditor" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="tools.vitruv.domains.java.monitorededitor" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="MonitoredEditor" id="tools.vitruv.domains.java.monitorededitor" name="Change Event Extended Visitors"/>
+         <meta.schema plugin="tools.vitruv.domains.java.monitorededitor" id="changeeventextendedvisitor" name="Change Event Extended Visitors"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
