@@ -3,7 +3,6 @@ package tools.vitruv.domains.java
 import tools.vitruv.domains.java.tuid.JavaTuidCalculatorAndResolver
 import static tools.vitruv.domains.java.JavaNamespace.*
 import tools.vitruv.domains.java.builder.VitruviusJavaBuilderApplicator
-import org.emftext.language.java.JavaClasspath
 import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
 final class JavaDomain extends AbstractTuidAwareVitruvDomain {
@@ -14,7 +13,7 @@ final class JavaDomain extends AbstractTuidAwareVitruvDomain {
 		super(METAMODEL_NAME, ROOT_PACKAGE, generateTuidCalculator(), #[FILE_EXTENSION]);
 		// This is necessary to resolve classes from standard library (e.g. Object, List etc.) 
 		// when running as Plugin
-		JavaClasspath.get().registerStdLib
+		JamoppLibraryHelper.registerStdLib
 	}
 	
 	def protected static generateTuidCalculator() {
