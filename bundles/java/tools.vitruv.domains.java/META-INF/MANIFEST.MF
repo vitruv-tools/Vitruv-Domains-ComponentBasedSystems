@@ -20,7 +20,8 @@ Require-Bundle: com.google.guava,
  tools.vitruv.framework.vsum,
  org.eclipse.core.runtime,
  edu.kit.ipd.sdq.commons.util.java,
- tools.vitruv.domains.java.builder
+ tools.vitruv.domains.java.builder,
+ org.emftext.language.java.resource
 Export-Package: tools.vitruv.domains.java,
  tools.vitruv.domains.java.tuid;x-internal:=true
 Bundle-Vendor: vitruv.tools
