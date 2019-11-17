@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.text;bundle-version="3.8.101",
  org.eclipse.ui.editors;bundle-version="3.8.100",
  org.eclipse.ui.workbench
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Export-Package: tools.vitruv.domains.java.monitorededitor.refactoringlistener,
  tools.vitruv.domains.java.monitorededitor.refactoringlistener.activator;x-internal:=true,
