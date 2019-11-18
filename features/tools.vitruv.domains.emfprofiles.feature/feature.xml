@@ -20,14 +20,14 @@
    </license>
 
    <requires>
-      <import feature="tools.vitruv.framework.feature" version="0.2.0" match="greaterOrEqual"/>
+      <import feature="tools.vitruv.framework.feature" version="0.3.0" match="greaterOrEqual"/>
       <import plugin="org.junit"/>
       <import plugin="org.apache.log4j"/>
       <import plugin="com.google.guava"/>
       <import plugin="org.eclipse.xtend.lib"/>
       <import plugin="org.eclipse.xtend.lib.macro"/>
       <import feature="org.eclipse.xtend.source" version="2.2.0"/>
-      <import feature="org.eclipse.xtext.xbase.lib" version="2.16.0"/>
+      <import feature="org.eclipse.xtext.xbase.lib" version="2.19.0"/>
       <import feature="org.modelversioning.emfprofile.feature" version="1.0.0"/>
    </requires>
 
