@@ -21,15 +21,14 @@
 
    <requires>
       <import feature="org.eclipse.uml2.uml" version="5.3.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.uml2.uml" version="5.3.0" match="greaterOrEqual"/>
       <import plugin="org.junit"/>
       <import plugin="org.apache.log4j"/>
       <import plugin="com.google.guava"/>
       <import plugin="org.eclipse.xtext.xbase.lib"/>
-      <import plugin="org.eclipse.xtend.lib" version="2.16.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtend.lib" version="2.19.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtend.lib.macro"/>
       <import plugin="org.eclipse.uml2.uml.resources"/>
-      <import feature="tools.vitruv.framework.feature" version="0.2.0" match="greaterOrEqual"/>
+      <import feature="tools.vitruv.framework.feature" version="0.3.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

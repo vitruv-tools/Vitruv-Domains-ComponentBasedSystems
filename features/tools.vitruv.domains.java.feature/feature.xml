@@ -25,13 +25,13 @@
    </url>
 
    <requires>
-      <import feature="tools.vitruv.framework.feature" version="0.2.0" match="greaterOrEqual"/>
+      <import feature="tools.vitruv.framework.feature" version="0.3.0" match="greaterOrEqual"/>
       <import feature="org.emftext.commons.antlr3_4_0" version="3.4.0" match="greaterOrEqual"/>
       <import feature="org.emftext.language.java" version="1.4.0" match="greaterOrEqual"/>
       <import feature="org.emftext.language.java.jdt" version="1.4.0" match="greaterOrEqual"/>
       <import plugin="com.google.guava"/>
       <import plugin="org.eclipse.xtext.xbase.lib"/>
-      <import plugin="org.eclipse.xtend.lib" version="2.16.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtend.lib" version="2.19.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtend.lib.macro"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.apache.log4j"/>
