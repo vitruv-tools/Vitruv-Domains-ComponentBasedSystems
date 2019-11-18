@@ -7,7 +7,7 @@
     <contributions label="externals">
       <repositories location="https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/releases/latest/">
         <features name="de.uka.ipd.sdq.identifier.feature.feature.group" versionRange="2.1.0"/>
-        <features name="org.palladiosimulator.pcm.feature.feature.group" versionRange="4.0.1"/>
+        <features name="org.palladiosimulator.pcm.feature.feature.group" versionRange="4.1.0"/>
       </repositories>
       <repositories location="http://kit-sdq.github.io/updatesite/release/p2-wrapper" mirrorArtifacts="false">
         <features name="org.emftext.language.java.feature.group" versionRange="1.4.1"/>
@@ -18,32 +18,32 @@
         <features name="org.emftext.commons.layout.feature.group" versionRange="1.4.1"/>
       </repositories>
       <repositories location="http://kit-sdq.github.io/updatesite/release/metamodels" mirrorArtifacts="false">
-        <features name="edu.kit.ipd.sdq.metamodels.families.feature.feature.group" versionRange="1.0.0" categories="//@customCategories[identifier='metamodels']"/>
-        <features name="edu.kit.ipd.sdq.metamodels.persons.feature.feature.group" versionRange="1.0.0" categories="//@customCategories[identifier='metamodels']"/>
-        <features name="edu.kit.ipd.sdq.metamodels.addresses.feature.feature.group" versionRange="1.0.0" categories="//@customCategories[identifier='metamodels']"/>
-        <features name="edu.kit.ipd.sdq.metamodels.recipients.feature.feature.group" versionRange="1.0.0" categories="//@customCategories[identifier='metamodels']"/>
+        <features name="edu.kit.ipd.sdq.metamodels.families.feature.feature.group" versionRange="1.1.0" categories="//@customCategories[identifier='metamodels']"/>
+        <features name="edu.kit.ipd.sdq.metamodels.persons.feature.feature.group" versionRange="1.1.0" categories="//@customCategories[identifier='metamodels']"/>
+        <features name="edu.kit.ipd.sdq.metamodels.addresses.feature.feature.group" versionRange="1.1.0" categories="//@customCategories[identifier='metamodels']"/>
+        <features name="edu.kit.ipd.sdq.metamodels.recipients.feature.feature.group" versionRange="1.1.0" categories="//@customCategories[identifier='metamodels']"/>
       </repositories>
       <repositories location="http://kit-sdq.github.io/updatesite/release/commons" mirrorArtifacts="false">
-        <features name="edu.kit.ipd.sdq.commons.util.pcm.feature.feature.group" versionRange="1.1.0"/>
+        <features name="edu.kit.ipd.sdq.commons.util.pcm.feature.feature.group" versionRange="1.5.0"/>
       </repositories>
       <repositories location="http://kastel-scbs.github.io/updatesite/nightly/confidentiality" mirrorArtifacts="false">
         <features name="edu.kit.kastel.scbs.confidentiality.feature.source.feature.group" versionRange="[1.0.0,2.0.0)"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2018-09" mirrorArtifacts="false">
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2019-09" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.infra.core.feature.feature.group" versionRange="3.0.0"/>
-        <features name="org.eclipse.papyrus.sdk.feature.feature.group" versionRange="2.0.1"/>
+        <features name="org.eclipse.papyrus.sdk.feature.feature.group" versionRange="4.2.0"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/2018-09" mirrorArtifacts="false">
-        <features name="org.eclipse.papyrus.sysml14.feature.feature.group" versionRange="0.10.0"/>
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/2019-06" mirrorArtifacts="false">
+        <features name="org.eclipse.papyrus.sysml14.feature.feature.group" versionRange="1.3.0"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/releases/2018-12/" mirrorArtifacts="false">
+      <repositories location="http://download.eclipse.org/releases/2019-09/" mirrorArtifacts="false">
         <features name="org.eclipse.emf.ecore.edit.feature.group" versionRange="2.9.0"/>
-        <features name="org.eclipse.emf.ecore.feature.group" versionRange="2.12.0"/>
+        <features name="org.eclipse.emf.ecore.feature.group" versionRange="2.19.0"/>
         <features name="org.eclipse.emf.common.feature.group" versionRange="2.12.0"/>
-        <features name="org.eclipse.emf.transaction.feature.group" versionRange="1.10.0"/>
-        <features name="org.eclipse.xtend.sdk.feature.group" versionRange="2.12.0"/>
-        <features name="org.eclipse.xtext.ui.feature.group" versionRange="2.12.0"/>
-        <features name="org.eclipse.xtext.xbase.feature.group" versionRange="2.12.0"/>
+        <features name="org.eclipse.emf.transaction.feature.group" versionRange="1.11.0"/>
+        <features name="org.eclipse.xtend.sdk.feature.group" versionRange="2.19.0"/>
+        <features name="org.eclipse.xtext.ui.feature.group" versionRange="2.19.0"/>
+        <features name="org.eclipse.xtext.xbase.feature.group" versionRange="2.19.0"/>
       </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/updatesite/nightly/framework"/>
