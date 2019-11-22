@@ -22,6 +22,7 @@ class SysMlDomainTests {
 	public def void setup() {
 		TuidManager.instance.reinitialize
 		sysMlDomain = new SysMlDomainProvider().domain;
+		sysMlDomain.registerAtTuidManagement;
 	}
 	
 	@Test
