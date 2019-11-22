@@ -9,6 +9,7 @@ tmp/
 
 # Xtend
 xtend-gen/
+xtend-gen-tests/
 *._trace
 *.xtendbin
 
