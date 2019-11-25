@@ -6,6 +6,7 @@ tmp/
 *.bak
 *.swp
 *.class
+src-gen/
 
 # Xtend
 xtend-gen/
