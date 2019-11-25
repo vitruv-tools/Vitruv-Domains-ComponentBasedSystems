@@ -25,7 +25,6 @@ class JavaDomainTests {
 	
 	@Test
 	def public void testTuidInClassifiersPackage() {
-		testTuid(ClassifiersFactory.eINSTANCE.createAnnotation());
 		testTuid(ClassifiersFactory.eINSTANCE.createClass());
 		testTuid(ClassifiersFactory.eINSTANCE.createInterface());
 	}

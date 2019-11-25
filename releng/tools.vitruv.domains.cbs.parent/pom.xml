@@ -43,7 +43,7 @@
 		<repository>
 			<id>Palladiosimulator</id>
 			<layout>p2</layout>
-			<url>https://sdqweb.ipd.kit.edu/eclipse/palladiosimulator/releases/latest/</url>
+			<url>https://updatesite.palladio-simulator.com/palladio-build-updatesite/releases/latest/</url>
 		</repository>
 		<repository>
 			<id>Papyrus</id>
