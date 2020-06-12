@@ -4,7 +4,6 @@ import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EObject
 import org.emftext.language.java.classifiers.Classifier
 import org.emftext.language.java.containers.CompilationUnit
-import org.emftext.language.java.containers.JavaRoot
 import org.emftext.language.java.containers.Package
 import org.emftext.language.java.expressions.AssignmentExpression
 import org.emftext.language.java.expressions.ConditionalExpression
@@ -49,7 +48,7 @@ import org.emftext.language.java.references.ReferenceableElement
 /**
  * Tuid calculator and resolver for the JaMoPP meta-model. 
  */
-class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolver<JavaRoot> {
+class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolver {
 
 	private val static Logger logger = Logger.getLogger(JavaTuidCalculatorAndResolver);
 
@@ -74,10 +73,6 @@ class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolve
 	// ============================================================================
 	// Base class stuff
 	// ============================================================================
-
-	override protected Class<JavaRoot> getRootObjectClass() {
-		return JavaRoot
-	}
 
 	override protected hasId(EObject obj, String indidivualId) throws IllegalArgumentException {
 		return obj.calculateIndividualTuid == indidivualId
