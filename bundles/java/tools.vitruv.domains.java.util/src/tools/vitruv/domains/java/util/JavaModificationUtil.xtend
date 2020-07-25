@@ -191,7 +191,7 @@ class JavaModificationUtil {
      * Creates a Java-ClassifierImport from a qualified name
      */
 	def static ClassifierImport createJavaClassImport(String name) {
-		val classifier = getClassifier(name, true);
+		val classifier = getClassifier(name);
 		val classifierImport = ImportsFactory.eINSTANCE.createClassifierImport();
 		classifierImport.classifier = classifier;
 		return classifierImport
@@ -199,7 +199,7 @@ class JavaModificationUtil {
 
 	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String namespace,
 		String name) {
-		val classifier = getClassifier(namespace + "." + name, true)
+		val classifier = getClassifier(namespace + "." + name)
 		val classifierReference = TypesFactory.eINSTANCE.createClassifierReference
 		classifierReference.setTarget(classifier)
 		val namespaceClassifierReference = TypesFactory.eINSTANCE.createNamespaceClassifierReference
@@ -212,13 +212,17 @@ class JavaModificationUtil {
 		return namespaceClassifierReference
 	}
 
+	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String qualifiedName) {
+		return createNamespaceClassifierReferenceForName(qualifiedName, true)
+	}
+
 	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String qualifiedName, boolean resolve) {
 		val classifier = getClassifier(qualifiedName, resolve)
 		return createNamespaceClassifierReference(classifier)
 	}
 
 	def static ConcreteClassifier getClassifier(String qualifiedName) {
-		return getClassifier(qualifiedName, false)
+		return getClassifier(qualifiedName, true)
 	}
 
 	def static ConcreteClassifier getClassifier(String qualifiedName, boolean resolve) {
