@@ -46,7 +46,7 @@ import org.emftext.language.java.references.ReferenceableElement
 
 @Utility 
 class JavaModificationUtil {
-	private static val Logger logger = Logger.getLogger(JavaModificationUtil)
+	static val Logger logger = Logger.getLogger(JavaModificationUtil)
 	
 	def static Parameter createOrdinaryParameter(TypeReference typeReference, String name) {
 		val parameter = ParametersFactory.eINSTANCE.createOrdinaryParameter
@@ -246,7 +246,7 @@ class JavaModificationUtil {
 		annotableAndModifiable.getAnnotationsAndModifiers().add(newAnnotation)
 	}
 
-	public def static addImportToClassFromString(ConcreteClassifier jaMoPPClass, List<String> namespaceArray,
+	def static addImportToClassFromString(ConcreteClassifier jaMoPPClass, List<String> namespaceArray,
 		String entityToImport) {
 		for (Import import : jaMoPPClass.containingCompilationUnit.imports) {
 			if ((import as ClassifierImport).classifier.name == entityToImport) {

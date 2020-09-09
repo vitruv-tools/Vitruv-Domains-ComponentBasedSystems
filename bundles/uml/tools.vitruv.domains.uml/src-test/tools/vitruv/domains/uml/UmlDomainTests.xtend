@@ -7,7 +7,7 @@ import org.eclipse.uml2.uml.UMLPackage
 
 class UmlDomainTests {
 	@Test
-	public def void testTuidCalculator() {
+	def void testTuidCalculator() {
 		val clazz = UMLFactory.eINSTANCE.createClass();
 		clazz.name = "Test";
 		val tuidFragments = new UmlDomainProvider().domain.calculateTuid(clazz).toString.split("#");
@@ -18,7 +18,7 @@ class UmlDomainTests {
 	}
 	
 	@Test
-	public def void testGeneralizationTuidCalculation() {
+	def void testGeneralizationTuidCalculation() {
 		val superClass = UMLFactory.eINSTANCE.createClass();
 		superClass.name = "Super";
 		val subClass = UMLFactory.eINSTANCE.createClass();
@@ -37,7 +37,7 @@ class UmlDomainTests {
 	}
 	
 	@Test
-	public def void testGeneralizationGeneralOnlyTuidCalculation() {
+	def void testGeneralizationGeneralOnlyTuidCalculation() {
 		val superClass = UMLFactory.eINSTANCE.createClass();
 		superClass.name = "Super";
 		val generalization = UMLFactory.eINSTANCE.createGeneralization();
@@ -53,7 +53,7 @@ class UmlDomainTests {
 	}
 	
 	@Test
-	public def void testEmptyGeneralizationTuidCalculation() {
+	def void testEmptyGeneralizationTuidCalculation() {
 		val generalization = UMLFactory.eINSTANCE.createGeneralization();
 		// No classifiers the generalization belongs to
 		val tuidFragments = new UmlDomainProvider().domain.calculateTuid(generalization).toString.split("#");
@@ -66,7 +66,7 @@ class UmlDomainTests {
 	}
 	
 	@Test
-	public def void testEmptyPackageImportTuidCalculation() {
+	def void testEmptyPackageImportTuidCalculation() {
 		val import = UMLFactory.eINSTANCE.createPackageImport();
 		// No classifiers the generalization belongs to
 		val tuidFragments = new UmlDomainProvider().domain.calculateTuid(import).toString.split("#");
@@ -79,7 +79,7 @@ class UmlDomainTests {
 	}
 	
 	@Test
-	public def void testPackageImportTuidCalculation() {
+	def void testPackageImportTuidCalculation() {
 		val import = UMLFactory.eINSTANCE.createPackageImport();
 		val pckg = UMLFactory.eINSTANCE.createPackage();
 		pckg.name = "TestPackage";
