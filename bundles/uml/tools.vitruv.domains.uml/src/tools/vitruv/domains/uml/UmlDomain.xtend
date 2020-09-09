@@ -8,10 +8,10 @@ import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
 class UmlDomain extends AbstractTuidAwareVitruvDomain {
-	private static final String METAMODEL_NAME = "UML";
+	static final String METAMODEL_NAME = "UML";
 	public static val NAMESPACE_URIS = UMLPackage.eINSTANCE.nsURIsRecursive;
 	public static final String FILE_EXTENSION = UMLResource::FILE_EXTENSION;
-	private boolean shouldTransitivelyPropagateChanges = false;
+	boolean shouldTransitivelyPropagateChanges = false;
 
 	package new() {
 		super(METAMODEL_NAME, UMLPackage.eINSTANCE, generateTuidCalculator(), FILE_EXTENSION);
@@ -33,7 +33,7 @@ class UmlDomain extends AbstractTuidAwareVitruvDomain {
 	 * Calling this methods enable the per default disabled transitive change propagation.
 	 * Should only be called for test purposes!
 	 */
-	public def enableTransitiveChangePropagation() {
+	def enableTransitiveChangePropagation() {
 		shouldTransitivelyPropagateChanges = true
 	}
 	

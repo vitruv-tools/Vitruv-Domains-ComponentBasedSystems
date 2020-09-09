@@ -10,14 +10,14 @@ import org.junit.Test
 import org.palladiosimulator.pcm.repository.RepositoryPackage
 
 class PcmDomainTests {
-	private static val TEST_NAME = "Test";
+	static val TEST_NAME = "Test";
 	
 	private def PcmDomain getPcmDomain() {
 		return new PcmDomainProvider().getDomain();
 	}
 	
 	@Test
-	public def void testResponsibilityChecks() {
+	def void testResponsibilityChecks() {
 		val component = RepositoryFactory.eINSTANCE.createBasicComponent();
 		val pcmMetamodel = getPcmDomain();
 		Assert.assertTrue("Metamodel support only " + pcmMetamodel.nsUris + ", but not " + component.eClass.EPackage.nsURI + " of component",
@@ -29,7 +29,7 @@ class PcmDomainTests {
 	}
 	
 	@Test
-	def public void testIdentifierTuidInRepositoryPackage() {
+	def void testIdentifierTuidInRepositoryPackage() {
 		testIdentifierTuid(RepositoryFactory.eINSTANCE.createBasicComponent(), "BasicComponent");
 		testIdentifierTuid(RepositoryFactory.eINSTANCE.createCompositeComponent(), "CompositeComponent");
 		testIdentifierTuid(RepositoryFactory.eINSTANCE.createCollectionDataType(), "CollectionDataType");
@@ -38,7 +38,7 @@ class PcmDomainTests {
 	}
 	
 	@Test
-	def public void testNameTuidInRepositoryPackage() {
+	def void testNameTuidInRepositoryPackage() {
 		val parameter = RepositoryFactory.eINSTANCE.createParameter();
 		parameter.parameterName = TEST_NAME;
 		assertTuid(parameter, PcmPackage.eNS_URI, "<root>-_-Parameter-_-" + RepositoryPackage.Literals.PARAMETER__PARAMETER_NAME.name + "=" + parameter.parameterName);

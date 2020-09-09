@@ -9,14 +9,14 @@ import org.eclipse.emf.ecore.EObject
 import org.emftext.language.java.classifiers.Classifier
 
 class JavaDomainTests {
-	private static val TEST_NAME = "Test";
+	static val TEST_NAME = "Test";
 	
 	private def JavaDomain getJavaDomain() {
 		return new JavaDomainProvider().getDomain();
 	}
 	
 	@Test
-	public def void testResponsibilityChecks() {
+	def void testResponsibilityChecks() {
 		val component = ClassifiersFactory.eINSTANCE.createClass();
 		val javaDomain = getJavaDomain();
 		Assert.assertTrue(javaDomain.isInstanceOfDomainMetamodel(component));
@@ -24,7 +24,7 @@ class JavaDomainTests {
 	}
 	
 	@Test
-	def public void testTuidInClassifiersPackage() {
+	def void testTuidInClassifiersPackage() {
 		testTuid(ClassifiersFactory.eINSTANCE.createClass());
 		testTuid(ClassifiersFactory.eINSTANCE.createInterface());
 	}

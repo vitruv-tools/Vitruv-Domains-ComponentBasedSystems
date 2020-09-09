@@ -15,18 +15,18 @@ import java.util.List
 import org.junit.Before
 
 class SysMlDomainTests {
-	private static val TEST_CLASS_NAME = "Test";
-	private var SysMlDomain sysMlDomain;
+	static val TEST_CLASS_NAME = "Test";
+	var SysMlDomain sysMlDomain;
 	
 	@Before
-	public def void setup() {
+	def void setup() {
 		TuidManager.instance.reinitialize
 		sysMlDomain = new SysMlDomainProvider().domain;
 		sysMlDomain.registerAtTuidManagement;
 	}
 	
 	@Test
-	public def void testTuidCalculationForUmlElemente() {
+	def void testTuidCalculationForUmlElemente() {
 		val clazz = UMLFactory.eINSTANCE.createClass();
 		clazz.name = TEST_CLASS_NAME;
 		testTuid(clazz, "Class", TEST_CLASS_NAME);
@@ -36,14 +36,14 @@ class SysMlDomainTests {
 	}
 	
 	@Test
-	public def void testTuidCalculationForSysMlElements() {
+	def void testTuidCalculationForSysMlElements() {
 		val block = createBlock();
 		testTuid(block, "Class", TEST_CLASS_NAME);
 		Assert.assertEquals(sysMlDomain.calculateTuid(block), sysMlDomain.calculateTuid(block.base_Class));
 	}
 	
 	@Test
-	public def void testResponsibilityChecks() {
+	def void testResponsibilityChecks() {
 		val block = createBlock();
 		Assert.assertTrue(sysMlDomain.isInstanceOfDomainMetamodel(block));
 		Assert.assertTrue(sysMlDomain.isInstanceOfDomainMetamodel(block.base_Class));
@@ -52,7 +52,7 @@ class SysMlDomainTests {
 	}
 	
 	@Test
-	public def void testTuidUpdate() {
+	def void testTuidUpdate() {
 		val List<String> tuids = new ArrayList<String>();
 		val dummyTuidUpdateListener = new TuidUpdateListener() {
 			override performPreAction(Tuid oldTuid) {

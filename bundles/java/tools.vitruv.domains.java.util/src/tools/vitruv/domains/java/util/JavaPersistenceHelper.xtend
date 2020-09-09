@@ -6,17 +6,17 @@ import org.emftext.language.java.containers.Package
 
 class JavaPersistenceHelper {
 
-	private static val UNNAMED_PACKAGE = "unnamedPackage"
+	static val UNNAMED_PACKAGE = "unnamedPackage"
 
 	public static val PATH_SEPARATOR = "/"
 	public static val FILE_EXTENSION_SEPARATOR = "."
 	public static val JAVA_FILE_EXTENSION = "java"
 
-	public static def String getJavaProjectSrc() {
+	static def String getJavaProjectSrc() {
 		return "src" + PATH_SEPARATOR;
 	}
 
-	public static def String getPackageInfoClassName() {
+	static def String getPackageInfoClassName() {
 		"package-info"
 	}
 
@@ -30,7 +30,7 @@ class JavaPersistenceHelper {
 		}
 	}
 
-	public static def stripJavaSourcePath(String javaFilePath, String sourcePath) {
+	static def stripJavaSourcePath(String javaFilePath, String sourcePath) {
 		if (javaFilePath.nullOrEmpty) return javaFilePath // null -> null, '' -> ''
 
 		// Get and return the path relative to the (normalized) source path:
@@ -47,12 +47,12 @@ class JavaPersistenceHelper {
 		}
 	}
 
-	public static def String buildJavaPath(String sourcePath, Iterable<String> namespaces) {
+	static def String buildJavaPath(String sourcePath, Iterable<String> namespaces) {
 		return buildJavaFilePath(sourcePath, namespaces, "", "")
 	}
 
 	// fileExtension can be empty and is then omitted.
-	public static def String buildJavaFilePath(String sourcePath, Iterable<String> namespaces, String fileName,
+	static def String buildJavaFilePath(String sourcePath, Iterable<String> namespaces, String fileName,
 		String fileExtension) {
 		return '''«sourcePath.normalizeSourcePath»«
 			FOR namespace : namespaces SEPARATOR PATH_SEPARATOR AFTER PATH_SEPARATOR»«namespace»«ENDFOR»«
@@ -63,28 +63,28 @@ class JavaPersistenceHelper {
 	// Uses 'src/' as source path.
 	// The fileName is simply appended to the end of the file path. It may or may not contain additional path segments
 	// and may or may not include the file extension.
-	public static def String buildJavaFilePath(String fileName, Iterable<String> namespaces) {
+	static def String buildJavaFilePath(String fileName, Iterable<String> namespaces) {
 		return buildJavaFilePath(javaProjectSrc, namespaces, fileName, null)
 	}
 
 	// Uses 'src/' as source path.
 	// The compilation unit name is expected to already include the file extension.
-	public static def String buildJavaFilePath(CompilationUnit compilationUnit) {
+	static def String buildJavaFilePath(CompilationUnit compilationUnit) {
 		return buildJavaFilePath(compilationUnit.name, compilationUnit.namespaces)
 	}
 
 	// Uses 'src/' as source path.
-	public static def String buildJavaFilePath(Package javaPackage) {
+	static def String buildJavaFilePath(Package javaPackage) {
 		return buildJavaPackageFilePath(javaProjectSrc, javaPackage.namespaces, javaPackage.name)
 	}
 
-	public static def String buildJavaPackageFilePath(String sourcePath, Iterable<String> namespaces,
+	static def String buildJavaPackageFilePath(String sourcePath, Iterable<String> namespaces,
 		String packageName) {
 		val fullNamespaces = getFullPackageNamespaces(namespaces, packageName)
 		return buildJavaFilePath(sourcePath, fullNamespaces, packageInfoClassName, JAVA_FILE_EXTENSION)
 	}
 
-	public static def String buildJavaPackagePath(String sourcePath, Iterable<String> namespaces,
+	static def String buildJavaPackagePath(String sourcePath, Iterable<String> namespaces,
 		String packageName) {
 		val fullNamespaces = getFullPackageNamespaces(namespaces, packageName)
 		return buildJavaPath(sourcePath, fullNamespaces)

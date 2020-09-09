@@ -50,21 +50,21 @@ import org.emftext.language.java.references.ReferenceableElement
  */
 class JavaTuidCalculatorAndResolver extends HierarchicalTuidCalculatorAndResolver {
 
-	private val static Logger logger = Logger.getLogger(JavaTuidCalculatorAndResolver);
+	val static Logger logger = Logger.getLogger(JavaTuidCalculatorAndResolver);
 
-	private val String PARAMETER_SELECTOR = "parameter"
-	private val String CLASSIFIER_SELECTOR = "classifier"
-	private val String IMPORT_SELECTOR = "import"
-	private val String METHOD_SELECTOR = "method"
-	private val String FIELD_SELECTOR = "field"
-	private val String CONSTRUCTOR_SELECTOR = "constructor"
-	private val String ASSIGNMENT_EXPRESSION_SELECTOR = "assignmentExpression"
-	private val String EXPRESSION_STATEMENT_SELECTOR = "expressionStatement"
-	private val String SELF_REFERENCE_SELECTOR = "selfReference"
-	private val String STRING_REFERENCE_SELECTOR = "StringReference"
-	private val String IDENTIFIER_REFERENCE_SELECTOR = "identifierReference"
-	private val String NEW_CONSTRUCTOR_CALL_SELECTOR = "newConstructorCall"
-	private val String CONDITIONAL_EXPRESSION_SELECTOR = "conditionalExpression"
+	val String PARAMETER_SELECTOR = "parameter"
+	val String CLASSIFIER_SELECTOR = "classifier"
+	val String IMPORT_SELECTOR = "import"
+	val String METHOD_SELECTOR = "method"
+	val String FIELD_SELECTOR = "field"
+	val String CONSTRUCTOR_SELECTOR = "constructor"
+	val String ASSIGNMENT_EXPRESSION_SELECTOR = "assignmentExpression"
+	val String EXPRESSION_STATEMENT_SELECTOR = "expressionStatement"
+	val String SELF_REFERENCE_SELECTOR = "selfReference"
+	val String STRING_REFERENCE_SELECTOR = "StringReference"
+	val String IDENTIFIER_REFERENCE_SELECTOR = "identifierReference"
+	val String NEW_CONSTRUCTOR_CALL_SELECTOR = "newConstructorCall"
+	val String CONDITIONAL_EXPRESSION_SELECTOR = "conditionalExpression"
 	
 	new() {
 		super(METAMODEL_NAMESPACE)
