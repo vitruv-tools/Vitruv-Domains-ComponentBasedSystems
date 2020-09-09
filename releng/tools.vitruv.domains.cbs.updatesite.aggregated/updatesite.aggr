@@ -51,5 +51,5 @@
   <configurations architecture="x86_64"/>
   <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
   <configurations operatingSystem="macosx" windowSystem="cocoa" architecture="x86_64"/>
-  <customCategories identifier="metamodels" label="SDQ Metamodels" features="//@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.3"/>
+  <customCategories identifier="metamodels" label="SDQ Metamodels" description="Metamodels required for some of the Vitruv applications" features="//@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.3 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.0"/>
 </aggregator:Aggregation>
