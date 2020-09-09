@@ -332,7 +332,7 @@ class JavaModificationUtil {
 			null !== field.typeReference.pureClassifierReference.target) {
 			val classifier = field.typeReference.pureClassifierReference.target
 			if (classifier instanceof Class) {
-				val jaMoPPClass = classifier as Class
+				val jaMoPPClass = classifier
 				val constructorsForClass = jaMoPPClass.members.filter(typeof(Constructor))
 				if (!constructorsForClass.nullOrEmpty) {
 					val constructorForClass = constructorsForClass.get(0)
