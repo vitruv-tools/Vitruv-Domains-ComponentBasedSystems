@@ -8,8 +8,8 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.emftext.language.java.resource.JavaSourceOrClassFileResourceFactoryImpl
 
 final class JavaDomain extends AbstractTuidAwareVitruvDomain {
-	private static final String METAMODEL_NAME = "Java";
-	private boolean shouldTransitivelyPropagateChanges = false;
+	static final String METAMODEL_NAME = "Java";
+	boolean shouldTransitivelyPropagateChanges = false;
 		
 	package new() {
 		super(METAMODEL_NAME, ROOT_PACKAGE, generateTuidCalculator(), #[FILE_EXTENSION]);
@@ -36,7 +36,7 @@ final class JavaDomain extends AbstractTuidAwareVitruvDomain {
 	 * Calling this methods enable the per default disabled transitive change propagation.
 	 * Should only be called for test purposes!
 	 */
-	public def enableTransitiveChangePropagation() {
+	def enableTransitiveChangePropagation() {
 		shouldTransitivelyPropagateChanges = true
 	}
 	

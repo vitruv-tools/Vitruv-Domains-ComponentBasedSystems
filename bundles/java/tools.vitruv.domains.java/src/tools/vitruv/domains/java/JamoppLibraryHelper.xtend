@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.URI
 class JamoppLibraryHelper {
 	public static String STANDARD_LIBRARY_PATH_IN_HOME = "/jmods/java.base.jmod";
 	
-	public static def void registerStdLib() {
+	static def void registerStdLib() {
 		val String javaVersion = System.getProperty("java.version");
 		
 		// Until Java 1.8 we can use the mechanism of JaMoPP

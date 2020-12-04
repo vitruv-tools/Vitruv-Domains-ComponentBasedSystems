@@ -5,7 +5,7 @@ import tools.vitruv.domains.sysml.SysMlDomain
 import tools.vitruv.domains.uml.tuid.UmlTuidCalculatorAndResolver
 
 class SysMlTuidCalculatorAndResolver extends UmlTuidCalculatorAndResolver {
-	private val extension SysMlToUmlResolver sysMlToUmlResolver;
+	val extension SysMlToUmlResolver sysMlToUmlResolver;
 
 	new(String nsPrefix) {
 		super(nsPrefix)

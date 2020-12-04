@@ -7,11 +7,11 @@ import org.eclipse.papyrus.sysml14.portsandflows.FlowProperty
 import org.eclipse.papyrus.sysml14.blocks.BindingConnector
 
 final class SysMlToUmlResolver {
-	private static SysMlToUmlResolver instance;
+	static SysMlToUmlResolver instance;
 	
 	private new() {}
 	
-	public static def getInstance() {
+	static def getInstance() {
 		if (instance === null) {
 			instance = new SysMlToUmlResolver();
 		}

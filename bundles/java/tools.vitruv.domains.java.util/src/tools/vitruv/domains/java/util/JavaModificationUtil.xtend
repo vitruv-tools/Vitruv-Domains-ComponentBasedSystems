@@ -46,7 +46,7 @@ import org.emftext.language.java.references.ReferenceableElement
 
 @Utility 
 class JavaModificationUtil {
-	private static val Logger logger = Logger.getLogger(JavaModificationUtil)
+	static val Logger logger = Logger.getLogger(JavaModificationUtil)
 	
 	def static Parameter createOrdinaryParameter(TypeReference typeReference, String name) {
 		val parameter = ParametersFactory.eINSTANCE.createOrdinaryParameter
@@ -191,7 +191,7 @@ class JavaModificationUtil {
      * Creates a Java-ClassifierImport from a qualified name
      */
 	def static ClassifierImport createJavaClassImport(String name) {
-		val classifier = loadClassiferFromStdLib(name);
+		val classifier = getClassifier(name);
 		val classifierImport = ImportsFactory.eINSTANCE.createClassifierImport();
 		classifierImport.classifier = classifier;
 		return classifierImport
@@ -199,7 +199,7 @@ class JavaModificationUtil {
 
 	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String namespace,
 		String name) {
-		val classifier = loadClassiferFromStdLib(namespace + "." + name)
+		val classifier = getClassifier(namespace + "." + name)
 		val classifierReference = TypesFactory.eINSTANCE.createClassifierReference
 		classifierReference.setTarget(classifier)
 		val namespaceClassifierReference = TypesFactory.eINSTANCE.createNamespaceClassifierReference
@@ -212,13 +212,31 @@ class JavaModificationUtil {
 		return namespaceClassifierReference
 	}
 
-	private def static ConcreteClassifier loadClassiferFromStdLib(String name) {
-		// This requires stlib to be registered (JavaClasspath.get().registerStdLib). Should be done by domain
-		var classifier = JavaClasspath.get().getClassifier(name) as ConcreteClassifier
-		val resourceSet = new ResourceSetImpl();
-		classifier = EcoreUtil.resolve(classifier, resourceSet) as ConcreteClassifier
+	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String qualifiedName) {
+		return createNamespaceClassifierReferenceForName(qualifiedName, true)
 	}
-	
+
+	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String qualifiedName, boolean resolve) {
+		val classifier = getClassifier(qualifiedName, resolve)
+		return createNamespaceClassifierReference(classifier)
+	}
+
+	def static ConcreteClassifier getClassifier(String qualifiedName) {
+		return getClassifier(qualifiedName, true)
+	}
+
+	def static ConcreteClassifier getClassifier(String qualifiedName, boolean resolve) {
+		// To resolve classifiers from the Java standard library, this requires the Java standard library to be
+		// registered (JavaClasspath.get().registerStdLib). Should be done by the domain by default.
+		val classifier = JavaClasspath.get().getClassifier(qualifiedName) as ConcreteClassifier
+		if (resolve) {
+			val resourceSet = new ResourceSetImpl();
+			return EcoreUtil.resolve(classifier, resourceSet) as ConcreteClassifier
+		} else {
+			return classifier
+		}
+	}
+
 	def static addAnnotationToAnnotableAndModifiable(AnnotableAndModifiable annotableAndModifiable,
 		String annotationName) {
 		val newAnnotation = AnnotationsFactory.eINSTANCE.createAnnotationInstance()
@@ -228,7 +246,7 @@ class JavaModificationUtil {
 		annotableAndModifiable.getAnnotationsAndModifiers().add(newAnnotation)
 	}
 
-	public def static addImportToClassFromString(ConcreteClassifier jaMoPPClass, List<String> namespaceArray,
+	def static addImportToClassFromString(ConcreteClassifier jaMoPPClass, List<String> namespaceArray,
 		String entityToImport) {
 		for (Import import : jaMoPPClass.containingCompilationUnit.imports) {
 			if ((import as ClassifierImport).classifier.name == entityToImport) {
@@ -314,7 +332,7 @@ class JavaModificationUtil {
 			null !== field.typeReference.pureClassifierReference.target) {
 			val classifier = field.typeReference.pureClassifierReference.target
 			if (classifier instanceof Class) {
-				val jaMoPPClass = classifier as Class
+				val jaMoPPClass = classifier
 				val constructorsForClass = jaMoPPClass.members.filter(typeof(Constructor))
 				if (!constructorsForClass.nullOrEmpty) {
 					val constructorForClass = constructorsForClass.get(0)

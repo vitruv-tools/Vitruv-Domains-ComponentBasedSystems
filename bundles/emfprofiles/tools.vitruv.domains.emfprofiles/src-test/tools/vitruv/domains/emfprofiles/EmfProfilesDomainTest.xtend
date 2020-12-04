@@ -10,17 +10,17 @@ import org.modelversioning.emfprofileapplication.EMFProfileApplicationFactory
 import org.modelversioning.emfprofileapplication.ProfileImport
 
 class EmfProfilesDomainTest {
-	private static val TEST_PROFILE_NAME = "Test";
-	private var EmfProfilesDomain emfProfilesDomain;
+	static val TEST_PROFILE_NAME = "Test";
+	var EmfProfilesDomain emfProfilesDomain;
 	
 	@Before
-	public def void setup() {
+	def void setup() {
 		TuidManager.instance.reinitialize();
 		emfProfilesDomain = new EmfProfilesDomainProvider().domain;
 	}
 	
 	@Test
-	public def void testProfileImport() {
+	def void testProfileImport() {
 		val profileImport = createProfileImport;
 		profileImport.assertTuidCalculatability;
 		profileImport.profile = EMFProfileFactory.eINSTANCE.createProfile;
@@ -39,7 +39,7 @@ class EmfProfilesDomainTest {
 	}
 	
 	@Test
-	public def void testProfileApplication() {
+	def void testProfileApplication() {
 		val profileApplication = EMFProfileApplicationFactory.eINSTANCE.createProfileApplication();
 		profileApplication.assertTuidCalculatability
 		val profileImport = createProfileImport;
@@ -55,7 +55,7 @@ class EmfProfilesDomainTest {
 	}
 	
 	@Test
-	public def void testStereotypeApplication() {
+	def void testStereotypeApplication() {
 		val stereotypeApplication = EMFProfileApplicationFactory.eINSTANCE.createStereotypeApplication();
 		stereotypeApplication.assertTuidCalculatability;
 		// This has no name

@@ -3,9 +3,9 @@ package tools.vitruv.domains.emfprofiles
 import tools.vitruv.framework.domains.VitruvDomainProvider
 
 class EmfProfilesDomainProvider implements VitruvDomainProvider<EmfProfilesDomain> {
-	private static var EmfProfilesDomain instance;
+	static var EmfProfilesDomain instance;
 	
-	override public EmfProfilesDomain getDomain() {
+	override EmfProfilesDomain getDomain() {
 		if (instance === null) {
 			instance = new EmfProfilesDomain();
 		}
