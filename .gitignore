@@ -16,6 +16,7 @@ xtend-gen-tests/
 
 # Maven
 target/
+.mvn/wrapper/maven-wrapper.jar
 
 # Custom
 EvaluationData
