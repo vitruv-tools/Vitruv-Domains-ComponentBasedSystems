@@ -18,7 +18,7 @@ before_install:
     - "echo \"export MAVEN_OPTS='-Dmaven.repo.local=$HOME/.m2/repository -Xmx2g'\" > ~/.mavenrc"
 install: true
 
-script: mvn clean verify
+script: ./mvnw -B clean verify
 
 after_success:
 - . /tmp/BuildUtilities/travis-ci/deploy.sh domains/cbs releng/tools.vitruv.domains.cbs.updatesite.aggregated final vitruv-tools updatesite
