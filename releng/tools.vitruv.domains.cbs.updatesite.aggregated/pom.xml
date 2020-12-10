@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>tools.vitruv</groupId>
 		<artifactId>domains-parent</artifactId>
-		<version>0.3.0-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../tools.vitruv.domains.cbs.parent</relativePath>
 	</parent>
 
