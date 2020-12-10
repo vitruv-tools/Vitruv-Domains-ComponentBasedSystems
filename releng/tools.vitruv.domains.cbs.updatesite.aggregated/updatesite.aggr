@@ -5,9 +5,9 @@
       <repositories location="../tools.vitruv.domains.cbs.updatesite/target/repository"/>
     </contributions>
     <contributions label="externals">
-      <repositories location="https://updatesite.palladio-simulator.com/palladio-build-updatesite/releases/latest/">
+      <repositories location="https://updatesite.palladio-simulator.com/palladio-build-updatesite/releases/4.3.0">
         <features name="de.uka.ipd.sdq.identifier.feature.feature.group" versionRange="2.1.0"/>
-        <features name="org.palladiosimulator.pcm.feature.feature.group" versionRange="4.1.0"/>
+        <features name="org.palladiosimulator.pcm.feature.feature.group" versionRange="4.3.0"/>
       </repositories>
       <repositories location="http://kit-sdq.github.io/updatesite/release/p2-wrapper" mirrorArtifacts="false">
         <features name="org.emftext.language.java.feature.group" versionRange="1.4.1"/>
