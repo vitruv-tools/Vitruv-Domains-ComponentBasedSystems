@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Vitruvius Domain Java Monitored Editor
 Bundle-SymbolicName: tools.vitruv.domains.java.monitorededitor;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.java.monitorededitor
-Bundle-Version: 1.0.0
+Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: tools.vitruv.domains.java.monitorededitor.activator.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
