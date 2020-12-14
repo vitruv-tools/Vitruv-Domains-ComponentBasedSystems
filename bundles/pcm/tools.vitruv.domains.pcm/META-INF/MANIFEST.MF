@@ -5,7 +5,7 @@ Bundle-SymbolicName: tools.vitruv.domains.pcm;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.pcm
 Bundle-Version: 1.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Bundle: tools.vitruv.framework.metamodel;visibility:=reexport,
+Require-Bundle: tools.vitruv.framework.domains;visibility:=reexport,
  org.palladiosimulator.pcm;visibility:=reexport,
  org.palladiosimulator.pcm.resources;visibility:=reexport,
  com.google.guava,

@@ -6,7 +6,7 @@ Automatic-Module-Name: tools.vitruv.domains.sysml
 Bundle-Version: 1.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: tools.vitruv.domains.uml;visibility:=reexport,
- tools.vitruv.framework.metamodel;visibility:=reexport,
+ tools.vitruv.framework.domains;visibility:=reexport,
  tools.vitruv.framework.util,
  tools.vitruv.framework.tuid,
  com.google.guava,

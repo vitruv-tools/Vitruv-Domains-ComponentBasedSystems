@@ -8,7 +8,7 @@
    <extension
          id="sysMlDomainProvider"
          name="SysML Domain Provider"
-         point="tools.vitruv.framework.metamodel.domain">
+         point="tools.vitruv.framework.domains.domain">
       <domainProvider
             class="tools.vitruv.domains.sysml.SysMlDomainProvider"></domainProvider>
    </extension>

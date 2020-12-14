@@ -7,7 +7,7 @@ Bundle-Version: 1.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.junit, 
  org.apache.log4j,
- tools.vitruv.framework.metamodel;visibility:=reexport,
+ tools.vitruv.framework.domains;visibility:=reexport,
  tools.vitruv.framework.tuid,
  tools.vitruv.framework.util,
  org.modelversioning.emfprofile;visibility:=reexport,
