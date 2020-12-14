@@ -76,15 +76,17 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
         return this.listening;
     }
 
-    public void startListening() {
-        this.editCommandListener.startListening();
-        this.listening = true;
-    }
+	public void startListening() {
+		LOG.debug("Start AST listening for projects " + monitoredProjectNames);
+		this.editCommandListener.startListening();
+		this.listening = true;
+	}
 
-    public void stopListening() {
-        this.editCommandListener.stopListening();
-        this.listening = false;
-    }
+	public void stopListening() {
+		LOG.debug("Stop AST listening for projects " + monitoredProjectNames);
+		this.editCommandListener.stopListening();
+		this.listening = false;
+	}
 
     public ASTChangeListener(final String... projectNames) {
         this.monitoredProjectNames = Arrays.asList(projectNames);
