@@ -3,6 +3,7 @@ package tools.vitruv.domains.java.monitorededitor.astchangelistener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.core.ElementChangedEvent;
@@ -48,33 +49,34 @@ import tools.vitruv.framework.util.VitruviusConstants;
 import tools.vitruv.framework.util.bridges.EclipseBridge;
 
 /**
- * The {@link ASTChangeListener} reacts to changes in the Eclipse JDT AST and generates
- * {@link ChangeClassifyingEvent}s from the AST {@link IJavaElementDelta}. Registered
- * {@link ChangeOperationListener}s are notified when new code changes occur. The ASTChangeListener
- * holds an array of {@link ConcreteChangeClassifier}s who are responsible for classifying changes
+ * The {@link ASTChangeListener} reacts to changes in the Eclipse JDT AST and
+ * generates {@link ChangeClassifyingEvent}s from the AST
+ * {@link IJavaElementDelta}. Registered {@link ChangeOperationListener}s are
+ * notified when new code changes occur. The ASTChangeListener holds an array of
+ * {@link ConcreteChangeClassifier}s who are responsible for classifying changes
  * given the AST delta and the current and previous AST state.
  */
 public class ASTChangeListener implements IStartup, IElementChangedListener {
 
-    private static final Logger LOG = Logger.getLogger(ASTChangeListener.class);
-    private final ConcreteChangeClassifier[] postReconcileClassifiers;
-    private final ConcreteChangeClassifier[] postChangeClassifiers;
-    private final PreviousASTState previousState;
-    private final ChangeHistory withholdChangeHistory;
-    private final List<ChangeOperationListener> listeners;
+	private static final Logger LOG = Logger.getLogger(ASTChangeListener.class);
+	private final ConcreteChangeClassifier[] postReconcileClassifiers;
+	private final ConcreteChangeClassifier[] postChangeClassifiers;
+	private final PreviousASTState previousState;
+	private final ChangeHistory withholdChangeHistory;
+	private final List<ChangeOperationListener> listeners;
 
-    private static final int CHANGE_HISTORY_MINUTES = 4;
+	private static final int CHANGE_HISTORY_MINUTES = 4;
 
-    private boolean listening = false;
-    private boolean withholding = false;
-    private final EditCommandListener editCommandListener;
-    private final List<String> monitoredProjectNames;
+	private boolean listening = false;
+	private boolean withholding = false;
+	private final EditCommandListener editCommandListener;
+	private final List<String> monitoredProjectNames;
 
-    public long lastChangeTime;
+	public long lastChangeTime;
 
-    public boolean isListening() {
-        return this.listening;
-    }
+	public boolean isListening() {
+		return this.listening;
+	}
 
 	public void startListening() {
 		LOG.debug("Start AST listening for projects " + monitoredProjectNames);
@@ -88,171 +90,185 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 		this.listening = false;
 	}
 
-    public ASTChangeListener(final String... projectNames) {
-        this.monitoredProjectNames = Arrays.asList(projectNames);
-        this.postReconcileClassifiers = getPostReconcileClassifiers();
-        this.postChangeClassifiers = getPostChangeClassifiers();
-        this.listeners = new ArrayList<ChangeOperationListener>();
+	private final Supplier<Boolean> isAlive;
 
-        this.previousState = new PreviousASTState(projectNames);
-        this.withholdChangeHistory = new ChangeHistory(CHANGE_HISTORY_MINUTES);
-        this.editCommandListener = new EditCommandListener(this);
-        this.startListening();
-        JavaCore.addElementChangedListener(this);
-    }
+	public ASTChangeListener(Supplier<Boolean> isAlive, final String... projectNames) {
+		LOG.debug("Start initializing AST change listener for projects " + Arrays.toString(projectNames));
+		this.isAlive = isAlive;
+		this.monitoredProjectNames = Arrays.asList(projectNames);
+		this.postReconcileClassifiers = getPostReconcileClassifiers();
+		this.postChangeClassifiers = getPostChangeClassifiers();
+		this.listeners = new ArrayList<ChangeOperationListener>();
 
-    public void revokeRegistrations() {
-        this.editCommandListener.revokeRegistrations();
-        JavaCore.removeElementChangedListener(this);
-    }
+		this.previousState = new PreviousASTState(projectNames);
+		this.withholdChangeHistory = new ChangeHistory(CHANGE_HISTORY_MINUTES);
+		this.editCommandListener = new EditCommandListener(this);
+		this.startListening();
+		JavaCore.addElementChangedListener(this);
+		LOG.info("Initialized AST change listener for projects " + Arrays.toString(projectNames));
+	}
 
-    private static ConcreteChangeClassifier[] getPostReconcileClassifiers() {
-        final List<ConcreteChangeClassifier> classifiers = new ArrayList<ConcreteChangeClassifier>(Arrays.asList(
-                new AddFieldClassifier(), new RemoveFieldClassifier(), new RenameFieldClassifier(),
-                new ChangeFieldTypeClassifier(), new ChangeFieldModifiersClassifier(), new RenameMethodClassifier(),
-                new AddMethodClassifier(), new RemoveMethodClassifier(), new ChangeMethodParameterClassifier(),
-                new ChangeMethodModifiersClassifier(), new ChangeMethodReturnTypeClassifier(),
-                new CreateTypeClassifier(), new RemoveTypeClassifier(), new RenameTypeClassifier(),
-                new ChangeTypeModifiersClassifier(), new ChangePackageDeclarationClassifier(),
-                new AddImportClassifier(), new RemoveImportClassifier(), new ChangeSupertypeClassifier(),
-                new ChangeAnnotationClassifier(), new JavaDocClassifier()));
-        classifiers.addAll(getRegisteredClassifiers(
-                "tools.vitruv.domains.java.monitorededitor.astchangelistener.postreconcile"));
-        return classifiers.toArray(new ConcreteChangeClassifier[0]);
-    }
+	public void revokeRegistrations() {
+		this.editCommandListener.revokeRegistrations();
+		JavaCore.removeElementChangedListener(this);
+	}
 
-    private static ConcreteChangeClassifier[] getPostChangeClassifiers() {
-        final List<ConcreteChangeClassifier> classifiers = new ArrayList<ConcreteChangeClassifier>(
-                Arrays.asList(new RemoveCompilationUnitClassifier(), new RenamePackageClassifier(),
-                        new CreatePackageClassifier(), new DeletePackageClassifier()));
-        classifiers.addAll(getRegisteredClassifiers(
-                "tools.vitruv.domains.java.monitorededitor.astchangelistener.postchange"));
-        return classifiers.toArray(new ConcreteChangeClassifier[0]);
-    }
+	private static ConcreteChangeClassifier[] getPostReconcileClassifiers() {
+		final List<ConcreteChangeClassifier> classifiers = new ArrayList<ConcreteChangeClassifier>(Arrays.asList(
+				new AddFieldClassifier(), new RemoveFieldClassifier(), new RenameFieldClassifier(),
+				new ChangeFieldTypeClassifier(), new ChangeFieldModifiersClassifier(), new RenameMethodClassifier(),
+				new AddMethodClassifier(), new RemoveMethodClassifier(), new ChangeMethodParameterClassifier(),
+				new ChangeMethodModifiersClassifier(), new ChangeMethodReturnTypeClassifier(),
+				new CreateTypeClassifier(), new RemoveTypeClassifier(), new RenameTypeClassifier(),
+				new ChangeTypeModifiersClassifier(), new ChangePackageDeclarationClassifier(),
+				new AddImportClassifier(), new RemoveImportClassifier(), new ChangeSupertypeClassifier(),
+				new ChangeAnnotationClassifier(), new JavaDocClassifier()));
+		classifiers.addAll(
+				getRegisteredClassifiers("tools.vitruv.domains.java.monitorededitor.astchangelistener.postreconcile"));
+		return classifiers.toArray(new ConcreteChangeClassifier[0]);
+	}
 
-    @Override
-    public void earlyStartup() {
-    }
+	private static ConcreteChangeClassifier[] getPostChangeClassifiers() {
+		final List<ConcreteChangeClassifier> classifiers = new ArrayList<ConcreteChangeClassifier>(
+				Arrays.asList(new RemoveCompilationUnitClassifier(), new RenamePackageClassifier(),
+						new CreatePackageClassifier(), new DeletePackageClassifier()));
+		classifiers.addAll(
+				getRegisteredClassifiers("tools.vitruv.domains.java.monitorededitor.astchangelistener.postchange"));
+		return classifiers.toArray(new ConcreteChangeClassifier[0]);
+	}
 
-    @Override
-    public void elementChanged(final ElementChangedEvent event) {
-        if (!this.listening) {
-            return; // ignore event if not listening
-        }
+	@Override
+	public void earlyStartup() {
+	}
 
-        final IJavaElementDelta delta = event.getDelta();
-        if (!this.isMonitoredProject(delta)) {
-            return; // ignore events in unmonitored projects
-        }
+	@Override
+	public void elementChanged(final ElementChangedEvent event) {
+		if (!isAlive.get()) {
+			return;
+		}
 
-        LOG.debug(delta.toString());
-        this.lastChangeTime = System.nanoTime();
-        event.getSource();
+		if (!this.listening) {
+			return; // ignore event if not listening
+		}
 
-        List<ChangeClassifyingEvent> events = null;
-        final CompilationUnit currentCompilationUnit = CompilationUnitUtil.parseCompilationUnit(delta);
-        if (event.getType() == ElementChangedEvent.POST_CHANGE) {
-            events = this.classifyPostChange(delta, currentCompilationUnit);
-        } else if (event.getType() == ElementChangedEvent.POST_RECONCILE) {
-            events = this.classifyPostReconcile(delta, currentCompilationUnit);
-        }
+		final IJavaElementDelta delta = event.getDelta();
+		if (!this.isMonitoredProject(delta)) {
+			return; // ignore events in unmonitored projects
+		}
 
-        if (!events.isEmpty()) {
+		LOG.trace("Recognized relevant AST change in one of the projects " + monitoredProjectNames + ": "
+				+ delta.toString());
+		this.lastChangeTime = System.nanoTime();
+		event.getSource();
 
-            LOG.trace("+++Classified changes:+++");
-            for (final ChangeClassifyingEvent e : events) {
-                LOG.trace(e.toString());
-            }
-        }
+		List<ChangeClassifyingEvent> events = null;
+		final CompilationUnit currentCompilationUnit = CompilationUnitUtil.parseCompilationUnit(delta);
 
-        final List<ChangeClassifyingEvent> filteredEvents = HigherOperationEventsFilter.filter(events,
-                this.withholdChangeHistory);
-        if (!filteredEvents.isEmpty()) {
-            LOG.trace("+++Filtered classified changes:+++");
-            for (final ChangeClassifyingEvent e : filteredEvents) {
-                if (this.withholding) {
-                    LOG.trace("[WITHHOLD] ");
-                }
-                LOG.trace(e.toString());
-            }
-        }
+		if (event.getType() == ElementChangedEvent.POST_CHANGE) {
+			events = this.classifyPostChange(delta, currentCompilationUnit);
+		} else if (event.getType() == ElementChangedEvent.POST_RECONCILE) {
+			events = this.classifyPostReconcile(delta, currentCompilationUnit);
+		}
 
-        this.previousState.update(currentCompilationUnit);
-        if (this.listening) {
-            if (!this.withholding) {
-                this.notifyAll(filteredEvents);
-            } else if (this.withholding) {
-                this.withholdChangeHistory.update(filteredEvents);
-                this.withholding = false;
-            }
-        }
-    }
+		if (!events.isEmpty()) {
+			for (final ChangeClassifyingEvent e : events) {
+				LOG.trace("Event classified by AST change listener in one of the projects " + monitoredProjectNames
+						+ ": " + e.toString());
+			}
+		}
 
-    private boolean isMonitoredProject(final IJavaElementDelta delta) {
-        final IJavaElement element = delta.getElement();
-        if (element == null) {
-            return false;
-        }
-        IJavaProject project = element.getJavaProject();
-        if (project == null && delta.getAffectedChildren().length == 0) {
-            return false;
-        }
-        if (project == null) {
-            project = delta.getAffectedChildren()[0].getElement().getJavaProject();
-        }
-        return this.monitoredProjectNames.contains(project.getElementName());
-    }
+		final List<ChangeClassifyingEvent> filteredEvents = HigherOperationEventsFilter.filter(events,
+				this.withholdChangeHistory);
+		if (!filteredEvents.isEmpty()) {
+			for (final ChangeClassifyingEvent e : filteredEvents) {
+				if (this.withholding) {
+					LOG.trace("[WITHHOLD] ");
+				}
+				LOG.trace("Event classified and filtered by AST change listener in one of the projects "
+						+ monitoredProjectNames + ": " + e.toString());
+			}
+		}
 
-    private List<ChangeClassifyingEvent> classifyPostReconcile(final IJavaElementDelta delta,
-            final CompilationUnit currentCompilationUnit) {
-        return this.classifyChange(delta, this.postReconcileClassifiers, currentCompilationUnit);
-    }
+		this.previousState.update(currentCompilationUnit);
+		if (this.listening) {
+			if (!this.withholding) {
+				this.notifyAll(filteredEvents);
+			} else if (this.withholding) {
+				this.withholdChangeHistory.update(filteredEvents);
+				this.withholding = false;
+			}
+		}
+	}
 
-    private List<ChangeClassifyingEvent> classifyPostChange(final IJavaElementDelta delta,
-            final CompilationUnit currentCompilationUnit) {
-        return this.classifyChange(delta, this.postChangeClassifiers, currentCompilationUnit);
-    }
+	private boolean isMonitoredProject(final IJavaElementDelta delta) {
+		final IJavaElement element = delta.getElement();
+		if (element == null) {
+			return false;
+		}
+		boolean isMonitored = false;
+		IJavaProject project = element.getJavaProject();
+		if (project != null) {
+			isMonitored |= this.monitoredProjectNames.contains(project.getElementName());
+		}
+		for (IJavaElementDelta elementDelta : delta.getAffectedChildren()) {
+			project = elementDelta.getElement().getJavaProject();
+			if (project != null) {
+				isMonitored |= this.monitoredProjectNames.contains(project.getElementName());
+			}
+		}
+		return isMonitored;
+	}
 
-    private List<ChangeClassifyingEvent> classifyChange(final IJavaElementDelta delta,
-            final ConcreteChangeClassifier[] classifiers, final CompilationUnit currentCompilationUnit) {
-        final List<ChangeClassifyingEvent> events = new ArrayList<ChangeClassifyingEvent>();
-        for (final ConcreteChangeClassifier classifier : classifiers) {
-            events.addAll(classifier.match(delta, currentCompilationUnit, this.previousState));
-        }
-        return events;
-    }
+	private List<ChangeClassifyingEvent> classifyPostReconcile(final IJavaElementDelta delta,
+			final CompilationUnit currentCompilationUnit) {
+		return this.classifyChange(delta, this.postReconcileClassifiers, currentCompilationUnit);
+	}
 
-    private void notifyAll(final List<ChangeClassifyingEvent> events) {
-        for (final ChangeClassifyingEvent event : events) {
-            this.notifyAll(event);
-        }
-    }
+	private List<ChangeClassifyingEvent> classifyPostChange(final IJavaElementDelta delta,
+			final CompilationUnit currentCompilationUnit) {
+		return this.classifyChange(delta, this.postChangeClassifiers, currentCompilationUnit);
+	}
 
-    private void notifyAll(final ChangeClassifyingEvent event) {
-        for (final ChangeOperationListener listener : this.listeners) {
-            listener.update(event);
-        }
-    }
+	private List<ChangeClassifyingEvent> classifyChange(final IJavaElementDelta delta,
+			final ConcreteChangeClassifier[] classifiers, final CompilationUnit currentCompilationUnit) {
+		final List<ChangeClassifyingEvent> events = new ArrayList<ChangeClassifyingEvent>();
+		for (final ConcreteChangeClassifier classifier : classifiers) {
+			events.addAll(classifier.match(delta, currentCompilationUnit, this.previousState));
+		}
+		return events;
+	}
 
-    public void addListener(final ChangeOperationListener listener) {
-        this.listeners.add(listener);
-    }
+	private void notifyAll(final List<ChangeClassifyingEvent> events) {
+		for (final ChangeClassifyingEvent event : events) {
+			this.notifyAll(event);
+		}
+	}
 
-    public void removeListener(final ChangeOperationListener listener) {
-        this.listeners.remove(listener);
-    }
+	private void notifyAll(final ChangeClassifyingEvent event) {
+		for (final ChangeOperationListener listener : this.listeners) {
+			listener.update(event);
+		}
+	}
 
-    protected void withholdEventsOnce(final boolean b) {
-        this.withholding = b;
-    }
+	public void addListener(final ChangeOperationListener listener) {
+		this.listeners.add(listener);
+	}
 
-    public PreviousASTState getPreviousASTState() {
-        return this.previousState;
-    }
+	public void removeListener(final ChangeOperationListener listener) {
+		this.listeners.remove(listener);
+	}
 
-    private static List<ConcreteChangeClassifier> getRegisteredClassifiers(final String extensionPointName) {
-        return EclipseBridge.getRegisteredExtensions(extensionPointName, VitruviusConstants.getExtensionPropertyName(),
-                ConcreteChangeClassifier.class);
-    }
+	protected void withholdEventsOnce(final boolean b) {
+		this.withholding = b;
+	}
+
+	public PreviousASTState getPreviousASTState() {
+		return this.previousState;
+	}
+
+	private static List<ConcreteChangeClassifier> getRegisteredClassifiers(final String extensionPointName) {
+		return EclipseBridge.getRegisteredExtensions(extensionPointName, VitruviusConstants.getExtensionPropertyName(),
+				ConcreteChangeClassifier.class);
+	}
 
 }
