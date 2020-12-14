@@ -245,13 +245,15 @@ public class MonitoredEditor extends AbstractMonitoredEditor
         System.err.println("MonitoredEditor plugin - earlyStartup");
     }
 
-    public void startASTListening() {
-        this.astListener.startListening();
-    }
+	public void startASTListening() {
+		log.debug("Monitored editor starts AST listening for projeects: " + Arrays.toString(monitoredProjectNames));
+		this.astListener.startListening();
+	}
 
-    public void stopASTListening() {
-        this.astListener.stopListening();
-    }
+	public void stopASTListening() {
+		this.astListener.stopListening();
+		log.debug("Monitored editor stopped AST listening for projeects: " + Arrays.toString(monitoredProjectNames));
+	}
 
     protected void triggerChange(final VitruviusChange change) {
         if (!this.reportChanges) {

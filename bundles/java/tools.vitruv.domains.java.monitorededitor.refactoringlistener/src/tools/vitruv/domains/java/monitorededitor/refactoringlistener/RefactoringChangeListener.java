@@ -24,180 +24,184 @@ import tools.vitruv.domains.java.monitorededitor.changeclassification.events.Cha
 import tools.vitruv.domains.java.monitorededitor.refactoringlistener.RefactoringStatusListener.RefactoringStatus;
 
 /**
- * The {@link RefactoringChangeListener} is notified by {@link RefactoringParticipant}s when the
- * developer used a refactoring to edit the code. {@link ChangeClassifyingEvent}s are submitted and
- * transmitted to registered {@link ChangeOperationListener}s. A {@link QuickFixListener} listens to
- * Eclipse quick assist operations and also generates {@link ChangeClassifyingEvent}s. Registered
- * {@link RefactoringStatusListener} get informed before a refactoring is executed and after it has
- * been informed.
+ * The {@link RefactoringChangeListener} is notified by
+ * {@link RefactoringParticipant}s when the developer used a refactoring to edit
+ * the code. {@link ChangeClassifyingEvent}s are submitted and transmitted to
+ * registered {@link ChangeOperationListener}s. A {@link QuickFixListener}
+ * listens to Eclipse quick assist operations and also generates
+ * {@link ChangeClassifyingEvent}s. Registered {@link RefactoringStatusListener}
+ * get informed before a refactoring is executed and after it has been informed.
  */
 public final class RefactoringChangeListener implements IStartup, IRefactoringExecutionListener, IExecutionListener {
 
-    private static final String REFACTORING_CATEGORY_ID = "org.eclipse.jdt.ui.category.refactoring";
+	private static final String REFACTORING_CATEGORY_ID = "org.eclipse.jdt.ui.category.refactoring";
 
-    private static RefactoringChangeListener instance;
+	private static RefactoringChangeListener instance;
 
-    private static final Logger LOG = Logger.getLogger(RefactoringChangeListener.class);
-    private final List<ChangeOperationListener> listeners;
-    private final List<RefactoringStatusListener> statusListeners;
-    private boolean listening = false;
-    private List<String> monitoredProjectNames;
+	private static final Logger LOG = Logger.getLogger(RefactoringChangeListener.class);
+	private final List<ChangeOperationListener> listeners;
+	private final List<RefactoringStatusListener> statusListeners;
+	private boolean listening = false;
+	private List<String> monitoredProjectNames;
 
-    private RefactoringChangeListener(String... projectNames) {
-        this.monitoredProjectNames = Arrays.asList(projectNames);
-        this.listeners = new ArrayList<ChangeOperationListener>(5);
-        this.statusListeners = new ArrayList<RefactoringStatusListener>();
-        startListening();
-        IRefactoringHistoryService refactoringService = RefactoringCore.getHistoryService();
-        refactoringService.addExecutionListener(this);
-        ICommandService service = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
-        service.addExecutionListener(this);
-    }
+	private RefactoringChangeListener(String... projectNames) {
+		this.monitoredProjectNames = Arrays.asList(projectNames);
+		this.listeners = new ArrayList<ChangeOperationListener>(5);
+		this.statusListeners = new ArrayList<RefactoringStatusListener>();
+		startListening();
+		IRefactoringHistoryService refactoringService = RefactoringCore.getHistoryService();
+		refactoringService.addExecutionListener(this);
+		ICommandService service = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
+		service.addExecutionListener(this);
+		LOG.trace("Registered refactoring change listener for projects: " + monitoredProjectNames);
+	}
 
-    /**
-     * This is a pretty useful comment.
-     * 
-     * @return
-     */
-    public static synchronized RefactoringChangeListener getInstance(String... projectNames) {
-        if (instance == null)
-            instance = new RefactoringChangeListener(projectNames);
-        if (projectNames.length != 0)
-            instance.monitoredProjectNames = Arrays.asList(projectNames);
-        return instance;
-    }
-    
-    public static synchronized void destroyInstance() {
-        if (instance == null) {
-            return;
-        }
-        instance.revokeRegistrations();
-        instance = null;
-    }
-    
-    private void revokeRegistrations() {
-        RefactoringCore.getHistoryService().removeExecutionListener(this);
-        ((ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class)).removeExecutionListener(this);
-    }
+	/**
+	 * This is a pretty useful comment.
+	 * 
+	 * @return
+	 */
+	public static synchronized RefactoringChangeListener getInstance(String... projectNames) {
+		if (instance == null)
+			instance = new RefactoringChangeListener(projectNames);
+		if (projectNames.length != 0)
+			instance.monitoredProjectNames = Arrays.asList(projectNames);
+		return instance;
+	}
 
-    public boolean isMonitoredProject(String projectName) {
-        return this.monitoredProjectNames.contains(projectName);
-    }
+	public static synchronized void destroyInstance() {
+		if (instance == null) {
+			return;
+		}
+		instance.revokeRegistrations();
+		instance = null;
+	}
 
-    @Override
-    public void executionNotification(RefactoringExecutionEvent event) {
-        if (!this.listening)
-            return; // ignore event
+	private void revokeRegistrations() {
+		RefactoringCore.getHistoryService().removeExecutionListener(this);
+		((ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class)).removeExecutionListener(this);
+		LOG.trace("Deregistered refactoring change listener for projects: " + monitoredProjectNames);
+	}
 
-        if (event.getEventType() == RefactoringExecutionEvent.ABOUT_TO_PERFORM)
-            notifyAllStatusListeners(RefactoringStatus.ABOUT_POST_EXECUTE, event);
-        else if (event.getEventType() == RefactoringExecutionEvent.PERFORMED)
-            notifyAllStatusListeners(RefactoringStatus.POST_EXECUTE, event);
-    }
+	public boolean isMonitoredProject(String projectName) {
+		return this.monitoredProjectNames.contains(projectName);
+	}
 
-    @Override
-    public void preExecute(String commandId, ExecutionEvent event) {
-        if (!this.listening)
-            return; // ignore event
-        if (isRefactoringCommand(event))
-            notifyAllStatusListeners(RefactoringStatus.PRE_EXECUTE, event);
-    }
+	@Override
+	public void executionNotification(RefactoringExecutionEvent event) {
+		if (!this.listening)
+			return; // ignore event
 
-    private boolean isRefactoringCommand(ExecutionEvent event) {
-        try {
-            if (event.getCommand().getCategory().getId().equals(REFACTORING_CATEGORY_ID)) {
-                return true;
-            }
-        } catch (NotDefinedException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+		if (event.getEventType() == RefactoringExecutionEvent.ABOUT_TO_PERFORM)
+			notifyAllStatusListeners(RefactoringStatus.ABOUT_POST_EXECUTE, event);
+		else if (event.getEventType() == RefactoringExecutionEvent.PERFORMED)
+			notifyAllStatusListeners(RefactoringStatus.POST_EXECUTE, event);
+	}
 
-    public boolean isListening() {
-        return this.listening;
-    }
+	@Override
+	public void preExecute(String commandId, ExecutionEvent event) {
+		if (!this.listening)
+			return; // ignore event
+		if (isRefactoringCommand(event))
+			notifyAllStatusListeners(RefactoringStatus.PRE_EXECUTE, event);
+	}
 
-    public void startListening() {
-        this.listening = true;
-    }
+	private boolean isRefactoringCommand(ExecutionEvent event) {
+		try {
+			if (event.getCommand().getCategory().getId().equals(REFACTORING_CATEGORY_ID)) {
+				return true;
+			}
+		} catch (NotDefinedException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
-    public void stopListening() {
-        this.listening = false;
-    }
+	public boolean isListening() {
+		return this.listening;
+	}
 
-    @Override
-    public void earlyStartup() {
-        System.err.println("RefactoringChangeListener.earlyStartup() called");
-    }
+	public void startListening() {
+		this.listening = true;
+	}
 
-    private void notifyAll(List<ChangeClassifyingEvent> events) {
-        for (ChangeClassifyingEvent event : events) {
-            notifyAll(event);
-        }
-    }
+	public void stopListening() {
+		this.listening = false;
+	}
 
-    private void notifyAll(ChangeClassifyingEvent event) {
-        for (ChangeOperationListener listener : this.listeners) {
-            LOG.info("Received refactoring event: " + event.toString());
-            listener.update(event);
-        }
-    }
+	@Override
+	public void earlyStartup() {
+		System.err.println("RefactoringChangeListener.earlyStartup() called");
+	}
 
-    public void addListener(ChangeOperationListener listener) {
-        this.listeners.add(listener);
-    }
+	private void notifyAll(List<ChangeClassifyingEvent> events) {
+		for (ChangeClassifyingEvent event : events) {
+			notifyAll(event);
+		}
+	}
 
-    public void removeListener(ChangeOperationListener listener) {
-        this.listeners.remove(listener);
-    }
+	private void notifyAll(ChangeClassifyingEvent event) {
+		LOG.debug("Received refactoring event");
+		LOG.trace("Received refactoring event: " + event.toString());
+		for (ChangeOperationListener listener : this.listeners) {
+			listener.update(event);
+		}
+	}
 
-    private void notifyAllStatusListeners(RefactoringStatus status, Object event) {
-        for (RefactoringStatusListener listener : this.statusListeners) {
-            switch (status) {
-            case PRE_EXECUTE:
-                listener.preExecute();
-                break;
-            case POST_EXECUTE:
-                listener.postExecute();
-                break;
-            case ABOUT_POST_EXECUTE:
-                listener.aboutPostExecute();
-                break;
-            default:
-                break;
-            }
-        }
-    }
+	public void addListener(ChangeOperationListener listener) {
+		this.listeners.add(listener);
+	}
 
-    public void addListener(RefactoringStatusListener listener) {
-        this.statusListeners.add(listener);
-    }
+	public void removeListener(ChangeOperationListener listener) {
+		this.listeners.remove(listener);
+	}
 
-    public void removeListener(RefactoringStatusListener listener) {
-        this.statusListeners.remove(listener);
-    }
+	private void notifyAllStatusListeners(RefactoringStatus status, Object event) {
+		for (RefactoringStatusListener listener : this.statusListeners) {
+			switch (status) {
+			case PRE_EXECUTE:
+				listener.preExecute();
+				break;
+			case POST_EXECUTE:
+				listener.postExecute();
+				break;
+			case ABOUT_POST_EXECUTE:
+				listener.aboutPostExecute();
+				break;
+			default:
+				break;
+			}
+		}
+	}
 
-    @Override
-    public void notHandled(String commandId, NotHandledException exception) {
-    }
+	public void addListener(RefactoringStatusListener listener) {
+		this.statusListeners.add(listener);
+	}
 
-    @Override
-    public void postExecuteFailure(String commandId, ExecutionException exception) {
-    }
+	public void removeListener(RefactoringStatusListener listener) {
+		this.statusListeners.remove(listener);
+	}
 
-    @Override
-    public void postExecuteSuccess(String commandId, Object returnValue) {
-    }
+	@Override
+	public void notHandled(String commandId, NotHandledException exception) {
+	}
 
-    public void addChangeClassifyingEvent(ChangeClassifyingEvent event) {
-        if (event != null) {
-            notifyAll(event);
-        }
-    }
+	@Override
+	public void postExecuteFailure(String commandId, ExecutionException exception) {
+	}
 
-    public void addChangeClassifyingEvents(List<ChangeClassifyingEvent> events) {
-        if (events != null)
-            notifyAll(events);
-    }
+	@Override
+	public void postExecuteSuccess(String commandId, Object returnValue) {
+	}
+
+	public void addChangeClassifyingEvent(ChangeClassifyingEvent event) {
+		if (event != null) {
+			notifyAll(event);
+		}
+	}
+
+	public void addChangeClassifyingEvents(List<ChangeClassifyingEvent> events) {
+		if (events != null)
+			notifyAll(events);
+	}
 }
