@@ -8,7 +8,7 @@
    <extension
          id="pcmDomainProvider"
          name="PCM Domain Provider"
-         point="tools.vitruv.framework.metamodel.domain">
+         point="tools.vitruv.framework.domains.domain">
       <domainProvider
             class="tools.vitruv.domains.pcm.PcmDomainProvider"></domainProvider>
    </extension>

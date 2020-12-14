@@ -8,7 +8,7 @@
    <extension
          id="emfprofilesDomainProvider"
          name="Emfprofiles Domain Provider"
-         point="tools.vitruv.framework.metamodel.domain">
+         point="tools.vitruv.framework.domains.domain">
       <domainProvider
             class="tools.vitruv.domains.emfprofiles.EmfProfilesDomainProvider"></domainProvider>
    </extension>
