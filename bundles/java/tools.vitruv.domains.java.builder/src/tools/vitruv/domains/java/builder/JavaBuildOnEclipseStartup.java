@@ -17,9 +17,9 @@ public class JavaBuildOnEclipseStartup implements IStartup {
 	@Override
 	public void earlyStartup() {
 		try {
-			ProjectBuildUtils.issueIncrementalBuildForAllProjectsWithBuilder(VitruviusJavaBuilder.BUILDER_ID);
+			ProjectBuildUtils.buildAllProjectsIncrementally(VitruviusJavaBuilder.BUILDER_ID);
 		} catch (IllegalStateException e) {
-			LOGGER.error("Could not issue initial build for all projects", e);
+			LOGGER.error("Could not perform initial build for all projects", e);
 		}
 	}
 }
