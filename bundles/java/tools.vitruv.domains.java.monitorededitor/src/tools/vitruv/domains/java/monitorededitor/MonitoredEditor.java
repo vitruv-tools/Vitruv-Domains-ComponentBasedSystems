@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -237,15 +240,26 @@ public class MonitoredEditor extends AbstractMonitoredEditor
 
 			@Override
 			protected IStatus run(final IProgressMonitor monitor) {
-				// Wait some time to ensure that all file system accesses (package/file creation
-				// etc)
-				// have been finalized, as they are executed concurrently
-				// TODO This is rather ugly. Can be wait for some kind of generic event here?
-				// Probably not...
+				log.debug("Refresh and propagate monitored changes in projects "
+						+ Arrays.toString(monitoredProjectNames));
+				log.trace("Refresh projects " + Arrays.toString(monitoredProjectNames));
+				for (String name : monitoredProjectNames) {
+					try {
+						ResourcesPlugin.getWorkspace().getRoot().getProject(name).refreshLocal(IResource.DEPTH_INFINITE,
+								null);
+					} catch (CoreException e1) {
+						log.error("Project could not be refreshed: " + name);
+					}
+				}
+				// TODO Some progress is still made here (file system access with package / file
+				// creation etc.), even if we let the project be refreshed and built. If we
+				// proceed too early, sometimes (depending on timing of the monitor)
+				// inconsistent information is retrieved, especially from the Java model. Since
+				// we did not find an event to wait for yet, we have to wait some time to ensure
+				// that no concurrent access is performed.
 				try {
 					Thread.sleep(200);
 				} catch (InterruptedException e) {
-					// Do nothing
 				}
 				if (null != change) {
 					MonitoredEditor.this.virtualModel.propagateChange(change);
