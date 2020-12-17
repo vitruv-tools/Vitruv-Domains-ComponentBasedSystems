@@ -261,10 +261,17 @@ public class MonitoredEditor extends AbstractMonitoredEditor
 					Thread.sleep(200);
 				} catch (InterruptedException e) {
 				}
-				if (null != change) {
-					MonitoredEditor.this.virtualModel.propagateChange(change);
-				} else {
-					MonitoredEditor.this.virtualModel.propagateChange(MonitoredEditor.this.changeStash);
+				log.trace("Propagate monitored changes in projects " + Arrays.toString(monitoredProjectNames));
+				try {
+					if (null != change) {
+						MonitoredEditor.this.virtualModel.propagateChange(change);
+					} else {
+						MonitoredEditor.this.virtualModel.propagateChange(MonitoredEditor.this.changeStash);
+					}
+				} catch (Exception e) {
+					log.error("Some error occurred during propagating changes in projects "
+							+ Arrays.toString(monitoredProjectNames));
+					throw e;
 				}
 				return Status.OK_STATUS;
 			}
