@@ -8,8 +8,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: tools.vitruv.domains.java.echange,
- tools.vitruv.domains.java.echange.feature,
+Export-Package: tools.vitruv.domains.java.echange.feature,
  tools.vitruv.domains.java.echange.feature.attribute,
  tools.vitruv.domains.java.echange.feature.attribute.impl,
  tools.vitruv.domains.java.echange.feature.attribute.util,

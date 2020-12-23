@@ -1,0 +1,13 @@
+module clean
+
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+
+var rootPath = ".."
+var pluginName = "tools.vitruv.domains.java.echange"
+var basePath = "${rootPath}/${pluginName}"
+
+Workflow {
+	component = DirectoryCleaner {
+		directory = "${basePath}/src-gen"
+	}
+}
