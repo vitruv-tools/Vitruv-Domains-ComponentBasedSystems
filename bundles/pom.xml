@@ -20,11 +20,15 @@
 	</properties>
 
 	<modules>
-		<module>java</module>
-		<module>pcm</module>
-		<module>uml</module>
-		<module>confidentiality</module>
-		<module>emfprofiles</module>
+		<module>tools.vitruv.domains.confidentiality</module>
+		<module>tools.vitruv.domains.emfprofiles</module>
+		<module>tools.vitruv.domains.java</module>
+		<module>tools.vitruv.domains.java.echange</module>
+		<module>tools.vitruv.domains.java.monitorededitor</module>
+		<module>tools.vitruv.domains.java.monitorededitor.methodchange</module>
+		<module>tools.vitruv.domains.pcm</module>
+		<module>tools.vitruv.domains.sysml</module>
+		<module>tools.vitruv.domains.uml</module>
 	</modules>
 
 	<build>
