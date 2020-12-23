@@ -21,7 +21,7 @@
 
    <requires>
       <import feature="edu.kit.kastel.scbs.confidentiality.feature.source" version="1.0.0" match="greaterOrEqual"/>
-      <import feature="tools.vitruv.framework.feature" version="1.0.0" match="greaterOrEqual"/>
+      <import feature="tools.vitruv.framework.feature"/>
       <import feature="org.eclipse.xtend.source"/>
    </requires>
 
