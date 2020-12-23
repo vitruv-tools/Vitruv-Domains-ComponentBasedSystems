@@ -1,8 +1,6 @@
 package tools.vitruv.domains.sysml
 
-import org.junit.Test
 import org.eclipse.uml2.uml.UMLFactory
-import org.junit.Assert
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.papyrus.sysml14.blocks.BlocksFactory
@@ -12,13 +10,17 @@ import tools.vitruv.framework.tuid.TuidManager
 import tools.vitruv.framework.tuid.TuidUpdateListener
 import java.util.ArrayList
 import java.util.List
-import org.junit.Before
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assertions.assertEquals
+import static org.junit.jupiter.api.Assertions.assertNotNull
 
 class SysMlDomainTests {
 	static val TEST_CLASS_NAME = "Test";
 	var SysMlDomain sysMlDomain;
 	
-	@Before
+	@BeforeEach
 	def void setup() {
 		TuidManager.instance.reinitialize
 		sysMlDomain = new SysMlDomainProvider().domain;
@@ -39,16 +41,16 @@ class SysMlDomainTests {
 	def void testTuidCalculationForSysMlElements() {
 		val block = createBlock();
 		testTuid(block, "Class", TEST_CLASS_NAME);
-		Assert.assertEquals(sysMlDomain.calculateTuid(block), sysMlDomain.calculateTuid(block.base_Class));
+		assertEquals(sysMlDomain.calculateTuid(block), sysMlDomain.calculateTuid(block.base_Class));
 	}
 	
 	@Test
 	def void testResponsibilityChecks() {
 		val block = createBlock();
-		Assert.assertTrue(sysMlDomain.isInstanceOfDomainMetamodel(block));
-		Assert.assertTrue(sysMlDomain.isInstanceOfDomainMetamodel(block.base_Class));
-		Assert.assertTrue(sysMlDomain.calculateTuid(block) !== null);
-		Assert.assertTrue(sysMlDomain.calculateTuid(block.base_Class) !== null);
+		assertTrue(sysMlDomain.isInstanceOfDomainMetamodel(block));
+		assertTrue(sysMlDomain.isInstanceOfDomainMetamodel(block.base_Class));
+		assertTrue(sysMlDomain.calculateTuid(block) !== null);
+		assertTrue(sysMlDomain.calculateTuid(block.base_Class) !== null);
 	}
 	
 	@Test
@@ -70,7 +72,7 @@ class SysMlDomainTests {
 		block.base_Class.name = "new";
 		TuidManager.instance.updateTuidsOfRegisteredObjects();
 		TuidManager.instance.flushRegisteredObjectsUnderModification();
-		Assert.assertEquals(2, tuids.size);
+		assertEquals(2, tuids.size);
 		testTuid(tuids.get(0), "Class", "old");
 		testTuid(tuids.get(1), "Class", "new");
 	}
@@ -98,10 +100,10 @@ class SysMlDomainTests {
 	
 	private def void assertTuid(String tuid, String expectedNamespaceUri, String expectedIdentifier) {
 		val tuidFragments = tuid.split("#");
-		Assert.assertEquals(3, tuidFragments.length);
-		Assert.assertEquals(expectedNamespaceUri, tuidFragments.get(0));
-		Assert.assertNotNull(tuidFragments.get(1));
-		Assert.assertEquals(expectedIdentifier, tuidFragments.get(2));
+		assertEquals(3, tuidFragments.length);
+		assertEquals(expectedNamespaceUri, tuidFragments.get(0));
+		assertNotNull(tuidFragments.get(1));
+		assertEquals(expectedIdentifier, tuidFragments.get(2));
 	}
 	
 }

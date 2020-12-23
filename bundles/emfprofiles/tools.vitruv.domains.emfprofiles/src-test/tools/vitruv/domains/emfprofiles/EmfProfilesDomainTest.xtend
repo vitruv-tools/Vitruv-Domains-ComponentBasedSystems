@@ -1,19 +1,19 @@
 package tools.vitruv.domains.emfprofiles
 
-import org.junit.Test
-import org.junit.Assert
 import org.eclipse.emf.ecore.EObject
-import org.junit.Before
 import tools.vitruv.framework.tuid.TuidManager
 import org.modelversioning.emfprofile.EMFProfileFactory
 import org.modelversioning.emfprofileapplication.EMFProfileApplicationFactory
 import org.modelversioning.emfprofileapplication.ProfileImport
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeEach
+import static org.junit.jupiter.api.Assertions.assertTrue
 
 class EmfProfilesDomainTest {
 	static val TEST_PROFILE_NAME = "Test";
 	var EmfProfilesDomain emfProfilesDomain;
 	
-	@Before
+	@BeforeEach
 	def void setup() {
 		TuidManager.instance.reinitialize();
 		emfProfilesDomain = new EmfProfilesDomainProvider().domain;
@@ -70,8 +70,8 @@ class EmfProfilesDomainTest {
 	}
 	
 	private def assertTuidCalculatability(EObject object) {
-		Assert.assertTrue(emfProfilesDomain.isInstanceOfDomainMetamodel(object));
-		Assert.assertTrue(emfProfilesDomain.calculateTuid(object) !== null);
+		assertTrue(emfProfilesDomain.isInstanceOfDomainMetamodel(object));
+		assertTrue(emfProfilesDomain.calculateTuid(object) !== null);
 	}
 	
 }

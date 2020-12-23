@@ -1,12 +1,14 @@
 package tools.vitruv.domains.java
 
-import org.junit.Assert
-import org.junit.Test
 import org.emftext.language.java.classifiers.ClassifiersFactory
 import org.emftext.language.java.JavaPackage
 import org.emftext.language.java.commons.NamedElement
 import org.eclipse.emf.ecore.EObject
 import org.emftext.language.java.classifiers.Classifier
+import org.junit.jupiter.api.Test
+import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assertions.assertNotNull
+import static org.junit.jupiter.api.Assertions.assertEquals
 
 class JavaDomainTests {
 	static val TEST_NAME = "Test";
@@ -19,8 +21,8 @@ class JavaDomainTests {
 	def void testResponsibilityChecks() {
 		val component = ClassifiersFactory.eINSTANCE.createClass();
 		val javaDomain = getJavaDomain();
-		Assert.assertTrue(javaDomain.isInstanceOfDomainMetamodel(component));
-		Assert.assertTrue(javaDomain.calculateTuid(component) !== null);
+		assertTrue(javaDomain.isInstanceOfDomainMetamodel(component));
+		assertTrue(javaDomain.calculateTuid(component) !== null);
 	}
 	
 	@Test
@@ -40,10 +42,10 @@ class JavaDomainTests {
 	
 	private def void assertTuid(EObject object, String expectedNamespaceUri, String expectedIdentifier) {
 		val tuidFragments = javaDomain.calculateTuid(object).toString.split("#");
-		Assert.assertEquals(3, tuidFragments.length);
-		Assert.assertEquals(expectedNamespaceUri, tuidFragments.get(0));
-		Assert.assertNotNull(tuidFragments.get(1));
-		Assert.assertEquals(expectedIdentifier, tuidFragments.get(2));
+		assertEquals(3, tuidFragments.length);
+		assertEquals(expectedNamespaceUri, tuidFragments.get(0));
+		assertNotNull(tuidFragments.get(1));
+		assertEquals(expectedIdentifier, tuidFragments.get(2));
 	}
 	
 }

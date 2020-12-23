@@ -14,7 +14,7 @@ import org.eclipse.text.edits.DeleteEdit;
 import org.eclipse.text.edits.InsertEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 import org.eclipse.text.edits.TextEdit;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import tools.vitruv.domains.java.monitorededitor.MonitoredEditor;
 import tools.vitruv.domains.java.tests.monitorededitor.HadoopCodeElements.HadoopCoompilationUnitSize;
