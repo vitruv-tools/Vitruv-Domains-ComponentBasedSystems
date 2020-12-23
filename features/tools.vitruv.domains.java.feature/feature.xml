@@ -81,46 +81,10 @@
          unpack="false"/>
 
    <plugin
-         id="tools.vitruv.domains.java.monitorededitor.astchangelistener"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="tools.vitruv.domains.java.monitorededitor.changeclassification"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="tools.vitruv.domains.java.monitorededitor.javamodel2ast"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="tools.vitruv.domains.java.monitorededitor.methodchange"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="tools.vitruv.domains.java.monitorededitor.refactoringlistener"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="tools.vitruv.domains.java.monitorededitor.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
 </feature>
