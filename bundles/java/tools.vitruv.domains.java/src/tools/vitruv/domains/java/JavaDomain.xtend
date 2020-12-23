@@ -11,8 +11,12 @@ class JavaDomain extends AbstractTuidAwareVitruvDomain {
 	static final String METAMODEL_NAME = "Java";
 	boolean shouldTransitivelyPropagateChanges = false;
 		
-	protected new() {
-		super(METAMODEL_NAME, ROOT_PACKAGE, generateTuidCalculator(), #[FILE_EXTENSION]);
+	protected new () {
+		this(METAMODEL_NAME)
+	}
+	
+	protected new(String name) {
+		super(name, ROOT_PACKAGE, generateTuidCalculator(), #[FILE_EXTENSION]);
 		// Register factory for class and Java files in case of not running as plugin
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("java", new JavaSourceOrClassFileResourceFactoryImpl());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("class", new JavaSourceOrClassFileResourceFactoryImpl());
