@@ -2,16 +2,16 @@ package tools.vitruv.domains.java
 
 import tools.vitruv.domains.java.tuid.JavaTuidCalculatorAndResolver
 import static tools.vitruv.domains.java.JavaNamespace.*
-import tools.vitruv.domains.java.builder.VitruviusJavaBuilderApplicator
 import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 import org.eclipse.emf.ecore.resource.Resource
 import org.emftext.language.java.resource.JavaSourceOrClassFileResourceFactoryImpl
+import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 
-final class JavaDomain extends AbstractTuidAwareVitruvDomain {
+class JavaDomain extends AbstractTuidAwareVitruvDomain {
 	static final String METAMODEL_NAME = "Java";
 	boolean shouldTransitivelyPropagateChanges = false;
 		
-	package new() {
+	protected new() {
 		super(METAMODEL_NAME, ROOT_PACKAGE, generateTuidCalculator(), #[FILE_EXTENSION]);
 		// Register factory for class and Java files in case of not running as plugin
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("java", new JavaSourceOrClassFileResourceFactoryImpl());
@@ -25,7 +25,7 @@ final class JavaDomain extends AbstractTuidAwareVitruvDomain {
 	}
 	
 	override getBuilderApplicator() {
-		return new VitruviusJavaBuilderApplicator();
+		return new VitruviusEmfBuilderApplicator();
 	}
 	
 	override shouldTransitivelyPropagateChanges() {
