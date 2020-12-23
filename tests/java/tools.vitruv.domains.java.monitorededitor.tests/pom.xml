@@ -10,7 +10,7 @@
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>tools.vitruv.domains.java.monitorededitor.tests</artifactId>
-	<packaging>eclipse-plugin</packaging>
+	<packaging>eclipse-test-plugin</packaging>
 
 	<build>
 		<plugins>

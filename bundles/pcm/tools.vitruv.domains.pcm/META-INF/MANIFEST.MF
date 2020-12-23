@@ -14,7 +14,7 @@ Require-Bundle: tools.vitruv.framework.domains;visibility:=reexport,
  org.eclipse.xtend.lib.macro,
  tools.vitruv.framework.util,
  tools.vitruv.framework.tuid,
- org.junit,
+ org.junit.jupiter.api,
  org.eclipse.core.runtime,
  tools.vitruv.extensions.emf
 Export-Package: tools.vitruv.domains.pcm

@@ -13,7 +13,7 @@ Require-Bundle: tools.vitruv.domains.uml;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro,
- org.junit,
+ org.junit.jupiter.api,
  org.eclipse.papyrus.sysml14;visibility:=reexport,
  org.apache.log4j,
  tools.vitruv.extensions.emf
