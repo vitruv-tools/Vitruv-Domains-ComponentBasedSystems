@@ -15,7 +15,6 @@
 
 	<modules>
 		<module>tools.vitruv.domains.java</module>
-		<module>tools.vitruv.domains.java.builder</module>
 		<module>tools.vitruv.domains.java.echange</module>
 		<module>tools.vitruv.domains.java.monitorededitor</module>
 		<module>tools.vitruv.domains.java.monitorededitor.astchangelistener</module>
@@ -23,8 +22,6 @@
 		<module>tools.vitruv.domains.java.monitorededitor.javamodel2ast</module>
 		<module>tools.vitruv.domains.java.monitorededitor.methodchange</module>
 		<module>tools.vitruv.domains.java.monitorededitor.refactoringlistener</module>
-		<module>tools.vitruv.domains.java.util</module>
-		<module>tools.vitruv.domains.java.util.jamoppparser</module>
 	</modules>
 
 </project>

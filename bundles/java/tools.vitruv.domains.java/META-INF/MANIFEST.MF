@@ -14,14 +14,22 @@ Require-Bundle: com.google.guava,
  org.apache.log4j,
  org.junit.jupiter.api,
  org.emftext.language.java;visibility:=reexport,
+ org.emftext.language.java.resource,
+ org.emftext.language.java.resource.java,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
+ org.emftext.commons.antlr3_4_0;bundle-version="3.4.0",
  tools.vitruv.framework.domains;visibility:=reexport,
  tools.vitruv.framework.util,
  tools.vitruv.framework.tuid,
  tools.vitruv.framework.vsum,
  org.eclipse.core.runtime,
  edu.kit.ipd.sdq.commons.util.java,
- tools.vitruv.domains.java.builder,
- org.emftext.language.java.resource
+ tools.vitruv.extensions.emf,
+ edu.kit.ipd.sdq.activextendannotations
 Export-Package: tools.vitruv.domains.java,
- tools.vitruv.domains.java.tuid;x-internal:=true
+ tools.vitruv.domains.java.tuid;x-internal:=true,
+ tools.vitruv.domains.java.util,
+ tools.vitruv.domains.java.util.jamoppparser
 Bundle-Vendor: vitruv.tools
+Import-Package: org.eclipse.jdt.core.dom,
+ org.eclipse.jdt.internal.compiler.ast

@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  tools.vitruv.framework.ui.monitorededitor,
  org.eclipse.emf.ecore;bundle-version="2.9.2",
- tools.vitruv.domains.java.util.jamoppparser,
+ tools.vitruv.domains.java,
  org.eclipse.jdt.core,
  org.emftext.language.java,
  org.eclipse.core.resources,
@@ -26,10 +26,16 @@ Require-Bundle: org.eclipse.ui,
  tools.vitruv.framework.change.echange,
  tools.vitruv.framework.change,
  tools.vitruv.domains.java.echange,
- tools.vitruv.framework.vsum
+ tools.vitruv.framework.vsum,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ tools.vitruv.framework.ui.monitorededitor;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
-Export-Package: tools.vitruv.domains.java.monitorededitor,
+Export-Package: tools.vitruv.domains.java.builder,
+ tools.vitruv.domains.java.monitorededitor,
  tools.vitruv.domains.java.monitorededitor.activator;x-internal:=true,
  tools.vitruv.domains.java.monitorededitor.jamopputil
 Bundle-Vendor: vitruv.tools

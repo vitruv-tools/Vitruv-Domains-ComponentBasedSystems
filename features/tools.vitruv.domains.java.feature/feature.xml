@@ -67,13 +67,6 @@
          unpack="false"/>
 
    <plugin
-         id="tools.vitruv.domains.java.builder"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="tools.vitruv.domains.java.echange"
          download-size="0"
          install-size="0"
@@ -128,20 +121,6 @@
          install-size="0"
          version="0.0.0"
          fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="tools.vitruv.domains.java.util"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="tools.vitruv.domains.java.util.jamoppparser"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
          unpack="false"/>
 
 </feature>
