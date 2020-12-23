@@ -22,12 +22,12 @@
 		<repository>
 			<id>SDQ Commons</id>
 			<layout>p2</layout>
-			<url>https://kit-sdq.github.io/updatesite/release/commons/</url>
+			<url>https://kit-sdq.github.io/updatesite/release/commons/1.8.0</url>
 		</repository>
 		<repository>
-			<id>SDQ Metamodels</id>
+			<id>ASEM Metamodel</id>
 			<layout>p2</layout>
-			<url>https://kit-sdq.github.io/updatesite/release/metamodels/</url>
+			<url>https://kit-sdq.github.io/updatesite/release/metamodels/asem/1.1.0</url>
 		</repository>
 		<!--EMFText repository currently not available
 		<repository>
@@ -61,7 +61,5 @@
 		  <url>http://kastel-scbs.github.io/updatesite/nightly/confidentiality</url>
 		</repository>
 	</repositories>
-
-
 
 </project>
