@@ -25,13 +25,13 @@
 
    <requires>
       <import plugin="com.google.guava"/>
-      <import feature="edu.kit.ipd.sdq.commons.util.pcm.feature" version="1.6.0" match="greaterOrEqual"/>
-      <import feature="tools.vitruv.framework.feature" version="1.0.0" match="greaterOrEqual"/>
+      <import feature="edu.kit.ipd.sdq.commons.util.pcm.feature"/>
+      <import feature="tools.vitruv.framework.feature"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.xtext.xbase.lib"/>
-      <import plugin="org.eclipse.xtend.lib" version="2.19.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtend.lib"/>
       <import plugin="org.eclipse.xtend.lib.macro"/>
-      <import feature="org.palladiosimulator.pcm.feature" version="4.3.0" match="greaterOrEqual"/>
+      <import feature="org.palladiosimulator.pcm.feature"/>
    </requires>
 
    <plugin
