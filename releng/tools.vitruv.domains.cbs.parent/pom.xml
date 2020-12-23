@@ -24,11 +24,6 @@
 			<layout>p2</layout>
 			<url>https://kit-sdq.github.io/updatesite/release/commons/1.8.1</url>
 		</repository>
-		<repository>
-			<id>ASEM Metamodel</id>
-			<layout>p2</layout>
-			<url>https://kit-sdq.github.io/updatesite/release/metamodels/asem/1.1.0</url>
-		</repository>
 		<!--EMFText repository currently not available
 		<repository>
 			<id>EMFText</id>
