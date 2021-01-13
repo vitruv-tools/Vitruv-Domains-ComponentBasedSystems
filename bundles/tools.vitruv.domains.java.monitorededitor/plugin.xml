@@ -22,6 +22,6 @@
             </startup>
       </extension>
       
-      <extension-point id="postreconcile" name="Postreconcile Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astchangelistener.postreconcile.exsd"/>
-      <extension-point id="postchange" name="Postchange Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astchangelistener.postchange.exsd"/>
+      <extension-point id="astchangelistener.postreconcile" name="Postreconcile Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astchangelistener.postreconcile.exsd"/>
+      <extension-point id="astchangelistener.postchange" name="Postchange Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astchangelistener.postchange.exsd"/>
 </plugin>
