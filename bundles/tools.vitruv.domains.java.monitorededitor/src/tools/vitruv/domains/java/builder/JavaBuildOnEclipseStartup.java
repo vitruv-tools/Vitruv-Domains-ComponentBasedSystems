@@ -3,7 +3,7 @@ package tools.vitruv.domains.java.builder;
 import org.apache.log4j.Logger;
 import org.eclipse.ui.IStartup;
 
-import tools.vitruv.framework.ui.monitorededitor.ProjectBuildUtils;
+import static tools.vitruv.framework.util.ProjectBuildUtils.buildAllProjectsIncrementally;
 
 /**
  * {@link JavaBuildOnEclipseStartup} issues an incremental build of all open
@@ -17,7 +17,7 @@ public class JavaBuildOnEclipseStartup implements IStartup {
 	@Override
 	public void earlyStartup() {
 		try {
-			ProjectBuildUtils.buildAllProjectsIncrementally(VitruviusJavaBuilder.BUILDER_ID);
+			buildAllProjectsIncrementally(VitruviusJavaBuilder.BUILDER_ID);
 		} catch (IllegalStateException e) {
 			LOGGER.error("Could not perform initial build for all projects", e);
 		}
