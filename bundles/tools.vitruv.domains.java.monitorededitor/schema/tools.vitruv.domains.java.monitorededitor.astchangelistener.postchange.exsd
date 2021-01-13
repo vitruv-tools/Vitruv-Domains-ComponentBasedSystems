@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="tools.vitruv.domains.java.monitorededitor.astchangelistener" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="tools.vitruv.domains.java.monitorededitor" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="tools.vitruv.domains.java.monitorededitor.astchangelistener" id="postchange" name="Postchange Classifiers"/>
+         <meta.schema plugin="tools.vitruv.domains.java.monitorededitor" id="astchangelistener.postchange" name="Postchange Classifiers"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
