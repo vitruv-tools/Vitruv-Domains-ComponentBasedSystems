@@ -1,6 +1,7 @@
 package tools.vitruv.domains.java.monitorededitor.astchangelistener.classification.postchange;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.jdt.core.IJavaElement;
@@ -30,6 +31,6 @@ public class DeletePackageClassifier extends PackageClassifier {
                 };
             }
         }
-        return EMPTY_LIST;
+        return Collections.emptyList();
     }
 }

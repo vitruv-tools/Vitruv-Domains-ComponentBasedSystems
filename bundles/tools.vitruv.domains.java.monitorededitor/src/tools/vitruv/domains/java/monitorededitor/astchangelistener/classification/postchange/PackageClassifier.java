@@ -14,8 +14,6 @@ import tools.vitruv.domains.java.monitorededitor.changeclassification.events.Cha
 
 public abstract class PackageClassifier implements ConcreteChangeClassifier {
 
-    protected static final List<ChangeClassifyingEvent> EMPTY_LIST = new ArrayList<ChangeClassifyingEvent>(0);
-
     @Override
     public List<ChangeClassifyingEvent> match(IJavaElementDelta delta, CompilationUnit currentCompilationUnit,
             PreviousASTState previousState) {
