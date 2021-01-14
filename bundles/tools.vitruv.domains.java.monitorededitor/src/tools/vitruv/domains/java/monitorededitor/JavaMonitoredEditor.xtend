@@ -3,7 +3,6 @@ package tools.vitruv.domains.java.monitorededitor
 import java.util.ArrayList
 import java.util.List
 import java.util.Set
-import java.util.function.Supplier
 import org.apache.log4j.Logger
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.Status
@@ -43,8 +42,9 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 	val ChangeResponder changeResponder
 	val RecordingState recordingState
 	val ASTChangeListener astListener
+	val ()=>boolean shouldBeActive
 
-	new(VirtualModel virtualModel, Supplier<Boolean> shouldBeActive, String... monitoredProjectNames) {
+	new(VirtualModel virtualModel, ()=>boolean shouldBeActive, String... monitoredProjectNames) {
 		super(virtualModel)
 		checkState(PlatformUI.getWorkbench() !== null,
 			"Platform is not running but necessary for monitored Java editor")
@@ -54,17 +54,11 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 		this.automaticPropagationAfterMilliseconds = -1
 		this.changeResponder = new ChangeResponder(this)
 		this.reportChanges = true
+		this.shouldBeActive = shouldBeActive
 		this.recordingState = new RecordingState([submitPropagationJobIfNecessary])
 
 		log.debug('''Start initializing monitored editor for projects: «monitoredProjectNames»''')
-		astListener = new ASTChangeListener([
-			if (shouldBeActive.get()) {
-				return true
-			} else {
-				stopMonitoring();
-				return false
-			}
-		], this.monitoredProjectNames)
+		astListener = new ASTChangeListener(this.monitoredProjectNames)
 		astListener.addListener(this)
 		log.trace('''Added AST change listener for projects: «monitoredProjectNames»''')
 	}
@@ -126,7 +120,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 
 	def private synchronized void submitPropagationJobIfNecessary() {
 		if (automaticPropagationAfterMilliseconds === -1) {
-			return;
+			return
 		}
 		log.trace('''Submitting propagation job for projects «monitoredProjectNames»''')
 		val changePropagationJob = new WorkspaceJob("Change propagation job") {
@@ -160,16 +154,22 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 		recordingState.reset()
 	}
 
-	override synchronized void update(ChangeClassifyingEvent event) {
+	override synchronized void notifyEventClassified(ChangeClassifyingEvent event) {
 		log.debug('''Monitored editor for projects «monitoredProjectNames» reacting to change «event»''')
 		event.accept(changeResponder)
+	}
+
+	override synchronized void notifyEventOccured() {
+		if (!shouldBeActive.apply) {
+			stopMonitoring
+		}
 	}
 
 	override synchronized void submitChange(VitruviusChange change) {
 		if (!this.reportChanges) {
 			log.
 				trace('''Do not report change «change» because reporting is disabled for projects «monitoredProjectNames»''')
-			return;
+			return
 		}
 		log.trace('''Submit change in projects «monitoredProjectNames»''')
 		recordingState.submitChange(change)
