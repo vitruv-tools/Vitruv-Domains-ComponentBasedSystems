@@ -61,8 +61,8 @@ import static tools.vitruv.domains.java.monitorededitor.util.ExtensionPointsUtil
 public class ASTChangeListener implements IStartup, IElementChangedListener {
 
 	private static final Logger LOG = Logger.getLogger(ASTChangeListener.class);
-	private final ConcreteChangeClassifier[] postReconcileClassifiers;
-	private final ConcreteChangeClassifier[] postChangeClassifiers;
+	private final List<ConcreteChangeClassifier> postReconcileClassifiers;
+	private final List<ConcreteChangeClassifier> postChangeClassifiers;
 	private final PreviousASTState previousState;
 	private final ChangeHistory withholdChangeHistory;
 	private final List<ChangeOperationListener> listeners;
@@ -75,7 +75,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 	private final Set<String> monitoredProjectNames;
 
 	private boolean finalized = false;
-	
+
 	public boolean isListening() {
 		return this.listening;
 	}
@@ -119,7 +119,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 		finalized = true;
 	}
 
-	private static ConcreteChangeClassifier[] getPostReconcileClassifiers() {
+	private static List<ConcreteChangeClassifier> getPostReconcileClassifiers() {
 		final List<ConcreteChangeClassifier> classifiers = new ArrayList<ConcreteChangeClassifier>(Arrays.asList(
 				new AddFieldClassifier(), new RemoveFieldClassifier(), new RenameFieldClassifier(),
 				new ChangeFieldTypeClassifier(), new ChangeFieldModifiersClassifier(), new RenameMethodClassifier(),
@@ -130,15 +130,15 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 				new AddImportClassifier(), new RemoveImportClassifier(), new ChangeSupertypeClassifier(),
 				new ChangeAnnotationClassifier(), new JavaDocClassifier()));
 		classifiers.addAll(getRegisteredAstPostReconcileClassifiers());
-		return classifiers.toArray(new ConcreteChangeClassifier[0]);
+		return classifiers;
 	}
 
-	private static ConcreteChangeClassifier[] getPostChangeClassifiers() {
+	private static List<ConcreteChangeClassifier> getPostChangeClassifiers() {
 		final List<ConcreteChangeClassifier> classifiers = new ArrayList<ConcreteChangeClassifier>(
 				Arrays.asList(new RemoveCompilationUnitClassifier(), new RenamePackageClassifier(),
 						new CreatePackageClassifier(), new DeletePackageClassifier()));
 		classifiers.addAll(getRegisteredAstPostChangeClassifiers());
-		return classifiers.toArray(new ConcreteChangeClassifier[0]);
+		return classifiers;
 	}
 
 	@Override
@@ -233,7 +233,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 	}
 
 	private List<ChangeClassifyingEvent> classifyChange(final IJavaElementDelta delta,
-			final ConcreteChangeClassifier[] classifiers, final CompilationUnit currentCompilationUnit) {
+			final Iterable<ConcreteChangeClassifier> classifiers, final CompilationUnit currentCompilationUnit) {
 		final List<ChangeClassifyingEvent> events = new ArrayList<ChangeClassifyingEvent>();
 		for (final ConcreteChangeClassifier classifier : classifiers) {
 			events.addAll(classifier.match(delta, currentCompilationUnit, this.previousState));
@@ -269,7 +269,5 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 	public PreviousASTState getPreviousASTState() {
 		return this.previousState;
 	}
-
-
 
 }
