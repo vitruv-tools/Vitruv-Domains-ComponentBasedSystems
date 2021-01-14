@@ -6,19 +6,19 @@ import tools.vitruv.domains.java.monitorededitor.changeclassification.events.uti
 
 public abstract class ChangeTypeModifiersEvent extends ChangeClassifyingEvent {
 
-    public final TypeDeclaration original, changed;
+	public final TypeDeclaration original, changed;
 
-    public ChangeTypeModifiersEvent(TypeDeclaration original, TypeDeclaration changed) {
-        this.original = original;
-        this.changed = changed;
-    }
+	public ChangeTypeModifiersEvent(TypeDeclaration original, TypeDeclaration changed) {
+		this.original = original;
+		this.changed = changed;
+	}
 
-    @Override
-    public String toString() {
-        String originalModifiers = ModifierUtil.toModifiersString(this.original.getModifiers());
-        String changedModifiers = ModifierUtil.toModifiersString(this.changed.getModifiers());
+	@Override
+	public String toString() {
+		String originalModifiers = ModifierUtil.toModifiersString(this.original.getModifiers());
+		String changedModifiers = ModifierUtil.toModifiersString(this.changed.getModifiers());
 
-        return "ChangeTypeModifierEvent [original=" + originalModifiers + " " + this.original.getName().getIdentifier()
-                + ", changed=" + changedModifiers + " " + this.changed.getName().getIdentifier() + "]";
-    }
+		return "ChangeTypeModifierEvent [original=" + originalModifiers + " " + this.original.getName().getIdentifier()
+				+ ", changed=" + changedModifiers + " " + this.changed.getName().getIdentifier() + "]";
+	}
 }

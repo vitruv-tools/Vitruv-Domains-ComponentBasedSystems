@@ -5,17 +5,17 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 public abstract class DeleteTypeEvent extends ChangeClassifyingEvent {
 
-    public final CompilationUnit compilationUnitAfterDelete;
-    public final TypeDeclaration type;
+	public final CompilationUnit compilationUnitAfterDelete;
+	public final TypeDeclaration type;
 
-    public DeleteTypeEvent(CompilationUnit compilationUnitAfterDelete, TypeDeclaration type) {
-        this.compilationUnitAfterDelete = compilationUnitAfterDelete;
-        this.type = type;
-    }
+	public DeleteTypeEvent(CompilationUnit compilationUnitAfterDelete, TypeDeclaration type) {
+		this.compilationUnitAfterDelete = compilationUnitAfterDelete;
+		this.type = type;
+	}
 
-    @Override
-    public String toString() {
-        return "DeleteTypeEvent [type=" + this.type.getName().getIdentifier() + "]";
-    }
+	@Override
+	public String toString() {
+		return "DeleteTypeEvent [type=" + this.type.getName().getIdentifier() + "]";
+	}
 
 }

@@ -3,6 +3,8 @@ package tools.vitruv.domains.java.monitorededitor.changeclassification.events;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 
+import tools.vitruv.domains.java.monitorededitor.changeclassification.ChangeEventVisitor;
+
 public class AddAnnotationEvent extends AnnotationEvent {
 
     public final BodyDeclaration bodyDeclaration;
@@ -18,8 +20,8 @@ public class AddAnnotationEvent extends AnnotationEvent {
     }
 
     @Override
-    public void accept(final ChangeEventVisitor visitor) {
-        visitor.visit(this);
+    public <T> T accept(final ChangeEventVisitor<T> visitor) {
+		return visitor.visit(this);
     }
 
 }

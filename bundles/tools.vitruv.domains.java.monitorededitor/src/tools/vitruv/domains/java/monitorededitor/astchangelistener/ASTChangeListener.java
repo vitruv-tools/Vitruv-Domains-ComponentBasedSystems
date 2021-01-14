@@ -41,7 +41,6 @@ import tools.vitruv.domains.java.monitorededitor.astchangelistener.classificatio
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.classification.postreconcile.RenameFieldClassifier;
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.classification.postreconcile.RenameMethodClassifier;
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.classification.postreconcile.RenameTypeClassifier;
-import tools.vitruv.domains.java.monitorededitor.changeclassification.ChangeOperationListener;
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEvent;
 import tools.vitruv.domains.java.monitorededitor.javamodel2ast.CompilationUnitUtil;
 import static com.google.common.base.Preconditions.checkState;
@@ -111,29 +110,47 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 	}
 
 	private static List<ConcreteChangeClassifier> getPostReconcileClassifiers() {
-		final List<ConcreteChangeClassifier> classifiers = List.of(new AddFieldClassifier(),
-				new RemoveFieldClassifier(), new RenameFieldClassifier(), new ChangeFieldTypeClassifier(),
-				new ChangeFieldModifiersClassifier(), new RenameMethodClassifier(), new AddMethodClassifier(),
-				new RemoveMethodClassifier(), new ChangeMethodParameterClassifier(),
-				new ChangeMethodModifiersClassifier(), new ChangeMethodReturnTypeClassifier(),
-				new CreateTypeClassifier(), new RemoveTypeClassifier(), new RenameTypeClassifier(),
-				new ChangeTypeModifiersClassifier(), new ChangePackageDeclarationClassifier(),
-				new AddImportClassifier(), new RemoveImportClassifier(), new ChangeSupertypeClassifier(),
-				new ChangeAnnotationClassifier(), new JavaDocClassifier());
+		final List<ConcreteChangeClassifier> classifiers = new ArrayList<ConcreteChangeClassifier>();
+		classifiers.add(new AddFieldClassifier());
+		classifiers.add(new RemoveFieldClassifier());
+		classifiers.add(new RenameFieldClassifier());
+		classifiers.add(new ChangeFieldTypeClassifier());
+		classifiers.add(new ChangeFieldModifiersClassifier());
+		classifiers.add(new RenameMethodClassifier());
+		classifiers.add(new AddMethodClassifier());
+		classifiers.add(new RemoveMethodClassifier());
+		classifiers.add(new ChangeMethodParameterClassifier());
+		classifiers.add(new ChangeMethodModifiersClassifier());
+		classifiers.add(new ChangeMethodReturnTypeClassifier());
+		classifiers.add(new CreateTypeClassifier());
+		classifiers.add(new RemoveTypeClassifier());
+		classifiers.add(new RenameTypeClassifier());
+		classifiers.add(new ChangeTypeModifiersClassifier());
+		classifiers.add(new ChangePackageDeclarationClassifier());
+		classifiers.add(new AddImportClassifier());
+		classifiers.add(new RemoveImportClassifier());
+		classifiers.add(new ChangeSupertypeClassifier());
+		classifiers.add(new ChangeAnnotationClassifier());
+		classifiers.add(new JavaDocClassifier());
 		classifiers.addAll(getRegisteredAstPostReconcileClassifiers());
 		return classifiers;
 	}
 
 	private static List<ConcreteChangeClassifier> getPostChangeClassifiers() {
-		final List<ConcreteChangeClassifier> classifiers = List.of(new RemoveCompilationUnitClassifier(),
-				new RenamePackageClassifier(), new CreatePackageClassifier(), new DeletePackageClassifier());
+		final List<ConcreteChangeClassifier> classifiers = new ArrayList<ConcreteChangeClassifier>();
+		classifiers.add(new RemoveCompilationUnitClassifier());
+		classifiers.add(new RenamePackageClassifier());
+		classifiers.add(new CreatePackageClassifier());
+		classifiers.add(new DeletePackageClassifier());
 		classifiers.addAll(getRegisteredAstPostChangeClassifiers());
 		return classifiers;
 	}
 
 	@Override
-	public void elementChanged(final ElementChangedEvent event) {
-		listeners.forEach(listener -> listener.notifyEventOccured());
+	public synchronized void elementChanged(final ElementChangedEvent event) {
+		for (ChangeOperationListener listener : new ArrayList<>(listeners)) {
+			listener.notifyEventOccured();
+		}
 
 		if (!listening) {
 			return; // ignore event if not listening

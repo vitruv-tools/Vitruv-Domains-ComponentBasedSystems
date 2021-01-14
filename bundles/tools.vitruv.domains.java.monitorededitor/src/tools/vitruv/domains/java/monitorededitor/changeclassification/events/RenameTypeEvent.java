@@ -14,8 +14,8 @@ public abstract class RenameTypeEvent extends ChangeClassifyingEvent {
 
 	@Override
 	public String toString() {
-		return "RenameTypeEvent [original=" + original.getName().getIdentifier()
-				+ ", renamed=" + renamed.getName().getIdentifier() + "]";
+		return "RenameTypeEvent [original=" + original.getName().getIdentifier() + ", renamed="
+				+ renamed.getName().getIdentifier() + "]";
 	}
 
 }

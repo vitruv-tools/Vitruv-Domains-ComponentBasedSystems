@@ -2,26 +2,24 @@ package tools.vitruv.domains.java.monitorededitor.methodchange.changeresponder;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
-import tools.vitruv.domains.java.monitorededitor.ChangeEventExtendedVisitor;
-import tools.vitruv.domains.java.monitorededitor.ChangeSubmitter;
+import tools.vitruv.domains.java.monitorededitor.changeclassification.ChangeEventExtendedVisitor;
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEventExtension;
+import tools.vitruv.framework.change.description.VitruviusChange;
 
 /**
  * Base class for change event visitors used as extension to the monitored
  * editor. This class supports only exactly one type of change event.
  * 
- * @param <T>
- *            The type of the processed change classifying event.
+ * @param <T> The type of the processed change classifying event.
  */
-public abstract class VisitorBase<T extends ChangeClassifyingEventExtension>
-		implements ChangeEventExtendedVisitor {
+public abstract class VisitorBase<T extends ChangeClassifyingEventExtension> implements ChangeEventExtendedVisitor {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void visit(ChangeClassifyingEventExtension changeClassifyingEvent,
-			ChangeSubmitter submitter) {
-		visitInternal((T) changeClassifyingEvent, submitter);
+	public Optional<VitruviusChange> visit(ChangeClassifyingEventExtension changeClassifyingEvent) {
+		return visitInternal((T) changeClassifyingEvent);
 	}
 
 	@Override
@@ -39,12 +37,9 @@ public abstract class VisitorBase<T extends ChangeClassifyingEventExtension>
 	/**
 	 * Processes the given change event.
 	 * 
-	 * @param changeClassifyingEvent
-	 *            The change classifying event.
-	 * @param submitter
-	 *            The change submitter.
+	 * @param changeClassifyingEvent The change classifying event.
+	 * @param submitter              The change submitter.
 	 */
-	protected abstract void visitInternal(T changeClassifyingEvent,
-			ChangeSubmitter submitter);
+	protected abstract Optional<VitruviusChange> visitInternal(T changeClassifyingEvent);
 
 }

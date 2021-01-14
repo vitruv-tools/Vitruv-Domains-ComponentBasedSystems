@@ -1,4 +1,4 @@
-package tools.vitruv.domains.java.monitorededitor.changeclassification;
+package tools.vitruv.domains.java.monitorededitor.astchangelistener;
 
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEvent;
 
