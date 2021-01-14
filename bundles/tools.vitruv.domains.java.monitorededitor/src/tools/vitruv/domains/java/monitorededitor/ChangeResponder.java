@@ -86,389 +86,377 @@ import tools.vitruv.framework.util.datatypes.VURI;
 
 /**
  * The {@link ChangeResponder} implements a {@link ChangeEventVisitor} for
- * {@link ChangeClassifyingEvent}s. It uses the AST information in the change events to build
- * {@link EMFModelChange}s with the {@link JamoppChangeBuildHelper}. These EMF changes are submitted
- * to the {@link MonitoredEditor}.
+ * {@link ChangeClassifyingEvent}s. It uses the AST information in the change
+ * events to build {@link EMFModelChange}s with the
+ * {@link JamoppChangeBuildHelper}. These EMF changes are submitted to the
+ * {@link JavaMonitoredEditor}.
  */
 public class ChangeResponder implements ChangeEventVisitor {
 
-    private static final Logger logger = Logger.getLogger(ChangeResponder.class.getSimpleName());
+	private static final Logger logger = Logger.getLogger(ChangeResponder.class.getSimpleName());
 
-    protected final MonitoredEditor monitoredEditor;
-    private final Map<java.lang.Class<? extends ChangeClassifyingEventExtension>, ChangeEventExtendedVisitor> dispatcher;
-    protected final ChangeResponderUtility util;
-    static long lastCallTime;
+	protected final JavaMonitoredEditor monitoredEditor;
+	private final Map<java.lang.Class<? extends ChangeClassifyingEventExtension>, ChangeEventExtendedVisitor> dispatcher;
+	protected final ChangeResponderUtility util;
+	static long lastCallTime;
 
-    private void setLastCallTime() {
-        lastCallTime = System.nanoTime();
-    }
+	private void setLastCallTime() {
+		lastCallTime = System.nanoTime();
+	}
 
-    public ChangeResponder(final MonitoredEditor monitoredEditor) {
-        this.monitoredEditor = monitoredEditor;
-        this.util = new ChangeResponderUtility();
-        this.dispatcher = new HashMap<java.lang.Class<? extends ChangeClassifyingEventExtension>, ChangeEventExtendedVisitor>();
-        this.fillDispatcherMap();
-    }
+	public ChangeResponder(final JavaMonitoredEditor monitoredEditor) {
+		this.monitoredEditor = monitoredEditor;
+		this.util = new ChangeResponderUtility();
+		this.dispatcher = new HashMap<java.lang.Class<? extends ChangeClassifyingEventExtension>, ChangeEventExtendedVisitor>();
+		this.fillDispatcherMap();
+	}
 
-    private void fillDispatcherMap() {
-        for (final ChangeEventExtendedVisitor visitor : getRegisteredVisitors(
-                "tools.vitruv.domains.java.monitorededitor")) {
-            for (final java.lang.Class<? extends ChangeClassifyingEventExtension> clazz : visitor.getTreatedClasses()) {
-                this.dispatcher.put(clazz, visitor);
-            }
-        }
-    }
+	private void fillDispatcherMap() {
+		for (final ChangeEventExtendedVisitor visitor : getRegisteredVisitors(
+				"tools.vitruv.domains.java.monitorededitor.changeeventextendedvisitors")) {
+			for (final java.lang.Class<? extends ChangeClassifyingEventExtension> clazz : visitor.getTreatedClasses()) {
+				this.dispatcher.put(clazz, visitor);
+			}
+		}
+	}
 
-    private static List<ChangeEventExtendedVisitor> getRegisteredVisitors(final String extensionPointName) {
-        return EclipseBridge.getRegisteredExtensions(extensionPointName, VitruviusConstants.getExtensionPropertyName(),
-                ChangeEventExtendedVisitor.class);
-    }
+	private static List<ChangeEventExtendedVisitor> getRegisteredVisitors(final String extensionPointName) {
+		return EclipseBridge.getRegisteredExtensions(extensionPointName, VitruviusConstants.getExtensionPropertyName(),
+				ChangeEventExtendedVisitor.class);
+	}
 
-    @Override
-    public void visit(final ChangeClassifyingEventExtension changeClassifyingEvent) {
-        this.dispatcher.get(changeClassifyingEvent.getClass()).visit(changeClassifyingEvent, this.monitoredEditor);
-    }
+	@Override
+	public void visit(final ChangeClassifyingEventExtension changeClassifyingEvent) {
+		this.dispatcher.get(changeClassifyingEvent.getClass()).visit(changeClassifyingEvent, this.monitoredEditor);
+	}
 
-    @Override
-    public void visit(final AddMethodEvent addMethodEvent) {
-        final MethodDeclaration newMethodDeclaration = addMethodEvent.method;
-        final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(newMethodDeclaration);
-        final Parametrizable newMethodOrConstructor = originalCU
-                .getMethodOrConstructorForMethodDeclaration(newMethodDeclaration);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(addMethodEvent.typeBeforeAdd);
-        final ConcreteClassifier classifierBeforeAdd = changedCU
-                .getConcreteClassifierForTypeDeclaration(addMethodEvent.typeBeforeAdd);
-        final EChange eChange = JamoppChangeBuildHelper.createAddMethodChange(newMethodOrConstructor,
-                classifierBeforeAdd);
-        this.util.submitVitruviusModelChange(eChange, addMethodEvent.method);
-    }
+	@Override
+	public void visit(final AddMethodEvent addMethodEvent) {
+		final MethodDeclaration newMethodDeclaration = addMethodEvent.method;
+		final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(newMethodDeclaration);
+		final Parametrizable newMethodOrConstructor = originalCU
+				.getMethodOrConstructorForMethodDeclaration(newMethodDeclaration);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(addMethodEvent.typeBeforeAdd);
+		final ConcreteClassifier classifierBeforeAdd = changedCU
+				.getConcreteClassifierForTypeDeclaration(addMethodEvent.typeBeforeAdd);
+		final EChange eChange = JamoppChangeBuildHelper.createAddMethodChange(newMethodOrConstructor,
+				classifierBeforeAdd);
+		this.util.submitVitruviusModelChange(eChange, addMethodEvent.method);
+	}
 
-    @Override
-    public void visit(final CreateInterfaceEvent createInterfaceEvent) {
-        final TypeDeclaration type = createInterfaceEvent.type;
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(createInterfaceEvent.compilationUnitBeforeCreate);
-        final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(type);
-        final Interface newInterface = (Interface) changedCU.getConcreteClassifierForTypeDeclaration(type);
-        final EChange eChange = JamoppChangeBuildHelper.createCreateInterfaceChange(newInterface,
-                null == originalCU ? null : originalCU.getCompilationUnit());
-        this.util.submitVitruviusModelChange(eChange, createInterfaceEvent.type);
+	@Override
+	public void visit(final CreateInterfaceEvent createInterfaceEvent) {
+		final TypeDeclaration type = createInterfaceEvent.type;
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(createInterfaceEvent.compilationUnitBeforeCreate);
+		final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(type);
+		final Interface newInterface = (Interface) changedCU.getConcreteClassifierForTypeDeclaration(type);
+		final EChange eChange = JamoppChangeBuildHelper.createCreateInterfaceChange(newInterface,
+				null == originalCU ? null : originalCU.getCompilationUnit());
+		this.util.submitVitruviusModelChange(eChange, createInterfaceEvent.type);
 
-    }
+	}
 
-    @Override
-    public void visit(final CreateClassEvent createClassEvent) {
-        final TypeDeclaration type = createClassEvent.type;
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(createClassEvent.compilationUnitBeforeCreate);
-        final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(type);
-        final Class newClass = (Class) changedCU.getConcreteClassifierForTypeDeclaration(type);
-        final CompilationUnit beforeChange = null == originalCU ? null : originalCU.getCompilationUnit();
-        final EChange eChange = JamoppChangeBuildHelper.createAddClassChange(newClass, beforeChange);
-        this.util.submitVitruviusModelChange(eChange, createClassEvent.type);
+	@Override
+	public void visit(final CreateClassEvent createClassEvent) {
+		final TypeDeclaration type = createClassEvent.type;
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(createClassEvent.compilationUnitBeforeCreate);
+		final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(type);
+		final Class newClass = (Class) changedCU.getConcreteClassifierForTypeDeclaration(type);
+		final CompilationUnit beforeChange = null == originalCU ? null : originalCU.getCompilationUnit();
+		final EChange eChange = JamoppChangeBuildHelper.createAddClassChange(newClass, beforeChange);
+		this.util.submitVitruviusModelChange(eChange, createClassEvent.type);
 
-    }
+	}
 
-    @Override
-    public void visit(final ChangeMethodReturnTypeEvent changeMethodReturnTypeEvent) {
-        this.setLastCallTime();
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(changeMethodReturnTypeEvent.original);
-        final Parametrizable original = originalCU
-                .getMethodOrConstructorForMethodDeclaration(changeMethodReturnTypeEvent.original);
-        final CompilationUnitAdapter cu = this.util
-                .getUnsavedCompilationUnitAdapter(changeMethodReturnTypeEvent.renamed);
-        final Parametrizable changed = cu
-                .getMethodOrConstructorForMethodDeclaration(changeMethodReturnTypeEvent.renamed);
-        if (changed instanceof Method && original instanceof Method) {
-            final EChange eChange = JamoppChangeBuildHelper.createChangeMethodReturnTypeChange((Method) original,
-                    (Method) changed);
-            this.util.submitVitruviusModelChange(eChange, changeMethodReturnTypeEvent.original);
-        } else {
-            logger.info(
-                    "Change method return type could not be reported. Either original or changed is not instanceof method: orginal: "
-                            + " changed: " + changed);
-        }
-    }
+	@Override
+	public void visit(final ChangeMethodReturnTypeEvent changeMethodReturnTypeEvent) {
+		this.setLastCallTime();
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(changeMethodReturnTypeEvent.original);
+		final Parametrizable original = originalCU
+				.getMethodOrConstructorForMethodDeclaration(changeMethodReturnTypeEvent.original);
+		final CompilationUnitAdapter cu = this.util
+				.getUnsavedCompilationUnitAdapter(changeMethodReturnTypeEvent.renamed);
+		final Parametrizable changed = cu
+				.getMethodOrConstructorForMethodDeclaration(changeMethodReturnTypeEvent.renamed);
+		if (changed instanceof Method && original instanceof Method) {
+			final EChange eChange = JamoppChangeBuildHelper.createChangeMethodReturnTypeChange((Method) original,
+					(Method) changed);
+			this.util.submitVitruviusModelChange(eChange, changeMethodReturnTypeEvent.original);
+		} else {
+			logger.info(
+					"Change method return type could not be reported. Either original or changed is not instanceof method: orginal: "
+							+ " changed: " + changed);
+		}
+	}
 
-    @Override
-    public void visit(final RemoveMethodEvent removeMethodEvent) {
-        final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(removeMethodEvent.method);
-        final Parametrizable removedMethod = originalCU
-                .getMethodOrConstructorForMethodDeclaration(removeMethodEvent.method);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(removeMethodEvent.typeAfterRemove);
-        final ConcreteClassifier classifierAfterRemove = changedCU
-                .getConcreteClassifierForTypeDeclaration(removeMethodEvent.typeAfterRemove);
-        final EChange eChange = JamoppChangeBuildHelper.createRemoveMethodChange(removedMethod, classifierAfterRemove);
-        this.util.submitVitruviusModelChange(eChange, removeMethodEvent.method);
-    }
+	@Override
+	public void visit(final RemoveMethodEvent removeMethodEvent) {
+		final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(removeMethodEvent.method);
+		final Parametrizable removedMethod = originalCU
+				.getMethodOrConstructorForMethodDeclaration(removeMethodEvent.method);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(removeMethodEvent.typeAfterRemove);
+		final ConcreteClassifier classifierAfterRemove = changedCU
+				.getConcreteClassifierForTypeDeclaration(removeMethodEvent.typeAfterRemove);
+		final EChange eChange = JamoppChangeBuildHelper.createRemoveMethodChange(removedMethod, classifierAfterRemove);
+		this.util.submitVitruviusModelChange(eChange, removeMethodEvent.method);
+	}
 
-    @Override
-    public void visit(final DeleteClassEvent deleteClassEvent) {
-        final TypeDeclaration type = deleteClassEvent.type;
-        final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(type);
-        final Class deletedClass = (Class) originalCU.getConcreteClassifierForTypeDeclaration(type);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(deleteClassEvent.compilationUnitAfterDelete);
-        final EChange eChange = JamoppChangeBuildHelper.createRemovedClassChange(deletedClass,
-                changedCU.getCompilationUnit());
-        this.util.submitVitruviusModelChange(eChange, deleteClassEvent.type);
-    }
+	@Override
+	public void visit(final DeleteClassEvent deleteClassEvent) {
+		final TypeDeclaration type = deleteClassEvent.type;
+		final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(type);
+		final Class deletedClass = (Class) originalCU.getConcreteClassifierForTypeDeclaration(type);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(deleteClassEvent.compilationUnitAfterDelete);
+		final EChange eChange = JamoppChangeBuildHelper.createRemovedClassChange(deletedClass,
+				changedCU.getCompilationUnit());
+		this.util.submitVitruviusModelChange(eChange, deleteClassEvent.type);
+	}
 
-    @Override
-    public void visit(final DeleteInterfaceEvent deleteInterfaceEvent) {
-        final TypeDeclaration type = deleteInterfaceEvent.type;
-        final CompilationUnitAdapter oldCU = this.util.getUnsavedCompilationUnitAdapter(type);
-        final Interface deletedInterface = (Interface) oldCU.getConcreteClassifierForTypeDeclaration(type);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(deleteInterfaceEvent.compilationUnitAfterDelete);
-        final EChange eChange = JamoppChangeBuildHelper.createRemovedInterfaceChange(deletedInterface,
-                changedCU.getCompilationUnit());
-        this.util.submitVitruviusModelChange(eChange, deleteInterfaceEvent.type);
-    }
+	@Override
+	public void visit(final DeleteInterfaceEvent deleteInterfaceEvent) {
+		final TypeDeclaration type = deleteInterfaceEvent.type;
+		final CompilationUnitAdapter oldCU = this.util.getUnsavedCompilationUnitAdapter(type);
+		final Interface deletedInterface = (Interface) oldCU.getConcreteClassifierForTypeDeclaration(type);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(deleteInterfaceEvent.compilationUnitAfterDelete);
+		final EChange eChange = JamoppChangeBuildHelper.createRemovedInterfaceChange(deletedInterface,
+				changedCU.getCompilationUnit());
+		this.util.submitVitruviusModelChange(eChange, deleteInterfaceEvent.type);
+	}
 
-    // private static void writeToConsole(String output) {
-    //
-    // MessageConsole console = new MessageConsole("My Console", null);
-    // console.activate();
-    // ConsolePlugin.getDefault().getConsoleManager().addConsoles(new IConsole[] { console });
-    // MessageConsoleStream stream = console.newMessageStream();
-    // stream.println(output);
-    // }
+	@Override
+	public void visit(final RenameMethodEvent renameMethodEvent) {
+		this.setLastCallTime();
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(renameMethodEvent.original);
+		final Parametrizable original = originalCU
+				.getMethodOrConstructorForMethodDeclaration(renameMethodEvent.original);
+		final URI uri = this.util.getFirstExistingURI(renameMethodEvent.renamed, renameMethodEvent.original);
+		final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(renameMethodEvent.renamed,
+				uri);
+		final Parametrizable changed = changedCU.getMethodOrConstructorForMethodDeclaration(renameMethodEvent.renamed);
+		if (changed instanceof Member && original instanceof Member) {
+			final EChange eChange = JamoppChangeBuildHelper.createRenameMethodChange((Member) original,
+					(Member) changed);
+			this.util.submitVitruviusModelChange(eChange, renameMethodEvent.original);
+		} else {
+			logger.info(
+					"Could not execute rename method event, cause original or changed is not instance of Member. Original: "
+							+ original + " Changed: " + changed);
+		}
+	}
 
-    @Override
-    public void visit(final RenameMethodEvent renameMethodEvent) {
-        this.setLastCallTime();
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(renameMethodEvent.original);
-        final Parametrizable original = originalCU
-                .getMethodOrConstructorForMethodDeclaration(renameMethodEvent.original);
-        final URI uri = this.util.getFirstExistingURI(renameMethodEvent.renamed, renameMethodEvent.original);
-        final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(renameMethodEvent.renamed,
-                uri);
-        final Parametrizable changed = changedCU.getMethodOrConstructorForMethodDeclaration(renameMethodEvent.renamed);
-        if (changed instanceof Member && original instanceof Member) {
-            final EChange eChange = JamoppChangeBuildHelper.createRenameMethodChange((Member) original,
-                    (Member) changed);
-            this.util.submitVitruviusModelChange(eChange, renameMethodEvent.original);
-        } else {
-            logger.info(
-                    "Could not execute rename method event, cause original or changed is not instance of Member. Original: "
-                            + original + " Changed: " + changed);
-        }
-        // this.monitoredEditor.showMessage(UserInteractionType.MODAL,
-        // "You just renamed a method.");
-    }
+	@Override
+	public void visit(final RenameFieldEvent renameFieldEvent) {
+		this.setLastCallTime();
+		final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(renameFieldEvent.original);
+		final Field original = originalCU.getFieldForVariableDeclarationFragment(renameFieldEvent.originalFragment);
+		final URI uri = this.util.getFirstExistingURI(renameFieldEvent.changed, renameFieldEvent.original);
+		final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(renameFieldEvent.changed,
+				uri);
+		final Field renamed = changedCU.getFieldForVariableDeclarationFragment(renameFieldEvent.changedFragment);
+		final EChange eChange = JamoppChangeBuildHelper.createRenameFieldChange(original, renamed);
+		this.util.submitVitruviusModelChange(eChange, renameFieldEvent.original);
+	}
 
-    @Override
-    public void visit(final RenameFieldEvent renameFieldEvent) {
-        this.setLastCallTime();
-        final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(renameFieldEvent.original);
-        final Field original = originalCU.getFieldForVariableDeclarationFragment(renameFieldEvent.originalFragment);
-        final URI uri = this.util.getFirstExistingURI(renameFieldEvent.changed, renameFieldEvent.original);
-        final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(renameFieldEvent.changed,
-                uri);
-        final Field renamed = changedCU.getFieldForVariableDeclarationFragment(renameFieldEvent.changedFragment);
-        final EChange eChange = JamoppChangeBuildHelper.createRenameFieldChange(original, renamed);
-        this.util.submitVitruviusModelChange(eChange, renameFieldEvent.original);
+	@Override
+	public void visit(final RenameInterfaceEvent renameInterfaceEvent) {
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(renameInterfaceEvent.original);
+		final Interface originalInterface = (Interface) originalCU
+				.getConcreteClassifierForTypeDeclaration(renameInterfaceEvent.original);
+		final URI uri = this.util.getFirstExistingURI(renameInterfaceEvent.renamed, renameInterfaceEvent.original);
+		final CompilationUnitAdapter cuRenamed = this.util
+				.getUnsavedCompilationUnitAdapter(renameInterfaceEvent.renamed, uri);
+		final Interface renamedInterface = (Interface) cuRenamed
+				.getConcreteClassifierForTypeDeclaration(renameInterfaceEvent.renamed);
 
-        // ++ Test UserInteractor ++
-        // this.monitoredEditor.selectFromMessage(UserInteractionType.MODELESS, "What did you do?",
-        // "I renamed a field.",
-        // "I took a sip of coffee.");
-        // this.monitoredEditor.selectFromMessage(UserInteractionType.MODAL_POSTPONABLE,
-        // "Are you sure?", "Yes.", "No.",
-        // "Why do you ask?");
-    }
+		final EChange eChange = JamoppChangeBuildHelper.createRenameInterfaceChange(originalInterface,
+				renamedInterface);
+		this.util.submitVitruviusModelChange(eChange, renameInterfaceEvent.original);
+	}
 
-    @Override
-    public void visit(final RenameInterfaceEvent renameInterfaceEvent) {
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(renameInterfaceEvent.original);
-        final Interface originalInterface = (Interface) originalCU
-                .getConcreteClassifierForTypeDeclaration(renameInterfaceEvent.original);
-        final URI uri = this.util.getFirstExistingURI(renameInterfaceEvent.renamed, renameInterfaceEvent.original);
-        final CompilationUnitAdapter cuRenamed = this.util
-                .getUnsavedCompilationUnitAdapter(renameInterfaceEvent.renamed, uri);
-        final Interface renamedInterface = (Interface) cuRenamed
-                .getConcreteClassifierForTypeDeclaration(renameInterfaceEvent.renamed);
+	@Override
+	public void visit(final RenameClassEvent renameClassEvent) {
+		final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(renameClassEvent.original);
+		final Class originalClass = (Class) originalCU
+				.getConcreteClassifierForTypeDeclaration(renameClassEvent.original);
+		final URI uri = this.util.getFirstExistingURI(renameClassEvent.renamed, renameClassEvent.original);
+		final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(renameClassEvent.renamed,
+				uri);
+		final Class renamedClass = (Class) changedCU.getConcreteClassifierForTypeDeclaration(renameClassEvent.renamed);
+		final EChange eChange = JamoppChangeBuildHelper.createRenameClassChange(originalClass, renamedClass);
+		this.util.submitVitruviusModelChange(eChange, renameClassEvent.original);
+	}
 
-        final EChange eChange = JamoppChangeBuildHelper.createRenameInterfaceChange(originalInterface,
-                renamedInterface);
-        this.util.submitVitruviusModelChange(eChange, renameInterfaceEvent.original);
-    }
+	@Override
+	public void visit(final AddImportEvent addImportEvent) {
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(addImportEvent.importDeclaration);
+		final Import imp = originalCU.getImportForImportDeclaration(addImportEvent.importDeclaration);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(addImportEvent.compilationUnitBeforeAdd);
+		final EChange eChange = JamoppChangeBuildHelper.createAddImportChange(imp, changedCU.getCompilationUnit());
+		this.util.submitVitruviusModelChange(eChange, addImportEvent.importDeclaration);
+	}
 
-    @Override
-    public void visit(final RenameClassEvent renameClassEvent) {
-        final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(renameClassEvent.original);
-        final Class originalClass = (Class) originalCU
-                .getConcreteClassifierForTypeDeclaration(renameClassEvent.original);
-        final URI uri = this.util.getFirstExistingURI(renameClassEvent.renamed, renameClassEvent.original);
-        final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(renameClassEvent.renamed,
-                uri);
-        final Class renamedClass = (Class) changedCU.getConcreteClassifierForTypeDeclaration(renameClassEvent.renamed);
-        final EChange eChange = JamoppChangeBuildHelper.createRenameClassChange(originalClass, renamedClass);
-        this.util.submitVitruviusModelChange(eChange, renameClassEvent.original);
-    }
+	@Override
+	public void visit(final RemoveImportEvent removeImportEvent) {
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(removeImportEvent.importDeclaration);
+		final Import imp = originalCU.getImportForImportDeclaration(removeImportEvent.importDeclaration);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(removeImportEvent.compilationUnitAfterRemove);
+		final EChange eChange = JamoppChangeBuildHelper.createRemoveImportChange(imp, changedCU.getCompilationUnit());
+		this.util.submitVitruviusModelChange(eChange, removeImportEvent.importDeclaration);
+	}
 
-    @Override
-    public void visit(final AddImportEvent addImportEvent) {
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(addImportEvent.importDeclaration);
-        final Import imp = originalCU.getImportForImportDeclaration(addImportEvent.importDeclaration);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(addImportEvent.compilationUnitBeforeAdd);
-        final EChange eChange = JamoppChangeBuildHelper.createAddImportChange(imp, changedCU.getCompilationUnit());
-        this.util.submitVitruviusModelChange(eChange, addImportEvent.importDeclaration);
-    }
+	@Override
+	public void visit(final MoveMethodEvent moveMethodEvent) {
+		final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(moveMethodEvent.original);
+		final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(moveMethodEvent.moved);
+		final ConcreteClassifier classifierMovedFromAfterRemove = originalCU
+				.getConcreteClassifierForTypeDeclaration(moveMethodEvent.typeMovedFromAfterRemove);
+		final ConcreteClassifier classifierMovedToBeforeAdd = originalCU
+				.getConcreteClassifierForTypeDeclaration(moveMethodEvent.typeMovedToBeforeAdd);
+		final Parametrizable removedParametrizable = originalCU
+				.getMethodOrConstructorForMethodDeclaration(moveMethodEvent.original);
+		final Parametrizable addedParametrizable = changedCU
+				.getMethodOrConstructorForMethodDeclaration(moveMethodEvent.moved);
+		if (removedParametrizable instanceof Method && addedParametrizable instanceof Method) {
+			final Method addedMethod = (Method) addedParametrizable;
+			final Method removedMethod = (Method) removedParametrizable;
 
-    @Override
-    public void visit(final RemoveImportEvent removeImportEvent) {
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(removeImportEvent.importDeclaration);
-        final Import imp = originalCU.getImportForImportDeclaration(removeImportEvent.importDeclaration);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(removeImportEvent.compilationUnitAfterRemove);
-        final EChange eChange = JamoppChangeBuildHelper.createRemoveImportChange(imp, changedCU.getCompilationUnit());
-        this.util.submitVitruviusModelChange(eChange, removeImportEvent.importDeclaration);
-    }
+			final EChange[] eChanges = JamoppChangeBuildHelper.createMoveMethodChange(removedMethod,
+					classifierMovedFromAfterRemove, addedMethod, classifierMovedToBeforeAdd);
+			final CompositeContainerChange moveMethodChange = VitruviusChangeFactory.getInstance()
+					.createCompositeContainerChange();
+			// [0] is remove, [1] is add
+			final ConcreteChange removeMethodChange = this.util.wrapToVitruviusModelChange(eChanges[0],
+					moveMethodEvent.original);
+			final ConcreteChange addMethodChange = this.util.wrapToVitruviusModelChange(eChanges[1],
+					moveMethodEvent.moved);
+			moveMethodChange.addChange(removeMethodChange);
+			moveMethodChange.addChange(addMethodChange);
+			this.monitoredEditor.submitChange(moveMethodChange);
+		} else {
+			logger.info("could not report move method because either added or removed method is not a method. Added: "
+					+ addedParametrizable + " Removed: " + removedParametrizable);
+		}
+	}
 
-    @Override
-    public void visit(final MoveMethodEvent moveMethodEvent) {
-        final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(moveMethodEvent.original);
-        final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(moveMethodEvent.moved);
-        final ConcreteClassifier classifierMovedFromAfterRemove = originalCU
-                .getConcreteClassifierForTypeDeclaration(moveMethodEvent.typeMovedFromAfterRemove);
-        final ConcreteClassifier classifierMovedToBeforeAdd = originalCU
-                .getConcreteClassifierForTypeDeclaration(moveMethodEvent.typeMovedToBeforeAdd);
-        final Parametrizable removedParametrizable = originalCU
-                .getMethodOrConstructorForMethodDeclaration(moveMethodEvent.original);
-        final Parametrizable addedParametrizable = changedCU
-                .getMethodOrConstructorForMethodDeclaration(moveMethodEvent.moved);
-        if (removedParametrizable instanceof Method && addedParametrizable instanceof Method) {
-            final Method addedMethod = (Method) addedParametrizable;
-            final Method removedMethod = (Method) removedParametrizable;
+	@Override
+	public void visit(final AddSuperInterfaceEvent addSuperInterfaceEvent) {
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(addSuperInterfaceEvent.baseType);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(addSuperInterfaceEvent.superType);
+		if (!(addSuperInterfaceEvent.superType instanceof SimpleType)) {
+			logger.warn("visit AddSuperInterfaceEvent failed: super type is not an instance of SimpleType: "
+					+ addSuperInterfaceEvent.superType);
+			return;
+		}
+		final TypeReference implementsTypeRef = changedCU
+				.getImplementsForSuperType((SimpleType) addSuperInterfaceEvent.superType);
+		final ConcreteClassifier affectedClassifier = originalCU
+				.getConcreteClassifierForTypeDeclaration(addSuperInterfaceEvent.baseType);
+		final EChange eChange = JamoppChangeBuildHelper.createAddSuperInterfaceChange(affectedClassifier,
+				implementsTypeRef);
+		this.util.submitVitruviusModelChange(eChange, addSuperInterfaceEvent.baseType);
+	}
 
-            final EChange[] eChanges = JamoppChangeBuildHelper.createMoveMethodChange(removedMethod,
-                    classifierMovedFromAfterRemove, addedMethod, classifierMovedToBeforeAdd);
-            final CompositeContainerChange moveMethodChange = VitruviusChangeFactory.getInstance().createCompositeContainerChange();
-            // [0] is remove, [1] is add
-            final ConcreteChange removeMethodChange = this.util.wrapToVitruviusModelChange(eChanges[0],
-                    moveMethodEvent.original);
-            final ConcreteChange addMethodChange = this.util.wrapToVitruviusModelChange(eChanges[1], moveMethodEvent.moved);
-            moveMethodChange.addChange(removeMethodChange);
-            moveMethodChange.addChange(addMethodChange);
-            this.monitoredEditor.submitChange(moveMethodChange);
-        } else {
-            logger.info("could not report move method because either added or removed method is not a method. Added: "
-                    + addedParametrizable + " Removed: " + removedParametrizable);
-        }
-    }
+	@Override
+	public void visit(final RemoveSuperInterfaceEvent removeSuperInterfaceEvent) {
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(removeSuperInterfaceEvent.baseType);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(removeSuperInterfaceEvent.superType);
+		if (!(removeSuperInterfaceEvent.superType instanceof SimpleType)) {
+			logger.warn("visit AddSuperInterfaceEvent failed: super type is not an instance of SimpleType: "
+					+ removeSuperInterfaceEvent.superType);
+			return;
+		}
+		final TypeReference implementsTypeRef = originalCU
+				.getImplementsForSuperType((SimpleType) removeSuperInterfaceEvent.superType);
+		final ConcreteClassifier affectedClassifier = changedCU
+				.getConcreteClassifierForTypeDeclaration(removeSuperInterfaceEvent.baseType);
+		final EChange eChange = JamoppChangeBuildHelper.createRemoveSuperInterfaceChange(affectedClassifier,
+				implementsTypeRef);
+		this.util.submitVitruviusModelChange(eChange, removeSuperInterfaceEvent.baseType);
+	}
 
-    @Override
-    public void visit(final AddSuperInterfaceEvent addSuperInterfaceEvent) {
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(addSuperInterfaceEvent.baseType);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(addSuperInterfaceEvent.superType);
-        if (!(addSuperInterfaceEvent.superType instanceof SimpleType)) {
-            logger.warn("visit AddSuperInterfaceEvent failed: super type is not an instance of SimpleType: "
-                    + addSuperInterfaceEvent.superType);
-            return;
-        }
-        final TypeReference implementsTypeRef = changedCU
-                .getImplementsForSuperType((SimpleType) addSuperInterfaceEvent.superType);
-        final ConcreteClassifier affectedClassifier = originalCU
-                .getConcreteClassifierForTypeDeclaration(addSuperInterfaceEvent.baseType);
-        final EChange eChange = JamoppChangeBuildHelper.createAddSuperInterfaceChange(affectedClassifier,
-                implementsTypeRef);
-        this.util.submitVitruviusModelChange(eChange, addSuperInterfaceEvent.baseType);
-    }
+	@Override
+	public void visit(final AddSuperClassEvent addSuperClassEvent) {
+		// TODO Auto-generated method stub
 
-    @Override
-    public void visit(final RemoveSuperInterfaceEvent removeSuperInterfaceEvent) {
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(removeSuperInterfaceEvent.baseType);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(removeSuperInterfaceEvent.superType);
-        if (!(removeSuperInterfaceEvent.superType instanceof SimpleType)) {
-            logger.warn("visit AddSuperInterfaceEvent failed: super type is not an instance of SimpleType: "
-                    + removeSuperInterfaceEvent.superType);
-            return;
-        }
-        final TypeReference implementsTypeRef = originalCU
-                .getImplementsForSuperType((SimpleType) removeSuperInterfaceEvent.superType);
-        final ConcreteClassifier affectedClassifier = changedCU
-                .getConcreteClassifierForTypeDeclaration(removeSuperInterfaceEvent.baseType);
-        final EChange eChange = JamoppChangeBuildHelper.createRemoveSuperInterfaceChange(affectedClassifier,
-                implementsTypeRef);
-        this.util.submitVitruviusModelChange(eChange, removeSuperInterfaceEvent.baseType);
-    }
+	}
 
-    @Override
-    public void visit(final AddSuperClassEvent addSuperClassEvent) {
-        // TODO Auto-generated method stub
+	@Override
+	public void visit(final RemoveSuperClassEvent removeSuperClassEvent) {
+		// TODO Auto-generated method stub
 
-    }
+	}
 
-    @Override
-    public void visit(final RemoveSuperClassEvent removeSuperClassEvent) {
-        // TODO Auto-generated method stub
+	@Override
+	public void visit(final ChangeMethodParameterEvent changeMethodParameterEvent) {
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(changeMethodParameterEvent.original);
+		final Parametrizable original = originalCU
+				.getMethodOrConstructorForMethodDeclaration(changeMethodParameterEvent.original);
+		final CompilationUnitAdapter cu = this.util
+				.getUnsavedCompilationUnitAdapter(changeMethodParameterEvent.renamed);
+		final Parametrizable changed = cu
+				.getMethodOrConstructorForMethodDeclaration(changeMethodParameterEvent.renamed);
+		this.handleParameterChanges(changed, original, original.getParameters(), changed.getParameters(),
+				changeMethodParameterEvent.original);
+	}
 
-    }
+	private void handleParameterChanges(final Parametrizable methodAfterRemove, final Parametrizable methodBeforeAdd,
+			final List<Parameter> oldParameters, final List<Parameter> newParameters, final ASTNode oldNode) {
+		final CompositeContainerChange compositeChange = VitruviusChangeFactory.getInstance()
+				.createCompositeContainerChange();
+		/*
+		 * for (final Parameter oldParameter : oldParameters) { final EChange eChange =
+		 * JaMoPPChangeBuildHelper.createRemoveParameterChange(oldParameter,
+		 * methodAfterRemove);
+		 * compositeChange.addChange(this.util.wrapToEMFModelChange(eChange, oldNode));
+		 * } for (final Parameter newParameter : newParameters) { final EChange eChange
+		 * = JaMoPPChangeBuildHelper.createAddParameterChange(newParameter,
+		 * methodBeforeAdd);
+		 * compositeChange.addChange(this.util.wrapToEMFModelChange(eChange, oldNode));
+		 * }
+		 */
 
-    @Override
-    public void visit(final ChangeMethodParameterEvent changeMethodParameterEvent) {
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(changeMethodParameterEvent.original);
-        final Parametrizable original = originalCU
-                .getMethodOrConstructorForMethodDeclaration(changeMethodParameterEvent.original);
-        final CompilationUnitAdapter cu = this.util
-                .getUnsavedCompilationUnitAdapter(changeMethodParameterEvent.renamed);
-        final Parametrizable changed = cu
-                .getMethodOrConstructorForMethodDeclaration(changeMethodParameterEvent.renamed);
-        this.handleParameterChanges(changed, original, original.getParameters(), changed.getParameters(),
-                changeMethodParameterEvent.original);
-    }
+		// diff the parameter list to figure out which parameters are added respectievly
+		// removed
+		for (final Parameter oldParameter : oldParameters) {
+			if (!this.containsParameter(oldParameter, newParameters)) {
+				// old Parameter is no longer contained in newParameters list
+				final EChange eChange = JamoppChangeBuildHelper.createRemoveParameterChange(oldParameter,
+						methodAfterRemove);
+				compositeChange.addChange(this.util.wrapToVitruviusModelChange(eChange, oldNode));
+			}
+		}
+		for (final Parameter newParameter : newParameters) {
+			if (!this.containsParameter(newParameter, oldParameters)) {
+				// new Parameter is not contained in oldParameters list --> new Parameter has
+				// been created
+				final EChange eChange = JamoppChangeBuildHelper.createAddParameterChange(newParameter, methodBeforeAdd);
+				compositeChange.addChange(this.util.wrapToVitruviusModelChange(eChange, oldNode));
+			}
+		}
+		this.monitoredEditor.submitChange(compositeChange);
+	}
 
-    private void handleParameterChanges(final Parametrizable methodAfterRemove, final Parametrizable methodBeforeAdd,
-            final List<Parameter> oldParameters, final List<Parameter> newParameters, final ASTNode oldNode) {
-        final CompositeContainerChange compositeChange = VitruviusChangeFactory.getInstance().createCompositeContainerChange();
-        /*
-         * for (final Parameter oldParameter : oldParameters) { final EChange eChange =
-         * JaMoPPChangeBuildHelper.createRemoveParameterChange(oldParameter, methodAfterRemove);
-         * compositeChange.addChange(this.util.wrapToEMFModelChange(eChange, oldNode)); } for (final
-         * Parameter newParameter : newParameters) { final EChange eChange =
-         * JaMoPPChangeBuildHelper.createAddParameterChange(newParameter, methodBeforeAdd);
-         * compositeChange.addChange(this.util.wrapToEMFModelChange(eChange, oldNode)); }
-         */
-
-        // diff the parameter list to figure out which parameters are added respectievly removed
-        for (final Parameter oldParameter : oldParameters) {
-            if (!this.containsParameter(oldParameter, newParameters)) {
-                // old Parameter is no longer contained in newParameters list
-                final EChange eChange = JamoppChangeBuildHelper.createRemoveParameterChange(oldParameter,
-                        methodAfterRemove);
-                compositeChange.addChange(this.util.wrapToVitruviusModelChange(eChange, oldNode));
-            }
-        }
-        for (final Parameter newParameter : newParameters) {
-            if (!this.containsParameter(newParameter, oldParameters)) {
-                // new Parameter is not contained in oldParameters list --> new Parameter has been
-                // created
-                final EChange eChange = JamoppChangeBuildHelper.createAddParameterChange(newParameter, methodBeforeAdd);
-                compositeChange.addChange(this.util.wrapToVitruviusModelChange(eChange, oldNode));
-            }
-        }
-        this.monitoredEditor.submitChange(compositeChange);
-    }
-
-    boolean containsParameter(final Parameter parameter, final List<Parameter> parameterList) {
+	boolean containsParameter(final Parameter parameter, final List<Parameter> parameterList) {
 		for (final Parameter parameterInList : parameterList) {
-			// we consider parameters equal if they name is identical, the
-			// return type is
+			// we consider parameters equal if they name is identical, the return type is
 			// identical, and they arrayDimension is equal
 			if (parameterInList.getName().equals(parameter.getName())
 					&& targetInTypeReferenceEquals(parameter.getTypeReference(), parameterInList.getTypeReference())
@@ -494,14 +482,7 @@ public class ChangeResponder implements ChangeEventVisitor {
 		}
 		return true;
 	}
-	
-	/**
-	* compares two types and returns if they are equal
-	*
-	* @param type1
-	* @param type2
-	* @return
-	*/
+
 	private static boolean typeEquals(final Type type1, final Type type2) {
 		if (type1 == type2) {
 			return true;
@@ -524,328 +505,329 @@ public class ChangeResponder implements ChangeEventVisitor {
 		return false;
 	}
 
+	@Override
+	public void visit(final ChangeMethodModifiersEvent changeMethodModifierEvent) {
+		this.setLastCallTime();
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(changeMethodModifierEvent.original);
+		final Parametrizable originalMethod = originalCU
+				.getMethodOrConstructorForMethodDeclaration(changeMethodModifierEvent.original);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(changeMethodModifierEvent.renamed);
+		final Parametrizable changedMethod = changedCU
+				.getMethodOrConstructorForMethodDeclaration(changeMethodModifierEvent.renamed);
+		if (originalMethod instanceof AnnotableAndModifiable && changedMethod instanceof AnnotableAndModifiable) {
+			final AnnotableAndModifiable originalModifiable = (AnnotableAndModifiable) originalMethod;
+			final AnnotableAndModifiable changedModifiable = (AnnotableAndModifiable) changedMethod;
+			final CompositeContainerChange change = this.buildModifierChanges(originalMethod, changedMethod,
+					originalModifiable.getModifiers(), changedModifiable.getModifiers(),
+					changeMethodModifierEvent.original);
+			this.monitoredEditor.submitChange(change);
+		} else {
+			logger.info(
+					"ChangeMethodModifiersEvent type could not be reported. Either original or changed is not instanceof Modifiable: orginal: "
+							+ originalMethod + " changed: " + changedMethod);
+		}
+	}
 
-    @Override
-    public void visit(final ChangeMethodModifiersEvent changeMethodModifierEvent) {
-        this.setLastCallTime();
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(changeMethodModifierEvent.original);
-        final Parametrizable originalMethod = originalCU
-                .getMethodOrConstructorForMethodDeclaration(changeMethodModifierEvent.original);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(changeMethodModifierEvent.renamed);
-        final Parametrizable changedMethod = changedCU
-                .getMethodOrConstructorForMethodDeclaration(changeMethodModifierEvent.renamed);
-        if (originalMethod instanceof AnnotableAndModifiable && changedMethod instanceof AnnotableAndModifiable) {
-            final AnnotableAndModifiable originalModifiable = (AnnotableAndModifiable) originalMethod;
-            final AnnotableAndModifiable changedModifiable = (AnnotableAndModifiable) changedMethod;
-            final CompositeContainerChange change = this.buildModifierChanges(originalMethod, changedMethod,
-                    originalModifiable.getModifiers(), changedModifiable.getModifiers(),
-                    changeMethodModifierEvent.original);
-            this.monitoredEditor.submitChange(change);
-        } else {
-            logger.info(
-                    "ChangeMethodModifiersEvent type could not be reported. Either original or changed is not instanceof Modifiable: orginal: "
-                            + originalMethod + " changed: " + changedMethod);
-        }
-    }
+	@Override
+	public void visit(final ChangeClassModifiersEvent changeClassModifiersEvent) {
+		this.handleClassifierModifierChanges(changeClassModifiersEvent.original, changeClassModifiersEvent.changed);
+	}
 
-    @Override
-    public void visit(final ChangeClassModifiersEvent changeClassModifiersEvent) {
-        this.handleClassifierModifierChanges(changeClassModifiersEvent.original, changeClassModifiersEvent.changed);
-    }
+	@Override
+	public void visit(final ChangeInterfaceModifiersEvent changeInterfaceModifiersEvent) {
+		this.handleClassifierModifierChanges(changeInterfaceModifiersEvent.original,
+				changeInterfaceModifiersEvent.changed);
+	}
 
-    @Override
-    public void visit(final ChangeInterfaceModifiersEvent changeInterfaceModifiersEvent) {
-        this.handleClassifierModifierChanges(changeInterfaceModifiersEvent.original,
-                changeInterfaceModifiersEvent.changed);
-    }
+	private void handleClassifierModifierChanges(final TypeDeclaration original, final TypeDeclaration changed) {
+		final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(original);
+		final ConcreteClassifier originalClassifier = originalCU.getConcreteClassifierForTypeDeclaration(original);
+		final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(changed);
+		final ConcreteClassifier changedClassifier = changedCU.getConcreteClassifierForTypeDeclaration(changed);
 
-    private void handleClassifierModifierChanges(final TypeDeclaration original, final TypeDeclaration changed) {
-        final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(original);
-        final ConcreteClassifier originalClassifier = originalCU.getConcreteClassifierForTypeDeclaration(original);
-        final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(changed);
-        final ConcreteClassifier changedClassifier = changedCU.getConcreteClassifierForTypeDeclaration(changed);
+		final CompositeContainerChange change = this.buildModifierChanges(originalClassifier, changedClassifier,
+				originalClassifier.getModifiers(), changedClassifier.getModifiers(), original);
+		this.monitoredEditor.submitChange(change);
+	}
 
-        final CompositeContainerChange change = this.buildModifierChanges(originalClassifier, changedClassifier,
-                originalClassifier.getModifiers(), changedClassifier.getModifiers(), original);
-        this.monitoredEditor.submitChange(change);
-    }
+	private CompositeContainerChange buildModifierChanges(final EObject modifiableBeforeChange,
+			final EObject modifiableAfterChange, final List<Modifier> oldModifiers, final List<Modifier> newModifiers,
+			final ASTNode oldNode) {
+		final List<Modifier> originalModifiers = new ArrayList<Modifier>(oldModifiers);
+		final List<Modifier> changedModifiers = new ArrayList<Modifier>(newModifiers);
 
-    private CompositeContainerChange buildModifierChanges(final EObject modifiableBeforeChange,
-            final EObject modifiableAfterChange, final List<Modifier> oldModifiers, final List<Modifier> newModifiers,
-            final ASTNode oldNode) {
-        final List<Modifier> originalModifiers = new ArrayList<Modifier>(oldModifiers);
-        final List<Modifier> changedModifiers = new ArrayList<Modifier>(newModifiers);
+		for (final Modifier changedModifier : newModifiers) {
+			for (final Modifier origModifier : oldModifiers) {
+				if (changedModifier.getClass() == origModifier.getClass()) {
+					originalModifiers.remove(origModifier);
+					changedModifiers.remove(changedModifier);
+					break;
+				}
+			}
+		}
 
-        for (final Modifier changedModifier : newModifiers) {
-            for (final Modifier origModifier : oldModifiers) {
-                if (changedModifier.getClass() == origModifier.getClass()) {
-                    originalModifiers.remove(origModifier);
-                    changedModifiers.remove(changedModifier);
-                    break;
-                }
-            }
-        }
+		final CompositeContainerChange modifierChanges = VitruviusChangeFactory.getInstance()
+				.createCompositeContainerChange();
+		for (final Modifier removedModifier : originalModifiers) {
+			final EChange eChange = JamoppChangeBuildHelper.createRemoveAnnotationOrModifierChange(removedModifier,
+					modifiableAfterChange);
+			modifierChanges.addChange(this.util.wrapToVitruviusModelChange(eChange, oldNode));
+		}
+		for (final Modifier newModifier : changedModifiers) {
+			final EChange eChange = JamoppChangeBuildHelper.createAddAnnotationOrModifierChange(newModifier,
+					modifiableBeforeChange);
+			modifierChanges.addChange(this.util.wrapToVitruviusModelChange(eChange, oldNode));
+		}
+		return modifierChanges;
+	}
 
-        final CompositeContainerChange modifierChanges = VitruviusChangeFactory.getInstance().createCompositeContainerChange();
-        for (final Modifier removedModifier : originalModifiers) {
-            final EChange eChange = JamoppChangeBuildHelper.createRemoveAnnotationOrModifierChange(removedModifier,
-                    modifiableAfterChange);
-            modifierChanges.addChange(this.util.wrapToVitruviusModelChange(eChange, oldNode));
-        }
-        for (final Modifier newModifier : changedModifiers) {
-            final EChange eChange = JamoppChangeBuildHelper.createAddAnnotationOrModifierChange(newModifier,
-                    modifiableBeforeChange);
-            modifierChanges.addChange(this.util.wrapToVitruviusModelChange(eChange, oldNode));
-        }
-        return modifierChanges;
-    }
+	@Override
+	public void visit(final AddFieldEvent addFieldEvent) {
+		this.setLastCallTime();
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(addFieldEvent.typeBeforeAdd);
+		final ConcreteClassifier classifierBeforeAdd = originalCU
+				.getConcreteClassifierForTypeDeclaration(addFieldEvent.typeBeforeAdd);
+		final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(addFieldEvent.field);
+		final Field field = changedCU.getFieldForVariableDeclarationFragment(addFieldEvent.fieldFragment);
+		final EChange eChange = JamoppChangeBuildHelper.createAddFieldChange(field, classifierBeforeAdd);
+		this.util.submitVitruviusModelChange(eChange, addFieldEvent.field);
+	}
 
-    @Override
-    public void visit(final AddFieldEvent addFieldEvent) {
-        this.setLastCallTime();
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(addFieldEvent.typeBeforeAdd);
-        final ConcreteClassifier classifierBeforeAdd = originalCU
-                .getConcreteClassifierForTypeDeclaration(addFieldEvent.typeBeforeAdd);
-        final CompilationUnitAdapter changedCU = this.util.getUnsavedCompilationUnitAdapter(addFieldEvent.field);
-        final Field field = changedCU.getFieldForVariableDeclarationFragment(addFieldEvent.fieldFragment);
-        final EChange eChange = JamoppChangeBuildHelper.createAddFieldChange(field, classifierBeforeAdd);
-        this.util.submitVitruviusModelChange(eChange, addFieldEvent.field);
-    }
+	@Override
+	public void visit(final RemoveFieldEvent removeFieldEvent) {
+		this.setLastCallTime();
+		final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(removeFieldEvent.field);
+		final Field field = originalCU.getFieldForVariableDeclarationFragment(removeFieldEvent.fieldFragment);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(removeFieldEvent.typeAfterRemove);
+		final ConcreteClassifier classiferAfterRemove = changedCU
+				.getConcreteClassifierForTypeDeclaration(removeFieldEvent.typeAfterRemove);
+		final EChange eChange = JamoppChangeBuildHelper.createAddFieldChange(field, classiferAfterRemove);
+		this.util.submitVitruviusModelChange(eChange, removeFieldEvent.field);
+	}
 
-    @Override
-    public void visit(final RemoveFieldEvent removeFieldEvent) {
-        this.setLastCallTime();
-        final CompilationUnitAdapter originalCU = this.util.getUnsavedCompilationUnitAdapter(removeFieldEvent.field);
-        final Field field = originalCU.getFieldForVariableDeclarationFragment(removeFieldEvent.fieldFragment);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(removeFieldEvent.typeAfterRemove);
-        final ConcreteClassifier classiferAfterRemove = changedCU
-                .getConcreteClassifierForTypeDeclaration(removeFieldEvent.typeAfterRemove);
-        final EChange eChange = JamoppChangeBuildHelper.createAddFieldChange(field, classiferAfterRemove);
-        this.util.submitVitruviusModelChange(eChange, removeFieldEvent.field);
-    }
+	@Override
+	public void visit(final ChangeFieldModifiersEvent changeFieldModifiersEvent) {
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(changeFieldModifiersEvent.original);
+		final List<Field> originalFields = originalCU.getFieldsForFieldDeclaration(changeFieldModifiersEvent.original);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(changeFieldModifiersEvent.changed);
+		final List<Field> changedFields = changedCU.getFieldsForFieldDeclaration(changeFieldModifiersEvent.changed);
 
-    @Override
-    public void visit(final ChangeFieldModifiersEvent changeFieldModifiersEvent) {
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(changeFieldModifiersEvent.original);
-        final List<Field> originalFields = originalCU.getFieldsForFieldDeclaration(changeFieldModifiersEvent.original);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(changeFieldModifiersEvent.changed);
-        final List<Field> changedFields = changedCU.getFieldsForFieldDeclaration(changeFieldModifiersEvent.changed);
+		final CompositeContainerChange allFieldModifierChanges = VitruviusChangeFactory.getInstance()
+				.createCompositeContainerChange();
+		final ListIterator<Field> ofit = originalFields.listIterator();
+		while (ofit.hasNext()) {
+			final Field oField = ofit.next();
+			final ListIterator<Field> cfit = changedFields.listIterator();
+			while (cfit.hasNext()) {
+				final Field cField = cfit.next();
+				if (oField.getName().equals(cField.getName())) {
+					cfit.remove();
+					final CompositeContainerChange fieldModifierChanges = this.buildModifierChanges(oField, cField,
+							oField.getModifiers(), cField.getModifiers(), changeFieldModifiersEvent.original);
+					allFieldModifierChanges.addChange(fieldModifierChanges);
+				}
+			}
+		}
+		this.monitoredEditor.submitChange(allFieldModifierChanges);
+	}
 
-        final CompositeContainerChange allFieldModifierChanges = VitruviusChangeFactory.getInstance().createCompositeContainerChange();
-        final ListIterator<Field> ofit = originalFields.listIterator();
-        while (ofit.hasNext()) {
-            final Field oField = ofit.next();
-            final ListIterator<Field> cfit = changedFields.listIterator();
-            while (cfit.hasNext()) {
-                final Field cField = cfit.next();
-                if (oField.getName().equals(cField.getName())) {
-                    cfit.remove();
-                    final CompositeContainerChange fieldModifierChanges = this.buildModifierChanges(oField, cField,
-                            oField.getModifiers(), cField.getModifiers(), changeFieldModifiersEvent.original);
-                    allFieldModifierChanges.addChange(fieldModifierChanges);
-                }
-            }
-        }
-        this.monitoredEditor.submitChange(allFieldModifierChanges);
-    }
+	@Override
+	public void visit(final ChangeFieldTypeEvent changeFieldTypeEvent) {
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(changeFieldTypeEvent.original);
+		final List<Field> originalFields = originalCU.getFieldsForFieldDeclaration(changeFieldTypeEvent.original);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(changeFieldTypeEvent.changed);
+		final List<Field> changedFields = changedCU.getFieldsForFieldDeclaration(changeFieldTypeEvent.changed);
 
-    @Override
-    public void visit(final ChangeFieldTypeEvent changeFieldTypeEvent) {
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(changeFieldTypeEvent.original);
-        final List<Field> originalFields = originalCU.getFieldsForFieldDeclaration(changeFieldTypeEvent.original);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(changeFieldTypeEvent.changed);
-        final List<Field> changedFields = changedCU.getFieldsForFieldDeclaration(changeFieldTypeEvent.changed);
+		final CompositeContainerChange typeChanges = VitruviusChangeFactory.getInstance()
+				.createCompositeContainerChange();
+		final ListIterator<Field> ofit = originalFields.listIterator();
+		while (ofit.hasNext()) {
+			final Field oField = ofit.next();
+			final ListIterator<Field> cfit = changedFields.listIterator();
+			while (cfit.hasNext()) {
+				final Field cField = cfit.next();
+				if (oField.getName().equals(cField.getName())) {
+					cfit.remove();
+					final EChange eChange = JamoppChangeBuildHelper.createChangeFieldTypeChange(oField, cField);
+					typeChanges.addChange(this.util.wrapToVitruviusModelChange(eChange, changeFieldTypeEvent.original));
+				}
+			}
+		}
+		this.monitoredEditor.submitChange(typeChanges);
+	}
 
-        final CompositeContainerChange typeChanges = VitruviusChangeFactory.getInstance().createCompositeContainerChange();
-        final ListIterator<Field> ofit = originalFields.listIterator();
-        while (ofit.hasNext()) {
-            final Field oField = ofit.next();
-            final ListIterator<Field> cfit = changedFields.listIterator();
-            while (cfit.hasNext()) {
-                final Field cField = cfit.next();
-                if (oField.getName().equals(cField.getName())) {
-                    cfit.remove();
-                    final EChange eChange = JamoppChangeBuildHelper.createChangeFieldTypeChange(oField, cField);
-                    typeChanges.addChange(this.util.wrapToVitruviusModelChange(eChange, changeFieldTypeEvent.original));
-                }
-            }
-        }
-        this.monitoredEditor.submitChange(typeChanges);
-    }
+	@Override
+	public void visit(final AddAnnotationEvent addAnnotationEvent) {
+		logger.info("React to AddMethodAnnotationEvent");
+		final CompilationUnitAdapter oldCU = this.util
+				.getUnsavedCompilationUnitAdapter(addAnnotationEvent.bodyDeclaration);
+		final AnnotableAndModifiable annotableAndModifiable = oldCU
+				.getAnnotableAndModifiableForBodyDeclaration(addAnnotationEvent.bodyDeclaration);
 
-    @Override
-    public void visit(final AddAnnotationEvent addAnnotationEvent) {
-        logger.info("React to AddMethodAnnotationEvent");
-        final CompilationUnitAdapter oldCU = this.util
-                .getUnsavedCompilationUnitAdapter(addAnnotationEvent.bodyDeclaration);
-        final AnnotableAndModifiable annotableAndModifiable = oldCU
-                .getAnnotableAndModifiableForBodyDeclaration(addAnnotationEvent.bodyDeclaration);
+		final CompilationUnitAdapter newCu = this.util.getUnsavedCompilationUnitAdapter(addAnnotationEvent.annotation);
+		final AnnotationInstance annotationInstance = newCu.getAnnotationInstanceForMethodAnnotation(
+				addAnnotationEvent.annotation, addAnnotationEvent.bodyDeclaration);
+		if (null != annotationInstance) {
+			final EChange eChange = JamoppChangeBuildHelper.createAddAnnotationOrModifierChange(annotationInstance,
+					annotableAndModifiable);
+			this.util.submitVitruviusModelChange(eChange, addAnnotationEvent.annotation);
+		}
+	}
 
-        final CompilationUnitAdapter newCu = this.util.getUnsavedCompilationUnitAdapter(addAnnotationEvent.annotation);
-        final AnnotationInstance annotationInstance = newCu.getAnnotationInstanceForMethodAnnotation(
-                addAnnotationEvent.annotation, addAnnotationEvent.bodyDeclaration);
-        if (null != annotationInstance) {
-            final EChange eChange = JamoppChangeBuildHelper.createAddAnnotationOrModifierChange(annotationInstance,
-                    annotableAndModifiable);
-            this.util.submitVitruviusModelChange(eChange, addAnnotationEvent.annotation);
-        }
-    }
+	@Override
+	public void visit(final RemoveAnnotationEvent removeAnnotationEvent) {
+		final CompilationUnitAdapter cuWithAnnotation = this.util
+				.getUnsavedCompilationUnitAdapter(removeAnnotationEvent.annotation);
+		final AnnotationInstance removedAnnotation = cuWithAnnotation.getAnnotationInstanceForMethodAnnotation(
+				removeAnnotationEvent.annotation, removeAnnotationEvent.bodyAfterChange);
+		if (null != removedAnnotation) {
+			final CompilationUnitAdapter cuWithoutAnnotation = this.util
+					.getUnsavedCompilationUnitAdapter(removeAnnotationEvent.bodyAfterChange);
+			final AnnotableAndModifiable annotableAndModifiable = cuWithoutAnnotation
+					.getAnnotableAndModifiableForBodyDeclaration(removeAnnotationEvent.bodyAfterChange);
+			final EChange eChange = JamoppChangeBuildHelper.createRemoveAnnotationOrModifierChange(removedAnnotation,
+					annotableAndModifiable);
+			this.util.submitVitruviusModelChange(eChange, removeAnnotationEvent.annotation);
+		}
+	}
 
-    @Override
-    public void visit(final RemoveAnnotationEvent removeAnnotationEvent) {
-        final CompilationUnitAdapter cuWithAnnotation = this.util
-                .getUnsavedCompilationUnitAdapter(removeAnnotationEvent.annotation);
-        final AnnotationInstance removedAnnotation = cuWithAnnotation.getAnnotationInstanceForMethodAnnotation(
-                removeAnnotationEvent.annotation, removeAnnotationEvent.bodyAfterChange);
-        if (null != removedAnnotation) {
-            final CompilationUnitAdapter cuWithoutAnnotation = this.util
-                    .getUnsavedCompilationUnitAdapter(removeAnnotationEvent.bodyAfterChange);
-            final AnnotableAndModifiable annotableAndModifiable = cuWithoutAnnotation
-                    .getAnnotableAndModifiableForBodyDeclaration(removeAnnotationEvent.bodyAfterChange);
-            final EChange eChange = JamoppChangeBuildHelper.createRemoveAnnotationOrModifierChange(removedAnnotation,
-                    annotableAndModifiable);
-            this.util.submitVitruviusModelChange(eChange, removeAnnotationEvent.annotation);
-        }
-    }
+	@Override
+	public void visit(final RenamePackageEvent renamePackageEvent) {
+		final EChange renamePackageChange = JamoppChangeBuildHelper.createRenamePackageChange(
+				renamePackageEvent.originalPackageName, renamePackageEvent.renamedPackageName);
+		this.util.submitVitruviusModelChange(renamePackageChange, renamePackageEvent.originalIResource);
 
-    @Override
-    public void visit(final RenamePackageEvent renamePackageEvent) {
-        final EChange renamePackageChange = JamoppChangeBuildHelper.createRenamePackageChange(
-                renamePackageEvent.originalPackageName, renamePackageEvent.renamedPackageName);
-        this.util.submitVitruviusModelChange(renamePackageChange, renamePackageEvent.originalIResource);
+	}
 
-    }
+	@Override
+	public void visit(final DeletePackageEvent deletePackageEvent) {
+		final EChange deletePackageChange = JamoppChangeBuildHelper
+				.createDeletePackageChange(deletePackageEvent.packageName);
+		this.util.submitVitruviusModelChange(deletePackageChange, deletePackageEvent.iResource);
 
-    @Override
-    public void visit(final DeletePackageEvent deletePackageEvent) {
-        final EChange deletePackageChange = JamoppChangeBuildHelper
-                .createDeletePackageChange(deletePackageEvent.packageName);
-        this.util.submitVitruviusModelChange(deletePackageChange, deletePackageEvent.iResource);
+	}
 
-    }
+	@Override
+	public void visit(final CreatePackageEvent addPackageEvent) {
+		final EChange createPackageChange = JamoppChangeBuildHelper
+				.createCreatePackageChange(addPackageEvent.packageName);
+		this.util.submitVitruviusModelChange(createPackageChange, addPackageEvent.iResource);
+	}
 
-    @Override
-    public void visit(final CreatePackageEvent addPackageEvent) {
-        final EChange createPackageChange = JamoppChangeBuildHelper
-                .createCreatePackageChange(addPackageEvent.packageName);
-        this.util.submitVitruviusModelChange(createPackageChange, addPackageEvent.iResource);
-    }
+	@Override
+	public void visit(final RenameParameterEvent renameParameterEvent) {
+		final CompilationUnitAdapter originalCU = this.util
+				.getUnsavedCompilationUnitAdapter(renameParameterEvent.original);
+		final Parameter original = originalCU.getParameterForVariableDeclaration(renameParameterEvent.originalParam);
+		final URI uri = this.util.getFirstExistingURI(renameParameterEvent.original, renameParameterEvent.renamed);
+		final CompilationUnitAdapter changedCU = this.util
+				.getUnsavedCompilationUnitAdapter(renameParameterEvent.renamed, uri);
+		final Parameter renamed = changedCU.getParameterForVariableDeclaration(renameParameterEvent.changedParam);
+		final EChange eChange = JamoppChangeBuildHelper.createRenameParameterChange(original, renamed);
+		this.util.submitVitruviusModelChange(eChange, renameParameterEvent.original);
+	}
 
-    @Override
-    public void visit(final RenameParameterEvent renameParameterEvent) {
-        final CompilationUnitAdapter originalCU = this.util
-                .getUnsavedCompilationUnitAdapter(renameParameterEvent.original);
-        final Parameter original = originalCU.getParameterForVariableDeclaration(renameParameterEvent.originalParam);
-        final URI uri = this.util.getFirstExistingURI(renameParameterEvent.original, renameParameterEvent.renamed);
-        final CompilationUnitAdapter changedCU = this.util
-                .getUnsavedCompilationUnitAdapter(renameParameterEvent.renamed, uri);
-        final Parameter renamed = changedCU.getParameterForVariableDeclaration(renameParameterEvent.changedParam);
-        final EChange eChange = JamoppChangeBuildHelper.createRenameParameterChange(original, renamed);
-        this.util.submitVitruviusModelChange(eChange, renameParameterEvent.original);
-    }
+	@Override
+	public void visit(final RenamePackageDeclarationEvent renamePackageDeclarationEvent) {
+		// TODO Auto-generated method stub
+	}
 
-    @Override
-    public void visit(final RenamePackageDeclarationEvent renamePackageDeclarationEvent) {
-        // TODO Auto-generated method stub
-    }
+	@Override
+	public void visit(final ChangePackageDeclarationEvent changePackageDeclarationEvent) {
+		// TODO Auto-generated method stub
 
-    @Override
-    public void visit(final ChangePackageDeclarationEvent changePackageDeclarationEvent) {
-        // TODO Auto-generated method stub
+	}
 
-    }
+	@Override
+	public void visit(final AddJavaDocEvent addJavaDocEvent) {
+		// TODO Auto-generated method stub
 
-    @Override
-    public void visit(final AddJavaDocEvent addJavaDocEvent) {
-        // TODO Auto-generated method stub
+	}
 
-    }
+	@Override
+	public void visit(final RemoveJavaDocEvent removeJavaDocEvent) {
+		// TODO Auto-generated method stub
 
-    @Override
-    public void visit(final RemoveJavaDocEvent removeJavaDocEvent) {
-        // TODO Auto-generated method stub
+	}
 
-    }
+	@Override
+	public void visit(final ChangeJavaDocEvent changeJavaDocEvent) {
+		// TODO Auto-generated method stub
 
-    @Override
-    public void visit(final ChangeJavaDocEvent changeJavaDocEvent) {
-        // TODO Auto-generated method stub
+	}
 
-    }
+	protected final class ChangeResponderUtility {
 
-    protected final class ChangeResponderUtility {
+		private ChangeResponderUtility() {
+		}
 
-        private ChangeResponderUtility() {
-        }
+		public CompilationUnitAdapter getUnsavedCompilationUnitAdapter(final ASTNode astNode) {
+			final URI uri = this.getURIFromCompilationUnit(astNode);
+			return this.getUnsavedCompilationUnitAdapter(astNode, uri);
+		}
 
-        public CompilationUnitAdapter getUnsavedCompilationUnitAdapter(final ASTNode astNode) {
-            final URI uri = this.getURIFromCompilationUnit(astNode);
-            return this.getUnsavedCompilationUnitAdapter(astNode, uri);
-        }
+		public CompilationUnitAdapter getUnsavedCompilationUnitAdapter(final ASTNode astNode, final URI uri) {
+			CompilationUnitAdapter cu = null;
+			if (null == astNode) {
+				return null;
+			}
+			cu = new CompilationUnitAdapter(astNode, uri, false);
+			if (cu.getCompilationUnit() == null) {
+				cu = null;
+			}
+			return cu;
+		}
 
-        public CompilationUnitAdapter getUnsavedCompilationUnitAdapter(final ASTNode astNode, final URI uri) {
-            CompilationUnitAdapter cu = null;
-            if (null == astNode) {
-                return null;
-            }
-            cu = new CompilationUnitAdapter(astNode, uri, false);
-            if (cu.getCompilationUnit() == null) {
-                cu = null;
-            }
-            return cu;
-        }
+		private void submitVitruviusModelChange(final EChange eChange, final ASTNode astNodeWithIResource) {
+			final ConcreteChange change = this.wrapToVitruviusModelChange(eChange, astNodeWithIResource);
+			ChangeResponder.this.monitoredEditor.submitChange(change);
+		}
 
-        private void submitVitruviusModelChange(final EChange eChange, final ASTNode astNodeWithIResource) {
-            final ConcreteChange change = this.wrapToVitruviusModelChange(eChange, astNodeWithIResource);
-            ChangeResponder.this.monitoredEditor.submitChange(change);
-        }
+		private void submitVitruviusModelChange(final EChange eChange, final IResource originalIResource) {
+			final ConcreteChange change = this.wrapToVitruviusModelChange(eChange, originalIResource);
+			ChangeResponder.this.monitoredEditor.submitChange(change);
+		}
 
-        private void submitVitruviusModelChange(final EChange eChange, final IResource originalIResource) {
-            final ConcreteChange change = this.wrapToVitruviusModelChange(eChange, originalIResource);
-            ChangeResponder.this.monitoredEditor.submitChange(change);
-        }
+		private ConcreteChange wrapToVitruviusModelChange(final EChange eChange, final ASTNode astNodeWithIResource) {
+			final VURI vuri = VURI.getInstance(AST2Jamopp.getIResource(astNodeWithIResource));
+			return VitruviusChangeFactory.getInstance().createConcreteChangeWithVuri(eChange, vuri);
+		}
 
-        private ConcreteChange wrapToVitruviusModelChange(final EChange eChange, final ASTNode astNodeWithIResource) {
-            final VURI vuri = VURI.getInstance(AST2Jamopp.getIResource(astNodeWithIResource));
-            return VitruviusChangeFactory.getInstance().createConcreteChangeWithVuri(eChange, vuri);
-        }
+		private ConcreteChange wrapToVitruviusModelChange(final EChange eChange, final IResource originalIResource) {
+			final VURI vuri = VURI.getInstance(originalIResource);
+			return VitruviusChangeFactory.getInstance().createConcreteChangeWithVuri(eChange, vuri);
+		}
 
-        private ConcreteChange wrapToVitruviusModelChange(final EChange eChange, final IResource originalIResource) {
-            final VURI vuri = VURI.getInstance(originalIResource);
-            return VitruviusChangeFactory.getInstance().createConcreteChangeWithVuri(eChange, vuri);
-        }
+		// returns URI from node1 if exists, otherwise URI from node2 or null if both
+		// have no attached IResource
+		URI getFirstExistingURI(final ASTNode node1, final ASTNode node2) {
+			URI uri = this.getURIFromCompilationUnit(node1);
+			if (uri == null) {
+				uri = this.getURIFromCompilationUnit(node2);
+			}
+			return uri;
+		}
 
-        // returns URI from node1 if exists, otherwise URI from node2 or null if both have no
-        // attached
-        // IResource
-        URI getFirstExistingURI(final ASTNode node1, final ASTNode node2) {
-            URI uri = this.getURIFromCompilationUnit(node1);
-            if (uri == null) {
-                uri = this.getURIFromCompilationUnit(node2);
-            }
-            return uri;
-        }
-
-        private URI getURIFromCompilationUnit(final ASTNode astNode) {
-            // TODO IPath for CompilationUnit without linked IResource
-            // IPath iPath = AST2JaMoPP.getIPathFromCompilationUnitWithResource(astNode);
-            final IResource iResource = AST2Jamopp.getIResource(astNode);
-            if (null == iResource) {
-                return null;
-            }
-            final IPath iPath = iResource.getFullPath();
-            if (iPath == null) {
-                return null;
-            }
-            return URI.createPlatformResourceURI(iPath.toString(), true);
-        }
-    }
+		private URI getURIFromCompilationUnit(final ASTNode astNode) {
+			// TODO IPath for CompilationUnit without linked IResource
+			// IPath iPath = AST2JaMoPP.getIPathFromCompilationUnitWithResource(astNode);
+			final IResource iResource = AST2Jamopp.getIResource(astNode);
+			if (null == iResource) {
+				return null;
+			}
+			final IPath iPath = iResource.getFullPath();
+			if (iPath == null) {
+				return null;
+			}
+			return URI.createPlatformResourceURI(iPath.toString(), true);
+		}
+	}
 }

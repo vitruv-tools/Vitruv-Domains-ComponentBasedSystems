@@ -7,7 +7,7 @@ final class JavaMonitoredEditorDomain extends JavaDomain {
 	package new() {
 		super("Java Monitored Editor")
 	}
-	
+
 	override getBuilderApplicator() {
 		return new VitruviusJavaBuilderApplicator();
 	}
