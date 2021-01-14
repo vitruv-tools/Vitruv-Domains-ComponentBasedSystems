@@ -8,7 +8,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
-import tools.vitruv.domains.java.monitorededitor.MonitoredEditor;
+import tools.vitruv.domains.java.monitorededitor.JavaMonitoredEditor;
 import tools.vitruv.framework.ui.monitorededitor.VitruviusProjectBuilder;
 
 public class VitruviusJavaBuilder extends VitruviusProjectBuilder {
@@ -32,8 +32,9 @@ public class VitruviusJavaBuilder extends VitruviusProjectBuilder {
 		String monitoredProjectName = getProject().getName();
 		logger.info("Start monitoring with Vitruv Java builder for project " + monitoredProjectName);
 
-		MonitoredEditor monitoredEditor = new MonitoredEditor(this.getVirtualModel(), this::isStillRegistered,
+		JavaMonitoredEditor monitoredEditor = new JavaMonitoredEditor(this.getVirtualModel(), this::isStillRegistered,
 				monitoredProjectName);
+		monitoredEditor.setAutomaticPropagationAfterMilliseconds(200);
 		monitoredEditor.startMonitoring();
 		logger.info("Started monitoring with Vitruv Java builder for project " + monitoredProjectName);
 	}

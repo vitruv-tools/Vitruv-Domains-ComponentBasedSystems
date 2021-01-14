@@ -3,6 +3,7 @@ package tools.vitruv.domains.java.monitorededitor.astchangelistener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 
 import org.apache.log4j.Logger;
@@ -47,6 +48,7 @@ import tools.vitruv.domains.java.monitorededitor.changeclassification.events.Cha
 import tools.vitruv.domains.java.monitorededitor.javamodel2ast.CompilationUnitUtil;
 import tools.vitruv.framework.util.VitruviusConstants;
 import tools.vitruv.framework.util.bridges.EclipseBridge;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * The {@link ASTChangeListener} reacts to changes in the Eclipse JDT AST and
@@ -70,21 +72,23 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 	private boolean listening = false;
 	private boolean withholding = false;
 	private final EditCommandListener editCommandListener;
-	private final List<String> monitoredProjectNames;
+	private final Set<String> monitoredProjectNames;
 
-	public long lastChangeTime;
-
+	private boolean finalized = false;
+	
 	public boolean isListening() {
 		return this.listening;
 	}
 
 	public void startListening() {
+		checkState(!finalized, "AST change listener has already been finalized");
 		LOG.debug("Start AST listening for projects " + monitoredProjectNames);
 		this.editCommandListener.startListening();
 		this.listening = true;
 	}
 
 	public void stopListening() {
+		checkState(!finalized, "AST change listener has already been finalized");
 		LOG.debug("Stop AST listening for projects " + monitoredProjectNames);
 		this.editCommandListener.stopListening();
 		this.listening = false;
@@ -92,10 +96,10 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 
 	private final Supplier<Boolean> isAlive;
 
-	public ASTChangeListener(Supplier<Boolean> isAlive, final String... projectNames) {
-		LOG.debug("Start initializing AST change listener for projects " + Arrays.toString(projectNames));
+	public ASTChangeListener(Supplier<Boolean> isAlive, final Set<String> projectNames) {
+		LOG.debug("Start initializing AST change listener for projects " + projectNames);
 		this.isAlive = isAlive;
-		this.monitoredProjectNames = Arrays.asList(projectNames);
+		this.monitoredProjectNames = projectNames;
 		this.postReconcileClassifiers = getPostReconcileClassifiers();
 		this.postChangeClassifiers = getPostChangeClassifiers();
 		this.listeners = new ArrayList<ChangeOperationListener>();
@@ -103,14 +107,16 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 		this.previousState = new PreviousASTState(projectNames);
 		this.withholdChangeHistory = new ChangeHistory(CHANGE_HISTORY_MINUTES);
 		this.editCommandListener = new EditCommandListener(this);
-		this.startListening();
 		JavaCore.addElementChangedListener(this);
-		LOG.info("Initialized AST change listener for projects " + Arrays.toString(projectNames));
+		LOG.info("Initialized AST change listener for projects " + projectNames);
 	}
 
-	public void revokeRegistrations() {
+	public void shutdown() {
+		stopListening();
+		listeners.clear();
 		this.editCommandListener.revokeRegistrations();
 		JavaCore.removeElementChangedListener(this);
+		finalized = true;
 	}
 
 	private static ConcreteChangeClassifier[] getPostReconcileClassifiers() {
@@ -124,7 +130,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 				new AddImportClassifier(), new RemoveImportClassifier(), new ChangeSupertypeClassifier(),
 				new ChangeAnnotationClassifier(), new JavaDocClassifier()));
 		classifiers.addAll(
-				getRegisteredClassifiers("tools.vitruv.domains.java.monitorededitor.astchangelistener.postreconcile"));
+				getRegisteredClassifiers("tools.vitruv.domains.java.monitorededitor.astpostreconcile"));
 		return classifiers.toArray(new ConcreteChangeClassifier[0]);
 	}
 
@@ -133,7 +139,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 				Arrays.asList(new RemoveCompilationUnitClassifier(), new RenamePackageClassifier(),
 						new CreatePackageClassifier(), new DeletePackageClassifier()));
 		classifiers.addAll(
-				getRegisteredClassifiers("tools.vitruv.domains.java.monitorededitor.astchangelistener.postchange"));
+				getRegisteredClassifiers("tools.vitruv.domains.java.monitorededitor.astpostchange"));
 		return classifiers.toArray(new ConcreteChangeClassifier[0]);
 	}
 
@@ -158,7 +164,6 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 
 		LOG.trace("Recognized relevant AST change in one of the projects " + monitoredProjectNames + ": "
 				+ delta.toString());
-		this.lastChangeTime = System.nanoTime();
 		event.getSource();
 
 		List<ChangeClassifyingEvent> events = null;
@@ -251,6 +256,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 	}
 
 	public void addListener(final ChangeOperationListener listener) {
+		checkState(!finalized, "AST change listener has already been finalized");
 		this.listeners.add(listener);
 	}
 

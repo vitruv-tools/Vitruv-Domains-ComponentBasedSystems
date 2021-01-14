@@ -1,8 +1,8 @@
 package tools.vitruv.domains.java.monitorededitor.astchangelistener;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
@@ -31,7 +31,7 @@ public class PreviousASTState {
 	private final HashMap<String, CompilationUnit> state;
 	private final Logger log = Logger.getLogger(PreviousASTState.class);
 
-	public PreviousASTState(String... projectNames) {
+	public PreviousASTState(Set<String> projectNames) {
 		this.state = new HashMap<String, CompilationUnit>();
 		try {
 			buildInitialSnaphot(projectNames);
@@ -40,8 +40,8 @@ public class PreviousASTState {
 		}
 	}
 
-	private void buildInitialSnaphot(String... projectNames) throws JavaModelException {
-		this.log.trace("Start performing initial AST snapshot for projects: " + Arrays.toString(projectNames));
+	private void buildInitialSnaphot(Set<String> projectNames) throws JavaModelException {
+		this.log.trace("Start performing initial AST snapshot for projects: " + projectNames);
 
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		for (String projectName : projectNames) {
@@ -54,7 +54,7 @@ public class PreviousASTState {
 				}
 			}
 		}
-		this.log.debug("Performed initial AST snapshot for projects: " + Arrays.toString(projectNames));
+		this.log.debug("Performed initial AST snapshot for projects: " + projectNames);
 	}
 
 	public boolean update(CompilationUnit unit) {

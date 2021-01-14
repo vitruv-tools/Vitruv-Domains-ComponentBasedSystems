@@ -16,7 +16,7 @@ import org.eclipse.text.edits.ReplaceEdit;
 import org.eclipse.text.edits.TextEdit;
 import org.junit.jupiter.api.Test;
 
-import tools.vitruv.domains.java.monitorededitor.MonitoredEditor;
+import tools.vitruv.domains.java.monitorededitor.JavaMonitoredEditor;
 import tools.vitruv.domains.java.tests.monitorededitor.HadoopCodeElements.HadoopCoompilationUnitSize;
 
 public class EditorManipulator extends WriterAppender {
@@ -33,7 +33,7 @@ public class EditorManipulator extends WriterAppender {
     public void testExecuteEditorManipulator() throws JavaModelException, InterruptedException {
         System.out.println("EditorManipulator started");
 
-        final Logger monitorLog = Logger.getLogger(MonitoredEditor.class);
+        final Logger monitorLog = Logger.getLogger(JavaMonitoredEditor.class);
         monitorLog.addAppender(this);
         final HadoopCoompilationUnitSize size = HadoopCoompilationUnitSize.LOC67175;
         // ICompilationUnit cu = HadoopCodeElements.getCompilationUnit(size);
