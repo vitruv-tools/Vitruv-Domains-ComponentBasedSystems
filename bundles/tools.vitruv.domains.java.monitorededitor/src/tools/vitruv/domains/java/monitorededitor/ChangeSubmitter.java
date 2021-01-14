@@ -4,6 +4,6 @@ import tools.vitruv.framework.change.description.VitruviusChange;
 
 public interface ChangeSubmitter {
 
-    void submitChange(final VitruviusChange change);
+	void submitChange(final VitruviusChange change);
 
 }
