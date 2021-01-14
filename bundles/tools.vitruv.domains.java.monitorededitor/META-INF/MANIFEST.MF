@@ -38,7 +38,5 @@ Export-Package: tools.vitruv.domains.java.builder,
  tools.vitruv.domains.java.monitorededitor.changeclassification.events,
  tools.vitruv.domains.java.monitorededitor.changeclassification.events.util;x-internal:=true,
  tools.vitruv.domains.java.monitorededitor.jamopputil,
- tools.vitruv.domains.java.monitorededitor.javamodel2ast,
- tools.vitruv.domains.java.monitorededitor.refactoringlistener,
- tools.vitruv.domains.java.monitorededitor.refactoringlistener.refactoringParticipants;x-internal:=true
+ tools.vitruv.domains.java.monitorededitor.javamodel2ast
 Bundle-Vendor: vitruv.tools
