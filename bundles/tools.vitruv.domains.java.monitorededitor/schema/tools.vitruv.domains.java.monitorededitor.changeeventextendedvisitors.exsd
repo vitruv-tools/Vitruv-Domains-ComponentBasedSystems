@@ -55,7 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":tools.vitruv.domains.java.monitorededitor.ChangeEventExtendedVisitor"/>
+                  <meta.attribute kind="java" basedOn=":tools.vitruv.domains.java.monitorededitor.changeclassification.ChangeEventExtendedVisitor"/>
                </appinfo>
             </annotation>
          </attribute>

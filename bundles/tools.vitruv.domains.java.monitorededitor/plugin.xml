@@ -2,6 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
       <extension-point id="changeeventextendedvisitors" name="Change Event Extended Visitors" schema="schema/tools.vitruv.domains.java.monitorededitor.changeeventextendedvisitors.exsd"/>
+      <extension-point id="astpostreconcile" name="Postreconcile Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astpostreconcile.exsd"/>
+      <extension-point id="astpostchange" name="Postchange Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astpostchange.exsd"/>
+
       <extension id="javaMonitoredEditorDomainProvider" name="Java Monitored Editor Domain Provider" point="tools.vitruv.framework.domains.domain">
             <domainProvider class="tools.vitruv.domains.java.monitorededitor.JavaMonitoredEditorDomainProvider"></domainProvider>
       </extension>
@@ -17,11 +20,9 @@
             <propertyTester class="tools.vitruv.domains.java.builder.JavaTestBuilderEnabled" id="tools.vitruv.domains.java.builder.JavaBuilder.id" namespace="tools.vitruv.domains.java.builder" properties="isEnabled" type="java.lang.Object">
             </propertyTester>
       </extension>
+
       <extension point="org.eclipse.ui.startup">
             <startup class="tools.vitruv.domains.java.builder.JavaBuildOnEclipseStartup">
             </startup>
       </extension>
-      
-      <extension-point id="astpostreconcile" name="Postreconcile Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astpostreconcile.exsd"/>
-      <extension-point id="astpostchange" name="Postchange Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astpostchange.exsd"/>
 </plugin>
