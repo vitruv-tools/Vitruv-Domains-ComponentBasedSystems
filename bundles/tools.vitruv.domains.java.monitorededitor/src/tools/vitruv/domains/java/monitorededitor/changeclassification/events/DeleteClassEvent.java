@@ -3,19 +3,21 @@ package tools.vitruv.domains.java.monitorededitor.changeclassification.events;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
+import tools.vitruv.domains.java.monitorededitor.changeclassification.ChangeEventVisitor;
+
 public class DeleteClassEvent extends DeleteTypeEvent {
 
-    public DeleteClassEvent(CompilationUnit compilationUnitAfterDelete, TypeDeclaration type) {
-        super(compilationUnitAfterDelete, type);
-    }
+	public DeleteClassEvent(CompilationUnit compilationUnitAfterDelete, TypeDeclaration type) {
+		super(compilationUnitAfterDelete, type);
+	}
 
-    @Override
-    public String toString() {
-        return "DeleteClassEvent [class=" + this.type.getName().getIdentifier() + "]";
-    }
+	@Override
+	public String toString() {
+		return "DeleteClassEvent [class=" + this.type.getName().getIdentifier() + "]";
+	}
 
-    @Override
-    public void accept(ChangeEventVisitor visitor) {
-        visitor.visit(this);
-    }
+	@Override
+	public <T> T accept(final ChangeEventVisitor<T> visitor) {
+		return visitor.visit(this);
+	}
 }

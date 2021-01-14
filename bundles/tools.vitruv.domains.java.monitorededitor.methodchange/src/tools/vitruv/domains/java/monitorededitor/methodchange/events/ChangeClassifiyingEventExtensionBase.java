@@ -2,9 +2,8 @@ package tools.vitruv.domains.java.monitorededitor.methodchange.events;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 
+import tools.vitruv.domains.java.monitorededitor.changeclassification.ChangeEventVisitor;
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEvent;
-import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEventExtension;
-import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeEventVisitor;
 import tools.vitruv.domains.java.monitorededitor.jamopputil.CompilationUnitAdapter;
 import tools.vitruv.domains.java.monitorededitor.methodchange.utils.JamoppUtilities;
 
@@ -41,8 +40,8 @@ public abstract class ChangeClassifiyingEventExtensionBase <T extends ASTNode> e
 	}
 
 	@Override
-	public void accept(ChangeEventVisitor visitor) {
-		visitor.visit((ChangeClassifyingEventExtension) this);
+	public <R> R accept(ChangeEventVisitor<R> visitor) {
+		return visitor.visit(this);
 	}
 
 	@Override

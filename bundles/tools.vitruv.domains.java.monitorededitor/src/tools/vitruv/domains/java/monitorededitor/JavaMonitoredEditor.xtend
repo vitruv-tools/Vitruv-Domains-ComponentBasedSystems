@@ -10,7 +10,7 @@ import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.ui.IStartup
 import org.eclipse.ui.PlatformUI
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.ASTChangeListener
-import tools.vitruv.domains.java.monitorededitor.changeclassification.ChangeOperationListener
+import tools.vitruv.domains.java.monitorededitor.astchangelistener.ChangeOperationListener
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEvent
 import tools.vitruv.framework.ui.monitorededitor.AbstractMonitoredEditor
 import tools.vitruv.framework.change.description.VitruviusChange
@@ -22,6 +22,8 @@ import static com.google.common.base.Preconditions.checkState
 import org.eclipse.xtend.lib.annotations.Delegate
 import org.eclipse.core.resources.WorkspaceJob
 import org.eclipse.xtend.lib.annotations.Accessors
+import tools.vitruv.domains.java.monitorededitor.changeclassification.conversion.ChangeClassifyingEventToVitruviusChangeConverter
+import tools.vitruv.domains.java.monitorededitor.changeclassification.conversion.ChangeClassifyingEventToVitruviusChangeConverterImpl
 
 /** 
  * Extends {@link AbstractMonitoredEditor} and implements {@link UserInteractor} by delegation to a dialog {@link UserInteractor}. 
@@ -30,7 +32,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
  * objects. These change objects are then used by the{@link ChangePropagator} to propagate changes to other with the code
  * affiliated EMF models.
  */
-class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInteractor, ChangeOperationListener, ChangeSubmitter, IStartup {
+class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInteractor, ChangeOperationListener, IStartup {
 	static val Logger log = Logger.getLogger(JavaMonitoredEditor)
 
 	@Accessors(PUBLIC_GETTER)
@@ -39,7 +41,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 	boolean reportChanges
 	@Delegate
 	final UserInteractor userInteractor
-	val ChangeResponder changeResponder
+	val ChangeClassifyingEventToVitruviusChangeConverter changeConverter
 	val RecordingState recordingState
 	val ASTChangeListener astListener
 	val ()=>boolean shouldBeActive
@@ -48,27 +50,21 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 		super(virtualModel)
 		checkState(PlatformUI.getWorkbench() !== null,
 			"Platform is not running but necessary for monitored Java editor")
-
+		log.debug('''Start initializing monitored Java editor for projects: «monitoredProjectNames»''')
 		this.monitoredProjectNames = Set.of(monitoredProjectNames)
 		this.userInteractor = UserInteractionFactory.instance.createDialogUserInteractor()
 		this.automaticPropagationAfterMilliseconds = -1
-		this.changeResponder = new ChangeResponder(this)
+		this.changeConverter = new ChangeClassifyingEventToVitruviusChangeConverterImpl
 		this.reportChanges = true
 		this.shouldBeActive = shouldBeActive
 		this.recordingState = new RecordingState([submitPropagationJobIfNecessary])
-
-		log.debug('''Start initializing monitored editor for projects: «monitoredProjectNames»''')
 		astListener = new ASTChangeListener(this.monitoredProjectNames)
 		astListener.addListener(this)
-		log.trace('''Added AST change listener for projects: «monitoredProjectNames»''')
+		log.trace('''Finished initializing monitored Java editor for projects: «monitoredProjectNames»''')
 	}
 
 	new(VirtualModel virtualModel, String... monitoredProjectNames) {
-		this(virtualModel, [
-			{
-				return true
-			}
-		], monitoredProjectNames)
+		this(virtualModel, [true], monitoredProjectNames)
 	}
 
 	def void startMonitoring() {
@@ -76,7 +72,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 	}
 
 	def void stopMonitoring() {
-		astListener.shutdown()
+		astListener.shutdown
 	}
 
 	private static class RecordingState {
@@ -154,25 +150,24 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 		recordingState.reset()
 	}
 
-	override synchronized void notifyEventClassified(ChangeClassifyingEvent event) {
-		log.debug('''Monitored editor for projects «monitoredProjectNames» reacting to change «event»''')
-		event.accept(changeResponder)
-	}
-
 	override synchronized void notifyEventOccured() {
 		if (!shouldBeActive.apply) {
 			stopMonitoring
 		}
 	}
 
-	override synchronized void submitChange(VitruviusChange change) {
-		if (!this.reportChanges) {
-			log.
-				trace('''Do not report change «change» because reporting is disabled for projects «monitoredProjectNames»''')
-			return
+	override synchronized void notifyEventClassified(ChangeClassifyingEvent event) {
+		log.debug('''Monitored editor for projects «monitoredProjectNames» reacting to change «event»''')
+		val convertedChange = changeConverter.convert(event)
+		if (!convertedChange.empty) {
+			if (!this.reportChanges) {
+				log.
+					trace('''Do not report change «convertedChange» because reporting is disabled for projects «monitoredProjectNames»''')
+				return
+			}
+			log.trace('''Submit change in projects «monitoredProjectNames»''')
+			recordingState.submitChange(convertedChange.get)
 		}
-		log.trace('''Submit change in projects «monitoredProjectNames»''')
-		recordingState.submitChange(change)
 	}
 
 	override void earlyStartup() {

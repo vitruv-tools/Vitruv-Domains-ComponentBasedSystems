@@ -5,7 +5,7 @@ import tools.vitruv.framework.util.bridges.EclipseBridge
 import java.util.List
 import tools.vitruv.framework.util.VitruviusConstants
 import edu.kit.ipd.sdq.activextendannotations.Utility
-import tools.vitruv.domains.java.monitorededitor.ChangeEventExtendedVisitor
+import tools.vitruv.domains.java.monitorededitor.changeclassification.ChangeEventExtendedVisitor
 
 @Utility
 class ExtensionPointsUtil {
