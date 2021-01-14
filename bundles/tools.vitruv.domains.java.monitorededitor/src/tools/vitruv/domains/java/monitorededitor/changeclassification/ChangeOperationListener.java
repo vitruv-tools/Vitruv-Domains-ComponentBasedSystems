@@ -2,12 +2,16 @@ package tools.vitruv.domains.java.monitorededitor.changeclassification;
 
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEvent;
 
-/**
- * @author messinger
- * 
- *         Observer for change events.
- */
 public interface ChangeOperationListener {
+	/**
+	 * Is triggered as soon as an event is recognized but not has been processed.
+	 */
+	void notifyEventOccured();
 
-    void update(ChangeClassifyingEvent event);
+	/**
+	 * Is triggered as soon as an event has been classified.
+	 *
+	 * @param event the classified event
+	 */
+	void notifyEventClassified(ChangeClassifyingEvent event);
 }
