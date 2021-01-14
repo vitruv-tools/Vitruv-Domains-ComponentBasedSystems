@@ -80,9 +80,8 @@ import tools.vitruv.domains.java.monitorededitor.jamopputil.JamoppChangeBuildHel
 import tools.vitruv.framework.change.description.CompositeContainerChange;
 import tools.vitruv.framework.change.description.ConcreteChange;
 import tools.vitruv.framework.change.description.VitruviusChangeFactory;
-import tools.vitruv.framework.util.VitruviusConstants;
-import tools.vitruv.framework.util.bridges.EclipseBridge;
 import tools.vitruv.framework.util.datatypes.VURI;
+import static tools.vitruv.domains.java.monitorededitor.util.ExtensionPointsUtil.getRegisteredChangeEventExtendedVisitors;
 
 /**
  * The {@link ChangeResponder} implements a {@link ChangeEventVisitor} for
@@ -112,17 +111,11 @@ public class ChangeResponder implements ChangeEventVisitor {
 	}
 
 	private void fillDispatcherMap() {
-		for (final ChangeEventExtendedVisitor visitor : getRegisteredVisitors(
-				"tools.vitruv.domains.java.monitorededitor.changeeventextendedvisitors")) {
+		for (final ChangeEventExtendedVisitor visitor : getRegisteredChangeEventExtendedVisitors()) {
 			for (final java.lang.Class<? extends ChangeClassifyingEventExtension> clazz : visitor.getTreatedClasses()) {
 				this.dispatcher.put(clazz, visitor);
 			}
 		}
-	}
-
-	private static List<ChangeEventExtendedVisitor> getRegisteredVisitors(final String extensionPointName) {
-		return EclipseBridge.getRegisteredExtensions(extensionPointName, VitruviusConstants.getExtensionPropertyName(),
-				ChangeEventExtendedVisitor.class);
 	}
 
 	@Override

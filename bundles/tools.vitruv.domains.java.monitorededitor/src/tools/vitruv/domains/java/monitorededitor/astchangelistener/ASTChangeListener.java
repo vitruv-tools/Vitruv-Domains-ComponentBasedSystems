@@ -46,9 +46,9 @@ import tools.vitruv.domains.java.monitorededitor.astchangelistener.classificatio
 import tools.vitruv.domains.java.monitorededitor.changeclassification.ChangeOperationListener;
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEvent;
 import tools.vitruv.domains.java.monitorededitor.javamodel2ast.CompilationUnitUtil;
-import tools.vitruv.framework.util.VitruviusConstants;
-import tools.vitruv.framework.util.bridges.EclipseBridge;
 import static com.google.common.base.Preconditions.checkState;
+import static tools.vitruv.domains.java.monitorededitor.util.ExtensionPointsUtil.getRegisteredAstPostChangeClassifiers;
+import static tools.vitruv.domains.java.monitorededitor.util.ExtensionPointsUtil.getRegisteredAstPostReconcileClassifiers;
 
 /**
  * The {@link ASTChangeListener} reacts to changes in the Eclipse JDT AST and
@@ -129,8 +129,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 				new ChangeTypeModifiersClassifier(), new ChangePackageDeclarationClassifier(),
 				new AddImportClassifier(), new RemoveImportClassifier(), new ChangeSupertypeClassifier(),
 				new ChangeAnnotationClassifier(), new JavaDocClassifier()));
-		classifiers.addAll(
-				getRegisteredClassifiers("tools.vitruv.domains.java.monitorededitor.astpostreconcile"));
+		classifiers.addAll(getRegisteredAstPostReconcileClassifiers());
 		return classifiers.toArray(new ConcreteChangeClassifier[0]);
 	}
 
@@ -138,8 +137,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 		final List<ConcreteChangeClassifier> classifiers = new ArrayList<ConcreteChangeClassifier>(
 				Arrays.asList(new RemoveCompilationUnitClassifier(), new RenamePackageClassifier(),
 						new CreatePackageClassifier(), new DeletePackageClassifier()));
-		classifiers.addAll(
-				getRegisteredClassifiers("tools.vitruv.domains.java.monitorededitor.astpostchange"));
+		classifiers.addAll(getRegisteredAstPostChangeClassifiers());
 		return classifiers.toArray(new ConcreteChangeClassifier[0]);
 	}
 
@@ -272,9 +270,6 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 		return this.previousState;
 	}
 
-	private static List<ConcreteChangeClassifier> getRegisteredClassifiers(final String extensionPointName) {
-		return EclipseBridge.getRegisteredExtensions(extensionPointName, VitruviusConstants.getExtensionPropertyName(),
-				ConcreteChangeClassifier.class);
-	}
+
 
 }
