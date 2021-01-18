@@ -14,12 +14,9 @@ import tools.vitruv.domains.java.monitorededitor.astchangelistener.ChangeOperati
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEvent
 import tools.vitruv.framework.domains.ui.monitorededitor.AbstractMonitoredEditor
 import tools.vitruv.framework.change.description.VitruviusChange
-import tools.vitruv.framework.userinteraction.UserInteractionFactory
-import tools.vitruv.framework.userinteraction.UserInteractor
 import tools.vitruv.framework.vsum.VirtualModel
 import tools.vitruv.framework.vsum.modelsynchronization.ChangePropagator
 import static com.google.common.base.Preconditions.checkState
-import org.eclipse.xtend.lib.annotations.Delegate
 import org.eclipse.core.resources.WorkspaceJob
 import org.eclipse.xtend.lib.annotations.Accessors
 import tools.vitruv.domains.java.monitorededitor.changeclassification.conversion.ChangeClassifyingEventToVitruviusChangeConverter
@@ -33,15 +30,13 @@ import java.util.function.Supplier
  * objects. These change objects are then used by the{@link ChangePropagator} to propagate changes to other with the code
  * affiliated EMF models.
  */
-class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInteractor, ChangeOperationListener, IStartup {
+class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOperationListener, IStartup {
 	static val Logger log = Logger.getLogger(JavaMonitoredEditor)
 
 	@Accessors(PUBLIC_GETTER)
 	val Set<String> monitoredProjectNames
 	@Accessors(PUBLIC_SETTER)
 	boolean reportChanges
-	@Delegate
-	final UserInteractor userInteractor
 	val ChangeClassifyingEventToVitruviusChangeConverter changeConverter
 	val RecordingState recordingState
 	val ASTChangeListener astListener
@@ -53,7 +48,6 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 			"Platform is not running but necessary for monitored Java editor")
 		log.debug('''Start initializing monitored Java editor for projects «monitoredProjectNames»''')
 		this.monitoredProjectNames = Set.of(monitoredProjectNames)
-		this.userInteractor = UserInteractionFactory.instance.createDialogUserInteractor()
 		this.changeConverter = new ChangeClassifyingEventToVitruviusChangeConverterImpl
 		this.reportChanges = true
 		this.shouldBeActive = shouldBeActive

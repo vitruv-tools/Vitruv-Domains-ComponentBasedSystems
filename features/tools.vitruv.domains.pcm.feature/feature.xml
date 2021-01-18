@@ -24,14 +24,10 @@
    </url>
 
    <requires>
-      <import plugin="com.google.guava"/>
-      <import feature="edu.kit.ipd.sdq.commons.util.pcm.feature"/>
-      <import feature="tools.vitruv.framework.feature"/>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.xtext.xbase.lib"/>
       <import plugin="org.eclipse.xtend.lib"/>
-      <import plugin="org.eclipse.xtend.lib.macro"/>
-      <import feature="org.palladiosimulator.pcm.feature"/>
+      <import plugin="tools.vitruv.framework.domains"/>
+      <import plugin="org.palladiosimulator.pcm"/>
+      <import plugin="org.palladiosimulator.pcm.resources"/>
    </requires>
 
    <plugin

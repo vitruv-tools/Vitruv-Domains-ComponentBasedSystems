@@ -25,8 +25,9 @@
    </url>
 
    <requires>
-      <import feature="tools.vitruv.framework.feature"/>
-      <import feature="org.eclipse.papyrus.sysml14.feature"/>
+      <import plugin="org.eclipse.xtend.lib"/>
+      <import plugin="tools.vitruv.domains.uml"/>
+      <import plugin="org.eclipse.papyrus.sysml14"/>
    </requires>
 
    <plugin

@@ -20,9 +20,9 @@
    </license>
 
    <requires>
-      <import feature="edu.kit.kastel.scbs.confidentiality.feature.source" version="1.0.0" match="greaterOrEqual"/>
-      <import feature="tools.vitruv.framework.feature"/>
-      <import feature="org.eclipse.xtend.source"/>
+      <import plugin="tools.vitruv.framework.domains"/>
+      <import plugin="edu.kit.kastel.scbs.confidentialitymm"/>
+      <import plugin="org.eclipse.xtend.lib"/>
    </requires>
 
    <plugin
