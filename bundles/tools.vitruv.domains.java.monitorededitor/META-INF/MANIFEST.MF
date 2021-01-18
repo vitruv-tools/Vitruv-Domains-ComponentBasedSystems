@@ -5,26 +5,17 @@ Bundle-SymbolicName: tools.vitruv.domains.java.monitorededitor;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.java.monitorededitor
 Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: tools.vitruv.domains.java.monitorededitor.activator.Activator
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.eclipse.xtend.lib,
+ org.eclipse.ui,
  org.eclipse.core.runtime,
- tools.vitruv.framework.domains.ui;visibility:=reexport,
- tools.vitruv.domains.java;visibility:=reexport,
  org.eclipse.jdt.core,
  org.eclipse.core.resources,
- org.eclipse.ui.console;bundle-version="3.5.200",
- tools.vitruv.framework.userinteraction,
  org.apache.log4j,
- org.eclipse.ltk.core.refactoring,
  tools.vitruv.framework.change,
- tools.vitruv.domains.java.echange,
  tools.vitruv.framework.vsum,
- com.google.guava,
- org.eclipse.xtext.xbase.lib,
- org.eclipse.xtend.lib,
- org.eclipse.xtend.lib.macro,
  tools.vitruv.framework.domains.ui;visibility:=reexport,
- org.eclipse.jface.text,
- org.eclipse.ui.workbench.texteditor,
+ tools.vitruv.domains.java;visibility:=reexport,
+ tools.vitruv.domains.java.echange;visibility:=reexport,
  edu.kit.ipd.sdq.activextendannotations
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy

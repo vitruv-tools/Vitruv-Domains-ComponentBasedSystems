@@ -5,16 +5,10 @@ Bundle-SymbolicName: tools.vitruv.domains.emfprofiles;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.emfprofiles
 Bundle-Version: 1.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Bundle: org.junit.jupiter.api, 
- org.apache.log4j,
+Require-Bundle: org.junit.jupiter.api,
  tools.vitruv.framework.domains;visibility:=reexport,
- tools.vitruv.framework.tuid,
- tools.vitruv.framework.util,
  org.modelversioning.emfprofile;visibility:=reexport,
- com.google.guava,
- org.eclipse.xtext.xbase.lib,
- org.eclipse.xtend.lib,
- org.eclipse.xtend.lib.macro
+ org.eclipse.xtend.lib
 Export-Package: tools.vitruv.domains.emfprofiles,
  tools.vitruv.domains.emfprofiles.tuid;x-internal:=true
 Bundle-Vendor: vitruv.tools

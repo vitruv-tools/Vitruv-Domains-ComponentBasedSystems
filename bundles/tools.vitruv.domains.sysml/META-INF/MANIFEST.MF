@@ -5,17 +5,9 @@ Bundle-SymbolicName: tools.vitruv.domains.sysml;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.sysml
 Bundle-Version: 1.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Bundle: tools.vitruv.domains.uml;visibility:=reexport,
- tools.vitruv.framework.domains;visibility:=reexport,
- tools.vitruv.framework.util,
- tools.vitruv.framework.tuid,
- com.google.guava,
- org.eclipse.xtext.xbase.lib,
- org.eclipse.xtend.lib,
- org.eclipse.xtend.lib.macro,
+Require-Bundle: org.eclipse.xtend.lib,
  org.junit.jupiter.api,
- org.eclipse.papyrus.sysml14;visibility:=reexport,
- org.apache.log4j
-Export-Package: tools.vitruv.domains.sysml,
- tools.vitruv.domains.sysml.tuid;x-internal:=true
+ tools.vitruv.domains.uml;visibility:=reexport,
+ org.eclipse.papyrus.sysml14;visibility:=reexport
+Export-Package: tools.vitruv.domains.sysml
 Bundle-Vendor: vitruv.tools
