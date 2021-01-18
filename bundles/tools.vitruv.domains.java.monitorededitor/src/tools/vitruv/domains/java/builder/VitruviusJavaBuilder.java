@@ -3,15 +3,17 @@ package tools.vitruv.domains.java.builder;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 import tools.vitruv.domains.java.monitorededitor.JavaMonitoredEditor;
-import tools.vitruv.framework.ui.monitorededitor.VitruviusProjectBuilder;
+import tools.vitruv.framework.domains.ui.builder.VitruvProjectBuilder;
+import static tools.vitruv.framework.util.ProjectBuildUtils.hasBuilder;
+import static tools.vitruv.framework.domains.ui.builder.VitruvProjectBuilderArguments.getPropagateAfterBuild;
+import static tools.vitruv.framework.domains.ui.builder.VitruvProjectBuilderArguments.getPropagateAfterChangeMilliseconds;
 
-public class VitruviusJavaBuilder extends VitruviusProjectBuilder {
+public class VitruviusJavaBuilder extends VitruvProjectBuilder {
 	// ID of JavaBuilder
 	public static final String BUILDER_ID = "tools.vitruv.domains.java.builder.JavaBuilder.id";
 
@@ -20,37 +22,31 @@ public class VitruviusJavaBuilder extends VitruviusProjectBuilder {
 	public VitruviusJavaBuilder() {
 		super();
 	}
-
+	private JavaMonitoredEditor monitoredEditor;
+	
 	@Override
 	protected IProject[] build(final int kind, final Map<String, String> args, final IProgressMonitor monitor)
 			throws CoreException {
-		return super.build(kind, args, monitor);
+		IProject[] result = super.build(kind, args, monitor);
+		if (getPropagateAfterBuild(getCommand())) {
+			logger.debug("Propagating changes in project " + this.getProject().getName() + " because of triggered build");
+			monitoredEditor.propagateRecordedChanges();
+		}
+		return result;
 	}
 
 	@Override
 	protected void startMonitoring() {
 		String monitoredProjectName = getProject().getName();
-		logger.info("Start monitoring with Vitruv Java builder for project " + monitoredProjectName);
-
-		JavaMonitoredEditor monitoredEditor = new JavaMonitoredEditor(this.getVirtualModel(), this::isStillRegistered,
+		logger.debug("Start monitoring with Vitruv Java builder for project " + monitoredProjectName);
+		monitoredEditor = new JavaMonitoredEditor(this.getVirtualModel(), this::isStillRegistered,
 				monitoredProjectName);
-		monitoredEditor.setAutomaticPropagationAfterMilliseconds(200);
+		monitoredEditor.setAutomaticPropagationAfterMilliseconds(getPropagateAfterChangeMilliseconds(getCommand()));
 		monitoredEditor.startMonitoring();
 		logger.info("Started monitoring with Vitruv Java builder for project " + monitoredProjectName);
 	}
 
 	private boolean isStillRegistered() {
-		try {
-			for (ICommand buildSpec : getProject().getDescription().getBuildSpec()) {
-				if (BUILDER_ID.equals(buildSpec.getBuilderName())) {
-					return true;
-				}
-			}
-		} catch (CoreException e) {
-			String message = "Cannot read build specification for project: " + getProject().getName();
-			logger.error(message, e);
-			throw new IllegalStateException(message, e);
-		}
-		return false;
+		return hasBuilder(getProject(), BUILDER_ID);
 	}
 }
