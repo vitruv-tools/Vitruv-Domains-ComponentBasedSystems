@@ -9,43 +9,30 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 
 /**
- * @author messinger
- * 
- *         Implements and registers an {@link IExecutionListener} which listens
- *         to Eclipse edit commands. If the edit command is a CUT, the
- *         {@link ASTChangeListener} is set to withhold events once. Can be
- *         paused.
- * 
+ * Implements and registers an {@link IExecutionListener} which listens to
+ * Eclipse edit commands. If the edit command is a CUT, a withhold is propagated
+ * to ensure that the callback listener waits for the insert event. Can be
+ * paused.
  */
 class EditCommandListener implements IExecutionListener {
 	private static final Logger LOGGER = Logger.getLogger(EditCommandListener.class);
 	private static final String EDIT_CUT_ID = "org.eclipse.ui.edit.cut";
-	private final ASTChangeListener astListener;
-	private boolean listening = false;
+	private final WithholdCallback withholdCallback;
 
-	public EditCommandListener(ASTChangeListener astListener) {
-		this.astListener = astListener;
-		ICommandService service = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
-		service.addExecutionListener(this);
-		LOGGER.trace("Registered edit command listener");
-	}
-
-	public void revokeRegistrations() {
-		ICommandService service = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
-		service.removeExecutionListener(this);
-		LOGGER.trace("Deregistered edit command listener");
-	}
-
-	public boolean isListening() {
-		return this.listening;
+	public EditCommandListener(WithholdCallback withholdCallback) {
+		this.withholdCallback = withholdCallback;
 	}
 
 	public void startListening() {
-		this.listening = true;
+		LOGGER.trace("Start listening with edit command listener");
+		ICommandService service = PlatformUI.getWorkbench().getService(ICommandService.class);
+		service.addExecutionListener(this);
 	}
 
 	public void stopListening() {
-		this.listening = false;
+		LOGGER.trace("Stop listening with edit command listener");
+		ICommandService service = PlatformUI.getWorkbench().getService(ICommandService.class);
+		service.removeExecutionListener(this);
 	}
 
 	@Override
@@ -64,11 +51,9 @@ class EditCommandListener implements IExecutionListener {
 	}
 
 	@Override
-	public void preExecute(String commandId, ExecutionEvent event) {
-		if (!this.listening)
-			return;
+	public synchronized void preExecute(String commandId, ExecutionEvent event) {
 		if (isEditCutCommand(event)) {
-			EditCommandListener.this.astListener.withholdEventsOnce(true);
+			withholdCallback.withholdEvent();
 		}
 	}
 

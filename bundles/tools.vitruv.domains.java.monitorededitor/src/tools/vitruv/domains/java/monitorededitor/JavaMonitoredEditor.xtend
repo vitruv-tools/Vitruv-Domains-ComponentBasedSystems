@@ -12,7 +12,7 @@ import org.eclipse.ui.PlatformUI
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.ASTChangeListener
 import tools.vitruv.domains.java.monitorededitor.astchangelistener.ChangeOperationListener
 import tools.vitruv.domains.java.monitorededitor.changeclassification.events.ChangeClassifyingEvent
-import tools.vitruv.framework.ui.monitorededitor.AbstractMonitoredEditor
+import tools.vitruv.framework.domains.ui.monitorededitor.AbstractMonitoredEditor
 import tools.vitruv.framework.change.description.VitruviusChange
 import tools.vitruv.framework.userinteraction.UserInteractionFactory
 import tools.vitruv.framework.userinteraction.UserInteractor
@@ -24,6 +24,7 @@ import org.eclipse.core.resources.WorkspaceJob
 import org.eclipse.xtend.lib.annotations.Accessors
 import tools.vitruv.domains.java.monitorededitor.changeclassification.conversion.ChangeClassifyingEventToVitruviusChangeConverter
 import tools.vitruv.domains.java.monitorededitor.changeclassification.conversion.ChangeClassifyingEventToVitruviusChangeConverterImpl
+import java.util.function.Supplier
 
 /** 
  * Extends {@link AbstractMonitoredEditor} and implements {@link UserInteractor} by delegation to a dialog {@link UserInteractor}. 
@@ -44,35 +45,110 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 	val ChangeClassifyingEventToVitruviusChangeConverter changeConverter
 	val RecordingState recordingState
 	val ASTChangeListener astListener
-	val ()=>boolean shouldBeActive
+	val Supplier<Boolean> shouldBeActive
 
-	new(VirtualModel virtualModel, ()=>boolean shouldBeActive, String... monitoredProjectNames) {
+	new(VirtualModel virtualModel, Supplier<Boolean> shouldBeActive, String... monitoredProjectNames) {
 		super(virtualModel)
 		checkState(PlatformUI.getWorkbench() !== null,
 			"Platform is not running but necessary for monitored Java editor")
-		log.debug('''Start initializing monitored Java editor for projects: «monitoredProjectNames»''')
+		log.debug('''Start initializing monitored Java editor for projects «monitoredProjectNames»''')
 		this.monitoredProjectNames = Set.of(monitoredProjectNames)
 		this.userInteractor = UserInteractionFactory.instance.createDialogUserInteractor()
-		this.automaticPropagationAfterMilliseconds = -1
 		this.changeConverter = new ChangeClassifyingEventToVitruviusChangeConverterImpl
 		this.reportChanges = true
 		this.shouldBeActive = shouldBeActive
-		this.recordingState = new RecordingState([submitPropagationJobIfNecessary])
+		this.recordingState = new RecordingState([submitPropagationCheckJobIfNecessary])
 		astListener = new ASTChangeListener(this.monitoredProjectNames)
 		astListener.addListener(this)
-		log.trace('''Finished initializing monitored Java editor for projects: «monitoredProjectNames»''')
+		log.trace('''Finished initializing monitored Java editor for projects «monitoredProjectNames»''')
 	}
 
 	new(VirtualModel virtualModel, String... monitoredProjectNames) {
 		this(virtualModel, [true], monitoredProjectNames)
 	}
 
-	def void startMonitoring() {
+	def synchronized void startMonitoring() {
 		astListener.startListening
 	}
 
-	def void stopMonitoring() {
-		astListener.shutdown
+	def synchronized void stopMonitoring() {
+		astListener.stopListening
+	}
+
+	def private synchronized void submitPropagationCheckJobIfNecessary() {
+		if (automaticPropagationAfterMilliseconds == -1) {
+			return
+		}
+		log.trace('''Submitting propagation job for projects «monitoredProjectNames»''')
+		val changePropagationJob = new WorkspaceJob("Change propagation job") {
+			override runInWorkspace(IProgressMonitor monitor) {
+				log.trace('''Checking for necessary change propagation in projects «monitoredProjectNames»''')
+				if (!recordingState.hasRecentlyBeenChanged()) {
+					submitChangePropagationJob
+				} else {
+					recordingState.touch()
+					submitPropagationCheckJobIfNecessary
+				}
+				return Status.OK_STATUS
+			}
+		}
+		changePropagationJob.setPriority(Job.SHORT)
+		// Defer change propagation while waiting for further changes to occur
+		changePropagationJob.schedule(automaticPropagationAfterMilliseconds)
+	}
+
+	override synchronized void propagateRecordedChanges() {
+		log.debug('''Explicitly triggered change propagation for projects «monitoredProjectNames»''')
+		submitChangePropagationJob
+	}
+	
+	def private synchronized void submitChangePropagationJob() {
+		log.trace('''Submitting change propagation job for projects «monitoredProjectNames»''')
+		val changePropagationJob = new WorkspaceJob("Change propagation job") {
+			override runInWorkspace(IProgressMonitor monitor) {
+				internalPropagateRecordedChanges
+				return Status.OK_STATUS
+			}
+		}
+		changePropagationJob.setPriority(Job.BUILD)
+		changePropagationJob.schedule()
+	}
+	
+	private def synchronized void internalPropagateRecordedChanges() {
+		log.debug('''Propagating «recordingState.changeCount» change(s) in projects «monitoredProjectNames»''')
+		for (VitruviusChange change : recordingState.changes) {
+			try {
+				this.virtualModel.propagateChange(change)
+			} catch (Exception e) {
+				log.error('''Some error occurred during propagating changes in projects «monitoredProjectNames»''')
+				throw new IllegalStateException(e)
+			}
+
+		}
+		recordingState.reset()
+	}
+	
+	override synchronized void notifyEventOccured() {
+		if (!shouldBeActive.get) {
+			stopMonitoring
+		}
+	}
+
+	override synchronized void notifyEventClassified(ChangeClassifyingEvent event) {
+		log.debug('''Monitored editor for projects «monitoredProjectNames» reacting to change «event»''')
+		val convertedChange = changeConverter.convert(event)
+		if (!convertedChange.empty) {
+			if (!this.reportChanges) {
+				log.
+					trace('''Do not report change «convertedChange» because reporting is disabled for projects «monitoredProjectNames»''')
+				return
+			}
+			log.trace('''Submit change in projects «monitoredProjectNames»''')
+			recordingState.submitChange(convertedChange.get)
+		}
+	}
+
+	override void earlyStartup() {
 	}
 
 	private static class RecordingState {
@@ -112,65 +188,6 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements UserInterac
 		def synchronized Iterable<VitruviusChange> getChanges() {
 			return changes
 		}
-	}
-
-	def private synchronized void submitPropagationJobIfNecessary() {
-		if (automaticPropagationAfterMilliseconds === -1) {
-			return
-		}
-		log.trace('''Submitting propagation job for projects «monitoredProjectNames»''')
-		val changePropagationJob = new WorkspaceJob("Change propagation job") {
-			override runInWorkspace(IProgressMonitor monitor) {
-				log.trace('''Checking for necessary change propagation in projects «monitoredProjectNames»''')
-				if (!recordingState.hasRecentlyBeenChanged()) {
-					propagateRecordedChanges()
-				} else {
-					recordingState.touch()
-					submitPropagationJobIfNecessary()
-				}
-				return Status.OK_STATUS
-			}
-		}
-		changePropagationJob.setPriority(Job.BUILD)
-		// Defer change propagation while waiting for further changes to occur
-		changePropagationJob.schedule(automaticPropagationAfterMilliseconds)
-	}
-
-	override void propagateRecordedChanges() {
-		log.debug('''Propagating «recordingState.getChangeCount()» change(s) in projects «monitoredProjectNames»''')
-		for (VitruviusChange change : recordingState.getChanges()) {
-			try {
-				this.virtualModel.propagateChange(change)
-			} catch (Exception e) {
-				log.error('''Some error occurred during propagating changes in projects «monitoredProjectNames»''')
-				throw new IllegalStateException(e)
-			}
-
-		}
-		recordingState.reset()
-	}
-
-	override synchronized void notifyEventOccured() {
-		if (!shouldBeActive.apply) {
-			stopMonitoring
-		}
-	}
-
-	override synchronized void notifyEventClassified(ChangeClassifyingEvent event) {
-		log.debug('''Monitored editor for projects «monitoredProjectNames» reacting to change «event»''')
-		val convertedChange = changeConverter.convert(event)
-		if (!convertedChange.empty) {
-			if (!this.reportChanges) {
-				log.
-					trace('''Do not report change «convertedChange» because reporting is disabled for projects «monitoredProjectNames»''')
-				return
-			}
-			log.trace('''Submit change in projects «monitoredProjectNames»''')
-			recordingState.submitChange(convertedChange.get)
-		}
-	}
-
-	override void earlyStartup() {
 	}
 
 }

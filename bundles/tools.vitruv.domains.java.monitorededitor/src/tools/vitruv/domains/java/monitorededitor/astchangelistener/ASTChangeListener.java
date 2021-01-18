@@ -55,7 +55,7 @@ import static tools.vitruv.domains.java.monitorededitor.util.ExtensionPointsUtil
  * {@link ConcreteChangeClassifier}s who are responsible for classifying changes
  * given the AST delta and the current and previous AST state.
  */
-public class ASTChangeListener implements IStartup, IElementChangedListener {
+public class ASTChangeListener implements IStartup, IElementChangedListener, WithholdCallback {
 
 	private static final Logger LOG = Logger.getLogger(ASTChangeListener.class);
 	private static final int CHANGE_HISTORY_MINUTES = 4;
@@ -70,43 +70,31 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 	private boolean withholding = false;
 	private final EditCommandListener editCommandListener;
 	private final Set<String> monitoredProjectNames;
-
-	private boolean finalized = false;
-
-	public ASTChangeListener(final Set<String> projectNames) {
-		LOG.debug("Start initializing AST change listener for projects " + projectNames);
-		this.monitoredProjectNames = projectNames;
+	
+	public ASTChangeListener(final Set<String> monitoredProjectNames) {
+		LOG.debug("Start initializing AST change listener for projects " + monitoredProjectNames);
+		this.monitoredProjectNames = monitoredProjectNames;
 		this.postReconcileClassifiers = getPostReconcileClassifiers();
 		this.postChangeClassifiers = getPostChangeClassifiers();
 		this.listeners = new ArrayList<ChangeOperationListener>();
 
-		this.previousState = new PreviousASTState(projectNames);
+		this.previousState = new PreviousASTState(monitoredProjectNames);
 		this.withholdChangeHistory = new ChangeHistory(CHANGE_HISTORY_MINUTES);
 		this.editCommandListener = new EditCommandListener(this);
-		JavaCore.addElementChangedListener(this);
-		LOG.info("Initialized AST change listener for projects " + projectNames);
 	}
 
-	public void startListening() {
-		checkState(!finalized, "AST change listener has already been finalized");
+	public synchronized void startListening() {
 		LOG.debug("Start AST listening for projects " + monitoredProjectNames);
 		this.editCommandListener.startListening();
-		this.listening = true;
+		JavaCore.addElementChangedListener(this);
+		listening = true;
 	}
 
-	public void stopListening() {
-		checkState(!finalized, "AST change listener has already been finalized");
+	public synchronized void stopListening() {
 		LOG.debug("Stop AST listening for projects " + monitoredProjectNames);
 		this.editCommandListener.stopListening();
-		this.listening = false;
-	}
-
-	public void shutdown() {
-		stopListening();
-		listeners.clear();
-		this.editCommandListener.revokeRegistrations();
 		JavaCore.removeElementChangedListener(this);
-		finalized = true;
+		listening = false;
 	}
 
 	private static List<ConcreteChangeClassifier> getPostReconcileClassifiers() {
@@ -151,14 +139,14 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 		for (ChangeOperationListener listener : new ArrayList<>(listeners)) {
 			listener.notifyEventOccured();
 		}
-
+		
 		if (!listening) {
-			return; // ignore event if not listening
+			return;
 		}
-
+		
 		final IJavaElementDelta delta = event.getDelta();
 		if (!isMonitoredProject(delta)) {
-			return; // ignore events in unmonitored projects
+			return;
 		}
 
 		LOG.trace("Recognized relevant AST change in one of the projects " + monitoredProjectNames + ": " + delta);
@@ -185,13 +173,11 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 		}
 
 		previousState.update(currentCompilationUnit);
-		if (listening) {
-			if (!withholding) {
-				notifyEventClassified(filteredEvents);
-			} else {
-				withholdChangeHistory.update(filteredEvents);
-				withholding = false;
-			}
+		if (!withholding) {
+			notifyEventClassified(filteredEvents);
+		} else {
+			withholdChangeHistory.update(filteredEvents);
+			withholding = false;
 		}
 	}
 
@@ -241,17 +227,18 @@ public class ASTChangeListener implements IStartup, IElementChangedListener {
 		}
 	}
 
-	public void addListener(final ChangeOperationListener listener) {
-		checkState(!finalized, "AST change listener has already been finalized");
+	public synchronized void addListener(final ChangeOperationListener listener) {
+		checkState(listener != null, "Listener must not be null");
 		listeners.add(listener);
 	}
 
-	public void removeListener(final ChangeOperationListener listener) {
+	public synchronized void removeListener(final ChangeOperationListener listener) {
 		listeners.remove(listener);
 	}
 
-	protected void withholdEventsOnce(final boolean b) {
-		withholding = b;
+	@Override
+	public void withholdEvent() {
+		withholding = true;
 	}
 
 	@Override
