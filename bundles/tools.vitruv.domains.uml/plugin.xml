@@ -6,9 +6,8 @@
 
 <plugin>
    <extension
-         id="umlDomainProvider"
-         name="UML Domain Provider"
-         point="tools.vitruv.framework.domains.domain">
+         name="Vitruv UML Domain Provider"
+         point="tools.vitruv.framework.domains.provider">
       <domainProvider
             class="tools.vitruv.domains.uml.UmlDomainProvider"></domainProvider>
    </extension>

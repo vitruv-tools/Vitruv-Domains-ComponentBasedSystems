@@ -5,7 +5,6 @@ import static tools.vitruv.domains.java.JavaNamespace.*
 import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 import org.eclipse.emf.ecore.resource.Resource
 import org.emftext.language.java.resource.JavaSourceOrClassFileResourceFactoryImpl
-import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 
 class JavaDomain extends AbstractTuidAwareVitruvDomain {
 	static final String METAMODEL_NAME = "Java";
@@ -26,10 +25,6 @@ class JavaDomain extends AbstractTuidAwareVitruvDomain {
 	
 	def protected static generateTuidCalculator() {
 		return new JavaTuidCalculatorAndResolver();
-	}
-	
-	override getBuilderApplicator() {
-		return new VitruviusEmfBuilderApplicator();
 	}
 	
 	override shouldTransitivelyPropagateChanges() {

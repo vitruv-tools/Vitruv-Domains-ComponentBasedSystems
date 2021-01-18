@@ -4,7 +4,6 @@ import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import tools.vitruv.domains.sysml.tuid.SysMlTuidCalculatorAndResolver
 import static tools.vitruv.domains.sysml.SysMlNamspace.*;
 import org.eclipse.uml2.uml.UMLPackage
-import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
 class SysMlDomain extends AbstractTuidAwareVitruvDomain {
@@ -19,10 +18,6 @@ class SysMlDomain extends AbstractTuidAwareVitruvDomain {
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
 		return new SysMlTuidCalculatorAndResolver(METAMODEL_NAMESPACE);
-	}
-	
-	override getBuilderApplicator() {
-		return new VitruviusEmfBuilderApplicator();
 	}
 	
 }

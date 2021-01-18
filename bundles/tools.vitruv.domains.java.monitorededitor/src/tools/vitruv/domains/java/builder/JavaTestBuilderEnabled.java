@@ -1,11 +1,11 @@
 package tools.vitruv.domains.java.builder;
 
-import tools.vitruv.framework.ui.monitorededitor.TestBuilderEnabled;
+import tools.vitruv.framework.domains.ui.builder.TestBuilderEnabled;
 
 public class JavaTestBuilderEnabled extends TestBuilderEnabled {
 
     public JavaTestBuilderEnabled() {
-        super(new VitruviusJavaBuilderApplicator());
+        super(VitruviusJavaBuilder.BUILDER_ID);
     }
 
 }

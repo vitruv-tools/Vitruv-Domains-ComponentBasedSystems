@@ -6,9 +6,8 @@
 
 <plugin>
    <extension
-         id="pcmDomainProvider"
-         name="PCM Domain Provider"
-         point="tools.vitruv.framework.domains.domain">
+         name="Vitruv PCM Domain Provider"
+         point="tools.vitruv.framework.domains.provider">
       <domainProvider
             class="tools.vitruv.domains.pcm.PcmDomainProvider"></domainProvider>
    </extension>
