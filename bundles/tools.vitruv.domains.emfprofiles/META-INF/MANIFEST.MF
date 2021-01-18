@@ -14,8 +14,7 @@ Require-Bundle: org.junit.jupiter.api,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
- org.eclipse.xtend.lib.macro,
- tools.vitruv.extensions.emf
+ org.eclipse.xtend.lib.macro
 Export-Package: tools.vitruv.domains.emfprofiles,
  tools.vitruv.domains.emfprofiles.tuid;x-internal:=true
 Bundle-Vendor: vitruv.tools

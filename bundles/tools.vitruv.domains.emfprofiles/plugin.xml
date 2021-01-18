@@ -6,9 +6,8 @@
 
 <plugin>
    <extension
-         id="emfprofilesDomainProvider"
-         name="Emfprofiles Domain Provider"
-         point="tools.vitruv.framework.domains.domain">
+         name="Vitruv EMF-Profiles Domain Provider"
+         point="tools.vitruv.framework.domains.provider">
       <domainProvider
             class="tools.vitruv.domains.emfprofiles.EmfProfilesDomainProvider"></domainProvider>
    </extension>

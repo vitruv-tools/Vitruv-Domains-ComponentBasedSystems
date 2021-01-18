@@ -4,7 +4,6 @@ import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.uml2.uml.resource.UMLResource
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import tools.vitruv.domains.uml.tuid.UmlTuidCalculatorAndResolver
-import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
 class UmlDomain extends AbstractTuidAwareVitruvDomain {
@@ -21,10 +20,6 @@ class UmlDomain extends AbstractTuidAwareVitruvDomain {
 		return new UmlTuidCalculatorAndResolver(UMLPackage.eNS_URI);
 	}
 
-	override getBuilderApplicator() {
-		return new VitruviusEmfBuilderApplicator();
-	}
-	
 	override shouldTransitivelyPropagateChanges() {
 		return shouldTransitivelyPropagateChanges;
 	}

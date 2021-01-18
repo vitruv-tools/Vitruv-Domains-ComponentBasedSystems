@@ -3,7 +3,6 @@ package tools.vitruv.domains.emfprofiles
 import tools.vitruv.framework.tuid.TuidCalculatorAndResolver
 import static tools.vitruv.domains.emfprofiles.EmfProfilesNamespace.*;
 import tools.vitruv.domains.emfprofiles.tuid.EmfProfilesTuidCalculatorAndResolver
-import tools.vitruv.domains.emf.builder.VitruviusEmfBuilderApplicator
 import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
 
 class EmfProfilesDomain extends AbstractTuidAwareVitruvDomain {
@@ -15,11 +14,6 @@ class EmfProfilesDomain extends AbstractTuidAwareVitruvDomain {
 
 	def protected static TuidCalculatorAndResolver generateTuidCalculator() {
 		return new EmfProfilesTuidCalculatorAndResolver(METAMODEL_NAMESPACE);
-	}
-	
-	
-	override getBuilderApplicator() {
-		return new VitruviusEmfBuilderApplicator();
 	}
 	
 }

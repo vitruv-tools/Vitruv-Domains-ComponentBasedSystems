@@ -6,9 +6,8 @@
 
 <plugin>
    <extension
-         id="sysMlDomainProvider"
-         name="SysML Domain Provider"
-         point="tools.vitruv.framework.domains.domain">
+         name="Vitruv SysML Domain Provider"
+         point="tools.vitruv.framework.domains.provider">
       <domainProvider
             class="tools.vitruv.domains.sysml.SysMlDomainProvider"></domainProvider>
    </extension>

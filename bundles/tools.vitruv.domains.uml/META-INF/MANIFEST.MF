@@ -17,7 +17,6 @@ Require-Bundle: org.junit.jupiter.api,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro,
- tools.vitruv.extensions.emf,
  org.eclipse.uml2.uml.resources,
  org.eclipse.osgi
 Comment: The above one is necessary because otherwise pathmap resources cannot be loaded

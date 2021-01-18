@@ -6,9 +6,8 @@
 
 <plugin>
    <extension
-         id="javaDomainProvider"
-         name="Java Domain Provider"
-         point="tools.vitruv.framework.domains.domain">
+         name="Vitruv Java Domain Provider"
+         point="tools.vitruv.framework.domains.provider">
       <domainProvider
             class="tools.vitruv.domains.java.JavaDomainProvider"></domainProvider>
    </extension>
