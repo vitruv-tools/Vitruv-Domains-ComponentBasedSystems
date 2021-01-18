@@ -5,9 +5,6 @@
       <extension-point id="astpostreconcile" name="Postreconcile Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astpostreconcile.exsd"/>
       <extension-point id="astpostchange" name="Postchange Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astpostchange.exsd"/>
 
-      <extension name="Vitruv Java Monitored Editor Domain Provider" point="tools.vitruv.framework.domains.provider">
-            <domainProvider class="tools.vitruv.domains.java.monitorededitor.JavaMonitoredEditorDomainProvider"></domainProvider>
-      </extension>
 
       <extension id="tools.vitruv.domains.java.builder.JavaBuilder.id" point="org.eclipse.core.resources.builders">
             <builder>
