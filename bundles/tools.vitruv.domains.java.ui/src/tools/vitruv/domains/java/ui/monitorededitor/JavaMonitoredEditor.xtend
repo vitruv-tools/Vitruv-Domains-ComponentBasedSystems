@@ -69,7 +69,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 		astListener.stopListening
 	}
 
-	def private synchronized void submitPropagationCheckJobIfNecessary() {
+	def private void submitPropagationCheckJobIfNecessary() {
 		if (automaticPropagationAfterMilliseconds == -1) {
 			return
 		}
@@ -95,12 +95,12 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 		}
 	}
 
-	override synchronized void propagateRecordedChanges() {
+	override void propagateRecordedChanges() {
 		log.debug('''Explicitly triggered change propagation for projects «monitoredProjectNames»''')
 		submitChangePropagationJob
 	}
 
-	def private synchronized void submitChangePropagationJob() {
+	def private void submitChangePropagationJob() {
 		log.trace('''Submitting change propagation job for projects «monitoredProjectNames»''')
 		val changePropagationJob = new WorkspaceJob("Change propagation job") {
 			override runInWorkspace(IProgressMonitor monitor) {
@@ -121,7 +121,6 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 				log.error('''Some error occurred during propagating changes in projects «monitoredProjectNames»''')
 				throw new IllegalStateException(e)
 			}
-
 		}
 		recordingState.reset()
 	}
