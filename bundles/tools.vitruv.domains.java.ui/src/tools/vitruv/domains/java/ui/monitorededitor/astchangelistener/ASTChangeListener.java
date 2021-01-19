@@ -67,8 +67,8 @@ public class ASTChangeListener implements IStartup, IElementChangedListener, Wit
 	private final ChangeHistory withholdChangeHistory;
 	private final List<ChangeOperationListener> listeners;
 
-	private boolean listening = false;
-	private boolean withholding = false;
+	private volatile boolean listening = false;
+	private volatile boolean withholding = false;
 	private final EditCommandListener editCommandListener;
 	private final Set<String> monitoredProjectNames;
 	
@@ -84,16 +84,16 @@ public class ASTChangeListener implements IStartup, IElementChangedListener, Wit
 		this.editCommandListener = new EditCommandListener(this);
 	}
 
-	public synchronized void startListening() {
+	public void startListening() {
 		LOG.debug("Start AST listening for projects " + monitoredProjectNames);
-		this.editCommandListener.startListening();
+		editCommandListener.startListening();
 		JavaCore.addElementChangedListener(this);
 		listening = true;
 	}
 
-	public synchronized void stopListening() {
+	public void stopListening() {
 		LOG.debug("Stop AST listening for projects " + monitoredProjectNames);
-		this.editCommandListener.stopListening();
+		editCommandListener.stopListening();
 		JavaCore.removeElementChangedListener(this);
 		listening = false;
 	}
