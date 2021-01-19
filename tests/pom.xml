@@ -13,7 +13,7 @@
 	<name>Tests Modules</name>
 
 	<modules>
-		<module>tools.vitruv.domains.java.monitorededitor.tests</module>
+		<module>tools.vitruv.domains.java.ui.tests</module>
 	</modules>
 
 </project>
