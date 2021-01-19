@@ -8,7 +8,7 @@
 		<artifactId>tests</artifactId>
 		<version>1.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>tools.vitruv.domains.java.monitorededitor.tests</artifactId>
+	<artifactId>tools.vitruv.domains.java.ui.tests</artifactId>
 	<packaging>eclipse-test-plugin</packaging>
 
 	<build>
