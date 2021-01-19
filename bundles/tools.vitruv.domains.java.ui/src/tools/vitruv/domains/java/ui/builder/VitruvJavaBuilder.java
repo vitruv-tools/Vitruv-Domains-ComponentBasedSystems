@@ -13,13 +13,13 @@ import static tools.vitruv.framework.util.ProjectBuildUtils.hasBuilder;
 import static tools.vitruv.framework.domains.ui.builder.VitruvProjectBuilderArguments.getPropagateAfterBuild;
 import static tools.vitruv.framework.domains.ui.builder.VitruvProjectBuilderArguments.getPropagateAfterChangeMilliseconds;
 
-public class VitruviusJavaBuilder extends VitruvProjectBuilder {
+public class VitruvJavaBuilder extends VitruvProjectBuilder {
 	// ID of JavaBuilder
 	public static final String BUILDER_ID = "tools.vitruv.domains.java.ui.builder.JavaBuilder.id";
 
-	private static Logger logger = Logger.getLogger(VitruviusJavaBuilder.class);
+	private static Logger logger = Logger.getLogger(VitruvJavaBuilder.class);
 
-	public VitruviusJavaBuilder() {
+	public VitruvJavaBuilder() {
 		super();
 	}
 	private JavaMonitoredEditor monitoredEditor;

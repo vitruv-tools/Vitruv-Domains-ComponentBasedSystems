@@ -8,7 +8,7 @@
 
       <extension id="tools.vitruv.domains.java.ui.builder.JavaBuilder.id" point="org.eclipse.core.resources.builders">
             <builder>
-                  <run class="tools.vitruv.domains.java.ui.builder.VitruviusJavaBuilder">
+                  <run class="tools.vitruv.domains.java.ui.builder.VitruvJavaBuilder">
                   </run>
             </builder>
       </extension>
