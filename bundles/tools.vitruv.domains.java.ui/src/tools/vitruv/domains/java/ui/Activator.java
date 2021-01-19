@@ -1,4 +1,4 @@
-package tools.vitruv.domains.java.ui.monitorededitor.activator;
+package tools.vitruv.domains.java.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

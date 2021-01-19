@@ -5,7 +5,7 @@ import tools.vitruv.framework.domains.ui.builder.TestBuilderEnabled;
 public class JavaTestBuilderEnabled extends TestBuilderEnabled {
 
     public JavaTestBuilderEnabled() {
-        super(VitruviusJavaBuilder.BUILDER_ID);
+        super(VitruvJavaBuilder.BUILDER_ID);
     }
 
 }
