@@ -112,7 +112,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 		changePropagationJob.schedule()
 	}
 
-	private synchronized def void internalPropagateRecordedChanges() {
+	private def void internalPropagateRecordedChanges() {
 		log.debug('''Propagating «recordingState.changeCount» change(s) in projects «monitoredProjectNames»''')
 		val changes = recordingState.reset()
 		for (VitruviusChange change : changes) {
