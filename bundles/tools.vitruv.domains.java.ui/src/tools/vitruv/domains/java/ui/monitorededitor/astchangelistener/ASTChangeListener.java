@@ -71,7 +71,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener, Wit
 	private volatile boolean withholding = false;
 	private final EditCommandListener editCommandListener;
 	private final Set<String> monitoredProjectNames;
-	
+
 	public ASTChangeListener(final Set<String> monitoredProjectNames) {
 		LOG.debug("Start initializing AST change listener for projects " + monitoredProjectNames);
 		this.monitoredProjectNames = monitoredProjectNames;
@@ -93,9 +93,9 @@ public class ASTChangeListener implements IStartup, IElementChangedListener, Wit
 
 	public void stopListening() {
 		LOG.debug("Stop AST listening for projects " + monitoredProjectNames);
+		listening = false;
 		editCommandListener.stopListening();
 		JavaCore.removeElementChangedListener(this);
-		listening = false;
 	}
 
 	private static List<ConcreteChangeClassifier> getPostReconcileClassifiers() {
@@ -140,11 +140,11 @@ public class ASTChangeListener implements IStartup, IElementChangedListener, Wit
 		for (ChangeOperationListener listener : new ArrayList<>(listeners)) {
 			listener.notifyEventOccured();
 		}
-		
+
 		if (!listening) {
 			return;
 		}
-		
+
 		final IJavaElementDelta delta = event.getDelta();
 		if (!isMonitoredProject(delta)) {
 			return;

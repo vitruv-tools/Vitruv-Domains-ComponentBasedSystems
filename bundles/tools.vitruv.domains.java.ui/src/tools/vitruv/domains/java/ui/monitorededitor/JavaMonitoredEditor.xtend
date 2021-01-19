@@ -124,7 +124,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 		}
 		recordingState.reset()
 	}
-	
+
 	override synchronized void notifyEventOccured() {
 		if (!shouldBeActive.get) {
 			stopMonitoring
