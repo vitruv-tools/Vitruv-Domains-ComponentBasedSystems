@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Vitruvius Domain UML Metamodel
+Bundle-Name: Vitruv Domain UML
 Bundle-SymbolicName: tools.vitruv.domains.uml;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.uml
 Bundle-Version: 1.1.0.qualifier
