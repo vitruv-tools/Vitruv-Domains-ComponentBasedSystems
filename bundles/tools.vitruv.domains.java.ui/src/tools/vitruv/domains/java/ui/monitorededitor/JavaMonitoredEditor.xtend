@@ -36,7 +36,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 	@Accessors(PUBLIC_GETTER)
 	val Set<String> monitoredProjectNames
 	@Accessors(PUBLIC_SETTER)
-	boolean reportChanges
+	volatile boolean reportChanges
 	val ChangeClassifyingEventToVitruviusChangeConverter changeConverter
 	val RecordingState recordingState
 	val ASTChangeListener astListener
@@ -61,11 +61,11 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 		this(virtualModel, [true], monitoredProjectNames)
 	}
 
-	def synchronized void startMonitoring() {
+	def void startMonitoring() {
 		astListener.startListening
 	}
 
-	def synchronized void stopMonitoring() {
+	def void stopMonitoring() {
 		astListener.stopListening
 	}
 
@@ -74,15 +74,9 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 			return
 		}
 		log.trace('''Submitting propagation job for projects «monitoredProjectNames»''')
-		val changePropagationJob = new WorkspaceJob("Change propagation job") {
+		val changePropagationJob = new WorkspaceJob("Change propagation check job") {
 			override runInWorkspace(IProgressMonitor monitor) {
-				log.trace('''Checking for necessary change propagation in projects «monitoredProjectNames»''')
-				if (!recordingState.hasRecentlyBeenChanged()) {
-					submitChangePropagationJob
-				} else {
-					recordingState.touch()
-					submitPropagationCheckJobIfNecessary
-				}
+				propagateRecordedChangesIfNecessary
 				return Status.OK_STATUS
 			}
 		}
@@ -91,11 +85,21 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 		changePropagationJob.schedule(automaticPropagationAfterMilliseconds)
 	}
 
+	private def synchronized void propagateRecordedChangesIfNecessary() {
+		log.trace('''Checking for necessary change propagation in projects «monitoredProjectNames»''')
+		if (!recordingState.hasRecentlyBeenChanged()) {
+			submitChangePropagationJob
+		} else {
+			recordingState.touch()
+			submitPropagationCheckJobIfNecessary
+		}
+	}
+
 	override synchronized void propagateRecordedChanges() {
 		log.debug('''Explicitly triggered change propagation for projects «monitoredProjectNames»''')
 		submitChangePropagationJob
 	}
-	
+
 	def private synchronized void submitChangePropagationJob() {
 		log.trace('''Submitting change propagation job for projects «monitoredProjectNames»''')
 		val changePropagationJob = new WorkspaceJob("Change propagation job") {
@@ -107,7 +111,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 		changePropagationJob.setPriority(Job.BUILD)
 		changePropagationJob.schedule()
 	}
-	
+
 	private def synchronized void internalPropagateRecordedChanges() {
 		log.debug('''Propagating «recordingState.changeCount» change(s) in projects «monitoredProjectNames»''')
 		for (VitruviusChange change : recordingState.changes) {
@@ -154,12 +158,12 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 			this.submitPropagation = submitPropagation
 		}
 
-		def synchronized void reset() {
+		def void reset() {
 			changes.clear()
 			lastChangeCount = 0
 		}
 
-		def synchronized void submitChange(VitruviusChange change) {
+		def void submitChange(VitruviusChange change) {
 			changes.add(change)
 			// If this is the first change, submit a propagation job
 			if (changes.size() === 1) {
@@ -167,19 +171,19 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 			}
 		}
 
-		def synchronized boolean hasRecentlyBeenChanged() {
+		def boolean hasRecentlyBeenChanged() {
 			return changes.size() !== lastChangeCount
 		}
 
-		def synchronized void touch() {
+		def void touch() {
 			lastChangeCount = changes.size()
 		}
 
-		def synchronized int getChangeCount() {
+		def int getChangeCount() {
 			return changes.size()
 		}
 
-		def synchronized Iterable<VitruviusChange> getChanges() {
+		def Iterable<VitruviusChange> getChanges() {
 			return changes
 		}
 	}
