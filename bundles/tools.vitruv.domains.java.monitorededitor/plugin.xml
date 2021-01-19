@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-      <extension-point id="changeeventextendedvisitors" name="Change Event Extended Visitors" schema="schema/tools.vitruv.domains.java.monitorededitor.changeeventextendedvisitors.exsd"/>
-      <extension-point id="astpostreconcile" name="Postreconcile Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astpostreconcile.exsd"/>
-      <extension-point id="astpostchange" name="Postchange Classifiers" schema="schema/tools.vitruv.domains.java.monitorededitor.astpostchange.exsd"/>
+      <extension-point id="changeeventextendedvisitors" name="Change Event Extended Visitors" schema="schema/tools.vitruv.domains.java.ui.changeeventextendedvisitors.exsd"/>
+      <extension-point id="astpostreconcile" name="Postreconcile Classifiers" schema="schema/tools.vitruv.domains.java.ui.astpostreconcile.exsd"/>
+      <extension-point id="astpostchange" name="Postchange Classifiers" schema="schema/tools.vitruv.domains.java.ui.astpostchange.exsd"/>
 
 
-      <extension id="tools.vitruv.domains.java.builder.JavaBuilder.id" point="org.eclipse.core.resources.builders">
+      <extension id="tools.vitruv.domains.java.ui.builder.JavaBuilder.id" point="org.eclipse.core.resources.builders">
             <builder>
-                  <run class="tools.vitruv.domains.java.builder.VitruviusJavaBuilder">
+                  <run class="tools.vitruv.domains.java.ui.builder.VitruviusJavaBuilder">
                   </run>
             </builder>
       </extension>
 
       <extension point="org.eclipse.core.expressions.propertyTesters">
-            <propertyTester class="tools.vitruv.domains.java.builder.JavaTestBuilderEnabled" id="tools.vitruv.domains.java.builder.JavaBuilder.id" namespace="tools.vitruv.domains.java.builder" properties="isEnabled" type="java.lang.Object">
+            <propertyTester class="tools.vitruv.domains.java.ui.builder.JavaTestBuilderEnabled" id="tools.vitruv.domains.java.ui.builder.JavaBuilder.id" namespace="tools.vitruv.domains.java.ui.builder" properties="isEnabled" type="java.lang.Object">
             </propertyTester>
       </extension>
 
       <extension point="org.eclipse.ui.startup">
-            <startup class="tools.vitruv.domains.java.builder.JavaBuildOnEclipseStartup">
+            <startup class="tools.vitruv.domains.java.ui.builder.JavaBuildOnEclipseStartup">
             </startup>
       </extension>
       <extension
             name="Vitruv Java Project Builder"
             point="tools.vitruv.framework.domains.ui.builder">
          <assignment
-               builderId="tools.vitruv.domains.java.builder.JavaBuilder.id"
+               builderId="tools.vitruv.domains.java.ui.builder.JavaBuilder.id"
                domain="tools.vitruv.domains.java.JavaDomain">
          </assignment>
       </extension>
