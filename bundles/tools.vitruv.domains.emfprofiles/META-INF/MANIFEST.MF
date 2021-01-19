@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Vitruvius Domain ASEM Metamodel
+Bundle-Name: Vitruv Domain EMF-Profiles
 Bundle-SymbolicName: tools.vitruv.domains.emfprofiles;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.emfprofiles
 Bundle-Version: 1.1.0.qualifier

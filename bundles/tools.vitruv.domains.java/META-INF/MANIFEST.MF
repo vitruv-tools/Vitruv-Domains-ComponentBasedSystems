@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Vitruvius Domains Java
+Bundle-Name: Vitruv Domain Java
 Bundle-SymbolicName: tools.vitruv.domains.java;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.java
 Bundle-Version: 1.1.0.qualifier
