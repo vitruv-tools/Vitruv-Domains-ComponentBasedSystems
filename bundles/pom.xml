@@ -12,13 +12,6 @@
 	<packaging>pom</packaging>
 	<name>Bundle Modules</name>
 
-	<properties>
-		<maven-compiler.version>3.8.1</maven-compiler.version>
-		<maven-surefire.version>2.22.2</maven-surefire.version>
-		<junit-jupiter.version>5.7.0</junit-jupiter.version>
-		<junit-platform-provider.version>1.2.0</junit-platform-provider.version>
-	</properties>
-
 	<modules>
 		<module>tools.vitruv.domains.confidentiality</module>
 		<module>tools.vitruv.domains.emfprofiles</module>
@@ -38,7 +31,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>${maven-clean.version}</version>
 				<executions>
 					<execution>
 						<id>gen-clean</id>
@@ -61,7 +53,6 @@
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
-				<version>${xtext.version}</version>
 				<executions>
 					<execution>
 						<id>generate-test-sources</id>
@@ -79,34 +70,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire.version}</version>
-				<!-- Necessary to ensure that @Disabled annotation is considered -->
-				<dependencies>
-					<dependency>
-						<groupId>org.junit.platform</groupId>
-						<artifactId>junit-platform-surefire-provider</artifactId>
-						<version>${junit-platform-provider.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.junit.jupiter</groupId>
-						<artifactId>junit-jupiter-engine</artifactId>
-						<version>${junit-jupiter.version}</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<phase>test</phase>
-						<configuration>
-							<includes>
-								<include>**/*Test.java</include>
-								<include>**/*Tests.java</include>
-							</includes>
-						</configuration>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
+				<configuration>
+					<testClassesDirectory>${project.build.testOutputDirectory}</testClassesDirectory>
+				</configuration>
 			</plugin>
 
 			<plugin>
