@@ -47,6 +47,6 @@ public class VitruvJavaBuilder extends VitruvProjectBuilder {
 	}
 
 	private boolean isStillRegistered() {
-		return hasBuilder(getProject(), BUILDER_ID);
+		return getProject().isOpen() && hasBuilder(getProject(), BUILDER_ID);
 	}
 }
