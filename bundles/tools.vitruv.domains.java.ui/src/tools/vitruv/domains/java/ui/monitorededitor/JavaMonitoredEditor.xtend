@@ -119,7 +119,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 			try {
 				this.virtualModel.propagateChange(change)
 			} catch (Exception e) {
-				log.error('''Some error occurred during propagating changes in projects «monitoredProjectNames»''')
+				log.error('''Some error occurred during propagating changes in projects «monitoredProjectNames»''', e)
 				throw new IllegalStateException(e)
 			}
 		}
