@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Vitruv Domain Java UI Tests
 Bundle-SymbolicName: tools.vitruv.domains.java.ui.tests;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.java.ui.tests
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Fragment-Host: tools.vitruv.domains.java.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.text,
