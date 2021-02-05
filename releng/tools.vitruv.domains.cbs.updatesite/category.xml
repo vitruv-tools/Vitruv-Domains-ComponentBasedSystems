@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/tools.vitruv.domains.java.feature_2.0.0.qualifier.jar" id="tools.vitruv.domains.java.feature" version="2.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.java.feature_2.0.0.jar" id="tools.vitruv.domains.java.feature" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature id="tools.vitruv.domains.java.feature.source" version="2.0.0.qualifier">
+   <feature id="tools.vitruv.domains.java.feature.source" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.pcm.feature_2.0.0.qualifier.jar" id="tools.vitruv.domains.pcm.feature" version="2.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.pcm.feature_2.0.0.jar" id="tools.vitruv.domains.pcm.feature" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature id="tools.vitruv.domains.pcm.feature.source" version="2.0.0.qualifier">
+   <feature id="tools.vitruv.domains.pcm.feature.source" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.sysml.feature_2.0.0.qualifier.jar" id="tools.vitruv.domains.sysml.feature" version="2.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.sysml.feature_2.0.0.jar" id="tools.vitruv.domains.sysml.feature" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature id="tools.vitruv.domains.sysml.feature.source" version="2.0.0.qualifier">
+   <feature id="tools.vitruv.domains.sysml.feature.source" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.uml.feature_2.0.0.qualifier.jar" id="tools.vitruv.domains.uml.feature" version="2.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.uml.feature_2.0.0.jar" id="tools.vitruv.domains.uml.feature" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature id="tools.vitruv.domains.uml.feature.source" version="2.0.0.qualifier">
+   <feature id="tools.vitruv.domains.uml.feature.source" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.confidentiality.feature_2.0.0.qualifier.jar" id="tools.vitruv.domains.confidentiality.feature" version="2.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.confidentiality.feature_2.0.0.jar" id="tools.vitruv.domains.confidentiality.feature" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature id="tools.vitruv.domains.confidentiality.feature.source" version="2.0.0.qualifier">
+   <feature id="tools.vitruv.domains.confidentiality.feature.source" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.emfprofiles.feature_2.0.0.qualifier.jar" id="tools.vitruv.domains.emfprofiles.feature" version="2.0.0.qualifier">
+   <feature url="features/tools.vitruv.domains.emfprofiles.feature_2.0.0.jar" id="tools.vitruv.domains.emfprofiles.feature" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature id="tools.vitruv.domains.emfprofiles.feature.source" version="2.0.0.qualifier">
+   <feature id="tools.vitruv.domains.emfprofiles.feature.source" version="2.0.0">
       <category name="Vitruv Domains CBS"/>
    </feature>
    <category-def name="Vitruv Domains CBS" label="Vitruv Domains: Component-based Systems">
