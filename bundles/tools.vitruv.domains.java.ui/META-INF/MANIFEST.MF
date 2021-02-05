@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Vitruv Domain Java UI
 Bundle-SymbolicName: tools.vitruv.domains.java.ui;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.java.ui
-Bundle-Version: 2.0.0
+Bundle-Version: 2.1.0.qualifier
 Bundle-Activator: tools.vitruv.domains.java.ui.Activator
 Require-Bundle: org.eclipse.xtend.lib,
  org.eclipse.ui,
