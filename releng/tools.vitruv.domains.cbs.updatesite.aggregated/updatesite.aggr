@@ -20,9 +20,6 @@
       <repositories location="http://kit-sdq.github.io/updatesite/release/commons/1.10.0" mirrorArtifacts="false">
         <features name="edu.kit.ipd.sdq.commons.util.pcm.feature.feature.group"/>
       </repositories>
-      <repositories location="http://kastel-scbs.github.io/updatesite/nightly/confidentiality">
-        <features name="edu.kit.kastel.scbs.confidentiality.feature.source.feature.group" versionRange="[1.0.0,2.0.0)"/>
-      </repositories>
       <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2020-06" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.infra.core.feature.feature.group"/>
         <features name="org.eclipse.papyrus.sdk.feature.feature.group"/>

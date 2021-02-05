@@ -50,11 +50,6 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/2019-06/</url>
 		</repository>
-		<repository>
-		  <id>Confidentiality4CBSE</id>
-		  <layout>p2</layout>
-		  <url>http://kastel-scbs.github.io/updatesite/nightly/confidentiality</url>
-		</repository>
 	</repositories>
 
 </project>

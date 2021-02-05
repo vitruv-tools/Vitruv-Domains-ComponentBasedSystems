@@ -13,7 +13,6 @@
 	<name>Bundle Modules</name>
 
 	<modules>
-		<module>tools.vitruv.domains.confidentiality</module>
 		<module>tools.vitruv.domains.emfprofiles</module>
 		<module>tools.vitruv.domains.java</module>
 		<module>tools.vitruv.domains.java.echange</module>

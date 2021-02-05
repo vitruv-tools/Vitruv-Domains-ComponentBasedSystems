@@ -24,12 +24,6 @@
    <feature id="tools.vitruv.domains.uml.feature.source" version="1.1.0.qualifier">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.confidentiality.feature_1.1.0.qualifier.jar" id="tools.vitruv.domains.confidentiality.feature" version="1.1.0.qualifier">
-      <category name="Vitruv Domains CBS"/>
-   </feature>
-   <feature id="tools.vitruv.domains.confidentiality.feature.source" version="1.1.0.qualifier">
-      <category name="Vitruv Domains CBS"/>
-   </feature>
    <feature url="features/tools.vitruv.domains.emfprofiles.feature_1.1.0.qualifier.jar" id="tools.vitruv.domains.emfprofiles.feature" version="1.1.0.qualifier">
       <category name="Vitruv Domains CBS"/>
    </feature>
