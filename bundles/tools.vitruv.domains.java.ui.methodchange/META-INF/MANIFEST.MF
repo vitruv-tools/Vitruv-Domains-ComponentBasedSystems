@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Vitruv Domain Java UI Extension Method Changes
 Bundle-SymbolicName: tools.vitruv.domains.java.ui.methodchange;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.java.ui.monitorededitor.methodchange
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.xtend.lib,
  org.eclipse.core.resources,

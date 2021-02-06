@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Vitruv Domain SysML
 Bundle-SymbolicName: tools.vitruv.domains.sysml;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.sysml
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.xtend.lib,
  org.junit.jupiter.api,

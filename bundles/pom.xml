@@ -6,14 +6,13 @@
 	<parent>
 		<groupId>tools.vitruv</groupId>
 		<artifactId>tools.vitruv.domains.cbs</artifactId>
-		<version>1.1.0-SNAPSHOT</version>
+		<version>2.1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>bundles</artifactId>
 	<packaging>pom</packaging>
 	<name>Bundle Modules</name>
 
 	<modules>
-		<module>tools.vitruv.domains.confidentiality</module>
 		<module>tools.vitruv.domains.emfprofiles</module>
 		<module>tools.vitruv.domains.java</module>
 		<module>tools.vitruv.domains.java.echange</module>
