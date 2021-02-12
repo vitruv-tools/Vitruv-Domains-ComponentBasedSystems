@@ -7,6 +7,8 @@ import org.emftext.language.java.statements.StatementsPackage
 import tools.vitruv.framework.change.description.VitruviusChangeFactory
 import tools.vitruv.domains.java.echange.feature.reference.ReferenceFactory
 import java.util.Optional
+import java.util.ArrayList
+import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.JavaEditorChange
 
 class MethodBodyChangedVisitor extends VisitorBase<MethodBodyChangedEvent> {
 
@@ -20,7 +22,7 @@ class MethodBodyChangedVisitor extends VisitorBase<MethodBodyChangedEvent> {
 		val changedMethod = changeClassifyingEvent.changedCompilationUnit.
 			getMethodOrConstructorForMethodDeclaration(changeClassifyingEvent.changedElement)
 
-		val compositeChange = VitruviusChangeFactory.instance.createCompositeTransactionalChange();
+		val changes = new ArrayList
 		val changeURI = VURI.getInstance(originalMethod.eResource)
 
 		for (stmt : (originalMethod as ClassMethod).statements) {
@@ -31,7 +33,7 @@ class MethodBodyChangedVisitor extends VisitorBase<MethodBodyChangedEvent> {
 			change.affectedFeature = StatementsPackage.eINSTANCE.statementListContainer_Statements
 			change.oldValue = stmt
 			change.index = (originalMethod as ClassMethod).statements.indexOf(stmt)
-			compositeChange.addChange(VitruviusChangeFactory.instance.createConcreteChangeWithVuri(change, changeURI))
+			changes += new JavaEditorChange(change, changeURI)
 		}
 
 		for (stmt : (changedMethod as ClassMethod).statements) {
@@ -42,9 +44,9 @@ class MethodBodyChangedVisitor extends VisitorBase<MethodBodyChangedEvent> {
 			change.affectedFeature = StatementsPackage.eINSTANCE.statementListContainer_Statements
 			change.newValue = stmt
 			change.index = (changedMethod as ClassMethod).statements.indexOf(stmt)
-			compositeChange.addChange(VitruviusChangeFactory.instance.createConcreteChangeWithVuri(change, changeURI))
+			changes += new JavaEditorChange(change, changeURI)
 		}
-		return Optional.of(compositeChange)
+		return Optional.of(VitruviusChangeFactory.instance.createCompositeChange(changes))
 	}
 
 }

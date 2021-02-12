@@ -4,8 +4,8 @@ import org.eclipse.emf.ecore.EAttribute
 import tools.vitruv.framework.util.datatypes.VURI
 import tools.vitruv.domains.java.ui.monitorededitor.methodchange.events.MethodParameterNameChangedEvent
 import tools.vitruv.domains.java.echange.feature.attribute.AttributeFactory
-import tools.vitruv.framework.change.description.VitruviusChangeFactory
 import java.util.Optional
+import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.JavaEditorChange
 
 class MethodParameterNameChangedVisitor extends VisitorBase<MethodParameterNameChangedEvent> {
 
@@ -32,9 +32,7 @@ class MethodParameterNameChangedVisitor extends VisitorBase<MethodParameterNameC
 		change.newValue = change.affectedEObject.eGet(change.affectedFeature)
 		change.oldValue = change.oldAffectedEObject.eGet(change.affectedFeature)
 
-		return Optional.of(
-			VitruviusChangeFactory.instance.createConcreteChangeWithVuri(change,
-				VURI.getInstance(change.oldAffectedEObject.eResource)))
+		return Optional.of(new JavaEditorChange(change, VURI.getInstance(change.oldAffectedEObject.eResource)))
 	}
 
 }
