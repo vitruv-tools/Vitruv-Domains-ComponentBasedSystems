@@ -13,7 +13,12 @@
 	<name>Tests Modules</name>
 
 	<modules>
+		<module>tools.vitruv.domains.emfprofiles.tests</module>
+		<module>tools.vitruv.domains.java.tests</module>
 		<module>tools.vitruv.domains.java.ui.tests</module>
+		<module>tools.vitruv.domains.pcm.tests</module>
+		<module>tools.vitruv.domains.uml.tests</module>
+		<module>tools.vitruv.domains.sysml.tests</module>
 	</modules>
 
 </project>

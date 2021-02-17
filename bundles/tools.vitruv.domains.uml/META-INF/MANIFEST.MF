@@ -6,8 +6,7 @@ Automatic-Module-Name: tools.vitruv.domains.uml
 Bundle-Version: 2.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.junit.jupiter.api,
- org.eclipse.xtend.lib,
+Require-Bundle: org.eclipse.xtend.lib,
  tools.vitruv.framework.domains;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.uml2.uml.resources;visibility:=reexport,
