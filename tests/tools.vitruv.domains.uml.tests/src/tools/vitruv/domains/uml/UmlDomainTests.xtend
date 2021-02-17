@@ -95,6 +95,4 @@ class UmlDomainTests {
 		);
 		assertNotNull(tuidFragments.get(1));
 	}
-	
-	
 }
