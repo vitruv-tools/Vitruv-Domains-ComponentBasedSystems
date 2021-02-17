@@ -5,11 +5,11 @@ Bundle-SymbolicName: tools.vitruv.domains.pcm;singleton:=true
 Automatic-Module-Name: tools.vitruv.domains.pcm
 Bundle-Version: 2.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtend.lib,
  tools.vitruv.framework.domains;visibility:=reexport,
  org.palladiosimulator.pcm;visibility:=reexport,
- org.palladiosimulator.pcm.resources;visibility:=reexport,
- org.junit.jupiter.api
+ org.palladiosimulator.pcm.resources;visibility:=reexport
 Export-Package: tools.vitruv.domains.pcm,
  tools.vitruv.domains.pcm.util
 Bundle-Vendor: vitruv.tools
