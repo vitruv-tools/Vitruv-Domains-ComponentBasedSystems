@@ -30,7 +30,6 @@ import org.emftext.language.java.containers.JavaRoot
 import org.emftext.language.java.modifiers.ModifiersFactory
 import org.emftext.language.java.imports.ClassifierImport
 import org.emftext.language.java.JavaClasspath
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import static tools.vitruv.domains.java.util.JavaQueryUtil.*
 import org.emftext.language.java.modifiers.AnnotableAndModifiable
 import org.emftext.language.java.annotations.AnnotationsFactory
@@ -213,28 +212,13 @@ class JavaModificationUtil {
 	}
 
 	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String qualifiedName) {
-		return createNamespaceClassifierReferenceForName(qualifiedName, true)
-	}
-
-	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String qualifiedName, boolean resolve) {
-		val classifier = getClassifier(qualifiedName, resolve)
-		return createNamespaceClassifierReference(classifier)
+		createNamespaceClassifierReference(getClassifier(qualifiedName))
 	}
 
 	def static ConcreteClassifier getClassifier(String qualifiedName) {
-		return getClassifier(qualifiedName, true)
-	}
-
-	def static ConcreteClassifier getClassifier(String qualifiedName, boolean resolve) {
 		// To resolve classifiers from the Java standard library, this requires the Java standard library to be
 		// registered (JavaClasspath.get().registerStdLib). Should be done by the domain by default.
-		val classifier = JavaClasspath.get().getClassifier(qualifiedName) as ConcreteClassifier
-		if (resolve) {
-			val resourceSet = new ResourceSetImpl();
-			return EcoreUtil.resolve(classifier, resourceSet) as ConcreteClassifier
-		} else {
-			return classifier
-		}
+		JavaClasspath.get().getClassifier(qualifiedName) as ConcreteClassifier
 	}
 
 	def static addAnnotationToAnnotableAndModifiable(AnnotableAndModifiable annotableAndModifiable,
