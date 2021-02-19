@@ -24,12 +24,6 @@
    <feature id="tools.vitruv.domains.uml.feature.source" version="2.1.0.qualifier">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.emfprofiles.feature_2.1.0.qualifier.jar" id="tools.vitruv.domains.emfprofiles.feature" version="2.1.0.qualifier">
-      <category name="Vitruv Domains CBS"/>
-   </feature>
-   <feature id="tools.vitruv.domains.emfprofiles.feature.source" version="2.1.0.qualifier">
-      <category name="Vitruv Domains CBS"/>
-   </feature>
    <category-def name="Vitruv Domains CBS" label="Vitruv Domains: Component-based Systems">
       <description>
          Component-based Systems Domains for Vitruv

@@ -17,7 +17,6 @@
 		<module>tools.vitruv.domains.pcm.feature</module>
 		<module>tools.vitruv.domains.sysml.feature</module>
 		<module>tools.vitruv.domains.uml.feature</module>
-		<module>tools.vitruv.domains.emfprofiles.feature</module>
 	</modules>
 	
 </project>
