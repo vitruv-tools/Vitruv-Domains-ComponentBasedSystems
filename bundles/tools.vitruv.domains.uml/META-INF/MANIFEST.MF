@@ -12,6 +12,5 @@ Require-Bundle: org.eclipse.xtend.lib,
  org.eclipse.uml2.uml.resources;visibility:=reexport,
  org.eclipse.osgi
 Comment: The UML resources dependency is necessary because otherwise pathmap resources cannot be loaded
-Export-Package: tools.vitruv.domains.uml,
- tools.vitruv.domains.uml.tuid
+Export-Package: tools.vitruv.domains.uml
 Bundle-Vendor: vitruv.tools

@@ -1,33 +1,24 @@
 package tools.vitruv.domains.pcm
 
-import tools.vitruv.framework.tuid.AttributeTuidCalculatorAndResolver
-import org.palladiosimulator.pcm.core.entity.EntityPackage
-import de.uka.ipd.sdq.identifier.IdentifierPackage
 import static extension tools.vitruv.domains.pcm.PcmNamespace.*;
-import org.palladiosimulator.pcm.repository.RepositoryPackage
-import tools.vitruv.framework.domains.AbstractTuidAwareVitruvDomain
+import tools.vitruv.framework.domains.AbstractVitruvDomain
 
-final class PcmDomain extends AbstractTuidAwareVitruvDomain {
+final class PcmDomain extends AbstractVitruvDomain {
 	static final String METAMODEL_NAME = "PCM";
 	boolean shouldTransitivelyPropagateChanges = false;
-	
+
 	package new() {
-		super(METAMODEL_NAME, ROOT_PACKAGE, 
-			generateTuidCalculator(), #[REPOSITORY_FILE_EXTENSION, SYSTEM_FILE_EXTENSION]
+		super(
+			METAMODEL_NAME,
+			ROOT_PACKAGE,
+			#[REPOSITORY_FILE_EXTENSION, SYSTEM_FILE_EXTENSION]
 		);
 	}
-	
-	def protected static generateTuidCalculator() {
-		return new AttributeTuidCalculatorAndResolver(METAMODEL_NAMESPACE, 
-			#[IdentifierPackage.Literals.IDENTIFIER__ID.name, RepositoryPackage.Literals.PARAMETER__PARAMETER_NAME.name,
-				EntityPackage.Literals.NAMED_ELEMENT__ENTITY_NAME.name, RepositoryPackage.Literals.PRIMITIVE_DATA_TYPE__TYPE.name
-			]);
-	}
-	
+
 	override shouldTransitivelyPropagateChanges() {
 		return shouldTransitivelyPropagateChanges;
 	}
-	
+
 	/**
 	 * Calling this methods enable the per default disabled transitive change propagation.
 	 * Should only be called for test purposes!
@@ -35,5 +26,5 @@ final class PcmDomain extends AbstractTuidAwareVitruvDomain {
 	def enableTransitiveChangePropagation() {
 		shouldTransitivelyPropagateChanges = true
 	}
-	
+
 }

@@ -9,6 +9,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: tools.vitruv.framework.domains;visibility:=reexport,
  org.modelversioning.emfprofile;visibility:=reexport,
  org.eclipse.xtend.lib
-Export-Package: tools.vitruv.domains.emfprofiles,
- tools.vitruv.domains.emfprofiles.tuid;x-internal:=true
+Export-Package: tools.vitruv.domains.emfprofiles
 Bundle-Vendor: vitruv.tools
