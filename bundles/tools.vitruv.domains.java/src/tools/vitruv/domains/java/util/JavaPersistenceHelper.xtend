@@ -3,6 +3,8 @@ package tools.vitruv.domains.java.util
 import java.util.Arrays
 import org.emftext.language.java.containers.CompilationUnit
 import org.emftext.language.java.containers.Package
+import static com.google.common.base.Preconditions.checkState
+import tools.vitruv.domains.java.JavaNamespace
 
 class JavaPersistenceHelper {
 
@@ -10,7 +12,8 @@ class JavaPersistenceHelper {
 
 	public static val PATH_SEPARATOR = "/"
 	public static val FILE_EXTENSION_SEPARATOR = "."
-	public static val JAVA_FILE_EXTENSION = "java"
+	public static val JAVA_FILE_EXTENSION = JavaNamespace.FILE_EXTENSION
+	static val FILE_EXTENSION_WITH_SEPARATOR = FILE_EXTENSION_SEPARATOR + JAVA_FILE_EXTENSION
 
 	static def String getJavaProjectSrc() {
 		return "src" + PATH_SEPARATOR;
@@ -46,7 +49,15 @@ class JavaPersistenceHelper {
 			}
 		}
 	}
-
+	
+	static def getSimpleName(CompilationUnit compilationUnit) {
+		var simpleName = compilationUnit.name
+		checkState(simpleName.endsWith(FILE_EXTENSION_WITH_SEPARATOR), "compilation unit has to end with '%s' but doesn't: %s", FILE_EXTENSION_WITH_SEPARATOR, compilationUnit.name)
+		simpleName = simpleName.substring(0, simpleName.length - 5)
+		simpleName = simpleName.substring(simpleName.lastIndexOf('.') + 1)
+		return simpleName
+	}
+	
 	static def String buildJavaPath(String sourcePath, Iterable<String> namespaces) {
 		return buildJavaFilePath(sourcePath, namespaces, "", "")
 	}
@@ -66,11 +77,10 @@ class JavaPersistenceHelper {
 	static def String buildJavaFilePath(String fileName, Iterable<String> namespaces) {
 		return buildJavaFilePath(javaProjectSrc, namespaces, fileName, null)
 	}
-
+		
 	// Uses 'src/' as source path.
-	// The compilation unit name is expected to already include the file extension.
 	static def String buildJavaFilePath(CompilationUnit compilationUnit) {
-		return buildJavaFilePath(compilationUnit.name, compilationUnit.namespaces)
+		return buildJavaFilePath(javaProjectSrc, compilationUnit.namespaces, compilationUnit.simpleName, JAVA_FILE_EXTENSION)
 	}
 
 	// Uses 'src/' as source path.
