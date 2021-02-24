@@ -40,7 +40,7 @@ class UmlDomainResourceTest {
 	
 	@Test
 	def void consistentUuids() {
-		val uuidResolver = vsum.uuidGeneratorAndResolver
+		val uuidResolver = vsum.uuidResolver
 		
 		val initialModel = UMLFactory.eINSTANCE.createModel
 		resourceAt(Path.of("test.uml")).propagate [
