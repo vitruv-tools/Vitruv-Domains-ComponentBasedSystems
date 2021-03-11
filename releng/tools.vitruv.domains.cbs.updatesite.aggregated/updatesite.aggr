@@ -27,9 +27,11 @@
       <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/2019-06" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.sysml14.feature.feature.group"/>
       </repositories>
+      <repositories location="http://download.eclipse.org/releases/2020-12" mirrorArtifacts="false">
+        <features name="org.eclipse.uml2.uml.feature.group"/>
+      </repositories>
     </contributions>
     <validationRepositories location="http://vitruv-tools.github.io/updatesite/nightly/framework"/>
-    <validationRepositories location="http://download.eclipse.org/releases/2020-12"/>
   </validationSets>
   <configurations architecture="x86_64"/>
   <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
