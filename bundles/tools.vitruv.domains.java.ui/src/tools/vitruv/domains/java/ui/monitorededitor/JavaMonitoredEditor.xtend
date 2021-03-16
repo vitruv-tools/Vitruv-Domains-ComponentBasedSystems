@@ -13,15 +13,19 @@ import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.ASTChangeL
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.ChangeOperationListener
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.ChangeClassifyingEvent
 import tools.vitruv.framework.domains.ui.monitorededitor.AbstractMonitoredEditor
-import tools.vitruv.framework.change.description.VitruviusChange
 import tools.vitruv.framework.vsum.VirtualModel
 import tools.vitruv.framework.vsum.modelsynchronization.ChangePropagator
 import static com.google.common.base.Preconditions.checkState
 import org.eclipse.core.resources.WorkspaceJob
 import org.eclipse.xtend.lib.annotations.Accessors
-import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.conversion.ChangeClassifyingEventToVitruviusChangeConverter
-import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.conversion.ChangeClassifyingEventToVitruviusChangeConverterImpl
 import java.util.function.Supplier
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import static extension tools.vitruv.framework.domains.repository.DomainAwareResourceSet.awareOfDomains
+import tools.vitruv.framework.domains.repository.VitruvDomainRepositoryImpl
+import tools.vitruv.domains.java.JavaDomainProvider
+import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.ChangeClassifyingEventToResourceChangeConverter
+import org.eclipse.emf.ecore.util.EcoreUtil
+import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.ResourceChange
 
 /** 
  * Extends {@link AbstractMonitoredEditor} and implements {@link UserInteractor} by delegation to a dialog {@link UserInteractor}. 
@@ -37,7 +41,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 	val Set<String> monitoredProjectNames
 	@Accessors(PUBLIC_SETTER)
 	volatile boolean reportChanges
-	val ChangeClassifyingEventToVitruviusChangeConverter changeConverter
+	val ChangeClassifyingEventToResourceChangeConverter changeConverter
 	val RecordingState recordingState
 	val ASTChangeListener astListener
 	val Supplier<Boolean> shouldBeActive
@@ -48,7 +52,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 			"Platform is not running but necessary for monitored Java editor")
 		log.debug('''Start initializing monitored Java editor for projects «monitoredProjectNames»''')
 		this.monitoredProjectNames = Set.of(monitoredProjectNames)
-		this.changeConverter = new ChangeClassifyingEventToVitruviusChangeConverterImpl
+		this.changeConverter = new ChangeClassifyingEventToResourceChangeConverter()
 		this.reportChanges = true
 		this.shouldBeActive = shouldBeActive
 		this.recordingState = new RecordingState([submitPropagationCheckJobIfNecessary])
@@ -115,9 +119,22 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 	private def void internalPropagateRecordedChanges() {
 		log.debug('''Propagating «recordingState.changeCount» change(s) in projects «monitoredProjectNames»''')
 		val changes = recordingState.reset()
-		for (VitruviusChange change : changes) {
+		for (ResourceChange change : changes) {
+			val changedResource = if (change.newResourceURI !== null) {
+					try {
+						val javaAwareResourceSet = new ResourceSetImpl().awareOfDomains(
+							new VitruvDomainRepositoryImpl(#[new JavaDomainProvider().domain]))
+						val changedResource = javaAwareResourceSet.getResource(change.newResourceURI, true)
+						// Resolve proxies to ensure that all elements can be found instead of treating proxies as new elements
+						EcoreUtil.resolveAll(changedResource)
+						changedResource
+					} catch (RuntimeException e) {
+						throw new IllegalStateException("Resource " + change.newResourceURI +
+							" was not found although it should exist")
+					}
+				}
 			try {
-				this.virtualModel.propagateChange(change)
+				this.virtualModel.propagateChangedState(changedResource, change.oldResourceURI)
 			} catch (Exception e) {
 				log.error('''Some error occurred during propagating changes in projects «monitoredProjectNames»''', e)
 				throw new IllegalStateException(e)
@@ -134,22 +151,20 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 	override void notifyEventClassified(ChangeClassifyingEvent event) {
 		log.debug('''Monitored editor for projects «monitoredProjectNames» reacting to change «event»''')
 		val convertedChange = changeConverter.convert(event)
-		if (!convertedChange.empty) {
-			if (!this.reportChanges) {
-				log.
-					trace('''Do not report change «convertedChange» because reporting is disabled for projects «monitoredProjectNames»''')
-				return
-			}
-			log.trace('''Submit change in projects «monitoredProjectNames»''')
-			recordingState.submitChange(convertedChange.get)
+		if (!this.reportChanges) {
+			log.
+				warn('''Do not report change «convertedChange» because reporting is disabled for projects «monitoredProjectNames»''')
+			return
 		}
+		log.trace('''Submit change in projects «monitoredProjectNames»''')
+		recordingState.submitChange(convertedChange)
 	}
 
 	override void earlyStartup() {
 	}
 
 	private static class RecordingState {
-		val List<VitruviusChange> changes = new ArrayList<VitruviusChange>()
+		val List<ResourceChange> changes = new ArrayList()
 		int lastChangeCount = 0
 		val ()=>void submitPropagation
 
@@ -157,14 +172,14 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 			this.submitPropagation = submitPropagation
 		}
 
-		def synchronized Iterable<VitruviusChange> reset() {
+		def synchronized Iterable<ResourceChange> reset() {
 			val returnedChanges = new ArrayList(changes)
 			changes.clear()
 			lastChangeCount = 0
 			return returnedChanges
 		}
 
-		def synchronized void submitChange(VitruviusChange change) {
+		def synchronized void submitChange(ResourceChange change) {
 			changes.add(change)
 			// If this is the first change, submit a propagation job
 			if (changes.size() === 1) {
@@ -184,7 +199,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 			return changes.size()
 		}
 
-		def synchronized Iterable<VitruviusChange> getChanges() {
+		def synchronized Iterable<ResourceChange> getChanges() {
 			return changes
 		}
 	}

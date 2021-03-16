@@ -24,6 +24,7 @@ import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.DeleteClassEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.DeleteInterfaceEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.DeletePackageEvent;
+import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.MethodBodyChangedEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.MoveMethodEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RemoveAnnotationEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RemoveFieldEvent;
@@ -36,6 +37,7 @@ import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenameFieldEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenameInterfaceEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenameMethodEvent;
+import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenameMethodParameterEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenamePackageDeclarationEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenamePackageEvent;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenameParameterEvent;
@@ -47,8 +49,6 @@ import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.
  * ChangeEventExtendedVisitor.
  */
 public interface ChangeEventVisitor<T> {
-
-	T visit(ChangeClassifyingEventExtension changeClassifyingEvent);
 
 	T visit(CreateInterfaceEvent addInterfaceEvent);
 
@@ -123,5 +123,9 @@ public interface ChangeEventVisitor<T> {
 	T visit(AddMethodEvent addMethodEvent);
 
 	T visit(RenameParameterEvent renameParameterEvent);
+	
+	T visit(MethodBodyChangedEvent methodBodyChangedEvent);
+	
+	T visit(RenameMethodParameterEvent renameMethodParameterEvent);
 
 }
