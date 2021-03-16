@@ -1,4 +1,4 @@
-package tools.vitruv.domains.java.ui.monitorededitor.methodchange.changeclassifiers;
+package tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,7 +13,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.PreviousASTState;
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.ConcreteChangeClassifier;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.ChangeClassifyingEvent;
-import tools.vitruv.domains.java.ui.monitorededitor.methodchange.events.MethodParameterNameChangedEvent;
+import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenameMethodParameterEvent;
 
 /**
  * Classifier for renamed method parameters. It checks every method of the
@@ -74,8 +74,8 @@ public class MethodParameterNameChangedClassifier implements
 					.parameters().get(i);
 
 			if (!AST_MATCHER.match(p1.getName(), p2.getName())) {
-				result.add(new MethodParameterNameChangedEvent(original,
-						changed, p2, p1));
+				result.add(new RenameMethodParameterEvent(original,
+						changed, p2, p1, 0));
 				// result.add(new ChangeMethodParameterEvent(original, changed,
 				// cu.getLineNumber(original.getStartPosition())));
 			}
