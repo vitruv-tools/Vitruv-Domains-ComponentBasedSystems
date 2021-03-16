@@ -110,6 +110,8 @@ public class ASTChangeListener implements IStartup, IElementChangedListener, Wit
 		classifiers.add(new RemoveMethodClassifier());
 		classifiers.add(new ChangeMethodParameterClassifier());
 		classifiers.add(new ChangeMethodModifiersClassifier());
+		classifiers.add(new MethodBodyChangedClassifier());
+		classifiers.add(new MethodParameterNameChangedClassifier());
 		classifiers.add(new ChangeMethodReturnTypeClassifier());
 		classifiers.add(new CreateTypeClassifier());
 		classifiers.add(new RemoveTypeClassifier());

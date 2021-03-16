@@ -1,4 +1,4 @@
-package tools.vitruv.domains.java.ui.monitorededitor.methodchange.changeclassifiers;
+package tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.PreviousASTState;
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.ConcreteChangeClassifier;
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.ChangeClassifyingEvent;
-import tools.vitruv.domains.java.ui.monitorededitor.methodchange.events.MethodBodyChangedEvent;
+import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.MethodBodyChangedEvent;
 import edu.kit.ipd.sdq.commons.util.java.Pair;
 
 /**
