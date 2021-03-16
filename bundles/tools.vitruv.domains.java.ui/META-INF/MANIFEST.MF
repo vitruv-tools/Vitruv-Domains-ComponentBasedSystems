@@ -22,13 +22,12 @@ Bundle-ActivationPolicy: lazy
 Export-Package: tools.vitruv.domains.java.ui;x-internal:=true,
  tools.vitruv.domains.java.ui.monitorededitor,
  tools.vitruv.domains.java.ui.builder,
- tools.vitruv.domains.java.ui.monitorededitor.astchangelistener,
- tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification,
+ tools.vitruv.domains.java.ui.monitorededitor.astchangelistener;x-internal:=true,
+ tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification;x-internal:=true,
  tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postchange;x-internal:=true,
  tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile;x-internal:=true,
- tools.vitruv.domains.java.ui.monitorededitor.changeclassification,
- tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events,
+ tools.vitruv.domains.java.ui.monitorededitor.changeclassification;x-internal:=true,
+ tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events;x-internal:=true,
  tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.util;x-internal:=true,
- tools.vitruv.domains.java.ui.monitorededitor.jamopputil,
- tools.vitruv.domains.java.ui.monitorededitor.javamodel2ast
+ tools.vitruv.domains.java.ui.monitorededitor.javamodel2ast;x-internal:=true
 Bundle-Vendor: vitruv.tools
