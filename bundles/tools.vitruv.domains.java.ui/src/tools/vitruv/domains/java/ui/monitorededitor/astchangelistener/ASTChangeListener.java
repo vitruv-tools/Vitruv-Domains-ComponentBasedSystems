@@ -34,6 +34,8 @@ import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classifica
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile.CreateTypeClassifier;
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile.HigherOperationEventsFilter;
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile.JavaDocClassifier;
+import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile.MethodBodyChangedClassifier;
+import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile.MethodParameterNameChangedClassifier;
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile.RemoveFieldClassifier;
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile.RemoveImportClassifier;
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.classification.postreconcile.RemoveMethodClassifier;
@@ -45,8 +47,6 @@ import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.
 import tools.vitruv.domains.java.ui.monitorededitor.javamodel2ast.CompilationUnitUtil;
 
 import static com.google.common.base.Preconditions.checkState;
-import static tools.vitruv.domains.java.ui.monitorededitor.util.ExtensionPointsUtil.getRegisteredAstPostChangeClassifiers;
-import static tools.vitruv.domains.java.ui.monitorededitor.util.ExtensionPointsUtil.getRegisteredAstPostReconcileClassifiers;
 
 /**
  * The {@link ASTChangeListener} reacts to changes in the Eclipse JDT AST and
@@ -123,7 +123,7 @@ public class ASTChangeListener implements IStartup, IElementChangedListener, Wit
 		classifiers.add(new ChangeSupertypeClassifier());
 		classifiers.add(new ChangeAnnotationClassifier());
 		classifiers.add(new JavaDocClassifier());
-		classifiers.addAll(getRegisteredAstPostReconcileClassifiers());
+		
 		return classifiers;
 	}
 
@@ -133,7 +133,6 @@ public class ASTChangeListener implements IStartup, IElementChangedListener, Wit
 		classifiers.add(new RenamePackageClassifier());
 		classifiers.add(new CreatePackageClassifier());
 		classifiers.add(new DeletePackageClassifier());
-		classifiers.addAll(getRegisteredAstPostChangeClassifiers());
 		return classifiers;
 	}
 

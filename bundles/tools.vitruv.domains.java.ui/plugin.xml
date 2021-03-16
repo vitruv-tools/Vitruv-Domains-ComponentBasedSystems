@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-      <extension-point id="changeeventextendedvisitors" name="Change Event Extended Visitors" schema="schema/tools.vitruv.domains.java.ui.changeeventextendedvisitors.exsd"/>
-      <extension-point id="astpostreconcile" name="Postreconcile Classifiers" schema="schema/tools.vitruv.domains.java.ui.astpostreconcile.exsd"/>
-      <extension-point id="astpostchange" name="Postchange Classifiers" schema="schema/tools.vitruv.domains.java.ui.astpostchange.exsd"/>
-
-
       <extension id="tools.vitruv.domains.java.ui.builder.JavaBuilder.id" point="org.eclipse.core.resources.builders">
             <builder>
                   <run class="tools.vitruv.domains.java.ui.builder.VitruvJavaBuilder">
