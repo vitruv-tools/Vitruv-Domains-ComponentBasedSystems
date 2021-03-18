@@ -16,7 +16,7 @@ public class PrimitiveTypesRepositoryLoader {
 	private PrimitiveTypesRepositoryLoader() {
 	}
 
-	private static String PRIMITIVETYPES_URI = "platform:/plugin/org.palladiosimulator.pcm.resources/defaultModels/PrimitiveTypes.repository";
+	private static URI PRIMITIVETYPES_URI = URI.createURI("pathmap://PCM_MODELS/PrimitiveTypes.repository");
 
 	private static Repository primitiveTypesRepository;
 	private static Map<String, PrimitiveDataType> primitives = new HashMap<String, PrimitiveDataType>();
@@ -49,10 +49,8 @@ public class PrimitiveTypesRepositoryLoader {
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("repository", new XMIResourceFactoryImpl());
 
-		URI uri = URI.createURI(PRIMITIVETYPES_URI);
-
 		ResourceSet resSet = new ResourceSetImpl();
-		Resource resource = resSet.getResource(uri, true);
+		Resource resource = resSet.getResource(PRIMITIVETYPES_URI, true);
 
 		primitiveTypesRepository = (Repository) resource.getContents().get(0);
 		return primitiveTypesRepository;
