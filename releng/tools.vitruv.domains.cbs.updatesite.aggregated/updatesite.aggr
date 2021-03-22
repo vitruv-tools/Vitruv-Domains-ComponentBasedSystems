@@ -17,7 +17,7 @@
         <features name="org.emftext.commons.jdt.feature.group" versionRange="1.4.1"/>
         <features name="org.emftext.commons.layout.feature.group" versionRange="1.4.1"/>
       </repositories>
-      <repositories location="http://kit-sdq.github.io/updatesite/release/commons/1.10.0" mirrorArtifacts="false">
+      <repositories location="http://kit-sdq.github.io/updatesite/release/commons/2.0.0" mirrorArtifacts="false">
         <features name="edu.kit.ipd.sdq.commons.util.pcm.feature.feature.group"/>
       </repositories>
       <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2020-06" mirrorArtifacts="false">

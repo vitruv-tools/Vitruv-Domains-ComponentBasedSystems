@@ -40,13 +40,13 @@ import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.AddMethodEvent
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenameParameterEvent
 import org.eclipse.jdt.core.dom.ASTNode
-import edu.kit.ipd.sdq.commons.util.org.eclipse.core.resources.IResourceUtil
 import org.eclipse.core.resources.IResource
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.ResourceChange
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.MethodBodyChangedEvent
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.RenameMethodParameterEvent
 import org.eclipse.jdt.core.ICompilationUnit
 import org.eclipse.jdt.core.JavaModelException
+import static extension edu.kit.ipd.sdq.commons.util.org.eclipse.emf.common.util.URIUtil.createPlatformResourceURI
 
 class ChangeClassifyingEventToResourceChangeConverter {
 
@@ -78,7 +78,7 @@ class ChangeClassifyingEventToResourceChangeConverter {
 		}
 
 		private static def getURI(IResource resource) {
-			IResourceUtil.getEMFPlatformURI(resource)
+			resource.createPlatformResourceURI()
 		}
 
 		override visit(CreateInterfaceEvent addInterfaceEvent) {
