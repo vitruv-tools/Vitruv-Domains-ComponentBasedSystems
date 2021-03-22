@@ -3,7 +3,7 @@ package tools.vitruv.domains.java.ui.builder;
 import org.apache.log4j.Logger;
 import org.eclipse.ui.IStartup;
 
-import static tools.vitruv.framework.util.ProjectBuildUtils.buildAllProjectsIncrementally;
+import static edu.kit.ipd.sdq.commons.util.org.eclipse.core.resources.IProjectUtil.buildAllProjectsIncrementally;
 
 /**
  * {@link JavaBuildOnEclipseStartup} issues an incremental build of all open

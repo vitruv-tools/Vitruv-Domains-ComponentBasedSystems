@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 
 import tools.vitruv.domains.java.ui.monitorededitor.JavaMonitoredEditor;
 import tools.vitruv.framework.domains.ui.builder.VitruvProjectBuilder;
-import static tools.vitruv.framework.util.ProjectBuildUtils.hasBuilder;
+import static edu.kit.ipd.sdq.commons.util.org.eclipse.core.resources.IProjectUtil.hasBuilder;
 import static tools.vitruv.framework.domains.ui.builder.VitruvProjectBuilderArguments.getPropagateAfterBuild;
 import static tools.vitruv.framework.domains.ui.builder.VitruvProjectBuilderArguments.getPropagateAfterChangeMilliseconds;
 

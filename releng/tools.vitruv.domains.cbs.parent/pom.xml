@@ -22,7 +22,7 @@
 		<repository>
 			<id>SDQ Commons</id>
 			<layout>p2</layout>
-			<url>https://kit-sdq.github.io/updatesite/release/commons/1.10.0</url>
+			<url>https://kit-sdq.github.io/updatesite/release/commons/2.0.0/</url>
 		</repository>
 		<!--EMFText repository currently not available
 		<repository>
