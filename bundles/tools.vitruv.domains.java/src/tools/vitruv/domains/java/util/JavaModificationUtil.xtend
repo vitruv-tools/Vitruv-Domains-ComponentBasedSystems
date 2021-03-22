@@ -18,15 +18,10 @@ import org.emftext.language.java.imports.Import
 import org.emftext.language.java.classifiers.ConcreteClassifier
 import org.emftext.language.java.classifiers.Classifier
 import org.emftext.language.java.imports.ImportsFactory
-import org.emftext.language.java.containers.CompilationUnit
 import org.emftext.language.java.types.PrimitiveType
 import org.emftext.language.java.types.Char
 import org.emftext.language.java.types.Int
-import tools.vitruv.domains.java.util.jamoppparser.JamoppParser
-import tools.vitruv.framework.util.datatypes.VURI
-import java.io.ByteArrayInputStream
 import org.eclipse.emf.ecore.util.EcoreUtil
-import org.emftext.language.java.containers.JavaRoot
 import org.emftext.language.java.modifiers.ModifiersFactory
 import org.emftext.language.java.imports.ClassifierImport
 import org.emftext.language.java.JavaClasspath
@@ -110,25 +105,6 @@ class JavaModificationUtil {
 		namespaceClassifierReference.classifierReferences.add(classifierRef)
 
 	// namespaceClassifierReference.namespaces.addAll(concreteClassifier.containingCompilationUnit.namespaces)
-	}
-
-	def static CompilationUnit createCompilationUnit(String name, String content) {
-		return createJavaRoot(name, content) as CompilationUnit
-	}
-
-	/**
-     * Creates a JavaRoot Object with the given content
-     * 
-     */
-	def static JavaRoot createJavaRoot(String name, String content) {
-		// TODO Implement this without parsing by creating the model itself
-		val JamoppParser jaMoPPParser = new JamoppParser
-		val inStream = new ByteArrayInputStream(content.bytes)
-		val javaRoot = jaMoPPParser.parseCompilationUnitFromInputStream(VURI.getInstance(name + ".java").getEMFUri,
-			inStream)
-		javaRoot.name = name + ".java"
-		EcoreUtil.remove(javaRoot)
-		return javaRoot
 	}
 
 	def static createPrivateField(Field field, TypeReference reference, String name) {
