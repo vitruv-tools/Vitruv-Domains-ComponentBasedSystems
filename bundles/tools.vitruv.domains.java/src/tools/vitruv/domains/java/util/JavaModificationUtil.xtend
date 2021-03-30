@@ -77,11 +77,7 @@ class JavaModificationUtil {
 
 	def static NamespaceClassifierReference createNamespaceClassifierReference(ConcreteClassifier concreteClassifier) {
 		val namespaceClassifierReference = TypesFactory.eINSTANCE.createNamespaceClassifierReference
-		val classifierRef = TypesFactory.eINSTANCE.createClassifierReference
-		classifierRef.target = concreteClassifier
-		namespaceClassifierReference.classifierReferences.add(classifierRef)
-
-		// namespaceClassifierReference.namespaces.addAll(concreteClassifier.containingCompilationUnit.namespaces)
+		createNamespaceClassifierReference(namespaceClassifierReference, concreteClassifier)
 		return namespaceClassifierReference
 	}
 
@@ -103,8 +99,7 @@ class JavaModificationUtil {
 		val classifierRef = TypesFactory.eINSTANCE.createClassifierReference
 		classifierRef.target = concreteClassifier
 		namespaceClassifierReference.classifierReferences.add(classifierRef)
-
-	// namespaceClassifierReference.namespaces.addAll(concreteClassifier.containingCompilationUnit.namespaces)
+		namespaceClassifierReference.namespaces.addAll(concreteClassifier.containingCompilationUnit?.namespaces ?: #[])
 	}
 
 	def static createPrivateField(Field field, TypeReference reference, String name) {
@@ -175,16 +170,7 @@ class JavaModificationUtil {
 	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String namespace,
 		String name) {
 		val classifier = getClassifier(namespace + "." + name)
-		val classifierReference = TypesFactory.eINSTANCE.createClassifierReference
-		classifierReference.setTarget(classifier)
-		val namespaceClassifierReference = TypesFactory.eINSTANCE.createNamespaceClassifierReference
-		namespaceClassifierReference.classifierReferences.add(classifierReference)
-		if (!namespace.nullOrEmpty) {
-			namespaceClassifierReference.namespaces.addAll(namespace.split("\\."))
-		} else {
-			namespaceClassifierReference.namespaces.add("")
-		}
-		return namespaceClassifierReference
+		return createNamespaceClassifierReference(classifier)
 	}
 
 	def static NamespaceClassifierReference createNamespaceClassifierReferenceForName(String qualifiedName) {
