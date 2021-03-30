@@ -66,7 +66,7 @@ class JavaModificationUtil {
 		// =
 		assigmentExpression.assignmentOperator = OperatorsFactory.eINSTANCE.createAssignment
 
-		// name		
+		// name
 		val identifierReference = ReferencesFactory.eINSTANCE.createIdentifierReference
 		identifierReference.target = parameter
 
@@ -180,7 +180,7 @@ class JavaModificationUtil {
 		val namespaceClassifierReference = TypesFactory.eINSTANCE.createNamespaceClassifierReference
 		namespaceClassifierReference.classifierReferences.add(classifierReference)
 		if (!namespace.nullOrEmpty) {
-			namespaceClassifierReference.namespaces.addAll(namespace.split("."))
+			namespaceClassifierReference.namespaces.addAll(namespace.split("\\."))
 		} else {
 			namespaceClassifierReference.namespaces.add("")
 		}
