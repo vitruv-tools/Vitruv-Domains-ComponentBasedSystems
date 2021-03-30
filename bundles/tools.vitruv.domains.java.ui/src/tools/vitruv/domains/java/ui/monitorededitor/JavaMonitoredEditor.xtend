@@ -14,7 +14,6 @@ import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.ChangeOper
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.ChangeClassifyingEvent
 import tools.vitruv.framework.domains.ui.monitorededitor.AbstractMonitoredEditor
 import tools.vitruv.framework.vsum.VirtualModel
-import tools.vitruv.framework.vsum.modelsynchronization.ChangePropagator
 import static com.google.common.base.Preconditions.checkState
 import org.eclipse.core.resources.WorkspaceJob
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -30,9 +29,8 @@ import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.Resourc
 /** 
  * Extends {@link AbstractMonitoredEditor} and implements {@link UserInteractor} by delegation to a dialog {@link UserInteractor}. 
  * The {@link MonitoredEditor} uses the {@link ASTChangeListener} to monitor changes in Java source code. The listener generates 
- * {@link ChangeClassifyingEvent}s which are transferred to the {@link ChangeResponder} who builds and returns {@link EMFModelChange} 
- * objects. These change objects are then used by the{@link ChangePropagator} to propagate changes to other with the code
- * affiliated EMF models.
+ * {@link ChangeClassifyingEvent}s which are converted to {@link ResourceChange}s by the {@link ChangeClassifyingEventToResourceChangeConverter}
+ * and then propagated as state-based changes to the {@link VirtualModel}.
  */
 class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOperationListener, IStartup {
 	static val Logger log = Logger.getLogger(JavaMonitoredEditor)
