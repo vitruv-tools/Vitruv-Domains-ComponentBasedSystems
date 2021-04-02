@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
       - name: Checkout Matching Applications Branch
         run: |
-          cd ../cbsapplications
+          cd cbsapplications
           git checkout -B ${{ github.head_ref }} origin/${{ github.head_ref }} || true
       - name: Cache
         uses: actions/cache@v2
