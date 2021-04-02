@@ -99,7 +99,19 @@ class JavaModificationUtil {
 		val classifierRef = TypesFactory.eINSTANCE.createClassifierReference
 		classifierRef.target = concreteClassifier
 		namespaceClassifierReference.classifierReferences.add(classifierRef)
-		namespaceClassifierReference.namespaces.addAll(concreteClassifier.containingCompilationUnit?.namespaces ?: #[])
+		if (concreteClassifier.containingCompilationUnit !== null) {
+		    namespaceClassifierReference.namespaces += concreteClassifier.containingCompilationUnit.namespaces
+		}
+		else if (concreteClassifier.eIsProxy) {
+		    //extract namespaces for java default types
+		    val uri = EcoreUtil.getURI(concreteClassifier)
+		    val prefix = "/javaclass/"
+		    val suffix = concreteClassifier.name + JavaPersistenceHelper.FILE_EXTENSION_SEPARATOR + JavaPersistenceHelper.JAVA_FILE_EXTENSION
+		    if (uri.path.startsWith(prefix) && uri.path.endsWith(suffix)) {
+		        val namespaces = uri.path.substring(prefix.length, uri.path.length - suffix.length).split("\\.")
+		        namespaceClassifierReference.namespaces += namespaces
+		    }
+		}
 	}
 
 	def static createPrivateField(Field field, TypeReference reference, String name) {
