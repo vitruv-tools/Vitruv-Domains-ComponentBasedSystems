@@ -7,13 +7,6 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Framework
-        uses: actions/checkout@v2
-        with:
-          path: framework
-          repository: vitruv-tools/Vitruv
-          ref: master
-          fetch-depth: 0
       - name: Checkout CBS Domains
         uses: actions/checkout@v2
         with:
@@ -41,27 +34,8 @@ jobs:
           java-version: 11
       - name: Adapt Updatesites
         run: |
-          sed -i 's#https://vitruv-tools.github.io/updatesite/nightly/framework/#file:///${maven.multiModuleProjectDirectory}/../framework/releng/tools.vitruv.updatesite.aggregated/target/final#wresult' cbsdomains/releng/tools.vitruv.domains.cbs.parent/pom.xml
-          if [ ! -s result ]; then exit 1; fi;
-          sed -i 's#https://vitruv-tools.github.io/updatesite/nightly/framework/#file:///${maven.multiModuleProjectDirectory}/../framework/releng/tools.vitruv.updatesite.aggregated/target/final#wresult' cbsapplications/releng/tools.vitruv.applications.cbs.parent/pom.xml
-          if [ ! -s result ]; then exit 1; fi;
           sed -i 's#https://vitruv-tools.github.io/updatesite/nightly/domains/cbs/#file:///${maven.multiModuleProjectDirectory}/../cbsdomains/releng/tools.vitruv.domains.cbs.updatesite.aggregated/target/final#wresult' cbsapplications/releng/tools.vitruv.applications.cbs.parent/pom.xml
           if [ ! -s result ]; then exit 1; fi;
-      - name: Build Framework
-        uses: GabrielBB/xvfb-action@v1
-        with:
-          working-directory: ./framework
-          run: >
-            ./mvnw -B package -Dmaven.test.skip=true
-            -Dstyle.color=always
-            -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-            -Dorg.slf4j.simpleLogger.log.org.eclipse.tycho.core.resolver.DefaultTychoResolver=warn
-            -Dorg.slf4j.simpleLogger.log.org.eclipse.tycho.osgi.configuration.MavenContextConfigurator=warn
-            -Dorg.slf4j.simpleLogger.log.org.eclipse.sisu.equinox.launching.internal.DefaultEquinoxLauncher=warn
-            -Dorg.slf4j.simpleLogger.log.org.eclipse.xtext.maven.XtextGenerateMojo=warn
-            -Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.NoOpLog
-        env: 
-          MAVEN_OPTS: -Djansi.force=true
       - name: Build Domains
         working-directory: ./cbsdomains
         run: >
