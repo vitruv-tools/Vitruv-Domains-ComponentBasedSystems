@@ -19,9 +19,6 @@ import org.eclipse.core.resources.WorkspaceJob
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.function.Supplier
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import static extension tools.vitruv.framework.domains.repository.DomainAwareResourceSet.awareOfDomains
-import tools.vitruv.framework.domains.repository.VitruvDomainRepositoryImpl
-import tools.vitruv.domains.java.JavaDomainProvider
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.ChangeClassifyingEventToResourceChangeConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.ResourceChange
@@ -120,9 +117,7 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 		for (ResourceChange change : changes) {
 			val changedResource = if (change.newResourceURI !== null) {
 					try {
-						val javaAwareResourceSet = new ResourceSetImpl().awareOfDomains(
-							new VitruvDomainRepositoryImpl(#[new JavaDomainProvider().domain]))
-						val changedResource = javaAwareResourceSet.getResource(change.newResourceURI, true)
+						val changedResource = new ResourceSetImpl().getResource(change.newResourceURI, true)
 						// Resolve proxies to ensure that all elements can be found instead of treating proxies as new elements
 						EcoreUtil.resolveAll(changedResource)
 						changedResource
