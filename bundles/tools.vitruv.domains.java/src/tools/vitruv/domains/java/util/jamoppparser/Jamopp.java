@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.emftext.language.java.JavaPackage;
-import org.emftext.language.java.resource.JavaSourceOrClassFileResourceFactoryImpl;
-import org.emftext.language.java.resource.java.IJavaOptions;
+
+import jamopp.resource.JavaResource2Factory;
 
 /**
- * Registers the {@link JavaSourceOrClassFileResourceFactoryImpl} to load JaMoPP resources from
+ * Registers the {@link JavaResource2Factory} to load JaMoPP resources from
  * .java files or java content-type InputStreams.
  */
 public class Jamopp {
@@ -47,12 +47,11 @@ public class Jamopp {
     }
 
     protected void setUp() {
-        this.rs.getLoadOptions().put(IJavaOptions.DISABLE_LOCATION_MAP, Boolean.TRUE);
         EPackage.Registry.INSTANCE.put("http://www.emftext.org/java", JavaPackage.eINSTANCE);
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("java",
-                new JavaSourceOrClassFileResourceFactoryImpl());
+                new JavaResource2Factory());
         Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("java",
-                new JavaSourceOrClassFileResourceFactoryImpl());
+                new JavaResource2Factory());
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION,
                 new XMIResourceFactoryImpl());
     }
