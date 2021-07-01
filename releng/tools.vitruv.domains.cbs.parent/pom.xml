@@ -40,16 +40,6 @@
 			<layout>p2</layout>
 			<url>https://updatesite.palladio-simulator.com/palladio-build-updatesite/releases/4.3.0/</url>
 		</repository>
-		<repository>
-			<id>Papyrus</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2019-09/</url>
-		</repository>
-		<repository>
-			<id>Papyrus SysML</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/2019-06/</url>
-		</repository>
 	</repositories>
 
 </project>
