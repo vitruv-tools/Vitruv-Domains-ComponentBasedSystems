@@ -6,6 +6,7 @@ import jamopp.resource.JavaResource2Factory
 import java.util.List
 import tools.vitruv.framework.domains.AbstractVitruvDomain
 import org.emftext.language.java.JavaClasspath
+import jamopp.resource.JavaResource2
 
 class JavaDomain extends AbstractVitruvDomain {
 	static final String METAMODEL_NAME = "Java"
@@ -16,11 +17,13 @@ class JavaDomain extends AbstractVitruvDomain {
 	}
 	
 	protected new(String name) {
-		super(name, ROOT_PACKAGE, List.of(FILE_EXTENSION))
+		super(name, ROOT_PACKAGE, List.of(FILE_EXTENSION, JavaResource2.JAVAXMI_FILE_EXTENSION))
 		// Register factory for class and Java files in case of not running as plugin
 		val factory = new JavaResource2Factory
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("java", factory)
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(FILE_EXTENSION, factory)
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("class", factory)
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+			JavaResource2.JAVAXMI_FILE_EXTENSION, factory)
 		JavaClasspath.get.registerStdLib
 	}
 	
