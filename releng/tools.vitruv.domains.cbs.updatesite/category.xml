@@ -12,12 +12,6 @@
    <feature id="tools.vitruv.domains.pcm.feature.source" version="2.1.0.qualifier">
       <category name="Vitruv Domains CBS"/>
    </feature>
-   <feature url="features/tools.vitruv.domains.sysml.feature_2.1.0.qualifier.jar" id="tools.vitruv.domains.sysml.feature" version="2.1.0.qualifier">
-      <category name="Vitruv Domains CBS"/>
-   </feature>
-   <feature id="tools.vitruv.domains.sysml.feature.source" version="2.1.0.qualifier">
-      <category name="Vitruv Domains CBS"/>
-   </feature>
    <feature url="features/tools.vitruv.domains.uml.feature_2.1.0.qualifier.jar" id="tools.vitruv.domains.uml.feature" version="2.1.0.qualifier">
       <category name="Vitruv Domains CBS"/>
    </feature>
