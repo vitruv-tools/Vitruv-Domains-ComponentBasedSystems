@@ -48,10 +48,10 @@ class JamoppStringOperations {
 
 	static def dispatch String getStringRepresentation(Method javaMethod) {
 		val javaIdentifier = new StringBuilder();
-		javaIdentifier.append(javaMethod.typeReference.getStringRepresentation(javaMethod.arrayDimension))
+		javaIdentifier.append(javaMethod.typeReference.getStringRepresentation(javaMethod.typeReference.arrayDimension))
 		javaIdentifier.append(javaMethod.name)
 		javaMethod.parameters.forEach[
-			javaIdentifier.append(typeReference.getStringRepresentation(arrayDimension))]
+			javaIdentifier.append(typeReference.getStringRepresentation(typeReference.arrayDimension))]
 		return javaIdentifier.toString
 	}
 
@@ -71,11 +71,11 @@ class JamoppStringOperations {
 	}
 
 	static def dispatch String getStringRepresentation(OrdinaryParameter param) {
-		return param.typeReference.target.getStringRepresentation(param.arrayDimension)
+		return param.typeReference.target.getStringRepresentation(param.typeReference.arrayDimension)
 	}
 
 	static def dispatch String getStringRepresentation(VariableLengthParameter param) {
-		return param.typeReference.target.getStringRepresentation(param.arrayDimension) + "..."
+		return param.typeReference.target.getStringRepresentation(param.typeReference.arrayDimension) + "..."
 	}
 	
 	static def String getNamespaceAsString(Iterable<String> namespaces) {
