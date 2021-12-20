@@ -20,7 +20,7 @@
       <repositories location="http://kit-sdq.github.io/updatesite/release/commons/2.0.0" mirrorArtifacts="false">
         <features name="edu.kit.ipd.sdq.commons.util.pcm.feature.feature.group"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/releases/2021-06" mirrorArtifacts="false">
+      <repositories location="https://download.eclipse.org/releases/2021-12" mirrorArtifacts="false">
         <features name="org.eclipse.uml2.uml.feature.group"/>
       </repositories>
     </contributions>
