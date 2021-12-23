@@ -9,7 +9,7 @@
         <features name="de.uka.ipd.sdq.identifier.feature.feature.group" versionRange="2.1.0"/>
         <features name="org.palladiosimulator.pcm.feature.feature.group" versionRange="4.3.0"/>
       </repositories>
-      <repositories location="http://kit-sdq.github.io/updatesite/release/p2-wrapper" mirrorArtifacts="false">
+      <repositories location="https://kit-sdq.github.io/updatesite/release/p2-wrapper" mirrorArtifacts="false">
         <features name="org.emftext.language.java.feature.group" versionRange="1.4.1"/>
         <features name="org.emftext.language.java.jdt.feature.group" versionRange="1.4.1"/>
         <features name="org.emftext.language.java.ui.feature.group" versionRange="1.4.1"/>
@@ -17,14 +17,14 @@
         <features name="org.emftext.commons.jdt.feature.group" versionRange="1.4.1"/>
         <features name="org.emftext.commons.layout.feature.group" versionRange="1.4.1"/>
       </repositories>
-      <repositories location="http://kit-sdq.github.io/updatesite/release/commons/2.0.0" mirrorArtifacts="false">
+      <repositories location="https://kit-sdq.github.io/updatesite/release/commons/2.0.0" mirrorArtifacts="false">
         <features name="edu.kit.ipd.sdq.commons.util.pcm.feature.feature.group"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/releases/2021-06" mirrorArtifacts="false">
+      <repositories location="https://download.eclipse.org/releases/2021-12" mirrorArtifacts="false">
         <features name="org.eclipse.uml2.uml.feature.group"/>
       </repositories>
     </contributions>
-    <validationRepositories location="http://vitruv-tools.github.io/updatesite/nightly/framework"/>
+    <validationRepositories location="https://vitruv-tools.github.io/updatesite/nightly/framework"/>
   </validationSets>
   <configurations architecture="x86_64"/>
   <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
