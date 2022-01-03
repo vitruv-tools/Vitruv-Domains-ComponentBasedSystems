@@ -79,12 +79,12 @@ class JavaPersistenceHelper {
 	}
 		
 	// Uses 'src/' as source path.
-	static def String buildJavaFilePath(CompilationUnit compilationUnit) {
+	static def dispatch String buildJavaFilePath(CompilationUnit compilationUnit) {
 		return buildJavaFilePath(javaProjectSrc, compilationUnit.namespaces, compilationUnit.simpleName, JAVA_FILE_EXTENSION)
 	}
 
 	// Uses 'src/' as source path.
-	static def String buildJavaFilePath(Package javaPackage) {
+	static def dispatch String buildJavaFilePath(Package javaPackage) {
 		return buildJavaPackageFilePath(javaProjectSrc, javaPackage.namespaces, javaPackage.name)
 	}
 
