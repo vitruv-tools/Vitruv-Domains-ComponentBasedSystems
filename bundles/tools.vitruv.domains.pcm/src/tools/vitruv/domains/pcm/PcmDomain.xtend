@@ -20,11 +20,20 @@ final class PcmDomain extends AbstractVitruvDomain {
 	}
 
 	/**
-	 * Calling this methods enable the per default disabled transitive change propagation.
+	 * Calling this method enables the per default disabled transitive change propagation.
 	 * Should only be called for test purposes!
 	 */
 	def enableTransitiveChangePropagation() {
 		shouldTransitivelyPropagateChanges = true
+	}
+
+	/**
+	 * Calling this method disables the transitive change propagation which may have been
+	 * enabled calling {@link #enableTransitiveChangePropagation()}.
+	 * Should only be called for test purposes!
+	 */
+	def disableTransitiveChangePropagation() {
+		shouldTransitivelyPropagateChanges = false
 	}
 
 }
