@@ -3,25 +3,33 @@ package tools.vitruv.domains.java.ui.monitorededitor
 import java.util.ArrayList
 import java.util.List
 import java.util.Set
+import java.util.function.Supplier
 import org.apache.log4j.Logger
+import org.eclipse.core.resources.WorkspaceJob
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.Status
 import org.eclipse.core.runtime.jobs.Job
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.ui.IStartup
 import org.eclipse.ui.PlatformUI
+import org.eclipse.xtend.lib.annotations.Accessors
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.ASTChangeListener
 import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.ChangeOperationListener
-import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.ChangeClassifyingEvent
-import tools.vitruv.framework.domains.ui.monitorededitor.AbstractMonitoredEditor
-import tools.vitruv.framework.vsum.VirtualModel
-import static com.google.common.base.Preconditions.checkState
-import org.eclipse.core.resources.WorkspaceJob
-import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.function.Supplier
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.ChangeClassifyingEventToResourceChangeConverter
-import org.eclipse.emf.ecore.util.EcoreUtil
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.ResourceChange
+import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.ChangeClassifyingEvent
+import tools.vitruv.framework.change.description.VitruviusChange
+import tools.vitruv.framework.domains.ui.monitorededitor.AbstractMonitoredEditor
+import tools.vitruv.framework.domains.ui.monitorededitor.MonitoredEditor
+import tools.vitruv.framework.views.View
+import tools.vitruv.framework.views.ViewTypeFactory
+import tools.vitruv.framework.views.changederivation.DefaultStateBasedChangeResolutionStrategy
+import tools.vitruv.framework.vsum.VirtualModel
+
+import static com.google.common.base.Preconditions.checkState
 
 /** 
  * Extends {@link AbstractMonitoredEditor} and implements {@link UserInteractor} by delegation to a dialog {@link UserInteractor}. 
@@ -126,14 +134,40 @@ class JavaMonitoredEditor extends AbstractMonitoredEditor implements ChangeOpera
 							" was not found although it should exist")
 					}
 				}
-			try {
-				this.virtualModel.propagateChangedState(changedResource, change.oldResourceURI)
+			//TODO This is just a workaround to access the previous resource state.
+			// The correct behavior would be to attach the Java monitor to a state-deriving view and reuse its change deriving functionality.
+			try (val view = getViewForURI(change.oldResourceURI ?: change.newResourceURI)) {
+			    val oldResource = view.rootObjects.head?.eResource
+			    val changeSequence = generateChange(changedResource, oldResource)
+			    virtualModel.propagateChange(changeSequence)
 			} catch (Exception e) {
 				log.error('''Some error occurred during propagating changes in projects «monitoredProjectNames»''', e)
 				throw new IllegalStateException(e)
 			}
 		}
 	}
+	
+	private def View getViewForURI(URI resourceURI) {
+	    val selector = virtualModel.createSelector(ViewTypeFactory.createIdentityMappingViewType("Java"))
+
+        for (rootElement : selector.selectableElements.filter[it.eResource?.URI == resourceURI]) {
+            selector.setSelected(rootElement, true)
+        }
+        return selector.createView()
+	}
+	
+	private def VitruviusChange generateChange(Resource newState, Resource referenceState) {
+	    val changeResolutionStrategy = new DefaultStateBasedChangeResolutionStrategy
+        if (referenceState === null) {
+            return changeResolutionStrategy.getChangeSequenceForCreated(newState)
+        }
+        else if (newState === null) {
+            return changeResolutionStrategy.getChangeSequenceForDeleted(referenceState)
+        }
+        else {
+            return changeResolutionStrategy.getChangeSequenceBetween(newState, referenceState)
+        }
+    }
 
 	override void notifyEventOccured() {
 		if (!shouldBeActive.get) {
