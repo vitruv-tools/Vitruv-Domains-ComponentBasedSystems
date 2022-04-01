@@ -50,10 +50,10 @@
 		<profile>
 			<id>local</id>
 			<activation>
-     			<property>
-        			<name>vitruv.framework.path</name>
-      			</property>
-      		</activation>
+				<property>
+					<name>vitruv.framework.path</name>
+				</property>
+			</activation>
 			<properties>
 				<vitruv.framework.url>file://${vitruv.framework.path}/releng/tools.vitruv.updatesite.aggregated/target/final</vitruv.framework.url>
 			</properties>
