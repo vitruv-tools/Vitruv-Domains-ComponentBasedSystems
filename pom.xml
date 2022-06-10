@@ -17,7 +17,6 @@
 		<module>tests</module>
 		<module>features</module>
 		<module>releng/tools.vitruv.domains.cbs.updatesite</module>
-		<module>releng/tools.vitruv.domains.cbs.updatesite.aggregated</module>
 	</modules>
 
 </project>
