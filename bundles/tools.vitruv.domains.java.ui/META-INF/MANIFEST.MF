@@ -8,6 +8,8 @@ Bundle-Activator: tools.vitruv.domains.java.ui.Activator
 Require-Bundle: org.eclipse.xtend.lib,
  org.eclipse.ui,
  org.eclipse.jdt.core,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
  org.apache.log4j,
  tools.vitruv.framework.vsum,
  tools.vitruv.framework.domains.ui;visibility:=reexport,
