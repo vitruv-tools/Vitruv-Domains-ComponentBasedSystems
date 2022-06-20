@@ -46,6 +46,8 @@ jobs:
           destination_dir: nightly/domains/cbs
           publish_dir: releng/tools.vitruv.domains.cbs.updatesite/target/repository
           publish_branch: main
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
       - name: Determine Release Version
         if: startsWith(github.ref, 'refs/tags/releases/') && github.repository_owner == 'vitruv-tools'
         id: releaseVersion
@@ -61,4 +63,5 @@ jobs:
           destination_dir: release/domains/cbs/${{ steps.releaseVersion.outputs.tag }}
           publish_dir: releng/tools.vitruv.domains.cbs.updatesite/target/repository
           publish_branch: main
-          
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
