@@ -45,7 +45,7 @@ jobs:
           external_repository: vitruv-tools/updatesite
           destination_dir: nightly/domains/cbs
           publish_dir: releng/tools.vitruv.domains.cbs.updatesite/target/repository
-          publish_branch: master
+          publish_branch: main
       - name: Determine Release Version
         if: startsWith(github.ref, 'refs/tags/releases/') && github.repository_owner == 'vitruv-tools'
         id: releaseVersion
@@ -60,5 +60,5 @@ jobs:
           external_repository: vitruv-tools/updatesite
           destination_dir: release/domains/cbs/${{ steps.releaseVersion.outputs.tag }}
           publish_dir: releng/tools.vitruv.domains.cbs.updatesite/target/repository
-          publish_branch: master
+          publish_branch: main
           
