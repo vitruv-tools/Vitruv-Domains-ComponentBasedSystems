@@ -21,7 +21,7 @@ import tools.vitruv.domains.java.ui.monitorededitor.astchangelistener.ChangeOper
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.ChangeClassifyingEventToResourceChangeConverter
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.ResourceChange
 import tools.vitruv.domains.java.ui.monitorededitor.changeclassification.events.ChangeClassifyingEvent
-import tools.vitruv.framework.change.description.VitruviusChange
+import tools.vitruv.change.composite.description.VitruviusChange
 import tools.vitruv.framework.domains.ui.monitorededitor.AbstractMonitoredEditor
 import tools.vitruv.framework.domains.ui.monitorededitor.MonitoredEditor
 import tools.vitruv.framework.views.View
