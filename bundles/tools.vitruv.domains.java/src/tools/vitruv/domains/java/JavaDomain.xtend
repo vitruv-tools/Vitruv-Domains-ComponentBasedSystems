@@ -46,19 +46,4 @@ class JavaDomain extends AbstractVitruvDomain {
 		shouldTransitivelyPropagateChanges = false
 	}
 	
-	override getDefaultLoadOptions() {
-		Map.of(
-			/**
-			 * FIXME Layout information currently breaks Vitruv: Because it is created dynamically
-			 * when a resource is loaded into a view, there are no create changes for layout information.
-			 * Hence, layout information has not UUIDs, and even if it had, it could not be resolved
-			 * correctly in the VSUM. Eventually, layout information should be recorded by Vitruv
-			 * just like all other model elements. To get there, we should have a mechanism that
-			 * creates the correct changes for layout information as well, preferably directly
-			 * when the corresponding model objects are created. For the time being, we disable
-			 * layout information  
-			 */
-			IJavaOptions.DISABLE_LAYOUT_INFORMATION_RECORDING, true
-		)
-	}
 }
