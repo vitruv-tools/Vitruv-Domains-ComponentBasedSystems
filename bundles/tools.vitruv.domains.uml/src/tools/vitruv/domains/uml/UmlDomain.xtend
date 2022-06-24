@@ -8,31 +8,9 @@ class UmlDomain extends AbstractVitruvDomain {
 	static final String METAMODEL_NAME = "UML";
 	public static val NAMESPACE_URIS = UMLPackage.eINSTANCE.nsURIsRecursive;
 	public static final String FILE_EXTENSION = UMLResource::FILE_EXTENSION;
-	boolean shouldTransitivelyPropagateChanges = false;
 
 	package new() {
 		super(METAMODEL_NAME, UMLPackage.eINSTANCE, FILE_EXTENSION);
-	}
-
-	override shouldTransitivelyPropagateChanges() {
-		return shouldTransitivelyPropagateChanges;
-	}
-
-	/**
-	 * Calling this method enables the per default disabled transitive change propagation.
-	 * Should only be called for test purposes!
-	 */
-	def enableTransitiveChangePropagation() {
-		shouldTransitivelyPropagateChanges = true
-	}
-
-	/**
-	 * Calling this method disables the transitive change propagation which may have been
-	 * enabled calling {@link #enableTransitiveChangePropagation()}.
-	 * Should only be called for test purposes!
-	 */
-	def disableTransitiveChangePropagation() {
-		shouldTransitivelyPropagateChanges = false
 	}
 
 }
